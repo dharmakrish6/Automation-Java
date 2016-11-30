@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="4" passed="4">
+  <reporter-output>
+    <line>
+      <![CDATA[Class2.test1() method]]>
+    </line>
+    <line>
+      <![CDATA[Class2.test2() method]]>
+    </line>
+    <line>
+      <![CDATA[Class1.test1() method]]>
+    </line>
+    <line>
+      <![CDATA[Class1.test2() method]]>
+    </line>
+  </reporter-output>
+  <suite name="Suite" duration-ms="27" started-at="2016-11-21T09:50:28Z" finished-at="2016-11-21T09:50:28Z">
+    <groups>
+      <group name="smoke">
+        <method signature="Class1.test1()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class1@50f8360d]" name="test1" class="moolya.bookMyShow.tests.Dummy.Class1"/>
+        <method signature="Class2.test1()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class2@234bef66]" name="test1" class="moolya.bookMyShow.tests.Dummy.Class2"/>
+      </group> <!-- smoke -->
+      <group name="sanity">
+        <method signature="Class1.test2()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class1@50f8360d]" name="test2" class="moolya.bookMyShow.tests.Dummy.Class1"/>
+        <method signature="Class2.test2()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class2@234bef66]" name="test2" class="moolya.bookMyShow.tests.Dummy.Class2"/>
+      </group> <!-- sanity -->
+    </groups>
+    <test name="Test" duration-ms="27" started-at="2016-11-21T09:50:28Z" finished-at="2016-11-21T09:50:28Z">
+      <class name="moolya.bookMyShow.tests.Dummy.Class1">
+        <test-method status="PASS" signature="test1()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class1@50f8360d]" name="test1" duration-ms="0" started-at="2016-11-21T15:20:28Z" finished-at="2016-11-21T15:20:28Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Class1.test1() method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class1@50f8360d]" name="test2" duration-ms="0" started-at="2016-11-21T15:20:28Z" finished-at="2016-11-21T15:20:28Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Class1.test2() method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test2 -->
+      </class> <!-- moolya.bookMyShow.tests.Dummy.Class1 -->
+      <class name="moolya.bookMyShow.tests.Dummy.Class2">
+        <test-method status="PASS" signature="test1()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class2@234bef66]" name="test1" duration-ms="9" started-at="2016-11-21T15:20:28Z" finished-at="2016-11-21T15:20:28Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Class2.test1() method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test1 -->
+        <test-method status="PASS" signature="test2()[pri:0, instance:moolya.bookMyShow.tests.Dummy.Class2@234bef66]" name="test2" duration-ms="1" started-at="2016-11-21T15:20:28Z" finished-at="2016-11-21T15:20:28Z">
+          <reporter-output>
+            <line>
+              <![CDATA[Class2.test2() method]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- test2 -->
+      </class> <!-- moolya.bookMyShow.tests.Dummy.Class2 -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>

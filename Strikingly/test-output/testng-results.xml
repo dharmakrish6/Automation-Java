@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="177393" started-at="2016-11-13T06:23:01Z" finished-at="2016-11-13T06:25:59Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="177393" started-at="2016-11-13T06:23:01Z" finished-at="2016-11-13T06:25:59Z">
+      <class name="moolya.strikingly.mobileTest.MobileLoginTest">
+        <test-method status="PASS" signature="setup()[pri:0, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="setup" is-config="true" duration-ms="26823" started-at="2016-11-13T11:53:01Z" finished-at="2016-11-13T11:53:28Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method status="PASS" signature="webGmailLoginTest()[pri:1, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="webGmailLoginTest" duration-ms="41507" started-at="2016-11-13T11:53:28Z" finished-at="2016-11-13T11:54:10Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- webGmailLoginTest -->
+        <test-method status="PASS" signature="afterTestMethod(org.testng.ITestResult)[pri:0, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="afterTestMethod" is-config="true" duration-ms="8166" started-at="2016-11-13T11:54:10Z" finished-at="2016-11-13T11:54:18Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=webGmailLoginTest status=SUCCESS method=MobileLoginTest.webGmailLoginTest()[pri:1, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTestMethod -->
+        <test-method status="PASS" signature="webFbLoginTest()[pri:2, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="webFbLoginTest" duration-ms="42463" started-at="2016-11-13T11:54:18Z" depends-on-methods="moolya.strikingly.mobileTest.MobileLoginTest.webGmailLoginTest" finished-at="2016-11-13T11:55:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- webFbLoginTest -->
+        <test-method status="PASS" signature="afterTestMethod(org.testng.ITestResult)[pri:0, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="afterTestMethod" is-config="true" duration-ms="8825" started-at="2016-11-13T11:55:00Z" finished-at="2016-11-13T11:55:09Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=webFbLoginTest status=SUCCESS method=MobileLoginTest.webFbLoginTest()[pri:2, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTestMethod -->
+        <test-method status="PASS" signature="webLnLoginTest()[pri:3, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="webLnLoginTest" duration-ms="25699" started-at="2016-11-13T11:55:09Z" depends-on-methods="moolya.strikingly.mobileTest.MobileLoginTest.webFbLoginTest" finished-at="2016-11-13T11:55:35Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- webLnLoginTest -->
+        <test-method status="PASS" signature="afterTestMethod(org.testng.ITestResult)[pri:0, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="afterTestMethod" is-config="true" duration-ms="20254" started-at="2016-11-13T11:55:35Z" finished-at="2016-11-13T11:55:55Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=webLnLoginTest status=SUCCESS method=MobileLoginTest.webLnLoginTest()[pri:3, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTestMethod -->
+        <test-method status="PASS" signature="teardown()[pri:0, instance:moolya.strikingly.mobileTest.MobileLoginTest@2b552920]" name="teardown" is-config="true" duration-ms="3624" started-at="2016-11-13T11:55:55Z" finished-at="2016-11-13T11:55:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- moolya.strikingly.mobileTest.MobileLoginTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
