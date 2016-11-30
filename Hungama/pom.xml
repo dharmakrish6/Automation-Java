@@ -47,7 +47,6 @@
 		<jsch.version>0.1.42</jsch.version>
 		<appium.version>3.3.0</appium.version>
 		<blocoio-faker.version>1.2.5</blocoio-faker.version>
-		<aturecorder.version>2.1</aturecorder.version>
 	</properties>
 
 	<build>
@@ -66,11 +65,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>ATU</groupId>
-			<artifactId>TestRecorder</artifactId>
-			<version>${aturecorder.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.github.blocoio</groupId>
 			<artifactId>faker</artifactId>
