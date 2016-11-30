@@ -15,20 +15,20 @@ log.html
 output.xml
 report.html
 *screenshot*
-build
-build/*
-test-output
-test-output/*
-testngReports
-testngReports/*
-testngXsltReports
-testngXsltReports/*
-test-output-ReportParser
-test-output-ReportParser/*
-failure_screenshots
-failure_screenshots/*
-screenshots/*
-screenshots
+*build
+*build/*
+*test-output
+*test-output/*
+*testngReports
+*testngReports/*
+*testngXsltReports
+*testngXsltReports/*
+*test-output-ReportParser
+*test-output-ReportParser/*
+*failure_screenshots
+*failure_screenshots/*
+*screenshots/*
+*screenshots
 
 # eclipse specific git ignore
 #############################
