@@ -1,6 +1,7 @@
 package moolya.hungama.pages;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -25,5 +26,16 @@ private MobileElement Password;
 
 @AndroidFindBy(name="SIGN IN")
 private MobileElement Log_in;
+
+
+public HomePage Subscriber_Login(){
+	
+	Email.sendKeys(" andm12903@mailinator.com");
+	Password.sendKeys("N47Z");
+	Log_in.click();
+	Reporter.log("login successful",true);
+	return new HomePage(mdriver);
 }
+}
+
 
