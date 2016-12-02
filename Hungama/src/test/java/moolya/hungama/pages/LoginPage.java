@@ -15,27 +15,27 @@ public class LoginPage extends M_BasePage {
 		PageFactory.initElements(new AppiumFieldDecorator(mdriver), this);
 		// TODO Auto-generated constructor stub
 	}
-@AndroidFindBy(name="SIGN IN WITH HUNGAMA")
-private MobileElement Sign_in;
+	@AndroidFindBy(name="SIGN IN WITH HUNGAMA")
+	private MobileElement Sign_in;
 
-@AndroidFindBy(name="Email / Mobile")
-private MobileElement Email;
+	@AndroidFindBy(name="Email / Mobile")
+	private MobileElement Email;
 
-@AndroidFindBy(id="com.hungama.myplay.activity:id/edit_field")
-private MobileElement Password;
+	@AndroidFindBy(id="com.hungama.myplay.activity:id/edit_field")
+	private MobileElement Password;
 
-@AndroidFindBy(name="SIGN IN")
-private MobileElement Log_in;
+	@AndroidFindBy(name="SIGN IN")
+	private MobileElement Log_in;
 
 
-public HomePage Subscriber_Login(){
-	
-	Email.sendKeys(" andm12903@mailinator.com");
-	Password.sendKeys("N47Z");
-	Log_in.click();
-	Reporter.log("login successful",true);
-	return new HomePage(mdriver);
-}
+	public HomePage Subscriber_Login(){
+
+		Email.sendKeys(" andm12903@mailinator.com");
+		Password.sendKeys("N47Z");
+		Log_in.click();
+		Reporter.log("login successful",true);
+		return new HomePage(mdriver);
+	}
 }
 
 
