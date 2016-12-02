@@ -1,10 +1,14 @@
 package moolya.hungama.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 
@@ -34,6 +38,12 @@ public class HomePage extends M_BasePage {
 	@AndroidFindBy(name="OK")
 	private MobileElement noDownloadsOK_Btn;
 	
+	@AndroidFindBy(name="Search")
+	private MobileElement search_Btn;
+	
+	@AndroidFindBy(name="Search Music")
+	private MobileElement search_TB;
+	
 	@AndroidFindBy(xpath="//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.ImageView[@index='1']")
 	private MobileElement settings_Btn;
 	
@@ -44,6 +54,35 @@ public class HomePage extends M_BasePage {
 		return new MusicPage(mdriver);
 	}
 	
+	public VideosPage selectVideosTab(){
+		waitUntilElementclickable(videos_Tab);
+		videos_Tab.click();
+		Reporter.log("Navigated to Videos Tab", true);
+		return new VideosPage(mdriver);
+	}
+	
+	public MusicPage searchMusic(String musicName) throws InterruptedException{
+		waitUntilElementclickable(search_Btn);
+		search_Btn.click();
+		search_TB.sendKeys();
+//		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.ENTER);
+		Thread.sleep(3000);
+		List<MobileElement> searchlist = mdriver.findElementsByName(musicName);
+		searchlist.get(1).click();
+		clickElementByText(musicName);
+		return new MusicPage(mdriver);
+	}
+	
+	public VideosPage searchVideo(String videoName){
+		waitUntilElementclickable(search_Btn);
+		search_Btn.click();
+		search_TB.sendKeys(videoName);
+		List<MobileElement> searchlist = mdriver.findElementsByName(videoName);
+		searchlist.get(searchlist.size()-1).click();
+		mdriver.findElementByName(videoName).click();
+		return new VideosPage(mdriver);
+	}
+	
 	public HomePage openNavDrawer(){
 		waitUntilElementclickable(navDrawer);
 		navDrawer.click();
@@ -52,8 +91,11 @@ public class HomePage extends M_BasePage {
 	}
 	
 	public HomePage clickOK(){
-		waitUntilElementclickable(noDownloadsOK_Btn);
-		noDownloadsOK_Btn.click();
+		
+		try {
+			Thread.sleep(5000);
+			noDownloadsOK_Btn.click();
+		} catch (Exception e) {}
 		return this;
 	}
 	

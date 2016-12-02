@@ -30,7 +30,7 @@ public class MusicPage extends M_BasePage {
 	
 	public void selectAlbum(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
 //		HashMap<String,String> data = JavaUtils.readExcelData("", uniqueValue);data.get("Album Name")
-		scrollToTextByScrollableInstance(uniqueValue, "com.hungama.myplay.activity:id/pager");
+		scrollToTextByScrollableInstance(uniqueValue);
 		mdriver.findElementByName(uniqueValue).click();
 	}
 	

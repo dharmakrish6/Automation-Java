@@ -32,6 +32,8 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 		this.mdriver = mdriver;
 	}
 
+	@AndroidFindBy(name="Got It!")
+	private MobileElement gotIt_Btn;
 
 	@AndroidFindBy(name="UPGRADE NOW !")
 	private MobileElement upgradeNow_Label;
@@ -39,6 +41,13 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 
 	@AndroidFindBy(name="Navigate up")
 	private MobileElement back_Btn;
+	
+	public void gotIt() throws InterruptedException{
+		Thread.sleep(5000);
+		try{
+			gotIt_Btn.click();
+		}catch(Exception e){}
+	}
 	
 	public static void clickDeviceBackButton()
 	{
@@ -53,6 +62,8 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 		String platformVersion = getPropValue("platformVersion");
 		String appPackage = getPropValue("appPackage");
 		String appActivity = getPropValue("appActivity");
+		String apkName = getPropValue("apk");
+		String apkPath = System.getProperty("user.dir")+"/apks/"+apkName;
 		System.out.println("*****Launching the app*****");
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", deviceName);
@@ -60,6 +71,7 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 		capabilities.setCapability("platformVersion", platformVersion);
 		capabilities.setCapability("appPackage",appPackage);
 		capabilities.setCapability("appActivity",appActivity);
+		capabilities.setCapability("app", apkPath);
 		try {
 			mdriver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
 			PageFactory.initElements(new AppiumFieldDecorator(mdriver), this);
@@ -93,7 +105,7 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 
 	public void waitUntilElementclickable(MobileElement element){
 
-		WebDriverWait wait = new WebDriverWait(mdriver, 200);
+		WebDriverWait wait = new WebDriverWait(mdriver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 	
@@ -190,10 +202,10 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 		return mdriver;
 	}
 	
-	public void scrollToTextByScrollableInstance(String text, String id){
-		String uiScrollables = "new UiScrollable(new UiSelector().scrollable(true).resourceId("+id+"))."
+	public void scrollToTextByScrollableInstance(String text){
+		String uiScrollables = "new UiScrollable(new UiSelector().scrollable(true).instance(1))."
 				+ "scrollIntoView(new UiSelector().description(\"" + text + "\").instance(0));" +
-				"new UiScrollable(new UiSelector().scrollable(true).resourceId("+id+"))."
+				"new UiScrollable(new UiSelector().scrollable(true).instance(1))."
 				+ "scrollIntoView(new UiSelector().text(\"" + text + "\")).instance(0));";
 		((AndroidDriver<MobileElement>)mdriver).findElementByAndroidUIAutomator(uiScrollables);
 	}

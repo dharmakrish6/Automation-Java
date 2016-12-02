@@ -27,7 +27,7 @@ public class AppiumServerUtils {
 		command.addArgument(AppiumServerAddress); 
 		command.addArgument("--port"); 
 		command.addArgument(AppiumServerPort); 
-		command.addArgument("--no-reset");
+		command.addArgument("--full-reset");
 		command.addArgument("--session-override");
 //		command.addArgument("--log"); 
 //		//Set path to store appium server log file. 

@@ -28,6 +28,18 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class JavaUtils {
 	
+	public void apnModeON() throws IOException, InterruptedException{
+		Process p = Runtime.getRuntime().exec("adb shell settings put global airplane_mode_on 1");
+		p = Runtime.getRuntime().exec("adb shell am broadcast -a android.intent.action.AIRPLANE_MODE");
+		Thread.sleep(5000);
+	}
+	
+	public void apnModeOFF() throws IOException, InterruptedException{
+		Process p = Runtime.getRuntime().exec("adb shell settings put global airplane_mode_on 0");
+		p = Runtime.getRuntime().exec("adb shell am broadcast -a android.intent.action.AIRPLANE_MODE");
+		Thread.sleep(5000);
+	}
+	
 	public static HashMap<String, String> readExcelData(String sheetname, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		try{
 			String key, value = null;
