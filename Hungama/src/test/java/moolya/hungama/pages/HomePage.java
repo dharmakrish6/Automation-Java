@@ -26,7 +26,7 @@ public class HomePage extends M_BasePage {
 	@AndroidFindBy(name="Music")
 	private MobileElement music_Tab;
 	
-	@AndroidFindBy(name="Videos")
+	@AndroidFindBy(name="Video")
 	private MobileElement videos_Tab;
 	
 	@AndroidFindBy(name="Open navigation drawer")
@@ -47,6 +47,13 @@ public class HomePage extends M_BasePage {
 	@AndroidFindBy(xpath="//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.ImageView[@index='1']")
 	private MobileElement settings_Btn;
 	
+
+	@AndroidFindBy(xpath="//android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.ImageView[@index='0']")
+	private MobileElement login_Btn;
+	
+	@AndroidFindBy(name="Navigate up")
+	private MobileElement goBack;
+	
 	public MusicPage selectMusicTab(){
 		waitUntilElementclickable(music_Tab);
 		music_Tab.click();
@@ -64,21 +71,25 @@ public class HomePage extends M_BasePage {
 	public MusicPage searchMusic(String musicName) throws InterruptedException{
 		waitUntilElementclickable(search_Btn);
 		search_Btn.click();
-		search_TB.sendKeys();
-//		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.ENTER);
+		search_TB.sendKeys(musicName);
+		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.ENTER);
 		Thread.sleep(3000);
-		List<MobileElement> searchlist = mdriver.findElementsByName(musicName);
-		searchlist.get(1).click();
-		clickElementByText(musicName);
+//		List<MobileElement> searchlist = mdriver.findElementsByName(musicName);
+//		searchlist.get(1).click();
+		mdriver.findElementByName(musicName).click();
 		return new MusicPage(mdriver);
 	}
 	
-	public VideosPage searchVideo(String videoName){
+	public VideosPage searchVideo(String videoName) throws InterruptedException{
 		waitUntilElementclickable(search_Btn);
 		search_Btn.click();
 		search_TB.sendKeys(videoName);
-		List<MobileElement> searchlist = mdriver.findElementsByName(videoName);
-		searchlist.get(searchlist.size()-1).click();
+		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.ENTER);
+		Thread.sleep(3000);
+//		List<MobileElement> searchlist = mdriver.findElementsByName(videoName);
+//		searchlist.get(searchlist.size()-1).click();
+//		clickElementByText("Video");
+		selectVideosTab();
 		mdriver.findElementByName(videoName).click();
 		return new VideosPage(mdriver);
 	}
@@ -99,7 +110,16 @@ public class HomePage extends M_BasePage {
 		return this;
 	}
 	
-	public DownloadsPage selectMyDownloads(){
+	public LoginPage Subscriber_Login() throws InterruptedException{
+		waitUntilElementclickable(login_Btn);
+		Thread.sleep(5000);
+		login_Btn.click();
+		Thread.sleep(2000);
+		return new LoginPage(mdriver);
+	}
+	
+	public DownloadsPage selectMyDownloads() throws InterruptedException{
+		Thread.sleep(30000);
 		waitUntilElementclickable(myDownloads_Btn);
 		myDownloads_Btn.click();
 		Reporter.log("Clicked on My Downloads", true);

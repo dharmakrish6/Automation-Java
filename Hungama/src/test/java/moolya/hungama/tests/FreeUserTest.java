@@ -36,14 +36,14 @@ public class FreeUserTest extends M_BaseTest{
 	@Test(priority=2)
 	public void playlistMoreThan10Test() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
 		hp = new HomePage(mdriver);
-		hp.searchMusic("Ultimate Udit");
+		mp = hp.searchMusic("Ultimate Udit");
 		mp.checkForAdPresent();
 		mp.downloadAll();
 		mp.downloadAll();
 		mp.checkForUpgradePage();
 	}
 	
-	
+
 	@Test(priority=3)
 	public void downloadVideoTest() throws InterruptedException{
 		hp = new HomePage(mdriver);
@@ -54,6 +54,7 @@ public class FreeUserTest extends M_BaseTest{
 	}
 	
 //	@Test(priority=4,dependsOnMethods="playlistMoreThan10Test")
+	@Test(priority=4)
 	public void verifyMusicDownloadTest() throws IOException, InterruptedException{
 		hp = new HomePage(mdriver);
 		hp.gotIt();

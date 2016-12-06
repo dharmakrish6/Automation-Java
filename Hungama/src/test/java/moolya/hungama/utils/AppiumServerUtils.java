@@ -11,7 +11,10 @@ import moolya.hungama.pages.M_BasePage;
 public class AppiumServerUtils {
 	
 	// This method Is responsible for starting appium server. 
-	public static void startAppium() throws IOException, InterruptedException { 
+	public static void startAppium() throws IOException, InterruptedException {
+//		try{
+//			stopAppium();
+//		}catch(Exception e){}
 		// Created object of apache CommandLine class. 
 		// It will start command prompt In background.
 		String AppiumNodeFilePath = M_BasePage.getPropValue("AppiumNodeFilePath");
@@ -27,7 +30,7 @@ public class AppiumServerUtils {
 		command.addArgument(AppiumServerAddress); 
 		command.addArgument("--port"); 
 		command.addArgument(AppiumServerPort); 
-		command.addArgument("--full-reset");
+		command.addArgument("--no-reset");
 		command.addArgument("--session-override");
 //		command.addArgument("--log"); 
 //		//Set path to store appium server log file. 

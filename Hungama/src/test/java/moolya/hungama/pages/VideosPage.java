@@ -36,7 +36,8 @@ public class VideosPage extends M_BasePage {
 		}
 	}
 	
-	public void downloadVideo(){
+	public void downloadVideo() throws InterruptedException{
+		Thread.sleep(25000);
 		waitUntilElementclickable(download_Btn);
 		download_Btn.click();
 	}

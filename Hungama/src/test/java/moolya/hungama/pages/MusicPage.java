@@ -41,9 +41,10 @@ public class MusicPage extends M_BasePage {
 		Reporter.log("Ad is present.", true);
 	}
 	
-	public void downloadAll(){
+	public void downloadAll() throws InterruptedException{
 		waitUntilElementclickable(downloadAll_Btn);
 		downloadAll_Btn.click();
+		Thread.sleep(2000);
 		Reporter.log("Clicked on Download All Button", true);
 	}
 	
