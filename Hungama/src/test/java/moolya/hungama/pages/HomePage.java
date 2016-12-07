@@ -3,6 +3,7 @@ package moolya.hungama.pages;
 import java.util.List;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 import io.appium.java_client.AppiumDriver;
@@ -54,6 +55,12 @@ public class HomePage extends M_BasePage {
 	@AndroidFindBy(name="Navigate up")
 	private MobileElement goBack;
 	
+	@AndroidFindBy(name="PRO USER")
+	private MobileElement proUser_Btn;
+	
+	@AndroidFindBy(name="Later")
+	private MobileElement later_Btn;
+	
 	public MusicPage selectMusicTab(){
 		waitUntilElementclickable(music_Tab);
 		music_Tab.click();
@@ -76,7 +83,9 @@ public class HomePage extends M_BasePage {
 		Thread.sleep(3000);
 //		List<MobileElement> searchlist = mdriver.findElementsByName(musicName);
 //		searchlist.get(1).click();
-		mdriver.findElementByName(musicName).click();
+		MobileElement album = mdriver.findElementByName(musicName);
+		waitUntilElementclickable(album);
+		album.click();
 		return new MusicPage(mdriver);
 	}
 	
@@ -112,17 +121,27 @@ public class HomePage extends M_BasePage {
 	
 	public LoginPage Subscriber_Login() throws InterruptedException{
 		waitUntilElementclickable(login_Btn);
-		Thread.sleep(5000);
 		login_Btn.click();
-		Thread.sleep(2000);
+		Reporter.log("Clicked on User Login", true);
 		return new LoginPage(mdriver);
 	}
 	
+	public HomePage checkProUser(){
+		waitUntilElementAppears(proUser_Btn);
+		Assert.assertTrue(proUser_Btn.isDisplayed(), "User is not PRO User");
+		Reporter.log("User is PRO User", true);
+		return this;
+	}
+	
 	public DownloadsPage selectMyDownloads() throws InterruptedException{
-		Thread.sleep(30000);
 		waitUntilElementclickable(myDownloads_Btn);
 		myDownloads_Btn.click();
 		Reporter.log("Clicked on My Downloads", true);
+		return new DownloadsPage(mdriver);
+	}
+	
+	public DownloadsPage scrollToMyDownloads() throws InterruptedException{
+		clickElementByText("Downloads");
 		return new DownloadsPage(mdriver);
 	}
 	
@@ -131,6 +150,14 @@ public class HomePage extends M_BasePage {
 		settings_Btn.click();
 		Reporter.log("Clicked on Settings", true);
 		return new SettingsPage(mdriver);
+	}
+	
+	public HomePage clickLater(){
+		try{
+			Thread.sleep(5000);
+			later_Btn.click();
+		}catch(Exception e){}
+		return this;
 	}
 
 }

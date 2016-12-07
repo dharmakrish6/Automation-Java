@@ -50,11 +50,12 @@ public class LoginPage extends M_BasePage {
 	
 	//Listen Offline with   /Unlimited Downloads!  
 
-	public void Login_Screen() throws InterruptedException{
+	public HomePage Login_Screen() throws InterruptedException{
 
 	/*	Thread.sleep(5000);
 		Hamburger.click();
 		Thread.sleep(2000);*/
+		waitUntilElementclickable(Sign_in);
 		Sign_in.click();
 		Thread.sleep(2000);
 		Email.clear();
@@ -67,7 +68,7 @@ public class LoginPage extends M_BasePage {
 		Thread.sleep(2000);
 		Log_in.click();
 		Reporter.log("login successful",true);
-		//return new HomePage(mdriver);
+		return new HomePage(mdriver);
 	}
 	
 }

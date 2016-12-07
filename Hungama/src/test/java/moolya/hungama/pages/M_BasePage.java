@@ -19,6 +19,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.FindsByAndroidUIAutomator;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import moolya.hungama.utils.JavaUtils;
@@ -49,9 +50,9 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 		}catch(Exception e){}
 	}
 	
-	public static void clickDeviceBackButton()
+	public void clickDeviceBackButton()
 	{
-		mdriver.navigate().back(); 
+		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.BACK);
 	}
 
 
@@ -71,7 +72,7 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 		capabilities.setCapability("platformVersion", platformVersion);
 		capabilities.setCapability("appPackage",appPackage);
 		capabilities.setCapability("appActivity",appActivity);
-		capabilities.setCapability("app", apkPath);
+//		capabilities.setCapability("app", apkPath);
 		try {
 			mdriver = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
 			PageFactory.initElements(new AppiumFieldDecorator(mdriver), this);
@@ -120,6 +121,10 @@ public class M_BasePage extends JavaUtils implements FindsByAndroidUIAutomator<M
 	}
 
 
+	public void deleteDownloadedMusic() throws IOException{
+		Process p = Runtime.getRuntime().exec("adb shell rm -rf /storage/sdcard0/Android/data/com.hungama.myplay.activity/files/track/*");
+		p = Runtime.getRuntime().exec("adb shell rm -rf /storage/sdcard0/Android/data/com.hungama.myplay.activity/files/video/*");
+	}
 
 	public  void swipeVertical(int yStart, int yEnd, int x, int totalSwipes) throws IOException, InterruptedException{
 
