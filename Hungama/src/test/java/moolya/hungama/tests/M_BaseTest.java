@@ -38,8 +38,8 @@ public class M_BaseTest extends JavaUtils {
 	{
 		basepage = new M_BasePage(mdriver);
 		basepage.apnModeOFF();
-		AppiumServerUtils.stopAppium();
-		mdriver.closeApp();
+//		AppiumServerUtils.stopAppium();
+//		mdriver.closeApp();
 	}
 	
 	@AfterMethod

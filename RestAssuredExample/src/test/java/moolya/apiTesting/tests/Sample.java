@@ -1,6 +1,6 @@
 package moolya.apiTesting.tests;
 
-import static com.jayway.restassured.path.json.JsonPath.from;
+import static io.restassured.path.json.JsonPath.from;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -9,8 +9,7 @@ import java.util.Map;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
-import com.jayway.restassured.specification.RequestSpecification;
-
+import io.restassured.specification.RequestSpecification;
 import moolya.apiTesting.methods.ApiMethods;
 
 public class Sample {

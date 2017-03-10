@@ -4,6 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+import com.aventstack.extentreports.Status;
+
+import moolya.filpkartdemo.utils.ReporterUtils;
 
 public class HomePage extends W_BasePage {
 
@@ -31,6 +36,7 @@ public class HomePage extends W_BasePage {
 	public MobilesPage goToMobiles(){
 		waitUntilElementclickable(mobiles);
 		mobiles.click();
+		ReporterUtils.test.log(Status.INFO, "Clicked on Mobiles");
 		return new MobilesPage(wdriver);
 	}
 	

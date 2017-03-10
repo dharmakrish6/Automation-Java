@@ -11,6 +11,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.Assert;
+
+import moolya.filpkartdemo.utils.JavaUtils;
 
 public class MobilesPage extends W_BasePage {
 
@@ -99,6 +103,13 @@ public class MobilesPage extends W_BasePage {
 		}
 		Thread.sleep(3000);
 		return details;
+	}
+
+	public void assertStatus(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
+		// TODO Auto-generated method stub
+		data = JavaUtils.readExcelData("Mobiles", uniqueValue);
+		Assert.assertTrue(data.get("Status").equals("Yes"), "Status not yes");
+		
 	}
 
 }

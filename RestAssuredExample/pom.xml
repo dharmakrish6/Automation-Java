@@ -30,7 +30,7 @@
 		<apache.poi.version>3.13</apache.poi.version>
 		<javamail.version>1.4</javamail.version>
 		<mysqlconnector.version>5.1.36</mysqlconnector.version>
-		<restassured.version>2.4.1</restassured.version>
+		<restassured.version>3.0.0</restassured.version>
 		<commonsio.version>2.4</commonsio.version>
 		<velocity.version>1.6.4</velocity.version>
 		<velocitydep.version>1.4</velocitydep.version>
@@ -90,12 +90,12 @@
 			<version>${mysqlconnector.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jayway.restassured</groupId>
+			<groupId>io.rest-assured</groupId>
 			<artifactId>json-path</artifactId>
 			<version>${restassured.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jayway.restassured</groupId>
+			<groupId>io.rest-assured</groupId>
 			<artifactId>xml-path</artifactId>
 			<version>${restassured.version}</version>
 		</dependency>
@@ -105,19 +105,19 @@
 			<version>${commonsio.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jayway.restassured</groupId>
+			<groupId>io.rest-assured</groupId>
 			<artifactId>json-schema-validator</artifactId>
 			<version>${restassured.version}</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
-			<groupId>com.jayway.restassured</groupId>
+			<groupId>io.rest-assured</groupId>
 			<artifactId>spring-mock-mvc</artifactId>
 			<version>${restassured.version}</version>
 			<!-- <scope>test</scope> -->
 		</dependency>
 		<dependency>
-			<groupId>com.jayway.restassured</groupId>
+			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>${restassured.version}</version>
 			<!-- <scope>test</scope> -->

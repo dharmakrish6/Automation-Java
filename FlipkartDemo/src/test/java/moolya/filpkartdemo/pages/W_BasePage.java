@@ -10,12 +10,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
+import com.aventstack.extentreports.Status;
+
 import moolya.filpkartdemo.utils.JavaUtils;
+import moolya.filpkartdemo.utils.ReporterUtils;
 
 @SuppressWarnings("unused")
 public class W_BasePage extends JavaUtils 

@@ -63,7 +63,7 @@ public class FreeUserDownloadTest extends M_BaseTest{
 		hp = lp.Login_Screen();
 		hp.openNavDrawer();
 		hp.checkProUser();
-	}
+	}*/
 	
 	@Test(priority=4,dependsOnMethods="downloadVideoFreeUserTest")
 	public void downloadVideoProUserTest() throws InterruptedException, IOException{
@@ -85,7 +85,7 @@ public class FreeUserDownloadTest extends M_BaseTest{
 		for(int i=0;i<videos.length;i++)
 			obj[i][0] = videos[i];
 		return obj;
-	}*/
+	}
 
 	@Test//(priority=5,dependsOnMethods="downloadVideoProUserTest")
 	public void verifyMusicDownloadTest() throws IOException, InterruptedException{

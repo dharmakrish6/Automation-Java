@@ -75,7 +75,7 @@ public class DownloadsPage extends M_BasePage {
 		waitUntilElementclickable(songs_Btn);
 		int vcount= Integer.parseInt(videosCount_Label.getText().replaceAll("[^0-9]", ""));
 		Thread.sleep(5000);
-		/*for(int i=0;;i++){
+		for(int i=0;;i++){
 			try {
 				String uiScrollables = "new UiScrollable(new UiSelector().scrollable(true).instance(2))."
 						+ "scrollIntoView(new UiSelector().resourceIdMatches(\"*item_details*\").instance("+i+"));";
@@ -85,7 +85,7 @@ public class DownloadsPage extends M_BasePage {
 				break;
 			}
 		}
-		Reporter.log(String.valueOf(count), true);*/
+		Reporter.log(String.valueOf(count), true);
 		Assert.assertTrue(count==vcount, "Videos not downloaded!");
 		Reporter.log("Videos downloaded successfully", true);
 	}

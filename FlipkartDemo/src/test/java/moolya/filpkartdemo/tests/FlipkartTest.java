@@ -1,7 +1,6 @@
 package moolya.filpkartdemo.tests;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Iterator;
 
@@ -11,14 +10,14 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import moolya.filpkartdemo.pages.HomePage;
 import moolya.filpkartdemo.pages.MobilesPage;
 import moolya.filpkartdemo.utils.DbUtils;
-import moolya.filpkartdemo.utils.JavaUtils;
+import moolya.filpkartdemo.utils.ReporterUtils;
 
 public class FlipkartTest extends W_BaseTest {
 
@@ -32,17 +31,13 @@ public class FlipkartTest extends W_BaseTest {
 	public void demoTest(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException, ClassNotFoundException{
 		hp = new HomePage(wdriver);
 		mp = hp.goToMobiles();
-		mp.filterPrice(uniqueValue);
-		mp.filterBrand(uniqueValue);
-		mp.filterOS(uniqueValue);
-		details = mp.getMobileDetails(uniqueValue);
-		dbu = new DbUtils();
-		dbu.storeMobileDetailsToDb(details);
-	}
-	
-	@AfterMethod
-	public void afterMethod() throws IOException{
-		wdriver.get(JavaUtils.getPropValue("appUrl"));
+		mp.assertStatus(uniqueValue);
+//		mp.filterPrice(uniqueValue);
+//		mp.filterBrand(uniqueValue);
+//		mp.filterOS(uniqueValue);
+//		details = mp.getMobileDetails(uniqueValue);
+//		dbu = new DbUtils();
+//		dbu.storeMobileDetailsToDb(details);
 	}
 
 	@DataProvider

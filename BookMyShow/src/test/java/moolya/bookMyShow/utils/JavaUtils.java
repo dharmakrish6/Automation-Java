@@ -27,7 +27,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 public class JavaUtils {
-	
+
 	public static HashMap<String, String> readExcelData(String sheetname, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		try{
 			String key, value = null;
@@ -43,26 +43,26 @@ public class JavaUtils {
 				Row record = it.next();
 				String cellValue = record.getCell(0).toString();
 				if(cellValue.equalsIgnoreCase(uniqueValue)) {
-					
-						for(int i=0;i<headers.getLastCellNum();i++){
-							if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
-								try{
-									record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
-									value = record.getCell(i).toString().trim();
-								}catch(Exception e){}
-								key = headers.getCell(i).toString().trim();
 
-							} else {
+					for(int i=0;i<headers.getLastCellNum();i++){
+						if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
+							try{
+								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+								value = record.getCell(i).toString().trim();
+							}catch(Exception e){}
+							key = headers.getCell(i).toString().trim();
 
-								key = headers.getCell(i).toString().trim();
-								try {
-									value = record.getCell(i).toString().trim();
-								} catch (Exception e) {}
-							}
-							
-							dataMap.put(key, value);
+						} else {
+
+							key = headers.getCell(i).toString().trim();
+							try {
+								value = record.getCell(i).toString().trim();
+							} catch (Exception e) {}
 						}
-					
+
+						dataMap.put(key, value);
+					}
+
 					break;
 				}
 			}
@@ -71,13 +71,13 @@ public class JavaUtils {
 		catch(Exception e){}
 		return null;
 	}
-	
+
 	public static void writeValueToExcel(String sheetname,String uniqueValue, String columnName, String value) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		FileInputStream file = new FileInputStream("./test-data/testData.xlsx");
 		Workbook wb = WorkbookFactory.create(file);
 		Sheet sheet = wb.getSheet(sheetname);
 		Iterator<Row> it = sheet.rowIterator();
-		
+
 		Row headers = it.next();
 		while (it.hasNext()) {
 
@@ -86,12 +86,7 @@ public class JavaUtils {
 			if (cellValue.equalsIgnoreCase(uniqueValue)) {
 				for(int i=0;i<headers.getLastCellNum();i++){
 					if(headers.getCell(i).getStringCellValue().equals(columnName)){
-						try{
-							record.getCell(i).setCellValue(value);
-						}
-						catch(Exception e){
 							record.createCell(i).setCellValue(columnName);
-						}
 						break;
 					}
 				}
@@ -103,7 +98,7 @@ public class JavaUtils {
 		wb.close();
 		fos.close();
 	}
-	
+
 	public static String generateRandomNumber(int number) {
 
 		Random ran = new Random();
@@ -111,7 +106,7 @@ public class JavaUtils {
 		String randomNo = String.valueOf(x);
 		return randomNo;
 	}
-	
+
 	public static String[] generateNrandomNumbers(int no, int number){
 		Random ran = new Random();
 		String[] randomNos = new String[no];
@@ -155,32 +150,32 @@ public class JavaUtils {
 		File configFile = new File("./config.properties");
 		String host = null;
 		try {
-		    FileReader reader = new FileReader(configFile);
-		    Properties props = new Properties();
-		    props.load(reader);
-		    host = props.getProperty(key);
-		    reader.close();
+			FileReader reader = new FileReader(configFile);
+			Properties props = new Properties();
+			props.load(reader);
+			host = props.getProperty(key);
+			reader.close();
 		} catch (FileNotFoundException ex) {
-		    // file does not exist
+			// file does not exist
 		} catch (IOException ex) {
-		    // I/O error
+			// I/O error
 		}
-		
+
 		return host;
 	}
-	
+
 	public static void setPropValue(String key,String value){
 		File configFile = new File("./config.properties");
 		try {
-		    Properties props = new Properties();
-		    props.setProperty(key, value);
-		    FileWriter writer = new FileWriter(configFile);
-		    props.store(writer, "host settings");
-		    writer.close();
+			Properties props = new Properties();
+			props.setProperty(key, value);
+			FileWriter writer = new FileWriter(configFile);
+			props.store(writer, "host settings");
+			writer.close();
 		} catch (FileNotFoundException ex) {
-		    // file does not exist
+			// file does not exist
 		} catch (IOException ex) {
-		    // I/O error
+			// I/O error
 		}
 	}
 

@@ -10,12 +10,14 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
 import moolya.filpkartdemo.pages.W_BasePage;
+import moolya.filpkartdemo.utils.JavaUtils;
 
 public class W_BaseTest 
 {
@@ -41,7 +43,7 @@ public WebDriver wdriver;
 	@AfterMethod
 	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
-		String dir = System.getProperty("user.dir");
+		/*String dir = System.getProperty("user.dir");
 		String[] clsParts = result.getInstanceName().split("\\.");
 		String clsName = clsParts[(clsParts.length)-1];
 		if(!result.isSuccess()){            
@@ -53,10 +55,11 @@ public WebDriver wdriver;
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
+		}*/
+		wdriver.get(JavaUtils.getPropValue("appUrl"));
 	}
 	
-//	@AfterClass
+	@AfterClass
 	public void tearDown(){
 		wdriver.close();
 //		recorder.stop();
