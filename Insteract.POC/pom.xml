@@ -1,16 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>Moolya</groupId>
-  <artifactId>Insteract.POC</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<groupId>Moolya</groupId>
+	<artifactId>Insteract.POC</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <name>Insteract.POC</name>
-  <url>http://maven.apache.org</url>
+	<name>Insteract.POC</name>
+	<url>http://maven.apache.org</url>
 
-  <developers>
+	<developers>
 		<developer>
 			<name>Yatheendra</name>
 			<id></id>
@@ -34,7 +34,7 @@
 		<commonsio.version>2.4</commonsio.version>
 		<velocity.version>1.6.4</velocity.version>
 		<velocitydep.version>1.4</velocitydep.version>
-		<extentsreport.version>2.40.2</extentsreport.version>
+		<extentsreport.version>3.0.1</extentsreport.version>
 		<jsch.version>0.1.42</jsch.version>
 	</properties>
 
@@ -133,7 +133,7 @@
 			<version>${velocitydep.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.relevantcodes</groupId>
+			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>${extentsreport.version}</version>
 		</dependency>

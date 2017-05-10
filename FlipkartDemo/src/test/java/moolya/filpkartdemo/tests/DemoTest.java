@@ -23,9 +23,6 @@ public class DemoTest{
 		// creates a toggle for the given test, adds all log events under it    
 		ExtentTest test = extent.createTest("MyFirstTest", "Sample description");
 
-		// log(Status, details)
-		test.log(Status.INFO, "This step shows usage of log(status, details)");
-
 		// info(details)
 		test.info("This step shows usage of info(details)");
 
