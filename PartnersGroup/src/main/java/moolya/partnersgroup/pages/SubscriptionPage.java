@@ -23,6 +23,8 @@ public class SubscriptionPage extends W_BasePage{
 	@FindBy(xpath = ".//*[@id='powermail_field_firstname']")
 	private WebElement fname;
 	
+	
+	
 	@FindBy(xpath = ".//*[@id='powermail_field_lastname']")
 	private WebElement lname;
 	
