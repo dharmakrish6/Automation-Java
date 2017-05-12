@@ -31,7 +31,10 @@ public class W_BasePage extends JavaUtils
 		this.driver= driver;
 	}
 	
-	
+	public HomePage navigateToHomePage() throws IOException{
+		String appUrl = getPropValue("appUrl");
+		driver.navigate().to(appUrl);return new HomePage(driver);
+	}
 	
 	public WebDriver launchWebApp() throws IOException
 	{

@@ -15,13 +15,9 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-
 import atu.testrecorder.ATUTestRecorder;
 import atu.testrecorder.exceptions.ATUTestRecorderException;
+import moolya.partnersgroup.pages.HomePage;
 import moolya.partnersgroup.pages.W_BasePage;
 
 public class W_BaseTest 
@@ -32,6 +28,8 @@ public class W_BaseTest
 	W_BasePage basepage;
 
 	private ATUTestRecorder recorder;
+
+	private HomePage hp;
 
 	@BeforeClass
 	public void setUp() throws IOException, ATUTestRecorderException{
@@ -49,6 +47,7 @@ public class W_BaseTest
 	@AfterMethod
 	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
 	{   
+		
 		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
 		Date date = new Date();
 		String dir = System.getProperty("user.dir");
@@ -64,6 +63,8 @@ public class W_BaseTest
 				e.printStackTrace();
 			}
 		}
+		hp = new HomePage(driver);
+		hp.navigateToHomePage();
 	}
 
 	@AfterClass

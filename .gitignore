@@ -29,6 +29,8 @@ report.html
 *failure_screenshots/*
 *screenshots/*
 *screenshots
+script-videos/*
+script-videos
 
 # eclipse specific git ignore
 #############################
