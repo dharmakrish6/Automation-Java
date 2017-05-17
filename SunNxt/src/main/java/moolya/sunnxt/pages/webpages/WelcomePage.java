@@ -11,22 +11,22 @@ public class WelcomePage extends W_BasePage {
 		super(driver);
 		PageFactory.initElements(driver, this);
 	}
-	
-	@FindBy(linkText = "Join Free for a month") 
+
+	@FindBy(xpath = "//a[text()='Join Free for a month']") 
 	private WebElement sign_up;
-	
-	@FindBy(linkText = "Sign in") 
+
+	@FindBy(xpath = "//a[text()='Sign in']")
 	private WebElement sign_in;
-	
+
 	public SignUpPage Click_SignUp(){
-	sign_up.click();			
-	return new SignUpPage(driver);
+		sign_up.click();			
+		return new SignUpPage(driver);	
 	}
-	
+
 	public SignInPage Click_SignIn(){
-	sign_in.click();			
-	return new SignInPage(driver);
+		sign_in.click();			
+		return new SignInPage(driver);
 	}
-	
+
 
 }
