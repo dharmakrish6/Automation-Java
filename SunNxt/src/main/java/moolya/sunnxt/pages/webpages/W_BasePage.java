@@ -3,6 +3,7 @@ package moolya.sunnxt.pages.webpages;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +17,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.Reporter;
 
 import moolya.sunnxt.utils.JavaUtils;
@@ -30,6 +30,61 @@ public class W_BasePage extends JavaUtils
 	public W_BasePage(WebDriver driver)
 	{
 		this.driver= driver;
+	}
+	
+	@FindBy(xpath = "(//div[@class='btn-group bootstrap-select'])[1]") 
+	protected WebElement language_dropdown;
+	
+	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[1]") 
+	protected WebElement Search;
+	
+	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[2]") 
+	protected WebElement My_profile;
+	
+	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[3]") 
+	protected WebElement Notification;
+	
+	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[4]") 
+	protected WebElement Settings;
+	
+	
+	@FindBy(xpath = "(//img[@src='/images/logo.png'])[1]") 
+	protected WebElement Sunxt_logo;
+	
+	@FindBy(linkText = "movies")
+	protected WebElement MOVIES;
+	
+	@FindBy(linkText = "tv shows")
+	protected WebElement TV_SHOWS;
+	
+	@FindBy(linkText = "live tv")
+	protected WebElement LIVE_TV;
+	
+	@FindBy(linkText = "comedy")
+	protected WebElement COMEDY;
+	
+	@FindBy(linkText = "exclusives")
+	protected WebElement EXCLUSIVES;
+	
+	public void select_language(String Language){
+		
+		language_dropdown.click();
+		
+		
+	}
+	
+	public void do_search(String Search_String){
+		Search.click();
+		WebElement Search_box = driver.findElement(By.id("mainSearch"));
+		Search_box.sendKeys(Search_String);
+		WebElement Search_btn = driver.findElement(By.xpath("(//button[@class='btn-nobg search-btn'])[1]"));
+		Search_btn.click();
+		
+	}
+	
+	public MyProfilePage click_MyProfile(){
+		My_profile.click();
+		return new MyProfilePage(driver);
 	}
 	
 	public WebDriver launchWebApp() throws IOException
