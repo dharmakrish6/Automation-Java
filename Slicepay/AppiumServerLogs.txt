@@ -1,0 +1,143 @@
+2017-05-25 10:25:20:789 - info: Welcome to Appium v1.3.7 (REV 72fbfaa116d3d9f6a862600ee99cf02f6d0e2182)
+2017-05-25 10:25:20:792 - info: Appium REST http interface listener started on 0.0.0.0:4723
+2017-05-25 10:25:20:796 - info: [debug] Non-default server args: {"sessionOverride":true,"log":"C:\\Users\\Yatheendra\\git\\Automation-Java\\Slicepay\\AppiumServerLogs.txt"}
+2017-05-25 10:25:20:796 - info: Console LogLevel: debug
+2017-05-25 10:25:20:796 - info: File LogLevel: debug
+2017-05-25 10:25:21:115 - info: --> GET /wd/hub/status {}
+2017-05-25 10:25:21:118 - info: [debug] Responding to client with success: {"status":0,"value":{"build":{"version":"1.3.7","revision":"72fbfaa116d3d9f6a862600ee99cf02f6d0e2182"}}}
+2017-05-25 10:25:21:125 - info: <-- GET /wd/hub/status 200 10.943 ms - 104 {"status":0,"value":{"build":{"version":"1.3.7","revision":"72fbfaa116d3d9f6a862600ee99cf02f6d0e2182"}}}
+2017-05-25 10:25:21:565 - info: --> POST /wd/hub/session {"desiredCapabilities":{"appPackage":"indwin.c3.shareapp","appActivity":"indwin.c3.shareapp.Splash","platformName":"Android","deviceName":"Android","platformVersion":"4.2.1"}}
+2017-05-25 10:25:21:566 - info: Client User-Agent string: Apache-HttpClient/4.3.3 (java 1.5)
+2017-05-25 10:25:21:567 - info: [debug] Didn't get app but did get Android package, will attempt to launch it on the device
+2017-05-25 10:25:21:568 - info: [debug] Creating new appium session c814dbfe-f806-4b0f-b246-05dc98ce389a
+2017-05-25 10:25:21:568 - info: Starting android appium
+2017-05-25 10:25:21:569 - info: [debug] Getting Java version
+2017-05-25 10:25:21:665 - info: Java version is: 1.8.0_101
+2017-05-25 10:25:21:666 - info: [debug] Checking whether adb is present
+2017-05-25 10:25:21:667 - info: [debug] Using adb from D:\EDrive\android-sdk-windows\platform-tools\adb.exe
+2017-05-25 10:25:21:667 - info: [debug] Using fast reset? true
+2017-05-25 10:25:21:667 - info: [debug] Preparing device for session
+2017-05-25 10:25:21:667 - info: [debug] Not checking whether app is present since we are assuming it's already on the device
+2017-05-25 10:25:21:667 - info: Retrieving device
+2017-05-25 10:25:21:668 - info: [debug] Trying to find a connected android device
+2017-05-25 10:25:21:668 - info: [debug] Getting connected devices...
+2017-05-25 10:25:21:669 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe devices
+2017-05-25 10:25:21:703 - info: [debug] 1 device(s) connected
+2017-05-25 10:25:21:703 - info: Found device RQ30023DEG
+2017-05-25 10:25:21:703 - info: [debug] Setting device id to RQ30023DEG
+2017-05-25 10:25:21:703 - info: [debug] Waiting for device to be ready and to respond to shell commands (timeout = 5)
+2017-05-25 10:25:21:704 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG wait-for-device
+2017-05-25 10:25:21:730 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "echo 'ready'"
+2017-05-25 10:25:21:774 - info: [debug] Starting logcat capture
+2017-05-25 10:25:21:807 - warn: No app capability, can't parse package/activity
+2017-05-25 10:25:21:808 - info: [debug] Getting device API level
+2017-05-25 10:25:21:808 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "getprop ro.build.version.sdk"
+2017-05-25 10:25:21:874 - info: [debug] Device is at API Level 23
+2017-05-25 10:25:21:875 - info: Device API level is: 23
+2017-05-25 10:25:21:875 - info: [debug] Apk doesn't exist locally
+2017-05-25 10:25:21:875 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "rm -rf /data/local/tmp/strings.json"
+2017-05-25 10:25:21:932 - info: [debug] Not uninstalling app since server not started with --full-reset
+2017-05-25 10:25:21:932 - info: [debug] Skipping install since we launched with a package instead of an app path
+2017-05-25 10:25:21:932 - info: [debug] Forwarding system:4724 to device:4724
+2017-05-25 10:25:21:933 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG forward tcp:4724 tcp:4724
+2017-05-25 10:25:21:960 - info: [debug] Pushing appium bootstrap to device...
+2017-05-25 10:25:21:961 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG push "D:\\Appium\\node_modules\\appium\\build\\android_bootstrap\\AppiumBootstrap.jar" /data/local/tmp/
+2017-05-25 10:25:22:016 - info: [debug] Pushing settings apk to device...
+2017-05-25 10:25:22:017 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG install "D:\Appium\node_modules\appium\build\settings_apk\settings_apk-debug.apk"
+2017-05-25 10:25:27:383 - info: [debug] Pushing unlock helper app to device...
+2017-05-25 10:25:27:385 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG install "D:\Appium\node_modules\appium\build\unlock_apk\unlock_apk-debug.apk"
+2017-05-25 10:25:29:015 - info: Starting App
+2017-05-25 10:25:29:016 - info: [debug] Attempting to kill all 'uiautomator' processes
+2017-05-25 10:25:29:016 - info: [debug] Getting all processes with 'uiautomator'
+2017-05-25 10:25:29:017 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "ps 'uiautomator'"
+2017-05-25 10:25:29:112 - info: [debug] No matching processes found
+2017-05-25 10:25:29:112 - info: [debug] Running bootstrap
+2017-05-25 10:25:29:112 - info: [debug] spawning: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell uiautomator runtest AppiumBootstrap.jar -c io.appium.android.bootstrap.Bootstrap
+2017-05-25 10:25:30:000 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: numtests=1
+2017-05-25 10:25:30:001 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: stream=
+2017-05-25 10:25:30:002 - info: [debug] [UIAUTOMATOR STDOUT] io.appium.android.bootstrap.Bootstrap:
+2017-05-25 10:25:30:003 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+2017-05-25 10:25:30:003 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: test=testRunServer
+2017-05-25 10:25:30:003 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: class=io.appium.android.bootstrap.Bootstrap
+2017-05-25 10:25:30:003 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: current=1
+2017-05-25 10:25:30:003 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS_CODE: 1
+2017-05-25 10:25:30:029 - info: [debug] [BOOTSTRAP] [debug] Socket opened on port 4724
+2017-05-25 10:25:30:032 - info: [debug] [BOOTSTRAP] [debug] Appium Socket Server Ready
+2017-05-25 10:25:30:033 - info: [debug] [BOOTSTRAP] [debug] Loading json...
+2017-05-25 10:25:30:033 - info: [debug] Waking up device if it's not alive
+2017-05-25 10:25:30:034 - info: [debug] Pushing command to appium work queue: ["wake",{}]
+2017-05-25 10:25:30:037 - info: [debug] [BOOTSTRAP] [debug] Registered crash watchers.
+2017-05-25 10:25:30:038 - info: [debug] [BOOTSTRAP] [debug] Client connected
+2017-05-25 10:25:30:039 - info: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"wake","params":{}}
+2017-05-25 10:25:30:039 - info: [debug] [BOOTSTRAP] [debug] Got command of type ACTION
+2017-05-25 10:25:30:040 - info: [debug] [BOOTSTRAP] [debug] Got command action: wake
+2017-05-25 10:25:30:041 - info: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":true}
+2017-05-25 10:25:30:042 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "dumpsys window"
+2017-05-25 10:25:30:115 - info: [debug] Screen already unlocked, continuing.
+2017-05-25 10:25:30:116 - info: [debug] Pushing command to appium work queue: ["getDataDir",{}]
+2017-05-25 10:25:30:118 - info: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"getDataDir","params":{}}
+2017-05-25 10:25:30:119 - info: [debug] [BOOTSTRAP] [debug] Got command of type ACTION
+2017-05-25 10:25:30:119 - info: [debug] [BOOTSTRAP] [debug] Got command action: getDataDir
+2017-05-25 10:25:30:119 - info: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":"\/data\/local\/tmp"}
+2017-05-25 10:25:30:119 - info: [debug] dataDir set to: /data/local/tmp
+2017-05-25 10:25:30:119 - info: [debug] Pushing command to appium work queue: ["compressedLayoutHierarchy",{"compressLayout":false}]
+2017-05-25 10:25:30:121 - info: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"compressedLayoutHierarchy","params":{"compressLayout":false}}
+2017-05-25 10:25:30:121 - info: [debug] [BOOTSTRAP] [debug] Got command of type ACTION
+2017-05-25 10:25:30:121 - info: [debug] [BOOTSTRAP] [debug] Got command action: compressedLayoutHierarchy
+2017-05-25 10:25:30:124 - info: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":false}
+2017-05-25 10:25:30:125 - info: [debug] Getting device API level
+2017-05-25 10:25:30:125 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "getprop ro.build.version.sdk"
+2017-05-25 10:25:30:178 - info: [debug] Device is at API Level 23
+2017-05-25 10:25:30:179 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000 -n indwin.c3.shareapp/indwin.c3.shareapp.Splash"
+2017-05-25 10:25:31:486 - info: [debug] Waiting for pkg "indwin.c3.shareapp" and activity "indwin.c3.shareapp.Splash" to be focused
+2017-05-25 10:25:31:487 - info: [debug] Getting focused package and activity
+2017-05-25 10:25:31:488 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "dumpsys window windows"
+2017-05-25 10:25:31:588 - info: [debug] Device launched! Ready for commands
+2017-05-25 10:25:31:588 - info: [debug] Setting command timeout to the default of 60 secs
+2017-05-25 10:25:31:588 - info: [debug] Appium session started with sessionId c814dbfe-f806-4b0f-b246-05dc98ce389a
+2017-05-25 10:25:31:589 - info: <-- POST /wd/hub/session 303 10024.024 ms - 74 
+2017-05-25 10:25:31:607 - info: --> GET /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a {}
+2017-05-25 10:25:31:608 - info: [debug] Responding to client with success: {"status":0,"value":{"platform":"LINUX","browserName":"Android","platformVersion":"4.2.1","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"appPackage":"indwin.c3.shareapp","appActivity":"indwin.c3.shareapp.Splash","platformName":"Android","deviceName":"Android","platformVersion":"4.2.1"},"appPackage":"indwin.c3.shareapp","appActivity":"indwin.c3.shareapp.Splash","platformName":"Android","deviceName":"Android"},"sessionId":"c814dbfe-f806-4b0f-b246-05dc98ce389a"}
+2017-05-25 10:25:31:610 - info: <-- GET /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a 200 2.760 ms - 603 {"status":0,"value":{"platform":"LINUX","browserName":"Android","platformVersion":"4.2.1","webStorageEnabled":false,"takesScreenshot":true,"javascriptEnabled":true,"databaseEnabled":false,"networkConnectionEnabled":true,"locationContextEnabled":false,"warnings":{},"desired":{"appPackage":"indwin.c3.shareapp","appActivity":"indwin.c3.shareapp.Splash","platformName":"Android","deviceName":"Android","platformVersion":"4.2.1"},"appPackage":"indwin.c3.shareapp","appActivity":"indwin.c3.shareapp.Splash","platformName":"Android","deviceName":"Android"},"sessionId":"c814dbfe-f806-4b0f-b246-05dc98ce389a"}
+2017-05-25 10:25:31:627 - info: --> POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/execute {"script":"return navigator.userAgent;","args":[]}
+2017-05-25 10:25:31:628 - info: [debug] Responding to client that a method is not implemented
+2017-05-25 10:25:31:629 - info: <-- POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/execute 501 2.205 ms - 158 
+2017-05-25 10:25:31:634 - info: --> POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/timeouts {"type":"implicit","ms":30000}
+2017-05-25 10:25:31:635 - info: [debug] Set Android implicit wait to 30000ms
+2017-05-25 10:25:31:635 - info: [debug] Responding to client with success: {"status":0,"value":null,"sessionId":"c814dbfe-f806-4b0f-b246-05dc98ce389a"}
+2017-05-25 10:25:31:636 - info: <-- POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/timeouts 200 1.494 ms - 76 {"status":0,"value":null,"sessionId":"c814dbfe-f806-4b0f-b246-05dc98ce389a"}
+2017-05-25 10:25:31:653 - info: --> POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/execute {"script":"return navigator.userAgent;","args":[]}
+2017-05-25 10:25:31:654 - info: [debug] Responding to client that a method is not implemented
+2017-05-25 10:25:31:654 - info: <-- POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/execute 501 0.764 ms - 158 
+2017-05-25 10:25:31:665 - info: --> POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/execute {"script":"return navigator.userAgent;","args":[]}
+2017-05-25 10:25:31:665 - info: [debug] Responding to client that a method is not implemented
+2017-05-25 10:25:31:666 - info: <-- POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/execute 501 0.831 ms - 158 
+2017-05-25 10:25:31:688 - info: --> POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/appium/app/close {}
+2017-05-25 10:25:31:690 - info: [debug] Pressing the HOME button
+2017-05-25 10:25:31:691 - info: [debug] executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "input keyevent 3"
+2017-05-25 10:25:32:768 - info: [debug] Stopping logcat capture
+2017-05-25 10:25:32:776 - info: [debug] Logcat terminated with code null, signal SIGTERM
+2017-05-25 10:25:32:778 - info: [debug] Sent shutdown command, waiting for UiAutomator to stop...
+2017-05-25 10:25:32:781 - info: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"shutdown"}
+2017-05-25 10:25:32:782 - info: [debug] [BOOTSTRAP] [debug] Got command of type SHUTDOWN
+2017-05-25 10:25:32:782 - info: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":"OK, shutting down"}
+2017-05-25 10:25:32:782 - info: [debug] [BOOTSTRAP] [debug] Closed client connection
+2017-05-25 10:25:32:782 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: numtests=1
+2017-05-25 10:25:32:783 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: stream=.
+2017-05-25 10:25:32:783 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+2017-05-25 10:25:32:783 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: test=testRunServer
+2017-05-25 10:25:32:783 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: class=io.appium.android.bootstrap.Bootstrap
+2017-05-25 10:25:32:783 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: current=1
+2017-05-25 10:25:32:783 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS_CODE: 0
+2017-05-25 10:25:32:786 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: stream=
+2017-05-25 10:25:32:787 - info: [debug] [UIAUTOMATOR STDOUT] Test results for WatcherResultPrinter=.
+2017-05-25 10:25:32:788 - info: [debug] [UIAUTOMATOR STDOUT] Time: 2.86
+2017-05-25 10:25:32:788 - info: [debug] [UIAUTOMATOR STDOUT] OK (1 test)
+2017-05-25 10:25:32:788 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS_CODE: -1
+2017-05-25 10:25:32:906 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_RESULT: shortMsg=java.lang.SecurityException
+2017-05-25 10:25:32:907 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_RESULT: longMsg=Permission Denial: getIntentSender() from pid=3359, uid=2000, (need uid=1000) is not allowed to send as package android
+2017-05-25 10:25:32:907 - info: [debug] [UIAUTOMATOR STDOUT] INSTRUMENTATION_CODE: 0
+2017-05-25 10:25:32:914 - info: [debug] UiAutomator shut down normally
+2017-05-25 10:25:32:915 - info: [debug] Cleaning up android objects
+2017-05-25 10:25:32:915 - info: [debug] Responding to client with success: {"status":0,"value":"Successfully closed the [null] app.","sessionId":"c814dbfe-f806-4b0f-b246-05dc98ce389a"}
+2017-05-25 10:25:32:916 - info: <-- POST /wd/hub/session/c814dbfe-f806-4b0f-b246-05dc98ce389a/appium/app/close 200 1228.170 ms - 109 {"status":0,"value":"Successfully closed the [null] app.","sessionId":"c814dbfe-f806-4b0f-b246-05dc98ce389a"}

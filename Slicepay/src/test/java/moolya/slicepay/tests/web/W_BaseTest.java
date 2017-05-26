@@ -44,11 +44,11 @@ public WebDriver wdriver;
 	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
 		String dir = System.getProperty("user.dir");
-		String[] clsParts = result.getInstanceName().split("\\.");
-		String clsName = clsParts[(clsParts.length)-1];
+		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
+		Date date = new Date();
 		if(!result.isSuccess()){            
 			File scrFile = ((TakesScreenshot)wdriver).getScreenshotAs(OutputType.FILE);
-			String file =dir+"/screenshots/"+clsName+".png";
+			String file =dir+"/screenshots/"+result.getMethod().getMethodName()+"-"+dateFormat.format(date)+".png";
 			try {
 				FileUtils.copyFile(scrFile, new File(file));
 			} catch (IOException e) {

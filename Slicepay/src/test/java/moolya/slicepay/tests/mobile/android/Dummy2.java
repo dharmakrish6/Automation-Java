@@ -4,10 +4,11 @@ import org.testng.annotations.Test;
 
 import moolya.slicepay.tests.mobile.M_BaseTest;
 
-public class Dummy extends M_BaseTest {
+public class Dummy2 extends M_BaseTest {
 	
 	@Test
-	public void launchTest() throws InterruptedException{
+	public void dummy2Test(){
+		System.out.println("App Launched");
 	}
 
 }

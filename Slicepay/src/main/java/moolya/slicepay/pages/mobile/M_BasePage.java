@@ -2,11 +2,9 @@ package moolya.slicepay.pages.mobile;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,10 +16,9 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import moolya.slicepay.utils.JavaUtils;
 
-public class M_BasePage extends JavaUtils {
+public class M_BasePage extends JavaUtils{
 
 	public AppiumDriver<MobileElement> mdriver;
-	public WebDriver driverWeb;
 	public enum mobile {
 		ANDROID,
 		IOS

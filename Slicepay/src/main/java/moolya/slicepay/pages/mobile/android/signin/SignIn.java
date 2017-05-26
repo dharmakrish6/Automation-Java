@@ -4,6 +4,8 @@ import org.openqa.selenium.support.PageFactory;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
+import io.appium.java_client.pagefactory.iOSFindBy;
 import moolya.slicepay.pages.mobile.M_BasePage;
 
 public class SignIn extends M_BasePage {
@@ -13,5 +15,7 @@ public class SignIn extends M_BasePage {
 		PageFactory.initElements(mdriver, this);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 }
