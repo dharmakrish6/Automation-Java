@@ -31,6 +31,8 @@ report.html
 *screenshots
 script-videos/*
 script-videos
+archive
+archive/*
 
 # eclipse specific git ignore
 #############################
