@@ -60,8 +60,8 @@ public class VelocityUtils {
 		velocityProps.setProperty("file.resource.loader.class",
 				"org.apache.velocity.runtime.resource.loader.FileResourceLoader");
 		velocityProps.setProperty("file.resource.loader.path", System.getProperty("user.dir") + "/test-data/jsons");
-		velocityProps.setProperty("file.resource.loader.cache", "true");
-		velocityProps.setProperty("file.resource.loader.modificationCheckInterval", "2");
+		velocityProps.setProperty("file.resource.loader.cache", "false");
+		velocityProps.setProperty("file.resource.loader.modificationCheckInterval", "0");
 
 		try {
 			Velocity.init(velocityProps);

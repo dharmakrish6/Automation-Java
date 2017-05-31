@@ -1,6 +1,8 @@
 package moolya.sunnxt.pages.webpages;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -32,7 +34,8 @@ public class W_BasePage extends JavaUtils
 		this.driver= driver;
 	}
 	
-	@FindBy(xpath = "(//div[@class='btn-group bootstrap-select'])[1]") 
+	
+	@FindBy(xpath = "(//button[@class='btn dropdown-toggle btn-default'and @title='Tamil'])[1]") 
 	protected WebElement language_dropdown;
 	
 	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[1]") 
@@ -40,6 +43,9 @@ public class W_BasePage extends JavaUtils
 	
 	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[2]") 
 	protected WebElement My_profile;
+	
+	@FindBy(xpath = "//span[@class='icon-icn_switch-profile']") 
+	protected WebElement switch_profile;
 	
 	@FindBy(xpath = "(//div[@class='col-md-6 col-sm-6 top_rgt_link']/ul)[1]/li[3]") 
 	protected WebElement Notification;
@@ -51,7 +57,7 @@ public class W_BasePage extends JavaUtils
 	@FindBy(xpath = "(//img[@src='/images/logo.png'])[1]") 
 	protected WebElement Sunxt_logo;
 	
-	@FindBy(linkText = "movies")
+	@FindBy(xpath = "(//a[text()='movies'])[1]")
 	protected WebElement MOVIES;
 	
 	@FindBy(linkText = "tv shows")
@@ -66,25 +72,72 @@ public class W_BasePage extends JavaUtils
 	@FindBy(linkText = "exclusives")
 	protected WebElement EXCLUSIVES;
 	
-	public void select_language(String Language){
+	public HomePage select_language(String Language){
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(language_dropdown));
 		
 		language_dropdown.click();
+		List<WebElement> Dropdown_list = driver.findElements(By.xpath("(//div[@class='dropdown-menu open']/ul)[1]/li"));
+		Iterator<WebElement> iter = Dropdown_list.iterator();
+
+		while(iter.hasNext()) {
+		    WebElement we = iter.next();
+            if (we.getText().equals(Language)) {
+		        we.click();
+		    }
+		}
+		
+		return new HomePage(driver);
+		
 		
 		
 	}
 	
 	public void do_search(String Search_String){
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(Search));
 		Search.click();
 		WebElement Search_box = driver.findElement(By.id("mainSearch"));
 		Search_box.sendKeys(Search_String);
-		WebElement Search_btn = driver.findElement(By.xpath("(//button[@class='btn-nobg search-btn'])[1]"));
-		Search_btn.click();
+		//WebElement Search_btn = driver.findElement(By.xpath("(//button[@class='btn-nobg search-btn'])[1]"));
+		//Search_btn.click();
+		WebElement Search_suggestion = driver.findElement(By.xpath("(//a[text()='"+Search_String+"'])[2]"));
+		Search_suggestion.click();
 		
 	}
 	
 	public MyProfilePage click_MyProfile(){
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(My_profile));
 		My_profile.click();
 		return new MyProfilePage(driver);
+	}
+	
+	public MoviesPage click_Movies(){
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(MOVIES));
+		MOVIES.click();
+		return new MoviesPage(driver);
+	}
+	
+	
+	public void switch_profile(){
+		switch_profile.click();
+		
+	}
+	public void add_profile(String username,String password){
+		WebElement add_profile_btn = driver.findElement(By.xpath("//div[@class='add-icon']"));
+		add_profile_btn.click();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement Username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@name='username'])[1]")));
+		Username.sendKeys(username);
+		WebElement Password = driver.findElement(By.xpath("(//input[@name='password'])[1]"));
+		Password.sendKeys(password);
+		WebElement Add_btn = driver.findElement(By.xpath("(//button[@type='submit'and@class='btn btn-red'])[1]"));
+		Add_btn.click();
+		
+		
 	}
 	
 	public WebDriver launchWebApp() throws IOException

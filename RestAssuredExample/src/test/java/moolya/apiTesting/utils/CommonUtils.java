@@ -86,6 +86,7 @@ public class CommonUtils {
 			Iterator<Row> it = sheet.rowIterator();
 
 			Row headers = it.next();
+			System.out.println(headers);
 			while(it.hasNext()) {
 
 				Row record = it.next();
