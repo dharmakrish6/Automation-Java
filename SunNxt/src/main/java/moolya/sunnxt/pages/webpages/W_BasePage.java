@@ -26,13 +26,10 @@ import moolya.sunnxt.utils.JavaUtils;
 public class W_BasePage extends W_SuperBasePage 
 {
 	String windowHandle = "";
-
-	public WebDriver driver;
-
 	public W_BasePage(WebDriver driver)
 	{
 		super(driver);
-		this.driver= driver;
+		PageFactory.initElements(driver, this);
 	}
 	
 	
@@ -75,11 +72,11 @@ public class W_BasePage extends W_SuperBasePage
 	
 	public HomePage select_language(String Language){
 		
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(wdriver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(language_dropdown));
 		
 		language_dropdown.click();
-		List<WebElement> Dropdown_list = driver.findElements(By.xpath("(//div[@class='dropdown-menu open']/ul)[1]/li"));
+		List<WebElement> Dropdown_list = wdriver.findElements(By.xpath("(//div[@class='dropdown-menu open']/ul)[1]/li"));
 		Iterator<WebElement> iter = Dropdown_list.iterator();
 
 		while(iter.hasNext()) {
@@ -89,37 +86,36 @@ public class W_BasePage extends W_SuperBasePage
 		    }
 		}
 		
-		return new HomePage(driver);
+		return new HomePage(wdriver);
 		
 		
 		
 	}
 	
 	public void do_search(String Search_String){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(wdriver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(Search));
 		Search.click();
-		WebElement Search_box = driver.findElement(By.id("mainSearch"));
+		WebElement Search_box = wdriver.findElement(By.id("mainSearch"));
 		Search_box.sendKeys(Search_String);
 		//WebElement Search_btn = driver.findElement(By.xpath("(//button[@class='btn-nobg search-btn'])[1]"));
 		//Search_btn.click();
-		WebElement Search_suggestion = driver.findElement(By.xpath("(//a[text()='"+Search_String+"'])[2]"));
+		WebElement Search_suggestion = wdriver.findElement(By.xpath("(//a[text()='"+Search_String+"'])[2]"));
 		Search_suggestion.click();
 		
 	}
 	
 	public MyProfilePage click_MyProfile(){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.elementToBeClickable(My_profile));
+		waitUntilElementclickable(My_profile);
 		My_profile.click();
-		return new MyProfilePage(driver);
+		return new MyProfilePage(wdriver);
 	}
 	
 	public MoviesPage click_Movies(){
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(wdriver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(MOVIES));
 		MOVIES.click();
-		return new MoviesPage(driver);
+		return new MoviesPage(wdriver);
 	}
 	
 	
@@ -128,14 +124,14 @@ public class W_BasePage extends W_SuperBasePage
 		
 	}
 	public void add_profile(String username,String password){
-		WebElement add_profile_btn = driver.findElement(By.xpath("//div[@class='add-icon']"));
+		WebElement add_profile_btn = wdriver.findElement(By.xpath("//div[@class='add-icon']"));
 		add_profile_btn.click();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(wdriver, 10);
 		WebElement Username = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//input[@name='username'])[1]")));
 		Username.sendKeys(username);
-		WebElement Password = driver.findElement(By.xpath("(//input[@name='password'])[1]"));
+		WebElement Password = wdriver.findElement(By.xpath("(//input[@name='password'])[1]"));
 		Password.sendKeys(password);
-		WebElement Add_btn = driver.findElement(By.xpath("(//button[@type='submit'and@class='btn btn-red'])[1]"));
+		WebElement Add_btn = wdriver.findElement(By.xpath("(//button[@type='submit'and@class='btn btn-red'])[1]"));
 		Add_btn.click();
 		
 		
