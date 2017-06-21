@@ -21,13 +21,12 @@ import atu.testrecorder.exceptions.ATUTestRecorderException;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import moolya.slicepay.pages.mobile.android.HomePage;
-import moolya.slicepay.pages.mobile.android.SignInPage;
-import moolya.slicepay.utils.AppiumServiceUtils;
-import moolya.slicepay.utils.JavaUtils;
 import moolya.sunnxt.Driver;
 import moolya.sunnxt.pages.mobilepages.M_BasePage;
 import moolya.sunnxt.pages.mobilepages.M_SuperBasePage;
+import moolya.sunnxt.pages.webpages.HomePage;
+import moolya.sunnxt.utils.AppiumServiceUtils;
+import moolya.sunnxt.utils.JavaUtils;
 
 public class M_BaseTest {
 

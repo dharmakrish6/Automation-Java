@@ -16,9 +16,9 @@ import atu.testrecorder.ATUTestRecorder;
 import atu.testrecorder.exceptions.ATUTestRecorderException;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import moolya.slicepay.pages.web.W_BasePage;
-import moolya.slicepay.utils.AppiumServerUtils;
 import moolya.sunnxt.pages.mobilepages.M_BasePage;
+import moolya.sunnxt.pages.webpages.W_BasePage;
+import moolya.sunnxt.utils.AppiumServerUtils;
 
 public class BaseTest {
 

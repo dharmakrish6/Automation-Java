@@ -17,7 +17,7 @@ import org.testng.annotations.BeforeClass;
 
 import atu.testrecorder.ATUTestRecorder;
 import atu.testrecorder.exceptions.ATUTestRecorderException;
-import moolya.slicepay.pages.web.W_BasePage;
+import moolya.sunnxt.pages.webpages.W_BasePage;
 
 public class W_BaseTest 
 {

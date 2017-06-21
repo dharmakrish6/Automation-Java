@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -20,7 +19,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.ios.IOSDriver;
-import moolya.slicepay.utils.JavaUtils;
+import moolya.sunnxt.utils.JavaUtils;
 
 public class M_SuperBasePage extends JavaUtils{
 

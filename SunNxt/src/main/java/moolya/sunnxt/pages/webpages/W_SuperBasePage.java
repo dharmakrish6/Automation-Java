@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
-import moolya.slicepay.utils.JavaUtils;
+import moolya.sunnxt.utils.JavaUtils;
 
 public class W_SuperBasePage extends JavaUtils{
 

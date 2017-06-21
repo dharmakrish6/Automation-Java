@@ -1,39 +1,21 @@
 package moolya.sunnxt.pages.mobilepages;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.text.DateFormatSymbols;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-
-import com.google.common.collect.ImmutableMap;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDeviceActionShortcuts;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidKeyCode;
-import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import io.appium.java_client.remote.MobileCapabilityType;
-import moolya.slicepay.pages.mobile.android.HomePage;
-import moolya.slicepay.utils.JavaUtils;
+import moolya.sunnxt.pages.webpages.HomePage;
 
 public class M_BasePage extends M_SuperBasePage{
 
