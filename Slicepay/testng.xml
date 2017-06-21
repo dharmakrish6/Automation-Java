@@ -3,8 +3,8 @@
 <suite name="Suite">
 	<test name="Test">
 		<classes>
-			<class name="moolya.slicepay.tests.mobile.android.Dummy2" />
-			<class name="moolya.slicepay.tests.mobile.android.Dummy" />
+			<class name="moolya.slicepay.tests.mobile.android.profile.Apply_For_Silver_Access" />
+			<class name="moolya.slicepay.tests.mobile.android.orders.Check_Orders_Page_When_User_Has_Not_Placed_Any_Orders" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

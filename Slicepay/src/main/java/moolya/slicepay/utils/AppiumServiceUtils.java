@@ -12,6 +12,10 @@ public class AppiumServiceUtils {
 	public static AppiumDriverLocalService service;
 	
 	static {
+		try{
+			AppiumServerUtils.stopAppium();
+			Thread.sleep(2000);
+		}catch(Exception e){}
 		File classpathRoot = new File(System.getProperty("user.dir"));
 		try {
 			service = new AppiumServiceBuilder()
@@ -21,6 +25,7 @@ public class AppiumServiceUtils {
 					.withAppiumJS(new File(JavaUtils.getPropValue("AppiumJavaScriptServerFile")))
 					.usingDriverExecutable(new File(JavaUtils.getPropValue("AppiumNodeFilePath")))
 					.withArgument(GeneralServerFlag.SESSION_OVERRIDE)
+					.withArgument(GeneralServerFlag.NO_RESET)
 					.build();
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block

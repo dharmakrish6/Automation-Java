@@ -7,6 +7,7 @@ import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
@@ -32,15 +33,27 @@ public class SignInPage extends M_BasePage {
 	@FindBy(id="indwin.c3.shareapp:id/Login")
 	private MobileElement login_Btn;
 	
+	@FindBy(id="indwin.c3.shareapp:id/signUp")
+	private MobileElement signUp_Btn;
+	
 	public HomePage login(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
-		HashMap<String, String> data = readExcelData("Login", uniqueValue);
+		HashMap<String, String> data = readExcelData("SignIn", uniqueValue);
 		waitUntilElementclickable(phoneNumber_TB);
 		phoneNumber_TB.sendKeys(data.get("Phone Number"));
+		Reporter.log("Entered Phone Number: "+data.get("Phone Number"), true);
 		password_TB.sendKeys(data.get("Password"));
-		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.BACK);
+		Reporter.log("Entered Password: "+data.get("Password"), true);
+		pressBackButton();
 		login_Btn.click();
+		Reporter.log("Clicked on Login Button", true);
 		return new HomePage(mdriver);
 		
+	}
+	
+	public SignUpPage clickSignUp(){
+		waitUntilElementclickable(signUp_Btn);
+		signUp_Btn.click();
+		return new SignUpPage(mdriver);
 	}
 	
 	

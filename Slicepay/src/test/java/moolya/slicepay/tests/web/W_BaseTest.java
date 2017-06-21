@@ -33,7 +33,9 @@ public WebDriver wdriver;
 		String dir = System.getProperty("user.dir");
 		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
 		Date date = new Date();
-		recorder = new ATUTestRecorder(dir+"\\script-videos\\", "Verify-Order-Summary-" + dateFormat.format(date), false);
+		if(!new File(dir+"\\script-videos").exists())
+			new File(dir+"\\script-videos").mkdirs();
+		recorder = new ATUTestRecorder(dir+"\\script-videos\\", this.getClass().getSimpleName()+ "-" + dateFormat.format(date), false);
 		// To start video recording.
 		basepage = new W_BasePage(wdriver);
 		recorder.start();
@@ -48,7 +50,7 @@ public WebDriver wdriver;
 		Date date = new Date();
 		if(!result.isSuccess()){            
 			File scrFile = ((TakesScreenshot)wdriver).getScreenshotAs(OutputType.FILE);
-			String file =dir+"/screenshots/"+result.getMethod().getMethodName()+"-"+dateFormat.format(date)+".png";
+			String file =dir+"/screenshots/"+result.getClass().getSimpleName()+"-"+dateFormat.format(date)+".png";
 			try {
 				FileUtils.copyFile(scrFile, new File(file));
 			} catch (IOException e) {

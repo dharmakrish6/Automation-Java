@@ -55,10 +55,7 @@ public class SummaryReport {
 		}
 	}
 	
-	//yatheendra@moolya.com, manishm@slicepay.in
-	
-
-	public static void EmailSummaryReport() throws IOException{
+	public static void main(String[] args) throws IOException{
 		Properties properties = System.getProperties();  
 		properties.setProperty("mail.transport.protocol", "smtp");  
 		properties.setProperty("mail.smtp.host", "smtp.gmail.com");  

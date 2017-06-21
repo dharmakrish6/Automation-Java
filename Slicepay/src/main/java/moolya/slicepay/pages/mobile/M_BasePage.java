@@ -3,17 +3,24 @@ package moolya.slicepay.pages.mobile;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.google.common.collect.ImmutableMap;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidKeyCode;
 import io.appium.java_client.ios.IOSDriver;
+import moolya.slicepay.pages.mobile.android.HomePage;
 import moolya.slicepay.utils.JavaUtils;
 
 public class M_BasePage extends JavaUtils{
@@ -29,14 +36,99 @@ public class M_BasePage extends JavaUtils{
 		this.mdriver = mdriver;
 	}
 
+	@FindBy(id="indwin.c3.shareapp:id/backo")
+	protected MobileElement back_Btn;
+	
+	@FindBy(id="indwin.c3.shareapp:id/btn_take_picture")
+	protected MobileElement takePhoto_Btn;
+	
+	@FindBy(id="indwin.c3.shareapp:id/selected_photo")
+	protected MobileElement selectedPhoto_Img;
+	
+	@FindBy(id="indwin.c3.shareapp:id/action_done")
+	protected MobileElement doneChooseImage_Btn;
+	
+	@FindBy(xpath="//android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.NumberPicker[1]/android.widget.Button[2]")
+	protected MobileElement graduationMonth_Btn;
+	
+	@FindBy(xpath="//android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.NumberPicker[1]/android.widget.Button[2]")
+	protected MobileElement graduationYear_Btn;
+	
+	@FindBy(xpath="//android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]/android.widget.NumberPicker[1]/android.widget.Button[2]")
+	protected MobileElement dobDay_Btn;
+	
+	@FindBy(xpath="//android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[2]/android.widget.NumberPicker[1]/android.widget.Button[2]")
+	protected MobileElement dobMonth_Btn;
+	
+	@FindBy(xpath="//android.widget.RelativeLayout[1]/android.widget.LinearLayout[2]/android.widget.LinearLayout[3]/android.widget.NumberPicker[1]/android.widget.Button[2]")
+	protected MobileElement dobYear_Btn;
+	
+	@FindBy(id="indwin.c3.shareapp:id/confirm_end_date")
+	protected MobileElement saveDate_Btn;
+	
+	public void selectMonthAndYear(String month, String year) throws InterruptedException{
+		waitUntilElementclickable(graduationMonth_Btn);
+		Map<String,Integer> months = ImmutableMap.<String, Integer>builder()
+				.put("Jan", 1).put("Feb", 2).put("Mar", 3).put("Apr", 4)
+				.put("May", 5).put("Jun", 6).put("Jul", 7).put("Aug", 8)
+				.put("Sep", 9).put("Oct", 10).put("Nov", 11).put("Dec", 12).build();
+		for(int i=0;i<months.get(month);i++){
+			graduationMonth_Btn.click();
+		}
+		int noOfYearsToScroll = Integer.valueOf(year)-Integer.valueOf(graduationYear_Btn.getAttribute("text"));
+		for(int i=0;i<noOfYearsToScroll;i++){
+			graduationYear_Btn.click();
+		}
+		saveDate_Btn.click();
+	}
+	
+	public void selectDate(String day,String month, String year) throws InterruptedException{
+		waitUntilElementclickable(dobDay_Btn);
+		for(int i=0;i<Integer.valueOf(day);i++)
+			dobDay_Btn.click();
+		Map<String,Integer> months = ImmutableMap.<String, Integer>builder()
+				.put("Jan", 1).put("Feb", 2).put("Mar", 3).put("Apr", 4)
+				.put("May", 5).put("Jun", 6).put("Jul", 7).put("Aug", 8)
+				.put("Sep", 9).put("Oct", 10).put("Nov", 11).put("Dec", 12).build();
+		for(int i=0;i<months.get(month.substring(0, 3));i++){
+			dobMonth_Btn.click();
+		}
+		int noOfYearsToScroll = Integer.valueOf(year)-Integer.valueOf(dobYear_Btn.getAttribute("text"));
+		for(int i=0;i<noOfYearsToScroll;i++){
+			dobYear_Btn.click();
+		}
+		
+		saveDate_Btn.click();
+	}
+	
+	public void takePhoto() throws InterruptedException{
+		waitUntilElementclickable(takePhoto_Btn);
+		takePhoto_Btn.click();
+		Thread.sleep(5000);
+		waitUntilElementAppears(selectedPhoto_Img);
+		doneChooseImage_Btn.click();
+	}
+	
+	public void connectToSocialAccount(){
+		
+	}
+	
+	public HomePage goBack(){
+		waitUntilElementclickable(back_Btn);
+		back_Btn.click();
+		return new HomePage(mdriver);
+		
+	}
+	
+	public void pressBackButton(){
+		((AndroidDriver<MobileElement>)mdriver).pressKeyCode(AndroidKeyCode.BACK);
+	}
 
 	public void clickDeviceBackButton()
 	{
 		mdriver.navigate().back(); 
 	}
-
-
-
+	
 	public AppiumDriver<MobileElement> launchmobApp(String c) throws IOException
 	{
 		File classpathRoot = new File(System.getProperty("user.dir"));
@@ -62,6 +154,10 @@ public class M_BasePage extends JavaUtils{
 			app = new File (appDir, getPropValue("AappName"));
 			if(!app.getName().equals("NA"))
 				capabilities.setCapability("app", app.getAbsolutePath());
+			if (getPropValue("AnoReset").equals("true"))
+				capabilities.setCapability("noReset", "true");
+			else
+				capabilities.setCapability("noReset", "false");
 			mdriver = new AndroidDriver<MobileElement>(new URL(getPropValue("AppiumUrl")), capabilities);
 			break;
 		case IOS:
