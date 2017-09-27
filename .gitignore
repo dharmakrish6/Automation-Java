@@ -17,6 +17,8 @@ report.html
 *screenshot*
 *build
 *build/*
+*target/*
+*target
 *test-output
 *test-output/*
 *testngReports
