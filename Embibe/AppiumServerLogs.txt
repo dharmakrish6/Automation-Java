@@ -1,0 +1,42 @@
+2017-07-14 10:46:01:874 - info: Welcome to Appium v1.3.7 (REV 72fbfaa116d3d9f6a862600ee99cf02f6d0e2182)
+2017-07-14 10:46:01:875 - info: Appium REST http interface listener started on 0.0.0.0:4723
+2017-07-14 10:46:01:877 - debug: Non-default server args: {"sessionOverride":true,"noReset":true,"log":"D:\\Workspace\\Moolya Workspace 2\\Embibe\\AppiumServerLogs.txt","loglevel":"info:debug","defaultCommandTimeout":600000}
+2017-07-14 10:46:01:877 - info: Console LogLevel: info
+2017-07-14 10:46:01:877 - info: File LogLevel: debug
+2017-07-14 10:46:01:919 - info: --> GET /wd/hub/status {}
+2017-07-14 10:46:01:921 - debug: Responding to client with success: {"status":0,"value":{"build":{"version":"1.3.7","revision":"72fbfaa116d3d9f6a862600ee99cf02f6d0e2182"}}}
+2017-07-14 10:46:01:925 - info: <-- GET /wd/hub/status 200 5.819 ms - 104 {"status":0,"value":{"build":{"version":"1.3.7","revision":"72fbfaa116d3d9f6a862600ee99cf02f6d0e2182"}}}
+2017-07-14 10:46:02:479 - info: --> POST /wd/hub/session {"desiredCapabilities":{"app":"chrome","platformName":"Android","deviceName":"Android","platformVersion":"7.0"}}
+2017-07-14 10:46:02:480 - info: Client User-Agent string: Apache-HttpClient/4.3.3 (java 1.5)
+2017-07-14 10:46:02:481 - info: Set mode: Proxying straight through to Chromedriver
+2017-07-14 10:46:02:481 - debug: Looks like we want chrome on android
+2017-07-14 10:46:02:482 - debug: Creating new appium session d4cb8aa1-43b5-4590-a2ca-d5b2c00eb208
+2017-07-14 10:46:02:483 - debug: Checking whether adb is present
+2017-07-14 10:46:02:484 - debug: Using adb from D:\EDrive\android-sdk-windows\platform-tools\adb.exe
+2017-07-14 10:46:02:484 - debug: Using fast reset? false
+2017-07-14 10:46:02:484 - debug: Preparing device for session
+2017-07-14 10:46:02:484 - debug: Not checking whether app is present since we are assuming it's already on the device
+2017-07-14 10:46:02:484 - info: Retrieving device
+2017-07-14 10:46:02:484 - debug: Trying to find a connected android device
+2017-07-14 10:46:02:485 - debug: Getting connected devices...
+2017-07-14 10:46:02:485 - debug: executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe devices
+2017-07-14 10:46:02:518 - debug: 1 device(s) connected
+2017-07-14 10:46:02:518 - info: Found device RQ30023DEG
+2017-07-14 10:46:02:518 - debug: Setting device id to RQ30023DEG
+2017-07-14 10:46:02:519 - debug: Waiting for device to be ready and to respond to shell commands (timeout = 5)
+2017-07-14 10:46:02:519 - debug: executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG wait-for-device
+2017-07-14 10:46:02:544 - debug: executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG shell "echo 'ready'"
+2017-07-14 10:46:02:635 - debug: Starting logcat capture
+2017-07-14 10:46:02:677 - debug: Pushing unlock helper app to device...
+2017-07-14 10:46:02:678 - debug: executing cmd: D:\EDrive\android-sdk-windows\platform-tools\adb.exe -s RQ30023DEG install "D:\Appium\node_modules\appium\build\unlock_apk\unlock_apk-debug.apk"
+2017-07-14 10:46:04:464 - debug: Cleaning up appium session
+2017-07-14 10:46:04:464 - error: Failed to start an Appium session, err was: Error: Command failed: Failed to install D:\Appium\node_modules\appium\build\unlock_apk\unlock_apk-debug.apk: Failure [INSTALL_FAILED_ALREADY_EXISTS: Attempt to re-install io.appium.unlock without first uninstalling.]
+
+2017-07-14 10:46:04:465 - debug: Error: Command failed: Failed to install D:\Appium\node_modules\appium\build\unlock_apk\unlock_apk-debug.apk: Failure [INSTALL_FAILED_ALREADY_EXISTS: Attempt to re-install io.appium.unlock without first uninstalling.]
+
+    at ChildProcess.exithandler (child_process.js:637:15)
+    at ChildProcess.EventEmitter.emit (events.js:98:17)
+    at maybeClose (child_process.js:743:16)
+    at Process.ChildProcess._handle.onexit (child_process.js:810:5)
+2017-07-14 10:46:04:465 - debug: Responding to client with error: {"status":33,"value":{"message":"A new session could not be created. (Original error: Command failed: Failed to install D:\\Appium\\node_modules\\appium\\build\\unlock_apk\\unlock_apk-debug.apk: Failure [INSTALL_FAILED_ALREADY_EXISTS: Attempt to re-install io.appium.unlock without first uninstalling.]\r\n)","killed":false,"code":1,"signal":null,"origValue":"Command failed: Failed to install D:\\Appium\\node_modules\\appium\\build\\unlock_apk\\unlock_apk-debug.apk: Failure [INSTALL_FAILED_ALREADY_EXISTS: Attempt to re-install io.appium.unlock without first uninstalling.]\r\n"},"sessionId":null}
+2017-07-14 10:46:04:466 - info: <-- POST /wd/hub/session 500 1986.477 ms - 600 

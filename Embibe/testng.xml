@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite" parallel="tests" thread-count="5">
+  <test name="Test_FireFox">
+      <parameter name="browser" value="ff"/>
+    <classes>
+      <class name="moolya.embibe.tests.web.Dummy"/>
+      <class name="moolya.embibe.tests.web.SearchTest"/>
+      <class name="moolya.embibe.tests.web.SearchResultsTest"/>
+    </classes>
+  </test> 
+  <test name="Test_Chrome">
+      <parameter name="browser" value="chrome"/>
+    <classes>
+      <class name="moolya.embibe.tests.web.Dummy"/>
+      <class name="moolya.embibe.tests.web.SearchTest"/>
+      <class name="moolya.embibe.tests.web.SearchResultsTest"/>
+    </classes>
+  </test> 
+  <test name="Test_IE">
+      <parameter name="browser" value="ieWinx32"/>
+    <classes>
+      <class name="moolya.embibe.tests.web.Dummy"/>
+      <class name="moolya.embibe.tests.web.SearchTest"/>
+      <class name="moolya.embibe.tests.web.SearchResultsTest"/>
+    </classes>
+  </test> 
+  <test name="Test_Opera">
+      <parameter name="browser" value="opera64"/>
+    <classes>
+      <class name="moolya.embibe.tests.web.Dummy"/>
+      <class name="moolya.embibe.tests.web.SearchTest"/>
+      <class name="moolya.embibe.tests.web.SearchResultsTest"/>
+    </classes>
+  </test> 
+</suite> <!-- Suite -->
