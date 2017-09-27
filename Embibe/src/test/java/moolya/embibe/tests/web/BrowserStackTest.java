@@ -23,6 +23,8 @@ public class BrowserStackTest {
 	    caps.setCapability("os_version", "7");
 	    caps.setCapability("resolution", "1366x768");
 	    caps.setCapability("browserstack.debug", "true");
+	    
+	    
 
 	    WebDriver driver = new RemoteWebDriver(new URL(URL), caps);
 	    driver.get("http://www.google.com");
