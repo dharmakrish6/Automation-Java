@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 public class LoginPage extends W_BasePage {
 
@@ -28,6 +29,9 @@ public class LoginPage extends W_BasePage {
 	
 	@FindBy(css=".close-mail")
 	private WebElement resetPasswordClose_Btn;
+	
+	@FindBy(css=".forgotpasswordclose")
+	private WebElement forgotPasswordClose_Btn;
 	
 	@FindBy(css=".FPHead")
 	private WebElement forgotPasswordHeader_Lbl;
@@ -57,6 +61,13 @@ public class LoginPage extends W_BasePage {
 	public void resetPasssword(){
 		waitUntilElementclickable(forgotPasswordEmail_TB);
 		resetPassword_Btn.click();
+	}
+	
+	public SearchHomepage closeForgotPassword(){
+		waitUntilElementclickable(forgotPasswordClose_Btn);
+		forgotPasswordClose_Btn.click();
+		Reporter.log("Clicked on Close Forgot Password", true);
+		return new SearchHomepage(wdriver);
 	}
 
 	public void getPixelDataResetPassword() throws EncryptedDocumentException, InvalidFormatException, IOException{

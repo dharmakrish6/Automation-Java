@@ -25,123 +25,138 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	//	Global Navigation Elements
-	
+
 	@FindBy(css=".embibeLogo>a:nth-child(1)>img")
 	private WebElement embibeLogo;
-	
+
 	@FindBy(xpath="//li[@class='nav-item']/a[text()='Ask']")
 	private WebElement ask_Btn;
-	
+
 	@FindBy(xpath="//li[@class='nav-item ']/a[text()='STUDY']")
 	private WebElement study_Btn;
-	
+
 	@FindBy(xpath="//li[@class='nav-item ']/a[text()='JUMP']")
 	private WebElement jump_Btn;
 	
+	@FindBy(xpath="//li[@class='nav-item ']/a[text()='RANKUP']")
+	private WebElement rankup_Btn;
+	
+	@FindBy(xpath="//li[@class='nav-item ']/a[text()='INSTITUTES']")
+	private WebElement institutes_Btn;
+
 	@FindBy(css=".embibumImage")
 	private WebElement embiumImage;
-	
+
 	@FindBy(css=".goalImage")
 	private WebElement goalImage;
-	
+
 	@FindBy(css=".guestImage")
 	private WebElement guestImage;
-		
+
 	@FindBy(css=".create-profile.button-common")
 	private WebElement login_Btn;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktopemailError']/preceding-sibling::input")
 	private WebElement emailPhone_TB;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktopemailError']/preceding-sibling::input")
 	private WebElement emailPhoneSignUp_TB;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/preceding-sibling::input")
 	private WebElement password_TB;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/preceding-sibling::input")
 	private WebElement passwordSignUp_TB;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordConfirmError']/preceding-sibling::input")
 	private WebElement confirmPasswordSignUp_Btn;
-	
+
 	@FindBy(css=".Dropdown-control ")
 	private WebElement goalSignUp_DD;
-	
+
 	@FindBy(css=".Dropdown-menu .Dropdown-option")
 	private List<WebElement> goalSignUpItems_List;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../following-sibling::button")
 	private WebElement login_login_Btn;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../following-sibling::button")
 	private WebElement signUp_Btn;
-	
+
 	@FindBy(xpath="(//div[@class='forget-pass']/a)[2]")
 	private WebElement forgotPassword_Btn;
 	
+	@FindBy(css=".forgotpasswordclose")
+	private WebElement forgotPasswordClose_Btn;
+
 	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
 	private WebElement fbLogin_Btn;
-	
+
 	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
 	private WebElement fbSignUp_Btn;
-	
+
 	@FindBy(xpath="(//button[@id='btn-google'])[2]")
 	private WebElement googleLogin_Btn;
-	
+
 	@FindBy(xpath="(//button[@id='btn-google'])[2]")
 	private WebElement googleSignUp_Btn;
-	
+
 	@FindBy(xpath="(//span[@class='register-user']/a)[2]")
 	private WebElement register_Btn;
-	
+
 	@FindBy(xpath="(//div[@class='registerlink'])[2]")
 	private WebElement registerHere;
-	
+
 	@FindBy(xpath="(//span[@class='register-user']/a)[2]")
 	private WebElement SignUpLogin_Btn;
-	
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../../following-sibling::div[@class='registerlink']//p")
 	private WebElement newUser_Btn;
-	
+
 	@FindBy(css=".user-dropdown>.user-name")
 	private WebElement userDropdown;
-	
+
 	@FindBy(css=".user-dropdown .user-name[href='/profile']")
 	private WebElement myProfile_Btn;
-	
+
 	@FindBy(css=".user-dropdown>div>div>div:nth-child(2)>a")
 	private WebElement logout_Btn;
-	
+
 	@FindBy(css=".swiper-slide:nth-child(1) span")
 	private WebElement jeeMainSwiperFooter;
-	
+
 	@FindBy(css=".swiper-slide:nth-child(2) span")
 	private WebElement jeeAdvancedSwiperFooter;
-	
+
 	@FindBy(css=".swiper-slide:nth-child(3) span")
 	private WebElement bitsatSwiperFooter;
-	
+
 	@FindBy(css=".swiper-slide:nth-child(4) span")
 	private WebElement neetSwiperFooter;
-	
+
 	@FindBy(css=".Dropdown-option:nth-child(1)")
 	private WebElement goalDropdownOptionBank;
-	
+
 	@FindBy(css=".Dropdown-option:nth-child(2)")
 	private WebElement goalDropdownOptionEngineering;
-	
+
 	@FindBy(css=".Dropdown-option:nth-child(3)")
 	private WebElement goalDropdownOptionMedical;
-	
+
 	@FindBy(css=".Dropdown-option:nth-child(4)")
 	private WebElement goalDropdownOptionFoundation10;
-	
+
 	@FindBy(css=".Dropdown-option:nth-child(5)")
 	private WebElement goalDropdownOptionFoundation9;
-	
+
 	@FindBy(css=".Dropdown-option:nth-child(6)")
 	private WebElement goalDropdownOptionFoundation8;
+	
+	@FindBy(css=".hamburger")
+	private WebElement hamburger_Btn;
+	
+	@FindBy(css=".close-side-options")
+	private WebElement closeHamburger_Btn;
 
 	public void getPixelDataSignUpGoals() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		getPixelData("Data", "002.1.3(D)", goalDropdownOptionBank, "goalDropdownOptionBank");
@@ -149,7 +164,7 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "002.1.3(D)", goalDropdownOptionMedical, "goalDropdownOptionMedical");
 		getPixelData("Data", "002.1.3(D)", goalDropdownOptionFoundation10, "goalDropdownOptionFoundation10");
 	}
-	
+
 	public void getPixelDataGlobalNavElements() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		getPixelData("Data", "D_Guest 1st time user", embibeLogo, "embibeLogo");
 		getPixelData("Data", "D_Guest 1st time user", study_Btn, "study_Btn");
@@ -165,11 +180,139 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "D_Guest 1st time user", neetSwiperFooter, "neetSwiperFooter");
 	}
 	
-	public void clickLogin(){
-		waitUntilElementclickable(login_Btn);
-		login_Btn.click();
+	public void clickHamburger(){
+		waitUntilElementclickable(hamburger_Btn);
+		hamburger_Btn.click();
+		Reporter.log("Clicked on Hamburger", true);
 	}
 	
+	public void closeHamburger(){
+		waitUntilElementclickable(closeHamburger_Btn);
+		clickElementViaJavaScript(closeHamburger_Btn);
+		Reporter.log("Closed Hamburger", true);
+	}
+
+	public void clickLogin(){
+		waitUntilElementclickable(login_Btn);
+		try{
+			login_Btn.click();
+		}catch(Exception e){
+			clickElementViaJavaScript(login_Btn);
+		}
+	}
+	
+	public void clickRegisterHere(){
+		waitUntilElementclickable(register_Btn);
+		register_Btn.click();
+		Reporter.log("Clicked on Register Here", true);
+	}
+	
+	public void clickLoginHere(){
+		waitUntilElementclickable(SignUpLogin_Btn);
+		SignUpLogin_Btn.click();
+		Reporter.log("Clicked on Login Here", true);
+	}
+	
+	public void clickFbLogin(){
+		waitUntilElementclickable(fbLogin_Btn);
+		fbLogin_Btn.click();
+		Reporter.log("Clicked on FB Login", true);
+	}
+	
+	public void clickGoogleLogin(){
+		waitUntilElementclickable(googleLogin_Btn);
+		googleLogin_Btn.click();
+		Reporter.log("Clicked on Google Login", true);
+	}
+	
+	public void clickFbSignUp(){
+		waitUntilElementclickable(fbSignUp_Btn);
+		fbSignUp_Btn.click();
+		Reporter.log("Clicked on FB SignUp", true);
+	}
+	
+	public void clickGoogleSignUp(){
+		waitUntilElementclickable(googleSignUp_Btn);
+		googleSignUp_Btn.click();
+		Reporter.log("Clicked on Google SignUp", true);
+	}
+	
+	
+	
+	public void clickEmbibeLogo(){
+		waitUntilElementclickable(embibeLogo);
+		embibeLogo.click();
+		Reporter.log("Clicked on Embibe Logo", true);
+	}
+	
+	public void clickAsk(){
+		waitUntilElementclickable(ask_Btn);
+		ask_Btn.click();
+		Reporter.log("Clicked on Ask", true);
+	}
+	
+	public void clickStudy(){
+		waitUntilElementclickable(study_Btn);
+		study_Btn.click();
+		Reporter.log("Clicked on Study", true);
+	}
+	
+	public void clickJump(){
+		waitUntilElementclickable(jump_Btn);
+		jump_Btn.click();
+		Reporter.log("Clicked on Jump", true);
+	}
+	
+	public void clickRank(){
+		waitUntilElementclickable(rankup_Btn);
+		rankup_Btn.click();
+		Reporter.log("Clicked on Rankup", true);
+	}
+	
+	public void clickInstitutes(){
+		waitUntilElementclickable(institutes_Btn);
+		institutes_Btn.click();
+		Reporter.log("Clicked on Institutes", true);
+	}
+	
+	public void mouseHoverOnAsk(){
+		waitUntilElementAppears(ask_Btn);
+		mouseHoverOnElement(wdriver, ask_Btn, "Mouse Hovered on Ask");
+	}
+	
+	public void mouseHoverOnStudy(){
+		waitUntilElementAppears(study_Btn);
+		mouseHoverOnElement(wdriver, study_Btn, "Mouse Hovered on Study");
+	}
+	
+	public void mouseHoverOnJump(){
+		waitUntilElementAppears(jump_Btn);
+		mouseHoverOnElement(wdriver, jump_Btn, "Mouse Hovered on Jump");
+	}
+	
+	public void mouseHoverOnRankUp(){
+		waitUntilElementAppears(rankup_Btn);
+		mouseHoverOnElement(wdriver, rankup_Btn, "Mouse Hovered on Rankup");
+	}
+	
+	public void mouseHoverOnInstitutes(){
+		waitUntilElementAppears(institutes_Btn);
+		mouseHoverOnElement(wdriver, institutes_Btn, "Mouse Hovered on Institutes");
+	}
+	
+	public void clickEmbiumStatus(){
+		waitUntilElementAppears(embiumImage);
+		embiumImage.click();
+		Reporter.log("Clicked On Embium Status", true);
+	}
+	
+	public void clickProfileIcon(){
+		waitUntilElementAppears(guestImage);
+		guestImage.click();
+		Reporter.log("Clicked On Profile Icon", true);
+	}
+	
+
 	public void getPixelDataLogin() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		getPixelData("Data", "login", emailPhone_TB, "emailPhone_TB");
 		getPixelData("Data", "login", password_TB, "password_TB");
@@ -179,23 +322,24 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "login", googleLogin_Btn, "googleLogin_Btn");
 		getPixelData("Data", "login", registerHere, "registerHere");
 	}
-	
+
 	public LoginPage clickForgotPassword(){
 		waitUntilElementclickable(forgotPassword_Btn);
 		forgotPassword_Btn.click();
+		Reporter.log("Clicked on Forgot Password", true);
 		return new LoginPage(wdriver);
 	}
-	
+
 	public void clickRegister(){
 		waitUntilElementclickable(register_Btn);
 		register_Btn.click();
 	}
-	
+
 	public void clickGoalDropdown(){
 		waitUntilElementclickable(goalSignUp_DD);
 		goalSignUp_DD.click();
 	}
-	
+
 	public void getPixelDataSignUp() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		getPixelData("Data", "Signup", emailPhoneSignUp_TB, "emailPhoneSignUp_TB");
 		getPixelData("Data", "Signup", goalSignUp_DD, "goalSignUp_DD");
@@ -206,7 +350,7 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "Signup", googleSignUp_Btn, "googleSignUp_Btn");
 		getPixelData("Data", "Signup", SignUpLogin_Btn, "SignUpLogin_Btn");
 	}
-	
+
 	public void login(){
 		waitUntilElementclickable(login_Btn);
 		login_Btn.click();
@@ -214,7 +358,7 @@ public class W_BasePage extends W_SuperBasePage
 		password_TB.sendKeys("moolya123");
 		login_login_Btn.click();
 	}
-	
+
 	public void login(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
 		waitUntilElementclickable(login_Btn);
@@ -223,7 +367,7 @@ public class W_BasePage extends W_SuperBasePage
 		enterText(password_TB, data.get("Password"), "Entered Password: "+data.get("Password"));
 		clickElement(login_login_Btn, "Clicked Login");
 	}
-	
+
 	public void login(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
 		waitUntilElementclickable(login_Btn);
@@ -232,7 +376,7 @@ public class W_BasePage extends W_SuperBasePage
 		enterText(password_TB, data.get("Password"), "Entered Password: "+data.get("Password"));
 		clickElement(login_login_Btn, "Clicked Login");
 	}
-	
+
 	public void signUp(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
 		waitUntilElementclickable(login_Btn);
@@ -244,23 +388,23 @@ public class W_BasePage extends W_SuperBasePage
 		enterText(confirmPasswordSignUp_Btn, data.get("Password"), "Entered Confirm Password: "+data.get("Password"));
 		clickElement(signUp_Btn, "Clicked SignUp");
 	}
-	
+
 	public void verifyLogin(){
 		waitUntilElementAppears(userDropdown);
 		Assert.assertTrue(userDropdown.isDisplayed(), "Login Failure");
 		Reporter.log("Login Success", true);
 	}
-	
+
 	public void clickUserDropdown(){
 		waitUntilElementclickable(userDropdown);
 		clickElementViaJavaScript(userDropdown);
 		userDropdown.click();
 	}
-	
+
 	public void clearCookies(){
 		wdriver.manage().deleteAllCookies();
 	}
-	
+
 	public LandingPage goToLandingPage() throws IOException{
 		String domain = getPropValue("domain");
 		String url = null;
@@ -271,7 +415,7 @@ public class W_BasePage extends W_SuperBasePage
 		wdriver.navigate().to(url);
 		return new LandingPage(wdriver);
 	}
-	
+
 	public SignUpPage goToSignUpPage() throws IOException{
 		String domain = getPropValue("domain");
 		String url = null;
@@ -282,37 +426,42 @@ public class W_BasePage extends W_SuperBasePage
 		wdriver.navigate().to(url+"signup");
 		return new SignUpPage(wdriver);
 	}
-	
+
 	public MailinatorPage goToMalinatorPage(){
 		wdriver.navigate().to("http://www.mailinator.com/");
 		return new MailinatorPage(wdriver);
 	}
 	
+	public DslPage goToDslPage(){
+		wdriver.navigate().to("http://10.140.10.116:9090/");
+		return new DslPage(wdriver);
+	}
+
 	public void getPixelDataUserDropdown() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		waitUntilElementAppears(myProfile_Btn);
 		getPixelData("Data", "D_Regitered user 002", myProfile_Btn, "myProfile_Btn");
 		getPixelData("Data", "D_Regitered user 002", logout_Btn, "logout_Btn");
 	}
-	
-	public LogoutSignInPage logout() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
+
+	public SignUpPage logout() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
 		waitUntilElementclickable(userDropdown);
 		clickElementViaJavaScript(userDropdown);
 		userDropdown.click();
 		waitUntilElementclickable(logout_Btn);
 		logout_Btn.click();
-		return new LogoutSignInPage(wdriver);
+		return new SignUpPage(wdriver);
 	}
-	
-	public SignUpPage signOut() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
+
+	public LogoutSignInPage signOut() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
 		waitUntilElementclickable(userDropdown);
 		clickElementViaJavaScript(userDropdown);
 		userDropdown.click();
 		waitUntilElementclickable(logout_Btn);
 		logout_Btn.click();
 		Reporter.log("Logged Out Successfully", true);
-		return new SignUpPage(wdriver);
+		return new LogoutSignInPage(wdriver);
 	}
-	
+
 	public void getPixelData(String sheetName, String pageName, WebElement e, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readPixelData(sheetName, pageName, uniqueValue);
 		waitUntilElementAppears(e);
@@ -328,6 +477,15 @@ public class W_BasePage extends W_SuperBasePage
 				writeExpectedPixelData(uniqueValue, pageName, "e_"+cssKey, eCssValue);
 				if(cssValue.contains("rgba"))
 					cssValue = rgbaToHex(cssValue);
+				if(cssValue.contains("auto")){
+					String height = getElementHeightViaJavascript(e);
+					String width = getElementWidthViaJavascript(e);
+					if(cssKey.contains("width"))
+						cssValue = width+"px";
+					else if(cssKey.contains("height"))
+						cssValue = height+"px";
+				}
+
 				writePixelData(sheetName, uniqueValue, pageName, "a_"+cssKey, cssValue);
 			}
 		}
@@ -341,11 +499,11 @@ public class W_BasePage extends W_SuperBasePage
 	public static String getScreenWidthPixels(int width, String value) {
 		return Double.toString(Double.parseDouble(value.replaceAll("px", ""))*width/1280)+"px";
 	}
-	
+
 	public static String getScreenheightPixels(int width, String value) {
 		return Double.toString(Double.parseDouble(value.replaceAll("px", ""))*width/720)+"px";
 	}
-	
+
 	public HashMap<String, Integer> getMaxWidthHeight(String sheetName, String pageName, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readAllPixelData(sheetName, pageName, uniqueValue);
 		int a_width = (int)Double.parseDouble(data.get("z_width").replaceAll("px", ""))+1;

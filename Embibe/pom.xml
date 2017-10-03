@@ -67,6 +67,12 @@
 			<artifactId>sqlite-jdbc</artifactId>
 			<version>${sqlite.jdbc.version}</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20090211</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.google.guava</groupId>

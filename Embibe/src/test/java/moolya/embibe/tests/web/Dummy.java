@@ -1,9 +1,13 @@
 package moolya.embibe.tests.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.json.JSONException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Optional;
@@ -46,8 +50,9 @@ public class Dummy{
 		lp.waitForLandingPageToLoad();
 //		lp.getPixelDataLandingPage();
 //		shp = lp.clickSearchNow();
-		shp = lp.clickStartNow();
-		shp.getPixelDataGlobalNavElements();
+//		shp = lp.clickStartNow();
+//		lp.analyzeLog();
+//		shp.getPixelDataGlobalNavElements();
 //		shp.getPixelDataSearchHomeElements();
 //		shp.clickLogin();
 //		shp.getPixelDataLogin();
@@ -81,9 +86,9 @@ public class Dummy{
 //		loutp = lsp.clickSignUp();
 //		loutp.getPixelDataLogoutSignUp();
 		
-//		String rgba = "rgba(216, 216, 216, 0.28)";
-//		basepage = new W_BasePage(wdriver);
-//		System.out.println(basepage.rgbaToHex(rgba));
+		/*String rgba = "rgba(216, 216, 216, 0.28)";
+		basepage = new W_BasePage(wdriver);
+		System.out.println(basepage.rgbaToHex(rgba));*/
 		
 	}
 	

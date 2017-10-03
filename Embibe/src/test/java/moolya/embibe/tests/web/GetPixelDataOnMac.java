@@ -70,7 +70,7 @@ public class GetPixelDataOnMac {
 		shp.clickUserDropdown();
 		shp.getPixelDataUserDropdown();
 		shp.refreshPage();
-		lsp = shp.logout();
+		lsp = shp.signOut();
 		lsp.getPixelDataLogoutSignIn();
 		loutp = lsp.clickSignUp();
 		loutp.getPixelDataLogoutSignUp();

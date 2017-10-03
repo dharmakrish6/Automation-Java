@@ -45,7 +45,7 @@ public class Sanity_9 extends W_BaseTest {
 		shp.signUp(uniqueValue,email);
 		shp.verifyLogin();
 		shp.assertSearchHomepage();
-		sup = shp.signOut();
+		sup = shp.logout();
 //		sup.goToSignUpPage();
 		sup.loginSignUpPage(uniqueValue, email);
 		shp.verifyLogin();

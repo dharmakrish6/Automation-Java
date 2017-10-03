@@ -5,17 +5,21 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import javax.imageio.ImageIO;
 
@@ -32,6 +36,8 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.util.IOUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
@@ -44,6 +50,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.opera.OperaDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
@@ -58,6 +68,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.gson.JsonObject;
 import com.testautomationguru.ocular.Ocular;
 import com.testautomationguru.ocular.comparator.OcularResult;
 
@@ -182,7 +193,7 @@ public class W_SuperBasePage extends JavaUtils{
 			DesiredCapabilities caps = DesiredCapabilities.chrome();
 			wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
 		}
-		
+
 		else if(browser.equalsIgnoreCase("ieWinx32"))
 		{
 			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
@@ -208,9 +219,13 @@ public class W_SuperBasePage extends JavaUtils{
 			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
 				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("chrome.switches","--disable-extensions");
-			options.addArguments("chrome.switches","--disable-geolocation");
-			wdriver = new ChromeDriver(options);
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			//			options.addArguments("chrome.switches","--disable-extensions");
+			//			options.addArguments("chrome.switches","--disable-geolocation");
+			DesiredCapabilities caps = new DesiredCapabilities().chrome();
+			caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(caps);
 		}else if(browser.equalsIgnoreCase("opera32")){
 			System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
 			ChromeOptions options = new ChromeOptions();
@@ -253,6 +268,165 @@ public class W_SuperBasePage extends JavaUtils{
 		wdriver.manage().window().maximize();
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
 		return wdriver;
+	}
+	
+	public WebDriver launchDsl(String browser) throws IOException
+	{
+		if (browser.equalsIgnoreCase("ff")) 
+		{
+			wdriver = new FirefoxDriver();
+		}
+
+		//	Only for windows
+		else if(browser.equalsIgnoreCase("grid")){
+			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			DesiredCapabilities caps = DesiredCapabilities.chrome();
+			wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
+		}
+
+		else if(browser.equalsIgnoreCase("ieWinx32"))
+		{
+			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
+			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			wdriver = new InternetExplorerDriver(ieCapabilities);
+		}
+		//	Only for windows
+		else if(browser.equalsIgnoreCase("ieWinx64"))
+		{
+			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
+			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			wdriver = new InternetExplorerDriver(ieCapabilities);
+		}
+		//	Only for mac
+		else if(browser.equalsIgnoreCase("safari")){
+			wdriver = new SafariDriver();
+		}else if (browser.equalsIgnoreCase("chrome")) 
+		{
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			ChromeOptions options = new ChromeOptions();
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			//			options.addArguments("chrome.switches","--disable-extensions");
+			//			options.addArguments("chrome.switches","--disable-geolocation");
+			DesiredCapabilities caps = new DesiredCapabilities().chrome();
+			caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(caps);
+		}else if(browser.equalsIgnoreCase("opera32")){
+			System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
+			ChromeOptions options = new ChromeOptions();
+			options.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			wdriver = new OperaDriver(capabilities);
+		}else if(browser.equalsIgnoreCase("opera64")){
+			if(System.getProperty("os.name").toLowerCase().contains("windows")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
+				ChromeOptions options = new ChromeOptions();
+				options.setBinary("C:/Program Files/Opera/launcher.exe");
+				DesiredCapabilities capabilities = new DesiredCapabilities();
+				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+				wdriver = new OperaDriver(capabilities);
+			}
+			else if(System.getProperty("os.name").toLowerCase().contains("mac")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
+				wdriver = new OperaDriver();
+			}
+		}else if (browser.equalsIgnoreCase("phantomjs")){
+			//			String userAgent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
+			//			System.setProperty("phantomjs.page.settings.userAgent", userAgent);
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setJavascriptEnabled(true);
+			caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+			caps.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
+			caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
+					"--web-security=false",
+					"--ssl-protocol=any",
+					"--ignore-ssl-errors=true",
+					"--webdriver-loglevel=INFO"
+			});
+			System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
+			wdriver = new PhantomJSDriver(caps);
+		}
+
+		wdriver.get("http://10.140.10.116:9090/");
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wdriver.manage().window().maximize();
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+
+	public ArrayList<HashMap<String,String>> getEventLogs(){
+		String text = "";
+		ArrayList<HashMap<String, String>> events = new ArrayList<HashMap<String,String>>();
+		LogEntries logEntries = wdriver.manage().logs().get(LogType.PERFORMANCE);
+		for (Iterator<LogEntry> it = logEntries.iterator(); it.hasNext();)
+		{
+			boolean flag = false;
+			LogEntry entry = it.next();
+			try {
+				JSONObject json = new JSONObject(entry.getMessage());
+				JSONObject message = json.getJSONObject("message");
+				JSONObject params = message.getJSONObject("params");
+				JSONObject request = params.getJSONObject("request");
+				if(request.getString("url").equals("https://api.segment.io/v1/t")){
+					flag = false;
+					HashMap<String, String> map = new HashMap<String, String>();
+					String postData = request.getString("postData");
+					JSONObject postDataJson = new JSONObject(postData);
+					JSONObject properties = postDataJson.getJSONObject("properties");
+					try {
+						for(HashMap<String, String> m:events){
+							if(m.get("event_code").equals(properties.getString("event_code"))){
+								flag = true;
+								break;
+							}
+								
+						}
+						if(flag)
+							continue;
+						map.put("event_code", properties.getString("event_code"));
+					} catch (Exception e1) {}
+					try {
+						map.put("log_type", properties.getString("log_type"));
+					} catch (Exception e1) {}
+					try {
+						map.put("event_name", properties.getString("event_name"));
+					} catch (Exception e1) {}
+					try {
+						map.put("event_type", properties.getString("event_type"));
+					} catch (Exception e1) {}
+					try {
+						map.put("intent_to_pay", properties.getString("intent_to_pay"));
+					} catch (Exception e) {}
+					try {
+						map.put("nav_element", properties.getString("nav_element"));
+					} catch (Exception e) {}
+					try {
+						map.put("extra_params", properties.getString("extra_params"));
+					} catch (Exception e) {}
+					if(flag)
+						continue;
+					events.add(map);
+				}
+			} catch (Exception e) {}
+		}
+		return events;
+	}
+
+	public String analyzeLog() {
+		String text = "";
+		LogEntries logEntries = wdriver.manage().logs().get(LogType.PERFORMANCE);
+		for (LogEntry entry : logEntries) {
+			text = text + new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage()+"\n";
+			//			System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
+			//do something useful with the data
+		}
+		return text;
 	}
 
 	public File takeElementScreenshot(WebElement element,String elementName) throws IOException{
@@ -320,7 +494,7 @@ public class W_SuperBasePage extends JavaUtils{
 		Actions act = new Actions(driver);
 		act.moveToElement(element).build().perform();
 	}
-	
+
 	public void mouseHoverOnElement(WebDriver driver,WebElement element,String message){
 		waitUntilElementAppears(element);
 		Actions act = new Actions(driver);
@@ -382,7 +556,7 @@ public class W_SuperBasePage extends JavaUtils{
 		element.click();
 		Reporter.log(message, true);
 	}
-	
+
 	public void clickElement(WebElement element){
 		waitUntilElementclickable(element);
 		scrollToElementViaJavascript(element);
@@ -392,20 +566,24 @@ public class W_SuperBasePage extends JavaUtils{
 	public void enterText(WebElement element, String text,String message){
 		waitUntilElementclickable(element);
 		try{
+			element.click();
+		}catch(Exception e){
 			scrollToElementViaJavascript(element);
 			element.click();
-		}catch(Exception e){}
+		}
 		element.clear();
 		element.sendKeys(text);
 		Reporter.log(message, true);
 	}
-	
+
 	public void enterText(WebElement element, String text){
 		waitUntilElementclickable(element);
 		try{
+			element.click();
+		}catch(Exception e){
 			scrollToElementViaJavascript(element);
 			element.click();
-		}catch(Exception e){}
+		}
 		element.clear();
 		element.sendKeys(text);
 	}
@@ -417,7 +595,7 @@ public class W_SuperBasePage extends JavaUtils{
 		Select dropdown = new Select(element);
 		dropdown.selectByVisibleText(value);
 	}
-	
+
 	public void selectCustomDropdown(WebElement dropdown, List<WebElement> items, String text,String message){
 		waitUntilElementclickable(dropdown);
 		dropdown.click();
@@ -446,6 +624,17 @@ public class W_SuperBasePage extends JavaUtils{
 	{        
 		((JavascriptExecutor) wdriver).executeScript("arguments[0].scrollIntoView();", element);     
 	}
+
+	public String getElementWidthViaJavascript(WebElement e){
+		long width = Long.parseLong((String)((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetWidth;", e));
+		return Long.toString(width);
+	}
+
+	public String getElementHeightViaJavascript(WebElement e){
+		long height = Long.parseLong((String)((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetHeight;", e));
+		return Long.toString(height);
+	}
+
 	public  void scrollup(String xValue) 
 	{    
 		String parameter="scroll(" +xValue+ ",0)"; 
@@ -455,6 +644,25 @@ public class W_SuperBasePage extends JavaUtils{
 
 	public void navigateBack(){
 		wdriver.navigate().back();
+	}
+
+	public void writeOutputToFile(String fileName,String text) throws IOException{
+		String dir = System.getProperty("user.dir");
+		File file = new File(dir,fileName);
+
+		// creates the file
+		if(file.exists())
+			file.delete();
+		else
+			file.createNewFile();
+
+		// creates a FileWriter Object
+		FileWriter writer = new FileWriter(file); 
+
+		// Writes the content to the file
+		writer.write(text); 
+		writer.flush();
+		writer.close();
 	}
 
 	public HashMap<String, String> readPixelData(String sheetName,String pageName,String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -522,17 +730,17 @@ public class W_SuperBasePage extends JavaUtils{
 			String cellValue = record.getCell(1).toString();
 			if(cellPageValue.equals(pageName)&&cellValue.equals(uniqueValue)) {
 				for(int i=3;i<headers.getLastCellNum();i++){
-						try{
-							try {
-								value = record.getCell(i).toString().trim();
-								key = headers.getCell(i).toString().trim();
-							} catch (Exception e) {
-								value = record.getCell(i).getStringCellValue();
-								key = headers.getCell(i).toString().trim();
-							}
-						}catch(Exception e){
-							continue;
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = headers.getCell(i).toString().trim();
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = headers.getCell(i).toString().trim();
 						}
+					}catch(Exception e){
+						continue;
+					}
 					dataMap.put(key, value);
 				}
 
@@ -543,7 +751,7 @@ public class W_SuperBasePage extends JavaUtils{
 		file.close();
 		return dataMap;
 	}
-	
+
 	public void writePixelData(String sheetName, String uniqueValue, String pageName, String columnName, String data) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		int width = wdriver.manage().window().getSize().width;
 		int height = wdriver.manage().window().getSize().height;
@@ -623,7 +831,7 @@ public class W_SuperBasePage extends JavaUtils{
 
 		//Create an anchor that is attached to the worksheet
 		ClientAnchor anchor = helper.createClientAnchor();
-//		anchor.setAnchorType(ClientAnchor.DONT_MOVE_AND_RESIZE);
+		//		anchor.setAnchorType(ClientAnchor.DONT_MOVE_AND_RESIZE);
 
 		Row headers = it.next();
 		int c=0;
@@ -766,17 +974,17 @@ public class W_SuperBasePage extends JavaUtils{
 		fis.close();
 		fos.close();
 	}
-	
+
 	public void clickElementViaJavaScript(WebElement element){
 		waitUntilElementclickable(element);
 		JavascriptExecutor executor = (JavascriptExecutor)wdriver;
 		executor.executeScript("arguments[0].click();", element);
 	}
-	
+
 	public String getMainWindowHandle(){
 		return wdriver.getWindowHandle();
 	}
-	
+
 	public String switchToNextWindow(String maindow){
 		Set<String> windows = wdriver.getWindowHandles();
 		String childWindow = null;
@@ -788,7 +996,7 @@ public class W_SuperBasePage extends JavaUtils{
 		}
 		return childWindow;
 	}
-	
+
 	public void closeChildAndSwitchToMainWindow(String mainWindow){
 		wdriver.close();
 		wdriver.switchTo().window(mainWindow);

@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 public class SignUpPage extends W_BasePage {
@@ -73,6 +74,12 @@ public class SignUpPage extends W_BasePage {
 		login_Btn.click();
 		Reporter.log("Clicked Login", true);
 		return new SearchHomepage(wdriver);
+	}
+	
+	public void assertSignUpPage(){
+		waitUntilElementAppears(email_TB);
+		Assert.assertTrue(email_TB.isDisplayed(), "Not in SignUp Page");
+		Reporter.log("In SignUp Page", true);
 	}
 	
 	public void expandSignIn(){

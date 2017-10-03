@@ -75,6 +75,51 @@ public class JavaUtils {
 		return dataMap;
 	}
 	
+	public static HashMap<String, String> readGlobalSearchData(String sheetname, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
+		HashMap<String,String> dataMap = null;
+		String key, value = null;
+		FileInputStream file = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
+		dataMap = new HashMap<String, String>();
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetname);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellValue = record.getCell(0).toString();
+			if(cellValue.equals(uniqueValue)) {
+
+				for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
+							try{
+								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+								value = record.getCell(i).toString().trim();
+							}catch(Exception e){}
+							key = headers.getCell(i).toString().trim();
+
+						} else {
+
+							key = headers.getCell(i).toString().trim();
+							try {
+								value = record.getCell(i).toString().trim();
+							} catch (Exception e) {}
+						}
+					}catch(Exception e){
+						continue;
+					}
+
+					dataMap.put(key, value);
+				}
+
+				break;
+			}
+		}
+		return dataMap;
+	}
+	
 	public static String[] getMinorDate(){
 		String[] date = new String[3];
 		Calendar c = Calendar.getInstance();
@@ -105,7 +150,11 @@ public class JavaUtils {
 			if (cellValue.equalsIgnoreCase(uniqueValue)) {
 				for(int i=0;i<headers.getLastCellNum();i++){
 					if(headers.getCell(i).getStringCellValue().equals(columnName)){
-						record.createCell(i).setCellValue(columnName);
+						try{
+							record.getCell(i).setCellValue(value);
+						}catch(Exception e){
+								record.createCell(i).setCellValue(value);
+						}
 						break;
 					}
 				}
