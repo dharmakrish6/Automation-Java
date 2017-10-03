@@ -5,8 +5,6 @@ import java.io.IOException;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Reporter;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import moolya.embibe.pages.web.ChooseMissionPage;
@@ -16,7 +14,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.SignUpPage;
 import moolya.embibe.pages.web.W_BasePage;
-import moolya.embibe.tests.web.sanity.W_BaseTest;
+import moolya.embibe.tests.web.W_BaseTest;
 import moolya.embibe.utils.SqliteUtils;
 
 public class Sanity_8 extends W_BaseTest {

@@ -3,13 +3,11 @@ package moolya.embibe.tests.web.sanity;
 import java.io.IOException;
 
 import org.testng.Reporter;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.W_BasePage;
-import moolya.embibe.tests.web.sanity.W_BaseTest;
+import moolya.embibe.tests.web.W_BaseTest;
 
 public class Sanity_1 extends W_BaseTest {
 	

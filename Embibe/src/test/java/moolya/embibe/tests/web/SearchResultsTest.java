@@ -2,6 +2,8 @@ package moolya.embibe.tests.web;
 
 import java.io.IOException;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -22,11 +24,13 @@ public class SearchResultsTest extends W_BaseTest {
 
 	@Test
 	@Parameters({"browser"})
-	public void searchResultsTest(@Optional("chrome")String browser) throws IOException {
+	public void searchResultsTest(@Optional("chrome")String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException {
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		lp = new LandingPage(wdriver);
 		shp = lp.clickStartNow();
+		//shp.FloatingKeywordsCount();
+		//shp.clearSearchTB();
 //		shp.assertSearchHomepage();
 //		srp = shp.clickOnSearchResultsPage();
 //		or = srp.checkShowResultsForEngineeringButton();
