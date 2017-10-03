@@ -11,6 +11,7 @@
 *.ear
 *.classpath
 *.settings
+*.settings/*
 *.log
 *.txt
 
