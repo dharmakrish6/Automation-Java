@@ -37,6 +37,6 @@ public class SHP_Func_35 extends W_BaseTest {
 		shp.choosemission();
 		shp.countryDropdown("India");
 		shp.indiaRequestMission();
-		shp.verifyaAutosuggestionList("J");
+		shp.verifyAutosuggestionList("J");
 	}
 }
