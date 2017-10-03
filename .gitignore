@@ -11,6 +11,8 @@
 *.ear
 *.classpath
 *.settings
+*.log
+*.txt
 
 log.xml
 log.html
