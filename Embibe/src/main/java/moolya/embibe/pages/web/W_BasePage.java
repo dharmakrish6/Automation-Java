@@ -1,6 +1,6 @@
 package moolya.embibe.pages.web;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +8,10 @@ import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -113,8 +117,8 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../../following-sibling::div[@class='registerlink']//p")
 	private WebElement newUser_Btn;
 
-	@FindBy(css=".user-dropdown>.user-name")
-	private WebElement userDropdown;
+	@FindBy(css=".user-dropdown>.user-name>img")
+ 	private WebElement userDropdown;
 
 	@FindBy(css=".user-dropdown .user-name[href='/profile']")
 	private WebElement myProfile_Btn;
@@ -186,11 +190,13 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on Hamburger", true);
 	}
 	
-	public void closeHamburger(){
-		waitUntilElementclickable(closeHamburger_Btn);
-		clickElementViaJavaScript(closeHamburger_Btn);
-		Reporter.log("Closed Hamburger", true);
-	}
+	public void closeHamburger() throws InterruptedException{
+ 		waitUntilElementclickable(closeHamburger_Btn);
+//		Thread.sleep(3000);
+ 		clickElementViaJavaScript(closeHamburger_Btn);
+//		closeHamburger_Btn.click();
+ 		Reporter.log("Closed Hamburger", true);
+ 	}
 
 	public void clickLogin(){
 		waitUntilElementclickable(login_Btn);
@@ -439,15 +445,22 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	public void signUp(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
-		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
-		waitUntilElementclickable(login_Btn);
-		clickElement(login_Btn, "Clicked Login");
-		clickElement(register_Btn, "Clicked Register Here");
-		enterText(emailPhoneSignUp_TB, email, "Entered Email/Phone: "+email);
-		selectCustomDropdown(goalSignUp_DD, goalSignUpItems_List, data.get("Goal"), "Selected Goal: "+data.get("Goal"));
-		enterText(passwordSignUp_TB, data.get("Password"), "Entered Password: "+data.get("Password"));
-		enterText(confirmPasswordSignUp_Btn, data.get("Password"), "Entered Confirm Password: "+data.get("Password"));
-		clickElement(signUp_Btn, "Clicked SignUp");
+ 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
+ 		waitUntilElementclickable(login_Btn);
+ 		clickElement(login_Btn, "Clicked Login");
+ 		clickElement(register_Btn, "Clicked Register Here");
+		emailPhoneSignUp_TB.sendKeys(email);
+		Reporter.log("Entered Email/Phone: "+email, true);
+ 		selectCustomDropdown(goalSignUp_DD, goalSignUpItems_List, data.get("Goal"), "Selected Goal: "+data.get("Goal"));
+		passwordSignUp_TB.sendKeys(data.get("Password"));
+		Reporter.log("Entered Password: "+data.get("Password"), true);
+		confirmPasswordSignUp_Btn.sendKeys(data.get("Password"));
+		Reporter.log("Entered Confirm Password: "+data.get("Password"), true);
+ 		clickElement(signUp_Btn, "Clicked SignUp");
+ 	}
+	
+	public void goToRearchPage(){
+		wdriver.navigate().to("https://rearch.embibe.com");
 	}
 
 	public void verifyLogin(){
@@ -505,12 +518,34 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	public SignUpPage logout() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
-		waitUntilElementclickable(userDropdown);
-		clickElementViaJavaScript(userDropdown);
-		userDropdown.click();
-		waitUntilElementclickable(logout_Btn);
-		logout_Btn.click();
-		return new SignUpPage(wdriver);
+ 		waitUntilElementclickable(userDropdown);
+//		clickElementViaJavaScript(userDropdown);
+		Thread.sleep(1000);
+ 		userDropdown.click();
+ 		waitUntilElementclickable(logout_Btn);
+ 		logout_Btn.click();
+ 		return new SignUpPage(wdriver);
+ 	}
+	
+	public static String[][] readDslUniqueValues(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream file = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		int noOfRows = sheet.getLastRowNum(); 
+		String[][] values = new String[noOfRows][3];
+		for(int i=1;i<=noOfRows;i++) {
+			Row record = sheet.getRow(i);
+			try {
+				values[i-1][0] = Integer.toString(i-1);
+				values[i-1][1] = record.getCell(0).toString().trim();
+			} catch (Exception e) {
+				values[i-1][0] = Integer.toString(i-1);
+				values[i-1][1] = record.getCell(0).getStringCellValue();
+			}
+		}
+		wb.close();
+		file.close();
+		return values;
 	}
 
 	public LogoutSignInPage signOut() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{

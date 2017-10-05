@@ -3,8 +3,8 @@ package moolya.embibe.pages.web;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,8 +15,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
@@ -36,8 +38,9 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.util.IOUtils;
-import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
@@ -45,7 +48,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -67,8 +69,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
 
-import com.google.common.collect.ImmutableMap;
-import com.google.gson.JsonObject;
+import com.browserstack.local.Local;
 import com.testautomationguru.ocular.Ocular;
 import com.testautomationguru.ocular.comparator.OcularResult;
 
@@ -77,6 +78,7 @@ import moolya.embibe.utils.JavaUtils;
 public class W_SuperBasePage extends JavaUtils{
 
 	public WebDriver wdriver;
+	private Local l;
 
 	public W_SuperBasePage(WebDriver wdriver) {
 		this.wdriver = wdriver;
@@ -172,6 +174,7 @@ public class W_SuperBasePage extends JavaUtils{
 		return wdriver;
 	}
 
+	@SuppressWarnings({ "unused", "unused" })
 	public WebDriver launchWebApp(String browser) throws IOException
 	{
 		String dir = System.getProperty("user.dir");
@@ -261,6 +264,208 @@ public class W_SuperBasePage extends JavaUtils{
 			});
 			System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
 			wdriver = new PhantomJSDriver(caps);
+		}
+
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wdriver.manage().window().maximize();
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public WebDriver launchBrowserStack(String config_file, String environment,String className) throws Exception{
+		String domain = getPropValue("domain");
+		String url = null;
+		if(domain.equalsIgnoreCase("test"))
+			url = getPropValue("testAppUrl");
+		else if(domain.equalsIgnoreCase("dev"))
+			url = getPropValue("devAppUrl");
+		org.json.simple.parser.JSONParser parser = new JSONParser();
+		org.json.simple.JSONObject config = (org.json.simple.JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+		org.json.simple.JSONObject envs = (org.json.simple.JSONObject) config.get("environments");
+
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+
+		Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
+		Iterator<Entry<String, String>> it = envCapabilities.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String,String> pair = (Map.Entry<String,String>)it.next();
+			capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+		}
+
+		Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
+		it = commonCapabilities.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<String,String> pair = (Map.Entry<String,String>)it.next();
+			if(capabilities.getCapability(pair.getKey().toString()) == null){
+				capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+			}
+		}
+
+		String username = System.getenv("BROWSERSTACK_USERNAME");
+		if(username == null) {
+			username = (String) config.get("user");
+		}
+
+		String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+		if(accessKey == null) {
+			accessKey = (String) config.get("key");
+		}
+
+		if(capabilities.getCapability("browserstack.local") != null && capabilities.getCapability("browserstack.local") == "true"){
+			l = new Local();
+			Map<String, String> options = new HashMap<String, String>();
+			options.put("key", accessKey);
+			l.start(options);
+		}
+		capabilities.setCapability("name", className);
+		wdriver = new RemoteWebDriver(new URL("http://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wdriver.manage().window().maximize();
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+
+	@SuppressWarnings({ "static-access", "unchecked" })
+	public WebDriver launchApp(String config_file, String environment,String className) throws IOException, ParseException{
+
+		String dir = System.getProperty("user.dir");
+		String domain = getPropValue("domain");
+		String url = null;
+		if(domain.equalsIgnoreCase("test"))
+			url = getPropValue("testAppUrl");
+		else if(domain.equalsIgnoreCase("dev"))
+			url = getPropValue("devAppUrl");
+
+		if(config_file.equals("NA")){
+			if (environment.equalsIgnoreCase("ff")) 
+			{
+				wdriver = new FirefoxDriver();
+			}
+
+			//	Only for windows
+			else if(environment.equalsIgnoreCase("grid")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+				DesiredCapabilities caps = DesiredCapabilities.chrome();
+				wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
+			}
+
+			else if(environment.equalsIgnoreCase("ieWinx32"))
+			{
+				System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
+				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+				ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+				wdriver = new InternetExplorerDriver(ieCapabilities);
+			}
+			//	Only for windows
+			else if(environment.equalsIgnoreCase("ieWinx64"))
+			{
+				System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
+				DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+				ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+				wdriver = new InternetExplorerDriver(ieCapabilities);
+			}
+			//	Only for mac
+			else if(environment.equalsIgnoreCase("safari")){
+				wdriver = new SafariDriver();
+			}else if (environment.equalsIgnoreCase("chrome")) 
+			{
+				if(System.getProperty("os.name").toLowerCase().contains("windows"))
+					System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+				else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+					System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+				ChromeOptions options = new ChromeOptions();
+				LoggingPreferences logPrefs = new LoggingPreferences();
+				logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+				//			options.addArguments("chrome.switches","--disable-extensions");
+				//			options.addArguments("chrome.switches","--disable-geolocation");
+				DesiredCapabilities caps = new DesiredCapabilities().chrome();
+				caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+				wdriver = new ChromeDriver(caps);
+			}else if(environment.equalsIgnoreCase("opera32")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
+				ChromeOptions options = new ChromeOptions();
+				options.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
+				DesiredCapabilities capabilities = new DesiredCapabilities();
+				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+				wdriver = new OperaDriver(capabilities);
+			}else if(environment.equalsIgnoreCase("opera64")){
+				if(System.getProperty("os.name").toLowerCase().contains("windows")){
+					System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
+					ChromeOptions options = new ChromeOptions();
+					options.setBinary("C:/Program Files/Opera/launcher.exe");
+					DesiredCapabilities capabilities = new DesiredCapabilities();
+					capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+					wdriver = new OperaDriver(capabilities);
+				}
+				else if(System.getProperty("os.name").toLowerCase().contains("mac")){
+					System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
+					wdriver = new OperaDriver();
+				}
+			}else if (environment.equalsIgnoreCase("phantomjs")){
+				//			String userAgent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
+				//			System.setProperty("phantomjs.page.settings.userAgent", userAgent);
+				DesiredCapabilities caps = new DesiredCapabilities();
+				caps.setJavascriptEnabled(true);
+				caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+				caps.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
+				caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
+						"--web-security=false",
+						"--ssl-protocol=any",
+						"--ignore-ssl-errors=true",
+						"--webdriver-loglevel=INFO"
+				});
+				System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
+				wdriver = new PhantomJSDriver(caps);
+			}
+		}else{
+			org.json.simple.parser.JSONParser parser = new JSONParser();
+			org.json.simple.JSONObject config = (org.json.simple.JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
+			org.json.simple.JSONObject envs = (org.json.simple.JSONObject) config.get("environments");
+
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+
+			Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
+			Iterator<Entry<String, String>> it = envCapabilities.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<String,String> pair = (Map.Entry<String,String>)it.next();
+				capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+			}
+
+			Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
+			it = commonCapabilities.entrySet().iterator();
+			while (it.hasNext()) {
+				Map.Entry<String,String> pair = (Map.Entry<String,String>)it.next();
+				if(capabilities.getCapability(pair.getKey().toString()) == null){
+					capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
+				}
+			}
+
+			String username = System.getenv("BROWSERSTACK_USERNAME");
+			if(username == null) {
+				username = (String) config.get("user");
+			}
+
+			String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
+			if(accessKey == null) {
+				accessKey = (String) config.get("key");
+			}
+
+			if(capabilities.getCapability("browserstack.local") != null && capabilities.getCapability("browserstack.local") == "true"){
+				l = new Local();
+				Map<String, String> options = new HashMap<String, String>();
+				options.put("key", accessKey);
+				try {
+					l.start(options);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			capabilities.setCapability("name", className);
+			wdriver = new RemoteWebDriver(new URL("http://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
 		}
 
 		wdriver.get(url);
@@ -360,9 +565,9 @@ public class W_SuperBasePage extends JavaUtils{
 		return wdriver;
 	}
 
-	public ArrayList<HashMap<String,String>> getEventLogs(){
+	public ArrayList<LinkedHashMap<String,String>> getEventLogs(){
 		String text = "";
-		ArrayList<HashMap<String, String>> events = new ArrayList<HashMap<String,String>>();
+		ArrayList<LinkedHashMap<String, String>> events = new ArrayList<LinkedHashMap<String,String>>();
 		LogEntries logEntries = wdriver.manage().logs().get(LogType.PERFORMANCE);
 		for (Iterator<LogEntry> it = logEntries.iterator(); it.hasNext();)
 		{
@@ -375,17 +580,17 @@ public class W_SuperBasePage extends JavaUtils{
 				JSONObject request = params.getJSONObject("request");
 				if(request.getString("url").equals("https://api.segment.io/v1/t")){
 					flag = false;
-					HashMap<String, String> map = new HashMap<String, String>();
+					LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 					String postData = request.getString("postData");
 					JSONObject postDataJson = new JSONObject(postData);
 					JSONObject properties = postDataJson.getJSONObject("properties");
 					try {
-						for(HashMap<String, String> m:events){
+						for(LinkedHashMap<String, String> m:events){
 							if(m.get("event_code").equals(properties.getString("event_code"))){
 								flag = true;
 								break;
 							}
-								
+
 						}
 						if(flag)
 							continue;
@@ -1006,6 +1211,157 @@ public class W_SuperBasePage extends JavaUtils{
 	{
 		wdriver.navigate().refresh();
 		Reporter.log("Refreshing Page", true);
+	}
+	
+	public ArrayList<LinkedHashMap<String,String>> getEventData(String sheetName) throws IOException, EncryptedDocumentException, InvalidFormatException{
+		ArrayList<LinkedHashMap<String, String>> e_events = new ArrayList<LinkedHashMap<String, String>>();
+		LinkedHashMap<String, String> map = null;
+		FileInputStream file = new FileInputStream("./test-data/SegmentIoData.xlsx");
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+			map = new LinkedHashMap<String, String>();
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			for(int i=0;i<headers.getLastCellNum();i++){
+				String value = null;
+				String key = null;
+				if(headers.getCell(i).toString().trim().equals("event_code")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "event_code";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "event_code";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_log_type")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "log_type";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "log_type";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_event_name")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "event_name";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "event_name";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_nav_element")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "nav_element";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "nav_element";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_event_type")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "event_type";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "event_type";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_intent_to_pay")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "intent_to_pay";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "intent_to_pay";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_extra_params")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "extra_params";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "extra_params";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				if(key!=null)
+					map.put(key, value);
+			}
+			e_events.add(map);
+		}
+		wb.close();
+		file.close();
+		return e_events;
+	}
+	
+	public void writeDslActualData(String sheetName, HashMap<String, Object> resultData, int row) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream fis = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sheet = wb.getSheet(sheetName);
+		Row headers = sheet.getRow(0);
+		Row record = sheet.getRow(row);
+		for(Map.Entry<String, Object> m:resultData.entrySet()){
+			for(int i=1;i<headers.getLastCellNum();i++){
+				try{
+					if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){
+						Cell cell = null;
+						try{
+							cell = record.getCell(i);
+							cell.setCellType(Cell.CELL_TYPE_STRING);
+							cell.setCellValue(m.getValue().toString());
+						}catch(Exception e){
+							cell = record.createCell(i);
+							cell.setCellType(Cell.CELL_TYPE_STRING);
+							cell.setCellValue(m.getValue().toString());
+						}
+
+						break;
+					}
+				}catch(Exception e){}
+			}
+		}
+		FileOutputStream fos = new FileOutputStream("./test-data/GlobalSearchTestCases.xlsx");
+		wb.write(fos);
+		wb.close();
+		fis.close();
+		fos.close();
 	}
 
 }

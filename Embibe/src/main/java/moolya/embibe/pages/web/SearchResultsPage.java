@@ -55,6 +55,9 @@ public class SearchResultsPage extends W_BasePage {
 
 	@FindBy(css="div.topic-wrapper div.topic-head")
 	private WebElement topicHeader_Lbl;
+	
+	@FindBy(css="div.topic-wrapper div.topic-head .toolTip")
+	private WebElement topicHeaderToolTip;
 
 	@FindBy(css="div.topic-wrapper div.topic-description")
 	private WebElement topicDescription_Lbl;
@@ -570,5 +573,23 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("Navigated to Search Results Page", true);
 		Reporter.log("Showing Search Results for: "+text, true);
 	}
+	
+	public String getSearchResultTopicHeader(){
+		String text = "";
+		try {
+			waitUntilElementAppears(topicHeader_Lbl,30);
+			Thread.sleep(5000);
+			mouseHoverOnElement(wdriver, topicHeader_Lbl);
+			text = topicHeaderToolTip.getText();
+			if(text.length()==0){
+				waitUntilElementAppears(topicHeader_Lbl,30);
+				Thread.sleep(5000);	
+				mouseHoverOnElement(wdriver, topicHeader_Lbl);
+				text = topicHeaderToolTip.getText();
+			}
+		} catch (Exception e) {}
+		return text;
+	}
+
 
 }
