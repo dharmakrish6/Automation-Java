@@ -12,6 +12,9 @@
 *.classpath
 *.settings
 *.settings/*
+*/.classpath
+*/.settings
+*/.settings/*
 *.log
 *.txt
 
