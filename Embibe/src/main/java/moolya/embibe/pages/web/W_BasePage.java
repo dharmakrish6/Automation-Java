@@ -196,6 +196,7 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementclickable(login_Btn);
 		try{
 			login_Btn.click();
+			Reporter.log("Clicked on 'Login' button",true);
 		}catch(Exception e){
 			clickElementViaJavaScript(login_Btn);
 		}
@@ -213,16 +214,58 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on Login Here", true);
 	}
 	
-	public void clickFbLogin(){
+	@FindBy(xpath="//*[@id='header_block']/span[contains(text(),'Log in to Facebook')]")
+	private WebElement assertFbLoginPage;
+	
+	@FindBy(xpath="//input[@id='email']")
+	private WebElement enterFbEmail;
+	
+	@FindBy(xpath="//input[@id='pass']")
+	private WebElement enterFbPassword;
+	
+	@FindBy(xpath="//*[@id='loginbutton']")
+	private WebElement fb_loginBtn;
+	
+	public void clickFbLogin() throws InterruptedException{
 		waitUntilElementclickable(fbLogin_Btn);
 		fbLogin_Btn.click();
 		Reporter.log("Clicked on FB Login", true);
+		waitUntilElementAppears(assertFbLoginPage);
+		Assert.assertTrue(assertFbLoginPage.isDisplayed(), "Failed to open the Facebook login page");
+		Reporter.log("Facebook Login Page is opened successfully", true);
 	}
+	
+	public void enterFbLoginCredentials(String email,String password){
+		enterText(enterFbEmail, email);
+		enterText(enterFbPassword,password);
+		//fb_loginBtn.click();
+	}
+	
+	@FindBy(xpath="//*[@id='headingText']/following::button[contains(text(),'embibe.com')]")
+	private WebElement assertGoogleSignInPage;
+	
+	@FindBy(xpath="//*[@id='identifierId']")
+	private WebElement enterGoogleMail;
+	
+	@FindBy(xpath="//*[@id='identifierNext']")
+	private WebElement google_next_btn;
+	
+	@FindBy(xpath="//*[@id='password']/div/div/div/input[@type='password']")
+	private WebElement enterGooglePassword;
 	
 	public void clickGoogleLogin(){
 		waitUntilElementclickable(googleLogin_Btn);
 		googleLogin_Btn.click();
 		Reporter.log("Clicked on Google Login", true);
+		waitUntilElementAppears(assertGoogleSignInPage);
+		Assert.assertTrue(assertGoogleSignInPage.isDisplayed(), "Failed to open the Google login page");
+		Reporter.log("Google login page is opened successfully", true);
+	}
+	
+	public void enterGoogleLoginCredentials(String email,String password){
+		enterText(enterGoogleMail, email);
+		google_next_btn.click();
+		enterText(enterGooglePassword, password);	
 	}
 	
 	public void clickFbSignUp(){
@@ -236,8 +279,6 @@ public class W_BasePage extends W_SuperBasePage
 		googleSignUp_Btn.click();
 		Reporter.log("Clicked on Google SignUp", true);
 	}
-	
-	
 	
 	public void clickEmbibeLogo(){
 		waitUntilElementclickable(embibeLogo);
@@ -323,10 +364,15 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "login", registerHere, "registerHere");
 	}
 
+	@FindBy(xpath="//*[@class='FPHead']")
+	private WebElement assertForgotPasswordWindow;
+	
 	public LoginPage clickForgotPassword(){
 		waitUntilElementclickable(forgotPassword_Btn);
 		forgotPassword_Btn.click();
 		Reporter.log("Clicked on Forgot Password", true);
+		Assert.assertTrue(assertForgotPasswordWindow.isDisplayed(), "Failed to open Forgot password window");
+		Reporter.log("Forgot password window opened successfully",true);
 		return new LoginPage(wdriver);
 	}
 
@@ -351,12 +397,27 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "Signup", SignUpLogin_Btn, "SignUpLogin_Btn");
 	}
 
+	
+	
 	public void login(){
 		waitUntilElementclickable(login_Btn);
 		login_Btn.click();
 		emailPhone_TB.sendKeys("yatheendra@moolya.com");
 		password_TB.sendKeys("moolya123");
 		login_login_Btn.click();
+	}
+	
+	public void invalidLogin(String email,String password){
+		waitUntilElementclickable(login_Btn);
+		login_Btn.click();
+		Reporter.log("Clicked on Login Button",true);
+		emailPhone_TB.sendKeys(email);
+		Reporter.log("Entered '"+email+"'",true);
+		password_TB.sendKeys(password);
+		Reporter.log("Entered Password",true);
+		login_login_Btn.click();
+		Reporter.log("Clicked on login button",true);
+		
 	}
 
 	public void login(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -538,6 +599,83 @@ public class W_BasePage extends W_SuperBasePage
 		return dim;
 	}
 
+	public void selectItemFromList(List<WebElement> list, String text) throws InterruptedException {
+		for (WebElement e : list) {
+			if (e.getText().equals(text)) {
+				e.click();
+				Thread.sleep(5000);
+				break;
+			}
+		}	
+	}
+	
+	@FindBy(xpath="//*[@id='showInDesktopemailError']")
+	private WebElement signupEmailFieldError;
+	
+	public void verifySignupEmailField(String email){
+		emailPhoneSignUp_TB.clear();
+		enterText(emailPhoneSignUp_TB, email);
+		Assert.assertTrue(!signupEmailFieldError.isDisplayed(), "Email format is acceptable");
+		Reporter.log("Entered '"+email+"' is acceptable",true);
+	}
+	
+	@FindBy(css=".Dropdown-placeholder")
+	private WebElement defaultSignUpGoal;
+	
+	@FindBy(css=".Dropdown-menu ")
+	private List<WebElement> goalSignUp_DDList;
+	
+	@FindBy(css=".Dropdown-menu .Dropdown-option")
+	private List<WebElement> goalItems_List;
+	
+	public void verifyAndSelectGoal_DD() throws InterruptedException{
+		enterText(emailPhoneSignUp_TB, "testonetest444@gmail.com");
+		clickElement(goalSignUp_DD);
+		Thread.sleep(5000);
+		List<WebElement> list=goalSignUp_DDList;
+		Reporter.log("Default Goal is  : " + defaultSignUpGoal.getText(),true);
+		Reporter.log("Goal lists are : ",true);
+		for(WebElement ele:list){
+			Reporter.log(ele.getText(),true);
+		}
+			clickElement(goalSignUp_DD);
+			selectCustomDropdown(goalSignUp_DD, goalItems_List, "Bank", "");
+			Thread.sleep(2000);
+			Reporter.log("Selected Goal is  : " + defaultSignUpGoal.getText(),true);
+	}
+	
+	@FindBy(xpath="//*[@id='showInDesktoppasswordError']")
+	private WebElement passwordFieldError;
+	
+	public void verifySignupPasswordField(String password) throws InterruptedException{
+			Thread.sleep(2000);
+			enterText(password_TB, password);
+			Reporter.log("Enter password : "+password,true);
+			if(passwordFieldError.isDisplayed()){
+				Reporter.log("Password length is : '"+ password.length() + "'.So warning '"+passwordFieldError.getText()+"' is displayed " ,true);
+			}
+			else
+			
+				Reporter.log("Password length is : '" +password.length() + "' and Password is accepted",true);
+	
+	}
+	
+	@FindBy(xpath="//*[@id='showInDesktoppasswordConfirmError']")
+	private WebElement cofirmPasswordFieldError;
+	
+	public void verifyConfirmPasswordField(String password,String confirmPassword) throws InterruptedException{
+		enterText(password_TB, password);
+		enterText(confirmPasswordSignUp_Btn, confirmPassword);
+		Thread.sleep(2000);
+		if(cofirmPasswordFieldError.isDisplayed()){
+			Reporter.log("Warning '"+cofirmPasswordFieldError.getText()+"' is displayed " ,true);
+		}
+		else
+			Reporter.log("Password Matched ",true);		
+	}
+	
+	
+	
 }
 
 

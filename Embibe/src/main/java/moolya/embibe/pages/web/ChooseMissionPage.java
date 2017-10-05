@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -180,6 +181,32 @@ public class ChooseMissionPage extends W_BasePage {
 		chooseCountry_DD.click();
 		countryChina.click();
 	}
+
+	@FindBy(css = ".Dropdown-option")
+	private List<WebElement> counrtyList;
+	
+	@FindBy(xpath="//div[@class='selectmission null']/div/div/following::p[1]")
+	private WebElement assertChinaMisson;
+	
+	public void countryDropdown(String country) throws InterruptedException{
+		Assert.assertTrue(chooseCountry_DD.isDisplayed(), "'Country' dropdown is not present");
+		clickElement(chooseCountry_DD);
+		selectItemFromList(counrtyList, country);
+		Reporter.log("Country '"+country+"' is selected", true);
+	}
+	
+	@FindBy(xpath="//*[@class='selectmission null']/div/a[@class='requestmission']")
+	private WebElement chinaRequestMission;
+	
+	public void chinaRequestMission() {
+		clickElement(chinaRequestMission);
+	}
+	
+	public void assertChinaRequestMissionWarning(){
+		String expectedAssertText="We are working on making missions available for your country. Help us fast track Mission launches for your country by requesting a mission below:";
+		String actualAssertText=assertChinaMisson.getText();
+		Assert.assertEquals(actualAssertText,expectedAssertText);
+	}
 	
 	public SearchHomepage clickMissionClose(){
 		waitUntilElementclickable(missionClose_Btn);
@@ -194,13 +221,295 @@ public class ChooseMissionPage extends W_BasePage {
 		getPixelData("Data", "201.2.6(D)", chinaRequestMission_Btn, "chinaRequestMission_Btn");
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@FindBy(css = ".goal")
+	private List<WebElement> goalList;
 
+	@FindBy(css = ".goal-selectors")
+	private List<WebElement> goalselectors;
+
+	@FindBy(xpath = "//div[@class='goal-selectors']/div/div/a[@data-value]")
+	private List<WebElement> specificGoalsListsName;
+	
+	@FindBy(xpath = "//div[@class='goal-selectors']/div/div/a")
+	private List<WebElement> specificGoalsListsNumber;
+	
+	@FindBy(css = "a.swiper-button-next")
+	private WebElement goalNextBtn;
+	
+	@FindBy(css = "div.goals")
+	private WebElement selectGoalText;
+	
+	public void selectGoal(String goal) throws InterruptedException{
+		selectItemFromList(goalList, goal);
+		Reporter.log("\n"+"Selected '" + goal + "' as a goal", true);
+		Reporter.log("Number of Links : " + specificGoalsListsNumber.size(), true);
+		List<WebElement> list = specificGoalsListsName;
+		for (WebElement element : list) {
+			String link = element.getAttribute("href");
+			Reporter.log("Mission : " + element.getAttribute("textContent") + "  |  Link : " + link, true);
+		}
+	}
+
+	@FindBy(xpath="(//*[@class='goals']/following-sibling::p)[1]")
+	private WebElement defaultGoalText;
+	
+	public void defaultGoal(){
+		String mission=defaultGoalText.getText();
+		Reporter.log("The default goal for guest user is : " + mission,true);
+		Assert.assertEquals(mission, "Missions available for Engineering");
+	}
+	
+	@FindBy(xpath="//*[@class='goal-selectors']/div/div/a[1]")
+	private WebElement selectFirstExam;
+	
+	public void signUpInRankUpPage() throws InterruptedException{
+		clickElement(selectFirstExam);
+		Reporter.log("Clicked on exam and Navigated to Rankup page",true);
+		Thread.sleep(3000);
+	}
+	
+	@FindBy(xpath="//*[@id='missionsearch']")
+	private WebElement enterExamField;
+	
+	@FindBy(xpath="//div[@id='enterExam']")
+	private WebElement submitExamButton;
+	
+	@FindBy(css="ul.exam-list.show li")
+	private List<WebElement> examLists;
+	
+	@FindBy(css="ul.exam-list li:nth-child(1)")
+	private WebElement selectFirstListItem;
+	
+	@FindBy(xpath="//*[text()='Submit']")
+	private WebElement submitSpecifyExam;
+	
+	@FindBy(xpath="//*[contains(text(),'Thank You!')]")
+	private WebElement thankYouText;
+	
+	public void submitExam(String exam)throws InterruptedException{
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam +"' in search engine",true);
+		clickElement(selectFirstListItem);
+		Reporter.log("Selected the first item in the list",true);
+		clickElement(submitSpecifyExam);
+		Reporter.log("Clicked on Submit button",true);
+		Thread.sleep(5000);
+		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");
+	}
+	
+	@FindBy(xpath="//*[@class='selectmission null']/div/a[@class='requestmission']/../p/a")
+	private WebElement studyLink;
+	
+	public void chinaStudy(){
+		clickElement(studyLink);
+		Reporter.log("Clicked on 'STUDY'",true);
+	}
+	
+	@FindBy(xpath="//*[@class='goal-selectors']/following::a[contains(text(),'Request a Mission')]")
+	private WebElement indiaRequestMission;
+	
+	public void indiaRequestMission(){
+		clickElement(indiaRequestMission);
+	}
+	
+	public void enterExam(String  exam) throws InterruptedException{
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		Thread.sleep(3000);
+		List<WebElement> list = examLists;
+		Reporter.log("Number of related searched exams :  " + examLists.size(),true);
+		Reporter.log("Related Exams : " ,true);
+		for (WebElement element : list) {
+			JavascriptExecutor jse = (JavascriptExecutor) wdriver;
+			jse.executeScript("scroll(250, 0)");
+			Reporter.log(element.getText(), true);
+		}
+		Thread.sleep(5000);
+	}
+	
+	@FindBy(xpath="//*[@id='enterExam']")
+	private WebElement addNewExam;
+	
+	@FindBy(xpath="//*[@class='selected-exams']")
+	private WebElement newlyAddedExamList;
+	
+	public void addNewExam(String newExam) throws InterruptedException{
+		enterText(enterExamField, newExam);
+		clickElement(addNewExam);
+		Assert.assertTrue(newlyAddedExamList.isDisplayed(),"Failed to add the exam into list");
+		Reporter.log(newlyAddedExamList.getText()+" is available in the list",true);
+		clickElement(submitSpecifyExam);
+		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");	
+		Thread.sleep(3000);	
+	}
+	
+	public void verifyAutosuggestionList(String exam) throws InterruptedException{
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		Thread.sleep(3000);
+		List<WebElement> list1 = examLists;
+		int list1Count= examLists.size();
+		Reporter.log("Number of related searched exams :  " + list1Count,true);
+		Reporter.log("Related Exams : " ,true);
+		for (WebElement element : list1) {
+			JavascriptExecutor jse = (JavascriptExecutor) wdriver;
+			jse.executeScript("scroll(250, 0)");
+			Reporter.log(element.getText(), true);
+		}
+		Thread.sleep(5000);
+		
+		clickElement(selectFirstListItem);
+		Reporter.log("Selected the first item in the list",true);
+		List<WebElement> list2 = examLists;
+		int list2Count= examLists.size();
+		Reporter.log("Number of related searched exams :  " + list2Count,true);
+		Reporter.log("Related Exams : " ,true);
+		for (WebElement element : list2) {
+			JavascriptExecutor jse = (JavascriptExecutor) wdriver;
+			jse.executeScript("scroll(250, 0)");
+			Reporter.log(element.getText(), true);
+		}
+		Thread.sleep(5000);
+		if (list1Count>list2Count){
+			Reporter.log("The selected exam is removed successfully from the autosuggestion list",true);
+		}
+		else
+			Reporter.log("Failed to remove the selected exam from the autosuggestion list",true);
+	}
+	
+	@FindBy(xpath="//*[@id='missionSearchError']")
+	private WebElement maxSelectionError;
+	
+	public void maxExamSelection(String exam) throws InterruptedException{
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		
+		for(int i=0;i<=11;i++){
+			String maxError=maxSelectionError.getText();
+			if(!maxSelectionError.isDisplayed())
+			{
+				String firstItem=selectFirstListItem.getText();
+				clickElement(selectFirstListItem);
+				Reporter.log("Selected '"+firstItem+"'",true);
+			}
+			else
+				Reporter.log("'"+maxError+"'",true);	
+		}
+		Thread.sleep(5000);
+	}
+	
+	@FindBy(xpath="//*[@class='missionSearchClear']")
+	private WebElement requestBackButton;
+	
+	public void requestBackToChooseMissionPage(String exam) throws InterruptedException{	
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		clickElement(selectFirstListItem);
+		Reporter.log("Selected the first item in the list",true);
+		Thread.sleep(3000);
+		clickElement(requestBackButton);
+		Assert.assertTrue(defaultGoalText.isDisplayed(), "Failed to navigate for 'Choose a Mission window'");
+		Thread.sleep(3000);
+	}
+	
+	public void assertClearSearchExamSelection(String exam) throws InterruptedException{
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		clickElement(selectFirstListItem);
+		Reporter.log("Selected the first item in the list",true);
+		Thread.sleep(2000);
+		List<WebElement> list1 = examLists;
+		int list1Count= list1.size();
+		Reporter.log("Number of related searched exams :  " + list1Count,true);
+		Thread.sleep(2000);
+		clickElement(requestBackButton);
+		Reporter.log("Clicked on 'Back' button",true);
+		Assert.assertTrue(defaultGoalText.isDisplayed(), "Failed to navigate for 'Choose a Mission window'");
+		Thread.sleep(2000);
+		clickElement(indiaRequestMission);
+		Reporter.log("Cliked on 'Request a Mission'",true);
+		List<WebElement> list2 = examLists;
+		int list2Count= list2.size();
+		Reporter.log("Number of related searched exams :  " + list2Count,true);
+		Thread.sleep(2000);
+		Assert.assertTrue(list1Count > list2Count, "Failed to clear the exam search field");
+		Reporter.log("Exam search field is cleared successfully",true);
+	}
+	
+	public void addExam(String exam) throws InterruptedException{
+		enterText(enterExamField, exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		Thread.sleep(2000);
+		List<WebElement> list1 = examLists;
+		int list1Count= examLists.size();
+		Reporter.log("Number of related searched exams :  " + list1Count,true);
+		Reporter.log("Related Exams : " ,true);
+		for (WebElement element : list1) {
+			JavascriptExecutor jse = (JavascriptExecutor) wdriver;
+			jse.executeScript("scroll(250, 0)");
+			Reporter.log(element.getText(), true);
+		}
+		String item = selectFirstListItem.getText();
+		Reporter.log("Selecting an '"+item+"' exam in the list",true);
+		clickElement(selectFirstListItem);
+		List<WebElement> list2 = examLists;
+		int list2Count= examLists.size();
+		Reporter.log("Number of related searched exams :  " + list2Count,true);
+		Reporter.log("Related Exams : " ,true);
+		for (WebElement element : list2) {
+			JavascriptExecutor jse = (JavascriptExecutor) wdriver;
+			jse.executeScript("scroll(250, 0)");
+			Reporter.log(element.getText(), true);
+		}	
+	}
+	
+	@FindBy(css="div.examresult span:nth-child(1)")
+	private WebElement removeSelectedExams;
+	
+	public void removeExam() throws InterruptedException{
+		String item = removeSelectedExams.getText();
+		Reporter.log("'"+item+"' exam removed successfully",true);
+		clickElement(removeSelectedExams);
+		List<WebElement> list1 = examLists;
+		int list1Count= examLists.size();
+		Reporter.log("Number of related searched exams :  " + list1Count,true);
+		Reporter.log("Related Exams : " ,true);
+		for (WebElement element : list1) {
+			JavascriptExecutor jse = (JavascriptExecutor) wdriver;
+			jse.executeScript("scroll(250, 0)");
+			Reporter.log(element.getText(), true);
+		}
+		Thread.sleep(2000);
+	}
+	
+	public void clearDropdown(String exam) throws InterruptedException{
+		enterText(enterExamField,exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		clickElement(submitExamButton);
+		Reporter.log("Clicked on exam submit button",true);
+		int list1Count= examLists.size();
+		Reporter.log("Number of related searched exams :  " + list1Count,true);
+	}	
+	
+	public void submitSpecifiedExam(String exam) throws InterruptedException{
+		enterText(enterExamField,exam);
+		Reporter.log("Entered '"+exam+"' in the search field",true);
+		String item = selectFirstListItem.getText();
+		Reporter.log("Selecting an '"+item+"' exam in the list",true);
+		clickElement(selectFirstListItem);
+		clickElement(submitSpecifyExam);
+		Reporter.log("Clicked on exam submit button",true);
+		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");	
+		Reporter.log("Mission request has been successfully submitted and Thank you message is displayed",true);
+		Thread.sleep(3000);	
+	}
+	
+	@FindBy(xpath="//*[contains(text(),'Thank You!')]/following::a[contains(text(),'Go to Choose a mission')]")
+	private WebElement gotoChooseMission;
+	
+	public void gotoChooseMissionInThankYouPage(){
+		clickElement(gotoChooseMission);
+		Reporter.log("Clicked on 'Go to Choose a mission'",true);
+		defaultGoal();
+	}
 }

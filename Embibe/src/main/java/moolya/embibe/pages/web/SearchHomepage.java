@@ -4,7 +4,6 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SendKeysAction;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -45,14 +43,22 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(css=".search_results>div>a>h3")
 	private List<WebElement> floatingKeyText;
 	
-	@FindBy(css=".text-center.mission>a")
+	@FindBy(css = "div.text-center.mission>a")
 	private WebElement chooseMission_Btn;
 	
 	@FindBy(css="div.no-result-found:nth-child(1)")
 	private WebElement noResultsView;
+
+	@FindBy(css=".create-profile.button-common")
+	private WebElement login_Btn;
 	
 	public void search(){
 		enterText(search_TB, "Rotational");
+	}
+	
+	public LoginPage clickLoginBtn(){
+		clickLogin();
+		return new LoginPage(wdriver);
 		
 	}
 	
@@ -274,9 +280,10 @@ public class SearchHomepage extends W_BasePage {
 	
 	public void examLinks(int i,String examType) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(2000);
+		refreshPage();
+		Thread.sleep(5000);
 		scrollToElementViaJavascript(scrolltoExams);
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[1]/div/div[1]/div[1]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -292,7 +299,18 @@ public class SearchHomepage extends W_BasePage {
 		Thread.sleep(10000);
 	}
 	
+
 	
 	
 	
+	
+	/*public void choosemission() throws InterruptedException{
+		waitUntilElementAppears(search_TB);
+		assertSearchHomepage();
+		Assert.assertTrue(chooseMission_Btn.isDisplayed(), "'Choose a Mission' option is not present");
+		Reporter.log("'Choose a Mission' is present", true);
+		clickElement(chooseMission_Btn);
+		Assert.assertTrue(selectGoalText.isDisplayed(), "'Choose a Misson' window is not opened.");
+	}*/	
+
 }

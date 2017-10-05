@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 public class LoginPage extends W_BasePage {
@@ -84,6 +85,70 @@ public class LoginPage extends W_BasePage {
 		return new SearchHomepage(wdriver);
 	}
 	
+	@FindBy(css="#showInDesktopemailError")
+	private WebElement unregErrWarning_Email;
 	
-
+	public void unRegisterUser(String email,String password) throws InterruptedException{
+		invalidLogin(email,password);
+		waitUntilElementAppears(unregErrWarning_Email);
+		Assert.assertTrue(unregErrWarning_Email.isDisplayed(), "Failed to display the error warning for unregistered user");
+		String warning=unregErrWarning_Email.getText();
+		Thread.sleep(3000);
+		Reporter.log("'"+warning+"' is displayed",true);
+	}
+	
+	@FindBy(css="#showInDesktoppasswordError")
+	private WebElement errWarning_password;
+	
+	public void invalidLoginCredentials(String email,String password) throws InterruptedException{
+		unRegisterUser(email,password);
+		waitUntilElementAppears(unregErrWarning_Email);
+		Assert.assertTrue(errWarning_password.isDisplayed(), "Failed to display the error warning for invalid password");
+		String passwordWarning=errWarning_password.getText();
+		Thread.sleep(3000);
+		Reporter.log("'"+passwordWarning+"' is displayed",true);	
+	}
+	
+	@FindBy(xpath="//input[@id='inputvalue']")
+	private WebElement FP_emailField;
+	
+	@FindBy(xpath="//button[contains(text(),'Reset Password')]")
+	private WebElement resetPasswordBtn;
+	
+	@FindBy(xpath="//*[@id='inputvalueError']")
+	private WebElement errWarning_FP_emailField;
+	
+	public void invalidEmail_ForgotPassword(String email) throws InterruptedException{
+		enterText(FP_emailField, email);
+		Reporter.log("Entered '"+email+"'",true);
+		clickElement(resetPasswordBtn);
+		Reporter.log("Clicked on 'Reset Password' Button",true);
+		waitUntilElementAppears(errWarning_FP_emailField);
+		Assert.assertTrue(errWarning_FP_emailField.isDisplayed(), "Failed to display the error warning for unregistered user");
+		String warning=errWarning_FP_emailField.getText();
+		Thread.sleep(3000);
+		Reporter.log("'"+warning+"' is displayed",true);
+	}
+	
+	public boolean statusOfResetPasswordBtn(String email){
+		enterText(FP_emailField, email);
+		Reporter.log("Entered '"+email+"'",true);
+		String class1=resetPasswordBtn.getAttribute("class");
+		String[] c= class1.split(" ");
+		//Reporter.log("Before entering the valid email id :" + c[c.length-1] ,true);
+		return c[c.length-1].equals("disabled");
+	}
+	
+	
+	
+	@FindBy(xpath="(//span[@class='register-user']/a)[2]")
+	private WebElement register_Btn;
+	
+	public SignUpPage clickRegisterHere_lp(){
+		waitUntilElementclickable(register_Btn);
+		register_Btn.click();
+		Reporter.log("Clicked on Register Here", true);
+		return new SignUpPage(wdriver);
+	}
+	
 }

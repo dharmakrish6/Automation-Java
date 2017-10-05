@@ -559,7 +559,7 @@ public class W_SuperBasePage extends JavaUtils{
 
 	public void clickElement(WebElement element){
 		waitUntilElementclickable(element);
-		scrollToElementViaJavascript(element);
+		//scrollToElementViaJavascript(element);
 		element.click();
 	}
 
@@ -1005,7 +1005,7 @@ public class W_SuperBasePage extends JavaUtils{
 	public void refreshPage()
 	{
 		wdriver.navigate().refresh();
-		Reporter.log("Refresing Page", true);
+		Reporter.log("Refreshing Page", true);
 	}
 
 }

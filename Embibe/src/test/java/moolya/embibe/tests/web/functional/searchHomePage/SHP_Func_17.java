@@ -30,7 +30,6 @@ public class SHP_Func_17 extends W_BaseTest {
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
-		Reporter.log("User is navigated to Landing Page successfully", true);
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
 		shp.validSearchResult(uniqueValue);

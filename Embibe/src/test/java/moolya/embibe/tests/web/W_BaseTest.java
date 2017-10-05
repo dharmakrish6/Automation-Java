@@ -34,7 +34,7 @@ public class W_BaseTest
 
 public WebDriver wdriver;
 	
-	W_BasePage basepage;
+	protected W_BasePage basepage;
 	protected String uniqueValue;
 	protected String uniqueValue2;
 	ATUTestRecorder recorder;
@@ -97,4 +97,7 @@ public WebDriver wdriver;
 			obj[i][0]=browsers[i];
 		return obj;
 	}
+	
+	
+	
 }

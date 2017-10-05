@@ -7,6 +7,7 @@ import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
+import moolya.embibe.pages.web.ChooseMissionPage;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
@@ -16,11 +17,8 @@ public class SHP_Func_25 extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
+	private ChooseMissionPage cmp;
 	private SearchHomepage shp;
-	
-	{
-		uniqueValue = "Functional_1";
-	}
 	
 	@Test(dataProvider="browserData")
 	public void SHP_Func_24_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException{
@@ -30,12 +28,9 @@ public class SHP_Func_25 extends W_BaseTest {
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
-		Reporter.log("User is navigated to Landing Page successfully", true);
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
-		Thread.sleep(3000);
-		shp.choosemission();
-		shp.signUpInRankUpPage();
-
+		cmp = shp.clickChooseMission();
+		cmp.signUpInRankUpPage();
 	}
 }
