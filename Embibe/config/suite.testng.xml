@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SanitySuite" parallel="tests" thread-count="5">
+	<test name="TestMacSierraChrome61">
+		<parameter name="config" value="suite.conf.json" />
+		<parameter name="environment" value="MacSierraChrome61" />
+		<classes>
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_1" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_2" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_3" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_5" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_6" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_7" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_8" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_9" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_10" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_11" />
+		</classes>
+	</test>
+	<test name="TestMacSierraFirefox56">
+		<parameter name="config" value="suite.conf.json" />
+		<parameter name="environment" value="MacSierraFirefox56" />
+		<classes>
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_1" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_2" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_3" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_5" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_6" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_7" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_8" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_9" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_10" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_11" />
+		</classes>
+	</test>
+	<test name="TestMacSierraSafari10.1">
+		<parameter name="config" value="suite.conf.json" />
+		<parameter name="environment" value="MacSierraSafari10.1" />
+		<classes>
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_1" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_2" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_3" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_5" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_6" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_7" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_8" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_9" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_10" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_11" />
+		</classes>
+	</test>
+	<test name="TestWindows7Chrome61">
+		<parameter name="config" value="suite.conf.json" />
+		<parameter name="environment" value="Windows7Chrome61" />
+		<classes>
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_1" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_2" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_3" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_5" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_6" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_7" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_8" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_9" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_10" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_11" />
+		</classes>
+	</test>
+	<test name="TestWindows7IE11">
+		<parameter name="config" value="suite.conf.json" />
+		<parameter name="environment" value="Windows7IE11" />
+		<classes>
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_1" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_2" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_3" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_5" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_6" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_7" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_8" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_9" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_10" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_11" />
+		</classes>
+	</test>
+	<test name="TestWindows7Firefox56">
+		<parameter name="config" value="suite.conf.json" />
+		<parameter name="environment" value="Windows7Firefox56" />
+		<classes>
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_1" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_2" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_3" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_5" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_6" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_7" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_8" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_9" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_10" />
+			<class name="moolya.embibe.tests.browserStack.web.suite.sanity.Sanity_11" />
+		</classes>
+	</test>
+</suite>

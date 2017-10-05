@@ -3,11 +3,11 @@ package moolya.embibe.tests.web.segmentio;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.json.JSONException;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
@@ -82,16 +82,13 @@ public class HeadersTest{
 		shp.clickFbLogin();
 		shp.navigateBack();
 		shp.clickLogin();
-		shp.clickGoogleLogin();
-		shp.navigateBack();
-		shp.clickLogin();
 		shp.clickRegisterHere();
 		shp.clickFbSignUp();
 		shp.navigateBack();
 		shp.clickLogin();
 		shp.clickRegisterHere();
-		shp.clickGoogleSignUp();
-		shp.navigateBack();
+		shp.clickLoginHere();
+		shp.clickLogin();
 		count = SqliteUtils.updateAndGetCounter();
 		email = "embibe.auto"+count+"@mailinator.com";
 		shp.signUp(uniqueValue, email);
@@ -104,20 +101,59 @@ public class HeadersTest{
 		wdriver.manage().window().maximize();
 		lp.clickLogin();
 		lp.clickLogin();
-		lp.login(uniqueValue, email);		
+		lp.login(uniqueValue, email);
+		
 	}
 	
 	@AfterMethod
-	public void tearDown(){
+	public void tearDown() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		lp = new LandingPage(wdriver);
-		ArrayList<HashMap<String, String>> events = lp.getEventLogs();
-		wdriver.close();
-		int i=0;
-		for(HashMap<String, String> map:events){
-			System.out.println("Event"+(++i)+":");
-			for(Map.Entry<String, String> m:map.entrySet())
-				System.out.println(m.getKey()+": "+m.getValue());
+		
+		ArrayList<LinkedHashMap<String, String>> a_events = lp.getEventLogs();
+
+		ArrayList<LinkedHashMap<String, String>> e_events = lp.getEventData("headerResults");
+		
+		ArrayList<LinkedHashMap<String, String>> eventsResults = new ArrayList<LinkedHashMap<String, String>>();
+		for(LinkedHashMap<String, String> map1:e_events){
+			LinkedHashMap<String, String> mapResults = null;
+			String eEventCode = map1.get("event_code");
+			for(HashMap<String, String> map2:a_events){
+				String aEventCode = map2.get("event_code");
+				if(eEventCode.equals(aEventCode)){
+					mapResults = new LinkedHashMap<String, String>();
+					mapResults.put("e_event_code", map1.get("event_code"));
+					mapResults.put("a_event_code", map2.get("event_code"));
+					mapResults.put("e_log_type", map1.get("log_type"));
+					mapResults.put("a_log_type", map2.get("log_type"));
+					mapResults.put("e_event_name", map1.get("event_name"));
+					mapResults.put("a_event_name", map2.get("event_name"));
+					mapResults.put("e_nav_element", map1.get("nav_element"));
+					mapResults.put("a_nav_element", map2.get("nav_element"));
+					mapResults.put("e_event_type", map1.get("event_type"));
+					mapResults.put("a_event_type", map2.get("event_type"));
+					mapResults.put("e_intent_to_pay", map1.get("intent_to_pay"));
+					mapResults.put("a_intent_to_pay", map2.get("intent_to_pay"));
+					mapResults.put("e_extra_Params", map1.get("extra_Params"));
+					mapResults.put("a_extra_Params", map2.get("extra_Params"));
+					break;
+				}
+				
+			}
+			if(mapResults!=null)
+				eventsResults.add(mapResults);
 		}
+		
+		int i=0;
+		for(LinkedHashMap<String, String> map:eventsResults){
+			System.out.print("Event "+(++i)+" >---> ");
+			for(Map.Entry<String, String> m:map.entrySet()){
+				System.out.print(m.getKey()+": "+m.getValue());
+				System.out.print(" ");
+			}
+			System.out.println();
+		}
+		
+		wdriver.close();
 	}
 
 }
