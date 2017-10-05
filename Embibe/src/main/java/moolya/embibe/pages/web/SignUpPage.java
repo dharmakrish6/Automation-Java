@@ -63,6 +63,9 @@ public class SignUpPage extends W_BasePage {
 	@FindBy(css=".resetSubmit")
 	private WebElement resetSubmit_Btn;
 	
+	@FindBy(css=".responsebox a[href='/signup']")
+	private WebElement resetOk_Btn;
+	
 	
 	public SearchHomepage loginSignUpPage(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
@@ -129,6 +132,9 @@ public class SignUpPage extends W_BasePage {
 		confirmResetPassword_TB.sendKeys(data.get("Password"));
 		Reporter.log("Entered Confirm Password: "+data.get("Password"), true);
 		resetSubmit_Btn.click();
+		Reporter.log("Clicked on Submit", true);
+		waitUntilElementclickable(resetOk_Btn);
+		resetOk_Btn.click();
 		Reporter.log("Clicked on Submit", true);
 	}
 
