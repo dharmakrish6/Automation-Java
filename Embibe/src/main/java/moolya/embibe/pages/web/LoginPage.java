@@ -139,8 +139,6 @@ public class LoginPage extends W_BasePage {
 		return c[c.length-1].equals("disabled");
 	}
 	
-	
-	
 	@FindBy(xpath="(//span[@class='register-user']/a)[2]")
 	private WebElement register_Btn;
 	

@@ -19,6 +19,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import com.thoughtworks.selenium.Wait.WaitTimedOutException;
+
 @SuppressWarnings("unused")
 public class W_BasePage extends W_SuperBasePage 
 {
@@ -119,6 +121,9 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(css=".user-dropdown>.user-name>img")
  	private WebElement userDropdown;
+	
+	@FindBy(css=".tooltip-modal>div")
+	private List<WebElement> userDropdownList;
 
 	@FindBy(css=".user-dropdown .user-name[href='/profile']")
 	private WebElement myProfile_Btn;
@@ -353,10 +358,22 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked On Embium Status", true);
 	}
 	
-	public void clickProfileIcon(){
+	public void clickProfileIcon() throws InterruptedException{
+		Thread.sleep(2000);
 		waitUntilElementAppears(guestImage);
 		guestImage.click();
 		Reporter.log("Clicked On Profile Icon", true);
+		Thread.sleep(2000);
+	}
+	
+	public void verifyProfileDropdownList(){
+		List<WebElement> list=userDropdownList;
+		int actualListCount=userDropdownList.size();
+		Reporter.log("Profile Dropdown list are : ",true);
+		for(WebElement ele:list){
+			Reporter.log(ele.getText(),true);
+		}
+		Assert.assertEquals(actualListCount, 2);
 	}
 	
 
@@ -703,13 +720,47 @@ public class W_BasePage extends W_SuperBasePage
 		enterText(confirmPasswordSignUp_Btn, confirmPassword);
 		Thread.sleep(2000);
 		if(cofirmPasswordFieldError.isDisplayed()){
+			Reporter.log("Enter 'Password': "+password +"\nEnter 'Confirm Password': "+ confirmPassword,true);
 			Reporter.log("Warning '"+cofirmPasswordFieldError.getText()+"' is displayed " ,true);
 		}
 		else
+		{
+			Reporter.log("Enter 'Password': "+password +"\nEnter 'Confirm Password': "+ confirmPassword,true);
 			Reporter.log("Password Matched ",true);		
+		}
 	}
 	
+	public void clickLoginSignUpBtn(){
+		waitUntilElementclickable(signUp_Btn);
+		signUp_Btn.click();
+		Reporter.log("Clicked on SignUp Button", true);
+	}
 	
+	@FindBy(xpath="//*[@id='showInDesktoppasswordConfirmError']")
+	private WebElement confirmPasswordError;
+	
+	public void verifyEmptySignUpFileds() throws InterruptedException{
+		clickLoginSignUpBtn();
+		Assert.assertTrue(signupEmailFieldError.isDisplayed(), "Failed to display warning for empty email field ");
+		Reporter.log("Warning '"+signupEmailFieldError.getText()+"' is displayed for empty email field",true);
+		Assert.assertTrue(passwordFieldError.isDisplayed(), "Failed to display warning for password field ");
+		Reporter.log("Warning '"+passwordFieldError.getText()+"' is displayed for empty password field",true);
+		Assert.assertTrue(confirmPasswordError.isDisplayed(), "Failed to display warning for empty Confirm password field ");
+		Reporter.log("Warning '"+confirmPasswordError.getText()+"' is displayed for empty Confirm password field",true);
+	}
+	
+	public void alreadyRegisterUserSignUp(){
+		enterText(emailPhoneSignUp_TB, "yatheendra@moolya.com");
+		Reporter.log("Entered already registered email id",true);
+		enterText(passwordSignUp_TB, "embibe123");
+		Reporter.log("Entered passsword",true);
+		enterText(confirmPasswordSignUp_Btn, "embibe123");
+		Reporter.log("Entered confirm password",true);
+		clickLoginSignUpBtn();
+		waitUntilElementAppears(signupEmailFieldError);
+		Assert.assertTrue(signupEmailFieldError.isDisplayed(), "Failed to display warning for email field ");
+		Reporter.log("Warning '"+signupEmailFieldError.getText()+"' is displayed for already registered email id",true);
+	}
 	
 }
 
