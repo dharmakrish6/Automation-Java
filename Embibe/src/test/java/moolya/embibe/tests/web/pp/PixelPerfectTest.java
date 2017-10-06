@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web;
+package moolya.embibe.tests.web.pp;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 
-public class Dummy{
+public class PixelPerfectTest{
 
 	String os;
 	private LandingPage lp;
