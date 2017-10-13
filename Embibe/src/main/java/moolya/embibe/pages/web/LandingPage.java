@@ -108,7 +108,7 @@ public class LandingPage extends W_BasePage {
 		return new SearchHomepage(wdriver);
 	}
 	
-	public void mouseHoverOnKt(){
+	public void mouseHoverOnKt() throws InterruptedException{
 		mouseHoverOnElement(wdriver, kt_Canvas, "Mouse Hovered on Knowledge Tree");
 	}
 	
@@ -122,6 +122,14 @@ public class LandingPage extends W_BasePage {
 //		wdriver.switchTo().defaultContent();
 	}
 	
+	public void scrollRight() throws InterruptedException{
+		mouseHover(wdriver, kt_Canvas, -50, 0, "Scrolled Page Right");
+	}
+	
+	public void scrollLeft() throws InterruptedException{
+		mouseHoverOnElement(wdriver, kt_Canvas, "Scrolled Page Left");
+	}
+	
 	public SearchHomepage clickSearchNow(){
 		clickElement(searchNow_Btn);
 		return new SearchHomepage(wdriver);
@@ -132,7 +140,7 @@ public class LandingPage extends W_BasePage {
 		return getElementPixelPerfectness(this, startNow_Btn, "startNow_Btn");
 	}
 	
-	public void getPixelDataLandingPage() throws EncryptedDocumentException, InvalidFormatException, IOException{
+	public void getPixelDataLandingPage() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
 		waitUntilElementclickable(startNow_Btn);
 		getPixelData("Data", "Landing_Web1", embibeLogoStartNow, "embibeLogoStartNow");
 		getPixelData("Data", "Landing_Web1", scoreHigher_Lbl, "scoreHigher_Lbl");

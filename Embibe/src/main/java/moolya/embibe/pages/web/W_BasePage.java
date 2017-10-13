@@ -327,27 +327,27 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on Institutes", true);
 	}
 	
-	public void mouseHoverOnAsk(){
+	public void mouseHoverOnAsk() throws InterruptedException{
 		waitUntilElementAppears(ask_Btn);
 		mouseHoverOnElement(wdriver, ask_Btn, "Mouse Hovered on Ask");
 	}
 	
-	public void mouseHoverOnStudy(){
+	public void mouseHoverOnStudy() throws InterruptedException{
 		waitUntilElementAppears(study_Btn);
 		mouseHoverOnElement(wdriver, study_Btn, "Mouse Hovered on Study");
 	}
 	
-	public void mouseHoverOnJump(){
+	public void mouseHoverOnJump() throws InterruptedException{
 		waitUntilElementAppears(jump_Btn);
 		mouseHoverOnElement(wdriver, jump_Btn, "Mouse Hovered on Jump");
 	}
 	
-	public void mouseHoverOnRankUp(){
+	public void mouseHoverOnRankUp() throws InterruptedException{
 		waitUntilElementAppears(rankup_Btn);
 		mouseHoverOnElement(wdriver, rankup_Btn, "Mouse Hovered on Rankup");
 	}
 	
-	public void mouseHoverOnInstitutes(){
+	public void mouseHoverOnInstitutes() throws InterruptedException{
 		waitUntilElementAppears(institutes_Btn);
 		mouseHoverOnElement(wdriver, institutes_Btn, "Mouse Hovered on Institutes");
 	}

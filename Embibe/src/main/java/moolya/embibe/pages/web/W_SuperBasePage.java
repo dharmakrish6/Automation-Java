@@ -95,86 +95,7 @@ public class W_SuperBasePage extends JavaUtils{
 				.compare();
 	}
 
-
-	public WebDriver launchWebApp() throws IOException
-	{
-		String dir = System.getProperty("user.dir");
-		String domain = getPropValue("domain");
-		String url = null;
-		if(domain.equalsIgnoreCase("test"))
-			url = getPropValue("testAppUrl");
-		else if(domain.equalsIgnoreCase("dev"))
-			url = getPropValue("devAppUrl");
-
-		String browser = getPropValue("browser");
-		if (browser.equalsIgnoreCase("ff")) 
-		{
-			wdriver = new FirefoxDriver();
-		}
-
-		//	Only for windows
-		else if(browser.equalsIgnoreCase("ieWinx32"))
-		{
-			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
-			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			wdriver = new InternetExplorerDriver(ieCapabilities);
-		}
-		//	Only for windows
-		else if(browser.equalsIgnoreCase("ieWinx64"))
-		{
-			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
-			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			wdriver = new InternetExplorerDriver(ieCapabilities);
-		}
-		//	Only for mac
-		else if(browser.equalsIgnoreCase("safari")){
-			wdriver = new SafariDriver();
-		}else if (browser.equalsIgnoreCase("chrome")) 
-		{
-			if(System.getProperty("os.name").toLowerCase().contains("windows"))
-				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
-				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("chrome.switches","--disable-extensions");
-			options.addArguments("chrome.switches","--disable-geolocation");
-			wdriver = new ChromeDriver(options);
-		}else if(browser.equalsIgnoreCase("opera32")){
-			System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
-			wdriver = new OperaDriver();
-		}else if(browser.equalsIgnoreCase("opera64")){
-			if(System.getProperty("os.name").toLowerCase().contains("windows"))
-				System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
-			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
-				System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
-			wdriver = new OperaDriver();
-		}else if (browser.equalsIgnoreCase("phantomjs")){
-			//			String userAgent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
-			//			System.setProperty("phantomjs.page.settings.userAgent", userAgent);
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setJavascriptEnabled(true);
-			caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
-			caps.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
-			caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
-					"--web-security=false",
-					"--ssl-protocol=any",
-					"--ignore-ssl-errors=true",
-					"--webdriver-loglevel=INFO"
-			});
-			System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
-			wdriver = new PhantomJSDriver(caps);
-		}
-
-		wdriver.get(url);
-		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wdriver.manage().window().maximize();
-		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
-		return wdriver;
-	}
-
-	@SuppressWarnings({ "unused", "unused" })
+	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchWebApp(String browser) throws IOException
 	{
 		String dir = System.getProperty("user.dir");
@@ -202,6 +123,7 @@ public class W_SuperBasePage extends JavaUtils{
 			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
 			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			ieCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
 			wdriver = new InternetExplorerDriver(ieCapabilities);
 		}
 		//	Only for windows
@@ -210,6 +132,7 @@ public class W_SuperBasePage extends JavaUtils{
 			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
 			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
 			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			ieCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
 			wdriver = new InternetExplorerDriver(ieCapabilities);
 		}
 		//	Only for mac
@@ -266,61 +189,6 @@ public class W_SuperBasePage extends JavaUtils{
 			wdriver = new PhantomJSDriver(caps);
 		}
 
-		wdriver.get(url);
-		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wdriver.manage().window().maximize();
-		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
-		return wdriver;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public WebDriver launchBrowserStack(String config_file, String environment,String className) throws Exception{
-		String domain = getPropValue("domain");
-		String url = null;
-		if(domain.equalsIgnoreCase("test"))
-			url = getPropValue("testAppUrl");
-		else if(domain.equalsIgnoreCase("dev"))
-			url = getPropValue("devAppUrl");
-		org.json.simple.parser.JSONParser parser = new JSONParser();
-		org.json.simple.JSONObject config = (org.json.simple.JSONObject) parser.parse(new FileReader("src/test/resources/conf/" + config_file));
-		org.json.simple.JSONObject envs = (org.json.simple.JSONObject) config.get("environments");
-
-		DesiredCapabilities capabilities = new DesiredCapabilities();
-
-		Map<String, String> envCapabilities = (Map<String, String>) envs.get(environment);
-		Iterator<Entry<String, String>> it = envCapabilities.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String,String> pair = (Map.Entry<String,String>)it.next();
-			capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-		}
-
-		Map<String, String> commonCapabilities = (Map<String, String>) config.get("capabilities");
-		it = commonCapabilities.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<String,String> pair = (Map.Entry<String,String>)it.next();
-			if(capabilities.getCapability(pair.getKey().toString()) == null){
-				capabilities.setCapability(pair.getKey().toString(), pair.getValue().toString());
-			}
-		}
-
-		String username = System.getenv("BROWSERSTACK_USERNAME");
-		if(username == null) {
-			username = (String) config.get("user");
-		}
-
-		String accessKey = System.getenv("BROWSERSTACK_ACCESS_KEY");
-		if(accessKey == null) {
-			accessKey = (String) config.get("key");
-		}
-
-		if(capabilities.getCapability("browserstack.local") != null && capabilities.getCapability("browserstack.local") == "true"){
-			l = new Local();
-			Map<String, String> options = new HashMap<String, String>();
-			options.put("key", accessKey);
-			l.start(options);
-		}
-		capabilities.setCapability("name", className);
-		wdriver = new RemoteWebDriver(new URL("http://"+username+":"+accessKey+"@"+config.get("server")+"/wd/hub"), capabilities);
 		wdriver.get(url);
 		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wdriver.manage().window().maximize();
@@ -475,117 +343,38 @@ public class W_SuperBasePage extends JavaUtils{
 		return wdriver;
 	}
 	
-	public WebDriver launchDsl(String browser) throws IOException
-	{
-		if (browser.equalsIgnoreCase("ff")) 
-		{
-			wdriver = new FirefoxDriver();
-		}
-
-		//	Only for windows
-		else if(browser.equalsIgnoreCase("grid")){
-			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
-			DesiredCapabilities caps = DesiredCapabilities.chrome();
-			wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
-		}
-
-		else if(browser.equalsIgnoreCase("ieWinx32"))
-		{
-			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
-			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			wdriver = new InternetExplorerDriver(ieCapabilities);
-		}
-		//	Only for windows
-		else if(browser.equalsIgnoreCase("ieWinx64"))
-		{
-			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
-			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			wdriver = new InternetExplorerDriver(ieCapabilities);
-		}
-		//	Only for mac
-		else if(browser.equalsIgnoreCase("safari")){
-			wdriver = new SafariDriver();
-		}else if (browser.equalsIgnoreCase("chrome")) 
-		{
-			if(System.getProperty("os.name").toLowerCase().contains("windows"))
-				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
-			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
-				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
-			ChromeOptions options = new ChromeOptions();
-			LoggingPreferences logPrefs = new LoggingPreferences();
-			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
-			//			options.addArguments("chrome.switches","--disable-extensions");
-			//			options.addArguments("chrome.switches","--disable-geolocation");
-			DesiredCapabilities caps = new DesiredCapabilities().chrome();
-			caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-			wdriver = new ChromeDriver(caps);
-		}else if(browser.equalsIgnoreCase("opera32")){
-			System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
-			ChromeOptions options = new ChromeOptions();
-			options.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
-			DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			wdriver = new OperaDriver(capabilities);
-		}else if(browser.equalsIgnoreCase("opera64")){
-			if(System.getProperty("os.name").toLowerCase().contains("windows")){
-				System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
-				ChromeOptions options = new ChromeOptions();
-				options.setBinary("C:/Program Files/Opera/launcher.exe");
-				DesiredCapabilities capabilities = new DesiredCapabilities();
-				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-				wdriver = new OperaDriver(capabilities);
-			}
-			else if(System.getProperty("os.name").toLowerCase().contains("mac")){
-				System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
-				wdriver = new OperaDriver();
-			}
-		}else if (browser.equalsIgnoreCase("phantomjs")){
-			//			String userAgent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
-			//			System.setProperty("phantomjs.page.settings.userAgent", userAgent);
-			DesiredCapabilities caps = new DesiredCapabilities();
-			caps.setJavascriptEnabled(true);
-			caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
-			caps.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
-			caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
-					"--web-security=false",
-					"--ssl-protocol=any",
-					"--ignore-ssl-errors=true",
-					"--webdriver-loglevel=INFO"
-			});
-			System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
-			wdriver = new PhantomJSDriver(caps);
-		}
-
-		wdriver.get("http://10.140.10.116:9090/");
-		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		wdriver.manage().window().maximize();
-		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
-		return wdriver;
-	}
-
-	public ArrayList<LinkedHashMap<String,String>> getEventLogs(){
+	public ArrayList<LinkedHashMap<String,String>> getEventLogs(String className){
 		String text = "";
 		ArrayList<LinkedHashMap<String, String>> events = new ArrayList<LinkedHashMap<String,String>>();
 		LogEntries logEntries = wdriver.manage().logs().get(LogType.PERFORMANCE);
+		String[] mandatoryParams = {"log_type","event_name","event_type","intent_to_pay","nav_element"};
+		String[] extraParams = {"embium_count","email_id","type","capture_goal_name",
+				"content-id","content-type","content_id","content_name","query","content_type",
+				"content_position","search_query","exam_selected","goal","country_code",
+				"exam_name","widget_position","widget_cta","widget_type","xpath","pack_id",
+				"pack_name","scroll_location","capture_element_type","position_x","position_y","mouse_over_element","mouse_over_text"};
 		for (Iterator<LogEntry> it = logEntries.iterator(); it.hasNext();)
 		{
-			boolean flag = false;
+//			boolean flag = false;
 			LogEntry entry = it.next();
 			try {
-				JSONObject json = new JSONObject(entry.getMessage());
-				JSONObject message = json.getJSONObject("message");
-				JSONObject params = message.getJSONObject("params");
-				JSONObject request = params.getJSONObject("request");
+//				JSONObject json = new JSONObject(entry.getMessage());
+//				JSONObject message = json.getJSONObject("message");
+//				JSONObject params = message.getJSONObject("params");
+				JSONObject request = new JSONObject(entry.getMessage())
+						.getJSONObject("message")
+						.getJSONObject("params")
+						.getJSONObject("request");
 				if(request.getString("url").equals("https://api.segment.io/v1/t")){
-					flag = false;
+//					flag = false;
 					LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 					String postData = request.getString("postData");
 					JSONObject postDataJson = new JSONObject(postData);
 					JSONObject properties = postDataJson.getJSONObject("properties");
+					String messageId = postDataJson.getString("messageId");
+					String userId = postDataJson.getString("userId");
 					try {
-						for(LinkedHashMap<String, String> m:events){
+						/*for(LinkedHashMap<String, String> m:events){
 							if(m.get("event_code").equals(properties.getString("event_code"))){
 								flag = true;
 								break;
@@ -593,32 +382,33 @@ public class W_SuperBasePage extends JavaUtils{
 
 						}
 						if(flag)
-							continue;
+							continue;*/
+						map.put("userId", userId);
+						map.put("messageId", messageId);
+						map.put("className", className);
 						map.put("event_code", properties.getString("event_code"));
 					} catch (Exception e1) {}
-					try {
-						map.put("log_type", properties.getString("log_type"));
-					} catch (Exception e1) {}
-					try {
-						map.put("event_name", properties.getString("event_name"));
-					} catch (Exception e1) {}
-					try {
-						map.put("event_type", properties.getString("event_type"));
-					} catch (Exception e1) {}
-					try {
-						map.put("intent_to_pay", properties.getString("intent_to_pay"));
-					} catch (Exception e) {}
-					try {
-						map.put("nav_element", properties.getString("nav_element"));
-					} catch (Exception e) {}
-					try {
-						map.put("extra_params", properties.getString("extra_params"));
-					} catch (Exception e) {}
-					if(flag)
-						continue;
+					for(String s:mandatoryParams){
+						try {
+							map.put(s, properties.getString(s));
+						} catch (Exception e1) {
+							continue;
+						}
+					}
+					for(String s:extraParams){
+						try {
+							JSONObject obj = properties.getJSONObject("extra_params");
+							map.put(s, obj.getString(s));
+						} catch (Exception e) {
+							continue;
+						}
+						
+					}	
+//					if(flag)
+//						continue;
 					events.add(map);
 				}
-			} catch (Exception e) {}
+			} catch (Exception e1) {}
 		}
 		return events;
 	}
@@ -693,17 +483,20 @@ public class W_SuperBasePage extends JavaUtils{
 		}
 	}
 
-
-	public void mouseHoverOnElement(WebDriver driver,WebElement element){
-		waitUntilElementAppears(element);
+	public void mouseHoverOnElement(WebDriver driver,WebElement element) throws InterruptedException{
+		Thread.sleep(2000);
 		Actions act = new Actions(driver);
 		act.moveToElement(element).build().perform();
+		Thread.sleep(1000);
 	}
 
-	public void mouseHoverOnElement(WebDriver driver,WebElement element,String message){
-		waitUntilElementAppears(element);
+	public void mouseHoverOnElement(WebDriver driver,WebElement element,String message) throws InterruptedException{
+		Thread.sleep(2000);
 		Actions act = new Actions(driver);
-		act.moveToElement(element).build().perform();
+		act.moveToElement(element)
+		.build()
+		.perform();
+		Thread.sleep(1000);
 		Reporter.log(message, true);
 	}
 
@@ -711,6 +504,14 @@ public class W_SuperBasePage extends JavaUtils{
 		Actions act = new Actions(driver);
 		act.moveByOffset(x, y).build().perform();
 	}
+	
+	public void mouseHover(WebDriver driver, WebElement element,int x,int y, String message) throws InterruptedException{
+		Thread.sleep(2000);
+		Actions act = new Actions(driver);
+		act.moveToElement(element, x, y).build().perform();
+		Reporter.log(message, true);
+	}
+	
 
 	public void waitandAcceptAlert(){
 		WebDriverWait wait = new WebDriverWait(wdriver, 30);
@@ -757,15 +558,23 @@ public class W_SuperBasePage extends JavaUtils{
 
 	public void clickElement(WebElement element,String message){
 		waitUntilElementclickable(element);
-		scrollToElementViaJavascript(element);
-		element.click();
+		try{
+			element.click();
+		}catch(Exception e){
+			scrollToElementViaJavascript(element);
+			element.click();
+		}
 		Reporter.log(message, true);
 	}
 
 	public void clickElement(WebElement element){
 		waitUntilElementclickable(element);
-		//scrollToElementViaJavascript(element);
-		element.click();
+		try{
+			element.click();
+		}catch(Exception e){
+			scrollToElementViaJavascript(element);
+			element.click();
+		}
 	}
 
 	public void enterText(WebElement element, String text,String message){
@@ -826,9 +635,13 @@ public class W_SuperBasePage extends JavaUtils{
 
 
 	public  void scrollToElementViaJavascript(WebElement element) 
-	{        
+	{      
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {}
 		((JavascriptExecutor) wdriver).executeScript("arguments[0].scrollIntoView();", element);     
 	}
+	
 
 	public String getElementWidthViaJavascript(WebElement e){
 		long width = Long.parseLong((String)((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetWidth;", e));
@@ -840,11 +653,17 @@ public class W_SuperBasePage extends JavaUtils{
 		return Long.toString(height);
 	}
 
-	public  void scrollup(String xValue) 
+	public  void scrollVertically(String xValue) 
 	{    
-		String parameter="scroll(" +xValue+ ",0)"; 
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String parameter="window.scrollBy(0," +xValue+ ")"; 
 		JavascriptExecutor jse = (JavascriptExecutor)wdriver;
-		jse.executeScript(parameter); //x value '500' can be altered
+		jse.executeScript(parameter,""); //x value '500' can be altered
 	}
 
 	public void navigateBack(){

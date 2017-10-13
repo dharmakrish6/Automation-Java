@@ -51,6 +51,9 @@ public class SearchHomepage extends W_BasePage {
 
 	@FindBy(css=".create-profile.button-common")
 	private WebElement login_Btn;
+	
+	@FindBy(css=".col-sm-2:nth-child(5) li>a[href='/exams/']")
+	private WebElement articles_Link;
 
 	public void search(){
 		enterText(search_TB, "Rotational");
@@ -60,6 +63,11 @@ public class SearchHomepage extends W_BasePage {
 		clickLogin();
 		return new LoginPage(wdriver);
 
+	}
+	
+	public void enterSearchText(String text){
+		waitUntilElementclickable(search_TB);
+		search_TB.sendKeys(text);
 	}
 
 	public void assertSearchHomepage(){
@@ -334,6 +342,27 @@ public class SearchHomepage extends W_BasePage {
 		else
 			actualData.put("Disambiguated", true);
 		return actualData;
+	}
+	
+	public void hoverOnFloatingKeywords(int count) throws InterruptedException{
+		waitUntilElementclickable(floatingKeywords.get(0));
+		Thread.sleep(5000);
+		for(int i=0;i<count;i++){
+			mouseHoverOnElement(wdriver, floatingKeyText.get(i));
+		}
+	}
+	
+	public SearchResultsPage clickOnFloatingKeywords(int position) throws InterruptedException{
+		waitUntilElementclickable(floatingKeywords.get(0));
+		Thread.sleep(5000);
+		floatingKeyText.get(position-1).click();
+		return new SearchResultsPage(wdriver);
+	}
+	
+	public void scrollToArticles() throws InterruptedException{
+		scrollToElementViaJavascript(articles_Link);
+		scrollVertically("-100");
+		mouseHoverOnElement(wdriver, articles_Link);
 	}
 
 

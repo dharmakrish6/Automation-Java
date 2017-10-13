@@ -49,6 +49,30 @@ public class SearchResultsPage extends W_BasePage {
 
 	@FindBy(xpath="//div[@class='srWrapper']/div[@class='srLine2']//li[text()='JEE mains']")
 	private WebElement showForJeeMains_Btn;
+	
+	@FindBy(css=".srWrapper .srLine1 .srOptionItem")
+	private List<WebElement> showingResultsFor_List;
+	
+	@FindBy(css=".srWrapper .srLine1 .srOptionItem.glyphicon-menu-right")
+	private WebElement showingResultsForExpand_Btn;
+	
+	@FindBy(css=".srWrapper .srLine1 .srOptionItem.glyphicon-menu-left")
+	private WebElement showingResultsForCollapse_Btn;
+	
+	@FindBy(css=".srWrapper .srLine2 .srOptionItem")
+	private List<WebElement> specificExam_List;
+	
+	@FindBy(css=".srWrapper .srLine2 .srOptionItem.glyphicon-menu-right")
+	private WebElement specificExamExpand_Btn;
+	
+	@FindBy(css=".srWrapper .srLine2 .srOptionItem.glyphicon-menu-left")
+	private WebElement specificExamCollapse_Btn;
+	
+	@FindBy(css=".wikiMore")
+	private WebElement goToWikipedia_Btn;
+	
+	@FindBy(css=".unlock-pack")
+	private WebElement unlockJumpPack_Btn;
 
 	@FindBy(css=".button-tour")
 	private WebElement takeAtour_Btn;
@@ -312,7 +336,7 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(css="div.askWrapper input.inputQuestion")
 	private WebElement askQuestion_TB;
 
-	@FindBy(css="div.askWrapper div.askButton")
+	@FindBy(css="div.askWrapper a.askButton")
 	private WebElement askQuestion_Btn;
 
 	@FindBy(css="div.news-container a.news-link")
@@ -589,6 +613,64 @@ public class SearchResultsPage extends W_BasePage {
 			}
 		} catch (Exception e) {}
 		return text;
+	}
+	
+	public void selectGoal(String goal,String exam) throws InterruptedException{
+		waitUntilElementclickable(showingResultsFor_List.get(0));
+		Thread.sleep(1000);
+		clickElement(showingResultsForExpand_Btn, "Clicked on Show More Goals");
+		Thread.sleep(1000);
+	for(WebElement e:showingResultsFor_List)
+			if(e.getText().equals(goal)){
+				clickElement(e, "Clicked on "+e.getText());
+				break;
+			}
+		waitUntilElementclickable(specificExam_List.get(0));
+		Thread.sleep(1000);
+		clickElement(specificExamExpand_Btn, "Clicked on Show more exams");
+		Thread.sleep(1000);
+		for(WebElement e:specificExam_List)
+			if(e.getText().equals(exam)){
+				clickElement(e, "Clicked on "+e.getText());
+				break;
+			}
+			
+	}
+
+	public void waitForResultTopicHeader(){
+		waitUntilElementAppears(topicHeader_Lbl,30);
+	}
+	
+	public void mouseOverOnResultTopicHeader() throws InterruptedException{
+		mouseHoverOnElement(wdriver, topicHeader_Lbl, "Mouse Overed on Result Topic Header");
+	}
+	
+	public void mouseOverOnTakeTour() throws InterruptedException{
+		mouseHoverOnElement(wdriver, takeAtour_Btn, "Mouse Overed on Take a Tour");
+	}
+	
+	public void mouseOverOnUnlockJumpPack() throws InterruptedException{
+		scrollToElementViaJavascript(unlockJumpPack_Btn);
+		scrollVertically("-100");
+		mouseHoverOnElement(wdriver, unlockJumpPack_Btn, "Mouser Overed on Unlock Jump Pack");
+	}
+	
+	public void mouseOverOnGoToWikipedia() throws InterruptedException{
+		scrollToElementViaJavascript(goToWikipedia_Btn);
+		scrollVertically("-100");
+		mouseHoverOnElement(wdriver, goToWikipedia_Btn, "Mouse Overed On Go To Wikipedia");
+	}
+	
+	public void mouseOverOnAskButton() throws InterruptedException{
+		scrollToElementViaJavascript(askQuestion_Btn);
+		scrollVertically("-100");
+		mouseHoverOnElement(wdriver, askQuestion_Btn, "Mouse Overed on Ask Button");
+	}
+	
+	public void mouseOverOnBeharivioralMeterStatusText() throws InterruptedException{
+		scrollToElementViaJavascript(behavioralMeterStatus_Lbl);
+		scrollVertically("-100");
+		mouseHoverOnElement(wdriver, behavioralMeterStatus_Lbl, "Mouse Overed on Behavioral Meter Status");
 	}
 
 
