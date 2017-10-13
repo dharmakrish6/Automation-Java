@@ -485,17 +485,27 @@ public class W_SuperBasePage extends JavaUtils{
 
 	public void mouseHoverOnElement(WebDriver driver,WebElement element) throws InterruptedException{
 		Thread.sleep(2000);
-		Actions act = new Actions(driver);
-		act.moveToElement(element).build().perform();
+		try {
+			Actions act = new Actions(driver);
+			act.moveToElement(element).build().perform();
+		} catch (Exception e) {
+			scrollToElementViaJavascript(element);
+			Actions act = new Actions(driver);
+			act.moveToElement(element).build().perform();
+		}
 		Thread.sleep(1000);
 	}
 
 	public void mouseHoverOnElement(WebDriver driver,WebElement element,String message) throws InterruptedException{
 		Thread.sleep(2000);
-		Actions act = new Actions(driver);
-		act.moveToElement(element)
-		.build()
-		.perform();
+		try {
+			Actions act = new Actions(driver);
+			act.moveToElement(element).build().perform();
+		} catch (Exception e) {
+			scrollToElementViaJavascript(element);
+			Actions act = new Actions(driver);
+			act.moveToElement(element).build().perform();
+		}
 		Thread.sleep(1000);
 		Reporter.log(message, true);
 	}

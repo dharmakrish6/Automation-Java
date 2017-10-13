@@ -132,6 +132,9 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../../following-sibling::div[@class='registerlink']//p")
 	private WebElement newUser_Btn;
+	
+	@FindBy(css=".close-mail")
+	private WebElement closeSignUp_Btn;
 
 	@FindBy(css=".user-dropdown>.user-name>img")
  	private WebElement userDropdown;
@@ -524,6 +527,7 @@ public class W_BasePage extends W_SuperBasePage
 		confirmPasswordSignUp_Btn.sendKeys(data.get("Password"));
 		Reporter.log("Entered Confirm Password: "+data.get("Password"), true);
  		clickElement(signUp_Btn, "Clicked SignUp");
+ 		clickElement(closeSignUp_Btn, "Clicked on Close");
  	}
 	
 	public void goToRearchPage(){
