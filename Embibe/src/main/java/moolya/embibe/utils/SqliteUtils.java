@@ -6,6 +6,9 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class SqliteUtils {
 	
@@ -144,6 +147,82 @@ public class SqliteUtils {
 		}//end finally
 		
 		return count;
+
+	}
+	
+	public static ArrayList<String> storeSegmentIoResultsToDb(ArrayList<LinkedHashMap<String, String>> results) throws ClassNotFoundException, IOException
+	{
+		Connection conn = getDbConnection();
+		Statement stmt = null;
+		ArrayList<String> msgIds = new ArrayList<String>();
+		try{
+			// Execute a query
+			conn.setAutoCommit(false);
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			boolean flag = false;
+			System.out.println("Storing Segment.io results to db");
+			String columns = "";
+			String values = "";
+			for(LinkedHashMap<String, String> lhm:results){
+				int i=0;
+				msgIds.add(lhm.get("messageId"));
+				flag = false;
+				for(Map.Entry<String, String> m:lhm.entrySet()){
+						
+					if(i==0 && !m.getValue().equals(null) && !m.getValue().equals("null") && !m.getValue().equals("")){
+						flag = true;
+						columns = "`"+m.getKey()+"`";
+						values = "\""+m.getValue()+"\"";
+						i++;
+					}
+					else if(!m.getValue().equals(null) && !m.getValue().equals("null") && !m.getValue().equals("")){
+						flag = true;
+						columns = columns+",`"+m.getKey()+"`";
+						values = values + ",\""+m.getValue()+"\"";
+						i++;
+					}
+				}
+				String query = "INSERT INTO `SegmentIoData`("+columns+") VALUES ("+values+");";
+				System.out.println(query);
+				if(flag)
+					stmt.executeUpdate(query);
+			}
+
+			System.out.println("Storing Segment.io results to db, SUCCESS");
+			
+			stmt.close();
+			conn.commit();
+			return msgIds;
+		} //end try
+		catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+
+		finally
+		{
+			//finally block used to close resources
+			try
+			{
+				if(stmt!=null)
+					conn.close();
+			}
+			catch(SQLException se){
+			}// do nothing
+			try
+			{
+				if(conn!=null)
+					conn.close();
+			}
+			catch(SQLException se)
+			{
+				se.printStackTrace();
+			}
+			System.out.println("Goodbye!");
+		}//end finally
+		
+		return msgIds;
 
 	}
 

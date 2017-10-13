@@ -15,6 +15,7 @@ import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.SignUpPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
+import moolya.embibe.utils.JavaUtils;
 import moolya.embibe.utils.SqliteUtils;
 
 public class Sanity_8 extends W_BaseTest {
@@ -38,7 +39,7 @@ public class Sanity_8 extends W_BaseTest {
 	@Test(dataProvider="browserData")
 	public void Sanity_8test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, ClassNotFoundException{
 		count = SqliteUtils.updateAndGetCounter();
-		email = "embibe.auto"+count+"@mailinator.com";
+		email = JavaUtils.getPropValue("emailPrefix")+count+"@mailinator.com";
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Sanity_8test", true);
