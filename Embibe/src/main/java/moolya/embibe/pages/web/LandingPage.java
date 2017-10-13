@@ -27,6 +27,9 @@ public class LandingPage extends W_BasePage {
 	@FindBy(xpath="//a[@class='get-started' and text()='START NOW']")
 	private WebElement startNow_Btn;
 	
+	@FindBy(xpath="(//*[@class='logo-layer-1'])[1]")
+	private WebElement LP_embibe_logo;
+	
 	@FindBy(css="#about .logo-layer-1>img")
 	private WebElement embibeLogoStartNow;
 	
@@ -88,6 +91,45 @@ public class LandingPage extends W_BasePage {
 	
 	@FindBy(css="div#work div.lava-link.passage h2:nth-child(2)")
 	private WebElement ktText5_Lbl;
+	
+	public void landingPageEmbibeLogo(){
+		waitUntilElementAppears(LP_embibe_logo);
+		Assert.assertTrue(LP_embibe_logo.isDisplayed(), "Embibe logo is not present in the landing page");
+		Reporter.log("Embibe logo is present in the landing page",true);
+	}
+	
+	public void scoreHigher_StartNow_Text(){
+		waitUntilElementAppears(scoreHigher_Lbl);
+		Assert.assertTrue(scoreHigher_Lbl.isDisplayed(), "ScoreHigher Label is not present in the landing page");
+		Reporter.log("ScoreHigher Label is present in the landing page",true);
+		waitUntilElementAppears(startNow_Btn);
+		Assert.assertTrue(startNow_Btn.isDisplayed(), "StartNow text is not present in the landing page");
+		Reporter.log("StartNow text is present in the landing page",true);
+		
+	}
+	
+	public void landingPageScrollingScreens() throws InterruptedException{
+		mouseHoverOnKt();
+		mouseHoverOnVideo();//
+		
+		
+		mouseHoverOnKt();
+		mouseHoverOnVideo();//
+		
+		scrollToElementViaJavascript(startLearning_Lbl);
+		Reporter.log("Able to scroll from 'start now' to 'search now' segments successfuly",true);
+		
+	}
+	
+	public void startLearning_SearchNow_Text() throws InterruptedException{
+		mouseHoverOnKt();
+		waitUntilElementAppears(startLearning_Lbl);
+		Assert.assertTrue(startLearning_Lbl.isDisplayed(), "StartLearning Label is not present in the landing page");
+		Reporter.log("StartLearning Label is present in the landing page",true);
+		waitUntilElementAppears(searchNow_Btn);
+		Assert.assertTrue(searchNow_Btn.isDisplayed(), "SearchNow text is not present in the landing page");
+		Reporter.log("SearchNow text is present in the landing page",true);
+	}
 	
 	public void waitForLandingPageToLoad(){
 		try{

@@ -286,25 +286,112 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(xpath="//*[@class='site-title']/a")
 	private WebElement examPageEmbibeLogo;
 
-	public void examLinks(int i,String examType) throws InterruptedException{
+
+	@FindBy(xpath="//a[@title='Embibe Exams']")
+	private WebElement embibeExamLogo;
+
+	public void clickExamPageEmbibeLogo(){
+		waitUntilElementAppears(embibeExamLogo);
+		clickElement(embibeExamLogo);
+		Reporter.log("Clicked on Embibe Logo", true);
+		assertSearchHomepage();
+	}
+	
+	public void examLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		refreshPage();
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		scrollToElementViaJavascript(scrolltoExams);
-		Thread.sleep(5000);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[1]/div/div[1]/div[1]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[1]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n '" + examTitle.getText() + "' is displayed", true);
-		clickElement(examPageEmbibeLogo);
-		Reporter.log("Clicked on Embibe Logo", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		clickExamPageEmbibeLogo();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
+	}
+	
+	public void classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Assert.assertTrue(wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]")).isDisplayed(), "Navigation failed");
+		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
+		
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n '" + classNum.getText() + "' is displayed", true);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		clickAskEmbibeLogo();
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
+		Thread.sleep(2000);
+	}
+	
+	public void examsPageLogin(int i,String examType){
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+	}
+	
+	public void mockTestsLinks(int i,String examType,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[3]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		clickExamPageEmbibeLogo();
+		wdriver.close();
+		clearCookies();
+		wdriver.switchTo().window(winHandleBefore);
+	}
+	
+	public void crackTestsLinks(int i,String examType,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[4]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
+	}
+	
+	public void resourcesTestsLinks(int i,String examType,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[5]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
 		Thread.sleep(10000);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
 	}
 
 	public boolean getSearchHomepage(){
@@ -343,6 +430,158 @@ public class SearchHomepage extends W_BasePage {
 			actualData.put("Disambiguated", true);
 		return actualData;
 	}
+	
+	public MyProfilePage referenceToMyProfilePage(){
+		return new MyProfilePage(wdriver);
+	}
+
+	@FindBy(xpath="//div[@class='ask-heading']")
+	private WebElement askPageTitle;
+	
+	public AskPage verifyAskLink() throws InterruptedException{
+		clickAsk();
+		waitUntilElementAppears(askPageTitle);
+		Assert.assertTrue(askPageTitle.isDisplayed(),"Navigation failed to ask page");
+		Reporter.log("Navigated to 'Ask' page",true);
+		return new AskPage(wdriver);
+	}
+	
+	@FindBy(css=".global-nav__left>a>img")
+	private WebElement embibeLogo_Ask;
+	
+	public void clickAskEmbibeLogo(){
+		waitUntilElementclickable(embibeLogo_Ask);
+		embibeLogo_Ask.click();
+		Reporter.log("Clicked on Embibe Logo", true);
+		assertSearchHomepage();
+	}
+	
+	@FindBy(xpath="//a[@href='/home']/img")
+	private WebElement embibeLogo_Jump;
+	
+	public void clickJumpEmbibeLogo(){
+		waitUntilElementclickable(embibeLogo_Jump);
+		embibeLogo_Jump.click();
+		Reporter.log("Clicked on Embibe Logo", true);
+	}
+	
+	@FindBy(css="a.navbarbrand.logo")
+	private WebElement embibeLogo_RankUp;
+	
+	public void clickRankupEmbibeLogo(){
+		waitUntilElementclickable(embibeLogo_RankUp);
+		embibeLogo_RankUp.click();
+		Reporter.log("Clicked on Embibe Logo", true);
+	}
+	
+	@FindBy(css="a>img.logo")
+	private WebElement embibeLogo_Institute;
+
+	public void clickInstituteEmbibeLogo(){
+		waitUntilElementclickable(embibeLogo_Institute);
+		embibeLogo_Institute.click();
+		Reporter.log("Clicked on Embibe Logo", true);
+	}
+	
+	@FindBy(css="div.swiper-button-next")
+	private WebElement clickNext;
+	
+	@FindBy(css="div.swiper-button-prev")
+	private WebElement clickPrev;
+	
+	public void clickNextSwiper() throws InterruptedException{
+		waitUntilElementAppears(clickNext);
+		Thread.sleep(2000);
+		clickNext.click();
+		Reporter.log("Clicked on swiper 'Next' button",true);
+	}
+	
+	public void clickPrevSwiper() throws InterruptedException{
+		waitUntilElementAppears(clickPrev);
+		Thread.sleep(2000);
+		clickPrev.click();
+		Reporter.log("Clicked on swiper 'Prev' button",true);
+	}
+	
+	@FindBy(xpath="//*[@class='shift-right no-margin']/a")
+	private WebElement facebook_icon;
+	
+	@FindBy(xpath="//*[@id='js_83']")
+	private WebElement fbmbibePageHeader;
+	
+	@FindBy(xpath="(//*[@class='shift-right ']/a)[1]")
+	private WebElement twitter_icon;
+	
+	@FindBy(xpath="//*[@class='ProfileHeaderCard-name']/a[text()='embibe']")
+	private WebElement twitterPageHeader;
+	
+	@FindBy(xpath="(//*[@class='shift-right ']/a)[2]")
+	private WebElement instagram_icon;
+	
+	@FindBy(xpath="//*[@title='embibe.me']")
+	private WebElement instagramPageHeader;
+	
+	@FindBy(xpath="(//*[@class='shift-right ']/a)[3]")
+	private WebElement youtube_icon;
+	
+	@FindBy(xpath="(//*[contains(text(),'embibe.com')])[3]")
+	private WebElement youtubePageHeader;
+	
+	public void clickFacebookIcon() throws InterruptedException{
+		scrollToElementViaJavascript(facebook_icon);
+		waitUntilElementAppears(facebook_icon);
+		Thread.sleep(2000);
+		facebook_icon.click();
+		Reporter.log("Clicked on 'facebook' icon",true);
+	}
+	
+	public void assertFacebookEmbibePage() throws InterruptedException{
+		Thread.sleep(2000);
+		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.facebook.com/embibe.me/");
+		Reporter.log("Navigated to facebook Page", true);
+	}
+	
+	public void clickTwitterIcon() throws InterruptedException{
+		scrollToElementViaJavascript(twitter_icon);
+		waitUntilElementAppears(twitter_icon);
+		Thread.sleep(2000);
+		twitter_icon.click();
+		Reporter.log("Clicked on 'twitter' icon",true);
+	}
+	
+	public void assertTwitterEmbibePage() throws InterruptedException{
+		Thread.sleep(2000);
+		Assert.assertEquals(wdriver.getCurrentUrl(), "https://twitter.com/embibe");
+		Reporter.log("Navigated to twitter Page", true);
+	}
+	
+	public void clickInstagramIcon() throws InterruptedException{
+		scrollToElementViaJavascript(instagram_icon);
+		waitUntilElementAppears(instagram_icon);
+		Thread.sleep(2000);
+		instagram_icon.click();
+		Reporter.log("Clicked on 'instagram' icon",true);
+	}
+	
+	public void assertInstagramEmbibePage() throws InterruptedException{
+		Thread.sleep(2000);
+		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.instagram.com/embibe.me/");
+		Reporter.log("Navigated to instagram Page", true);
+	}
+	
+	public void clickYoutubeIcon() throws InterruptedException{
+		scrollToElementViaJavascript(youtube_icon);
+		waitUntilElementAppears(youtube_icon);
+		Thread.sleep(2000);
+		youtube_icon.click();
+		Reporter.log("Clicked on 'youtube' icon",true);
+	}
+	
+	public void assertYoutubeEmbibePage(){
+		waitUntilElementclickable(youtubePageHeader);
+		Assert.assertTrue(youtubePageHeader.isDisplayed(), "Not navigated to youtube");
+		Reporter.log("Navigated to Youtube Page", true);
+	}	
 	
 	public void hoverOnFloatingKeywords(int count) throws InterruptedException{
 		waitUntilElementclickable(floatingKeywords.get(0));

@@ -35,8 +35,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
-import com.thoughtworks.selenium.Wait.WaitTimedOutException;
-
 @SuppressWarnings("unused")
 public class W_BasePage extends W_SuperBasePage 
 {
@@ -182,6 +180,32 @@ public class W_BasePage extends W_SuperBasePage
 	
 	@FindBy(css=".close-side-options")
 	private WebElement closeHamburger_Btn;
+	
+
+	String jeeMain_URL="https://www.embibe.com/exams/jee-main/";
+	String neet_URL="https://preprod.embibe.com/exams/neet/";
+	String aiims_URL="https://preprod.embibe.com/exams/aiims/";
+	String cbse_URL="https://preprod.embibe.com/exams/cbse/";
+	String jeeAdvanced_URL="https://preprod.embibe.com/exams/iit-jee-advanced/";
+	String bitsat_URL="https://preprod.embibe.com/exams/bitsat/";
+	String eamcet_URL="https://preprod.embibe.com/exams/ap-eamcet/";
+
+	String class_8_URL="https://preprod.embibe.com/foundation-08/test";
+	String class_9_URL="https://preprod.embibe.com/foundation-09/test";
+	String class_10_URL="https://preprod.embibe.com/foundation-10/test";
+	
+	String exam_jeeMain_URL="https://preprod.embibe.com/engineering/test/jee-main";
+	String exam_jeeAdvanced_URL="https://preprod.embibe.com/engineering/test/jee-advanced";
+	String exam_bitsat_URL="https://preprod.embibe.com/engineering/test/bitsat";
+	String exam_gujaratCet_URL="https://preprod.embibe.com/engineering/test/gujarat-cet";
+	String exam_AP_Eamcet_URL="https://preprod.embibe.com/engineering/test/ap-eamcet";
+	String exam_TS_Eamcet_URL="https://preprod.embibe.com/engineering/test/ts-eamcet";
+	String exam_neet_URL="https://preprod.embibe.com/medical/test/aipmt";
+	String exam_aiims_URL="https://preprod.embibe.com/medical/test/aiims";
+	String exam_bank_clerk_prelims_URL="https://preprod.embibe.com/bank/test/bank-clerk-prelims";
+	String exam_bank_po_prelims_URL="https://preprod.embibe.com/bank/test/bank-po-prelims";
+	
+
 
 	public void getPixelDataSignUpGoals() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		getPixelData("Data", "002.1.3(D)", goalDropdownOptionBank, "goalDropdownOptionBank");
@@ -203,6 +227,15 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "D_Guest 1st time user", jeeAdvancedSwiperFooter, "jeeAdvancedSwiperFooter");
 		getPixelData("Data", "D_Guest 1st time user", bitsatSwiperFooter, "bitsatSwiperFooter");
 		getPixelData("Data", "D_Guest 1st time user", neetSwiperFooter, "neetSwiperFooter");
+	}
+	
+	@FindBy(css=".react-typeahead-input.react-typeahead-usertext")
+	protected WebElement search_TB;
+	
+	public void assertSearchHomepage(){
+		waitUntilElementclickable(search_TB);
+		Assert.assertTrue(search_TB.isDisplayed(), "Not in Search Homepage");
+		Reporter.log("Navigated to Search HomePage", true);
 	}
 	
 	public void clickHamburger(){
@@ -325,10 +358,11 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on Study", true);
 	}
 	
-	public void clickJump(){
+	public JumpPage clickJump(){
 		waitUntilElementclickable(jump_Btn);
 		jump_Btn.click();
 		Reporter.log("Clicked on Jump", true);
+		return new JumpPage(wdriver);
 	}
 	
 	public void clickRank(){
@@ -502,6 +536,11 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Login Success", true);
 	}
 
+	public void verifyFailureLogin(){
+		Assert.assertTrue(login_Btn.isDisplayed(), "Login successful");
+		Reporter.log("Login Failed", true);
+	}
+	
 	public void clickUserDropdown(){
 		waitUntilElementclickable(userDropdown);
 		clickElementViaJavaScript(userDropdown);
@@ -534,7 +573,7 @@ public class W_BasePage extends W_SuperBasePage
 		return new SignUpPage(wdriver);
 	}
 
-	public MailinatorPage goToMalinatorPage(){
+	public MailinatorPage goToMailinatorPage(){
 		wdriver.navigate().to("http://www.mailinator.com/");
 		return new MailinatorPage(wdriver);
 	}
@@ -777,6 +816,11 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(signupEmailFieldError.isDisplayed(), "Failed to display warning for email field ");
 		Reporter.log("Warning '"+signupEmailFieldError.getText()+"' is displayed for already registered email id",true);
 	}
+	
+	public void justEnterLoginCredentials(String email){
+		enterText(emailPhone_TB, email);	
+		enterText(password_TB, "moolya123");
+		}
 	
 	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchDsl(String browser) throws IOException

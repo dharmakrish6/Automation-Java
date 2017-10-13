@@ -33,14 +33,14 @@ public class SHP_Func_18 extends W_BaseTest {
 		Reporter.log("User is navigated to Landing Page successfully", true);
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
-		shp.examLinks(1,"EXAMS");
-		shp.examLinks(1,"JEE Main");
-		shp.examLinks(2,"NEET");
-		shp.examLinks(3,"AIIMS");
-		shp.examLinks(4,"CBSE");
-		shp.examLinks(5,"JEE Advanced");
-		shp.examLinks(6,"BITSAT");
-		shp.examLinks(7,"EAMCET");
+		shp.examLinks(1,"EXAMS","");
+		shp.examLinks(1,"JEE Main","");
+		shp.examLinks(2,"NEET","");
+		shp.examLinks(3,"AIIMS","");
+		shp.examLinks(4,"CBSE","");
+		shp.examLinks(5,"JEE Advanced","");
+		shp.examLinks(6,"BITSAT","");
+		shp.examLinks(7,"EAMCET","");
 		Reporter.log("Navigation test is completed for 'EXAM' Module ",true);
 	}
 }

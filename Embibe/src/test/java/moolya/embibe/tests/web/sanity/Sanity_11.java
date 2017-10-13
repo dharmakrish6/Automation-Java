@@ -50,7 +50,7 @@ public class Sanity_11 extends W_BaseTest {
 		shp.assertSearchHomepage();
 		sup = shp.logout();
 		sup.clickForgotPasswordSignUpPage(email);
-		mp = sup.goToMalinatorPage();
+		mp = sup.goToMailinatorPage();
 		mp.goToInbox(email);
 		mp.openEmailSubject();
 		String window = mp.getMainWindowHandle();

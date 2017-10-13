@@ -195,7 +195,7 @@ public class ChooseMissionPage extends W_BasePage {
 		Reporter.log("Country '"+country+"' is selected", true);
 	}
 	
-	@FindBy(xpath="//*[@class='selectmission null']/div/a[@class='requestmission']")
+	@FindBy(xpath="//a[@class='requestmission']")
 	private WebElement chinaRequestMission;
 	
 	public void chinaRequestMission() {
@@ -256,7 +256,7 @@ public class ChooseMissionPage extends W_BasePage {
 	public void defaultGoal(){
 		String mission=defaultGoalText.getText();
 		Reporter.log("The default goal for guest user is : " + mission,true);
-		Assert.assertEquals(mission, "Missions available for Engineering");
+		Assert.assertEquals(mission, "Missions Available for Engineering");
 	}
 	
 	@FindBy(xpath="//*[@class='goal-selectors']/div/div/a[1]")
@@ -295,14 +295,18 @@ public class ChooseMissionPage extends W_BasePage {
 		Reporter.log("Clicked on Submit button",true);
 		Thread.sleep(5000);
 		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");
+		Reporter.log("'Request Mission' sent successfully",true);
+		clickElement(goToChooseMission_Btn);
 	}
 	
-	@FindBy(xpath="//*[@class='selectmission null']/div/a[@class='requestmission']/../p/a")
+	@FindBy(xpath="//*[@class='study']")
 	private WebElement studyLink;
 	
-	public void chinaStudy(){
+	public SearchHomepage chinaStudy(){
 		clickElement(studyLink);
 		Reporter.log("Clicked on 'STUDY'",true);
+		assertSearchHomepage();
+		return new SearchHomepage(wdriver);
 	}
 	
 	@FindBy(xpath="//*[@class='goal-selectors']/following::a[contains(text(),'Request a Mission')]")
@@ -324,7 +328,7 @@ public class ChooseMissionPage extends W_BasePage {
 			jse.executeScript("scroll(250, 0)");
 			Reporter.log(element.getText(), true);
 		}
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	@FindBy(xpath="//*[@id='enterExam']")
@@ -335,9 +339,10 @@ public class ChooseMissionPage extends W_BasePage {
 	
 	public void addNewExam(String newExam) throws InterruptedException{
 		enterText(enterExamField, newExam);
+		Reporter.log("Entered : "+newExam,true);
 		clickElement(addNewExam);
 		Assert.assertTrue(newlyAddedExamList.isDisplayed(),"Failed to add the exam into list");
-		Reporter.log(newlyAddedExamList.getText()+" is available in the list",true);
+		Reporter.log(newlyAddedExamList.getText()+" is available in the added list",true);
 		clickElement(submitSpecifyExam);
 		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");	
 		Thread.sleep(3000);	
@@ -384,7 +389,7 @@ public class ChooseMissionPage extends W_BasePage {
 		enterText(enterExamField, exam);
 		Reporter.log("Entered '"+exam+"' in the search field",true);
 		
-		for(int i=0;i<=11;i++){
+		for(int i=0;i<=10;i++){
 			String maxError=maxSelectionError.getText();
 			if(!maxSelectionError.isDisplayed())
 			{
@@ -408,7 +413,9 @@ public class ChooseMissionPage extends W_BasePage {
 		Reporter.log("Selected the first item in the list",true);
 		Thread.sleep(3000);
 		clickElement(requestBackButton);
+		Reporter.log("Clicked on 'Back'  button",true);
 		Assert.assertTrue(defaultGoalText.isDisplayed(), "Failed to navigate for 'Choose a Mission window'");
+		Reporter.log("Navigated for 'Choose a Mission window' successfully",true);
 		Thread.sleep(3000);
 	}
 	
@@ -488,7 +495,7 @@ public class ChooseMissionPage extends W_BasePage {
 		clickElement(submitExamButton);
 		Reporter.log("Clicked on exam submit button",true);
 		int list1Count= examLists.size();
-		Reporter.log("Number of related searched exams :  " + list1Count,true);
+		Reporter.log("Number of related searched exams :  " + list1Count+" Drop down is not present",true);
 	}	
 	
 	public void submitSpecifiedExam(String exam) throws InterruptedException{

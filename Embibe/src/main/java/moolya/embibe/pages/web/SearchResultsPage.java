@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -671,6 +673,114 @@ public class SearchResultsPage extends W_BasePage {
 		scrollToElementViaJavascript(behavioralMeterStatus_Lbl);
 		scrollVertically("-100");
 		mouseHoverOnElement(wdriver, behavioralMeterStatus_Lbl, "Mouse Overed on Behavioral Meter Status");
+	}
+	
+	@FindBy(css=".react-typeahead-input.react-typeahead-usertext")
+	private WebElement search_TB;
+	
+	public void editSearchField() throws InterruptedException{
+		Thread.sleep(2000);
+		for(int i=0;i<=5;i++){
+			search_TB.sendKeys(Keys.BACK_SPACE);
+			Thread.sleep(1000);
+		}
+		wdriver.findElement(By.cssSelector(".react-typeahead-input.react-typeahead-usertext")).sendKeys(" fine ");
+		Thread.sleep(3000);
+	}
+	
+	@FindBy(css="div.unlock-button")
+	private WebElement unlockJumpBtn;
+	
+	@FindBy(css="div.repeatables-container>div.heading")
+	private WebElement popularSearches_widget;
+	
+	public void widgets(){
+		scrollToElementViaJavascript(topicDescription_Lbl);
+		Assert.assertTrue(topicDescription_Lbl.isDisplayed(), "Related 'Topic Description' is not present");
+		Reporter.log("'Topic Description' widget is present",true );
+		scrollToElementViaJavascript(takeAtour_Btn);
+		Assert.assertTrue(takeAtour_Btn.isDisplayed(), "'Take a tour' button is not present");
+		Reporter.log("'Take a tour' widget is present",true );
+		scrollToElementViaJavascript(unlockJumpBtn);
+		Assert.assertTrue(unlockJumpBtn.isDisplayed(), "'Unlock' button is not present");
+		Reporter.log("'Unlock' widget is present",true );
+		scrollToElementViaJavascript(behavioralMeterStatus_Lbl);
+		Assert.assertTrue(behavioralMeterStatus_Lbl.isDisplayed(), "'BEHAVIOUR SOCIAL METER' is not present");
+		Reporter.log("'BEHAVIOUR SOCIAL METER' widget is present",true );
+		scrollToElementViaJavascript(askQuestion_TB);
+		Assert.assertTrue(askQuestion_TB.isDisplayed(), "'Ask a Question' widget is not present");
+		Reporter.log("'Ask a Question' widget is present",true );
+		scrollToElementViaJavascript(popularSearches_widget);
+		Assert.assertTrue(popularSearches_widget.isDisplayed(), "'Popular Searches' widget is not present");
+		Reporter.log("'Popular Searches' widget is present",true );
+	}
+	
+	//Showing Results Objects
+
+	@FindBy(xpath="//*[@class='srOptions']/ul/li")
+	private List<WebElement> showingResultsGoalList;
+	
+	@FindBy(css="div.srLine1 div.srOptions>ul>li.srOptionItem.expand")
+	private WebElement goalExpand_Btn;
+	
+	@FindBy(css="div.srLine1 div.srOptions>ul>li.srOptionItem.collapse")
+	private WebElement goalCollapse_Btn;
+	
+	//Specific Exam Objects
+	
+	@FindBy(xpath="//*[@class='srLine2']/div[2]/ul/li")
+	private List<WebElement> specificExamList;
+	
+	@FindBy(css=".srOptionItem.expand")
+	private WebElement examExpand_Btn;
+	
+	@FindBy(css=".srOptionItem.collapse")
+	private WebElement examCollapse_Btn;
+	
+	public void showingResults_Goals(){
+		List<WebElement> list =showingResultsGoalList;
+		Reporter.log("Showing Results for : ",true);
+		for(WebElement ele:list){
+			Reporter.log(ele.getText(),true);
+		}
+	}
+	
+	public void clickGoalExpandButton(){
+		waitUntilElementAppears(goalExpand_Btn);
+		clickElement(goalExpand_Btn);
+		Reporter.log("Clicked on Show Results 'Expand' button",true);
+	}
+	
+	public void clickGoalCollapseButton(){
+		waitUntilElementAppears(goalCollapse_Btn);
+		clickElement(goalCollapse_Btn);
+		Reporter.log("Clicked on Show Results 'Collapse' button",true);
+	}
+	
+	public void select_showingResults_Goal(int i){
+		String examName=wdriver.findElement(By.xpath("(//*[@class='srOptions']/ul/li)["+i+"]")).getText();
+		clickElement(wdriver.findElement(By.xpath("(//*[@class='srOptions']/ul/li)["+i+"]")));
+		Reporter.log("Cliked on : '"+examName+"'",true);
+	}
+
+	public void getspecificExamsList(){
+		List<WebElement> list =specificExamList;
+		Reporter.log("Specific Exams are : ",true);
+		for(WebElement ele:list){
+			Reporter.log(ele.getText(),true);
+		}
+	}
+	
+	public void clickExamExpandButton(){
+		waitUntilElementAppears(examExpand_Btn);
+		clickElement(examExpand_Btn);
+		Reporter.log("Clicked on Specific Exam's 'Expand' button",true);
+	}
+	
+	public void clickExamCollapseButton(){
+		waitUntilElementAppears(examCollapse_Btn);
+		clickElement(examCollapse_Btn);
+		Reporter.log("Clicked on Specific Exam's 'Collapse' button",true);
 	}
 
 
