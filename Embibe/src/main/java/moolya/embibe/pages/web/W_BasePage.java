@@ -2,9 +2,12 @@ package moolya.embibe.pages.web;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -14,6 +17,19 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.logging.LogType;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriverService;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -760,6 +776,107 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementAppears(signupEmailFieldError);
 		Assert.assertTrue(signupEmailFieldError.isDisplayed(), "Failed to display warning for email field ");
 		Reporter.log("Warning '"+signupEmailFieldError.getText()+"' is displayed for already registered email id",true);
+	}
+	
+	@SuppressWarnings({ "unused", "static-access"})
+	public WebDriver launchDsl(String browser) throws IOException
+	{
+		String dir = System.getProperty("user.dir");
+		String domain = getPropValue("domain");
+		String url = null;
+		if(domain.equalsIgnoreCase("test"))
+			url = getPropValue("testAppUrl");
+		else if(domain.equalsIgnoreCase("dev"))
+			url = getPropValue("devAppUrl");
+
+		if (browser.equalsIgnoreCase("ff")) 
+		{
+			wdriver = new FirefoxDriver();
+		}
+
+		//	Only for windows
+		else if(browser.equalsIgnoreCase("grid")){
+			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			DesiredCapabilities caps = DesiredCapabilities.chrome();
+			wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
+		}
+
+		else if(browser.equalsIgnoreCase("ieWinx32"))
+		{
+			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
+			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			ieCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+			wdriver = new InternetExplorerDriver(ieCapabilities);
+		}
+		//	Only for windows
+		else if(browser.equalsIgnoreCase("ieWinx64"))
+		{
+			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
+			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
+			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			ieCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+			wdriver = new InternetExplorerDriver(ieCapabilities);
+		}
+		//	Only for mac
+		else if(browser.equalsIgnoreCase("safari")){
+			wdriver = new SafariDriver();
+		}else if (browser.equalsIgnoreCase("chrome")) 
+		{
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			ChromeOptions options = new ChromeOptions();
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			//			options.addArguments("chrome.switches","--disable-extensions");
+			//			options.addArguments("chrome.switches","--disable-geolocation");
+			DesiredCapabilities caps = new DesiredCapabilities().chrome();
+			caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(caps);
+		}else if(browser.equalsIgnoreCase("opera32")){
+			System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
+			ChromeOptions options = new ChromeOptions();
+			options.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
+			DesiredCapabilities capabilities = new DesiredCapabilities();
+			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+			wdriver = new OperaDriver(capabilities);
+		}else if(browser.equalsIgnoreCase("opera64")){
+			if(System.getProperty("os.name").toLowerCase().contains("windows")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
+				ChromeOptions options = new ChromeOptions();
+				options.setBinary("C:/Program Files/Opera/launcher.exe");
+				DesiredCapabilities capabilities = new DesiredCapabilities();
+				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+				wdriver = new OperaDriver(capabilities);
+			}
+			else if(System.getProperty("os.name").toLowerCase().contains("mac")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
+				wdriver = new OperaDriver();
+			}
+		}else if (browser.equalsIgnoreCase("phantomjs")){
+			//			String userAgent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
+			//			System.setProperty("phantomjs.page.settings.userAgent", userAgent);
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setJavascriptEnabled(true);
+			caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+			caps.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
+			caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
+					"--web-security=false",
+					"--ssl-protocol=any",
+					"--ignore-ssl-errors=true",
+					"--webdriver-loglevel=INFO"
+			});
+			System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
+			wdriver = new PhantomJSDriver(caps);
+		}
+
+		wdriver.get("http://10.140.10.116:9090/");
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		wdriver.manage().window().maximize();
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
 	}
 	
 }
