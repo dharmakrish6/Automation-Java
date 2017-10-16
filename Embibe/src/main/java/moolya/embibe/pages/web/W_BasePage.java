@@ -21,9 +21,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerDriverService;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriverService;
 import org.openqa.selenium.remote.CapabilityType;
@@ -829,7 +832,6 @@ public class W_BasePage extends W_SuperBasePage
 	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchDsl(String browser) throws IOException
 	{
-		String dir = System.getProperty("user.dir");
 		String domain = getPropValue("domain");
 		String url = null;
 		if(domain.equalsIgnoreCase("test"))
@@ -839,6 +841,7 @@ public class W_BasePage extends W_SuperBasePage
 
 		if (browser.equalsIgnoreCase("ff")) 
 		{
+			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
 			wdriver = new FirefoxDriver();
 		}
 
@@ -849,22 +852,21 @@ public class W_BasePage extends W_SuperBasePage
 			wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
 		}
 
-		else if(browser.equalsIgnoreCase("ieWinx32"))
-		{
-			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
-			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			ieCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-			wdriver = new InternetExplorerDriver(ieCapabilities);
-		}
-		//	Only for windows
-		else if(browser.equalsIgnoreCase("ieWinx64"))
-		{
-			System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
-			DesiredCapabilities ieCapabilities = DesiredCapabilities.internetExplorer();
-			ieCapabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-			ieCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-			wdriver = new InternetExplorerDriver(ieCapabilities);
+		else if(browser.contains("ie")){
+			InternetExplorerDriverService ieService = null;
+			if(browser.equalsIgnoreCase("ieWinx32"))
+			{
+				System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
+			}
+			//	Only for windows
+			else if(browser.equalsIgnoreCase("ieWinx64"))
+			{
+				System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
+			}
+			InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+			ieOptions.destructivelyEnsureCleanSession();
+			ieOptions.introduceFlakinessByIgnoringSecurityDomains();
+			wdriver = new InternetExplorerDriver(ieOptions);
 		}
 		//	Only for mac
 		else if(browser.equalsIgnoreCase("safari")){
@@ -875,37 +877,31 @@ public class W_BasePage extends W_SuperBasePage
 				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
 				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
-			ChromeOptions options = new ChromeOptions();
+			ChromeOptions chromeOptions = new ChromeOptions();
 			LoggingPreferences logPrefs = new LoggingPreferences();
 			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
-			//			options.addArguments("chrome.switches","--disable-extensions");
-			//			options.addArguments("chrome.switches","--disable-geolocation");
-			DesiredCapabilities caps = new DesiredCapabilities().chrome();
-			caps.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
-			wdriver = new ChromeDriver(caps);
-		}else if(browser.equalsIgnoreCase("opera32")){
-			System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
-			ChromeOptions options = new ChromeOptions();
-			options.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
-			DesiredCapabilities capabilities = new DesiredCapabilities();
-			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			wdriver = new OperaDriver(capabilities);
-		}else if(browser.equalsIgnoreCase("opera64")){
-			if(System.getProperty("os.name").toLowerCase().contains("windows")){
-				System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
-				ChromeOptions options = new ChromeOptions();
-				options.setBinary("C:/Program Files/Opera/launcher.exe");
-				DesiredCapabilities capabilities = new DesiredCapabilities();
-				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-				wdriver = new OperaDriver(capabilities);
+			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(chromeOptions);
+		}
+		else if(browser.contains("opera")){
+			OperaOptions operaOptions = new OperaOptions();
+			if(browser.equalsIgnoreCase("opera32")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
+				operaOptions.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
+				wdriver = new OperaDriver(operaOptions);
+			}else if(browser.equalsIgnoreCase("opera64")){
+				if(System.getProperty("os.name").toLowerCase().contains("windows")){
+					System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
+					operaOptions.setBinary("C:/Program Files/Opera/launcher.exe");
+					wdriver = new OperaDriver(operaOptions);
+				}
+				else if(System.getProperty("os.name").toLowerCase().contains("mac")){
+					System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
+					wdriver = new OperaDriver();
+				}
 			}
-			else if(System.getProperty("os.name").toLowerCase().contains("mac")){
-				System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
-				wdriver = new OperaDriver();
-			}
-		}else if (browser.equalsIgnoreCase("phantomjs")){
-			//			String userAgent = "Mozilla/5.0 (Windows NT 6.0) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.41 Safari/535.1";
-			//			System.setProperty("phantomjs.page.settings.userAgent", userAgent);
+		}
+		else if (browser.equalsIgnoreCase("phantomjs")){
 			DesiredCapabilities caps = new DesiredCapabilities();
 			caps.setJavascriptEnabled(true);
 			caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
