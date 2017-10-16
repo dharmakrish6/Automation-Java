@@ -22,6 +22,7 @@ public class DslTest extends W_BaseTest {
 	private DslPage dslp;
 	private SearchHomepage shp;
 	private SearchResultsPage srp;
+	private String stream = "NA";
 	
 
 	@Test(dataProvider="getDslActualData")
@@ -33,11 +34,12 @@ public class DslTest extends W_BaseTest {
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchDsl(browser);
 		dslp = new DslPage(wdriver);
-		dslData = dslp.searchQuery(text);
+		dslData = dslp.searchQuery(text,stream);
 		lp = basepage.goToLandingPage();
 		lp.waitForLandingPageToLoad();
 		shp = lp.clickStartNow();
-		shp.login();
+		if(!stream.equalsIgnoreCase("na"))
+				shp.login();
 		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
 		actualData = shp.searchForDsl(disambiguated, text);
 		if(disambiguated){

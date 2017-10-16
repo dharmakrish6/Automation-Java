@@ -26,6 +26,10 @@ public class SearchResultsPage extends W_BasePage {
 		PageFactory.initElements(wdriver, this);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@FindBy(css=".react-typeahead-input.react-typeahead-hint")
+	private WebElement searchHint_TB;
+	
 
 	//	Showing Results for Objects
 	@FindBy(xpath="//div[@class='srWrapper']/div[@class='srLine1']//li[text()='Engineering']")
@@ -607,13 +611,12 @@ public class SearchResultsPage extends W_BasePage {
 			Thread.sleep(5000);
 			mouseHoverOnElement(wdriver, topicHeader_Lbl);
 			text = topicHeaderToolTip.getText();
-			if(text.length()==0){
-				waitUntilElementAppears(topicHeader_Lbl,30);
-				Thread.sleep(5000);	
-				mouseHoverOnElement(wdriver, topicHeader_Lbl);
-				text = topicHeaderToolTip.getText();
-			}
-		} catch (Exception e) {}
+		} catch (Exception e) {
+			waitUntilElementAppears(search_TB);
+			text  = searchHint_TB.getAttribute("value");
+			if(text.length()==0)
+				text = search_TB.getAttribute("value");
+		}
 		return text;
 	}
 	

@@ -27,25 +27,30 @@ public class DslPage extends W_BasePage {
 	@FindBy(tagName="body")
 	private WebElement resultBody;
 	
-	public HashMap<String,Object> searchQuery(String query) throws InterruptedException{
+	public HashMap<String,Object> searchQuery(String query,String stream) throws InterruptedException{
 		HashMap<String, Object> dslData = new HashMap<String, Object>();
 		waitUntilElementAppears(query_TB);
 		query_TB.clear();
 		query_TB.sendKeys(query);
-		stream_TB.clear();
-		stream_TB.sendKeys("engineering");
+		if(!stream.equalsIgnoreCase("na")){
+			stream_TB.clear();
+			stream_TB.sendKeys(stream);
+		}
 		waitUntilElementclickable(submit_Btn);
 		submit_Btn.click();
 		String resultText = null;
 		String[] resultTextLines1 = null;
 		boolean flag = true;
-		while(flag){
+		int c=0;
+		while(c<10){
 			try{
 			resultText = resultBody.getText();
 			resultTextLines1 = resultText.split("\n");
 			if(resultTextLines1.length>3)
-				flag=false;
+				c=10;
 			}catch(Exception e){}
+			Thread.sleep(500);
+			c++;
 		}
 		String[] finalResult;
 		boolean disambiguated = Boolean.parseBoolean(resultTextLines1[1].split(" ")[1].trim());
