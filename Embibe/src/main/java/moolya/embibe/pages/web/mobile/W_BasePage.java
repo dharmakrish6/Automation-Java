@@ -1,4 +1,4 @@
-package moolya.embibe.pages.web;
+package moolya.embibe.pages.web.mobile;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -82,16 +82,16 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(xpath="//div[@id='showInDesktopemailError']/preceding-sibling::input")
 	private WebElement emailPhone_TB;
 
-	@FindBy(xpath="//div[@id='showInDesktopemailError']/preceding-sibling::input")
+	@FindBy(id="emailArea")
 	private WebElement emailPhoneSignUp_TB;
 
-	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/preceding-sibling::input")
+	@FindBy(id="passwordArea")
 	private WebElement password_TB;
 
-	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/preceding-sibling::input")
+	@FindBy(id="passwordArea")
 	private WebElement passwordSignUp_TB;
 
-	@FindBy(xpath="//div[@id='showInDesktoppasswordConfirmError']/preceding-sibling::input")
+	@FindBy(name="passwordConfirm")
 	private WebElement confirmPasswordSignUp_Btn;
 
 	@FindBy(css=".Dropdown-control ")
@@ -103,7 +103,7 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../following-sibling::button")
 	private WebElement login_login_Btn;
 
-	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../following-sibling::button")
+	@FindBy(xpath="//div[@id='responsive-login-signuppasswordConfirmError']/../following-sibling::button")
 	private WebElement signUp_Btn;
 
 	@FindBy(xpath="(//div[@class='forget-pass']/a)[2]")
@@ -124,7 +124,7 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(xpath="(//button[@id='btn-google'])[2]")
 	private WebElement googleSignUp_Btn;
 
-	@FindBy(xpath="(//span[@class='register-user']/a)[2]")
+	@FindBy(xpath="(//span[@class='register-user']/a)[1]")
 	private WebElement register_Btn;
 
 	@FindBy(xpath="(//div[@class='registerlink'])[2]")
@@ -557,16 +557,6 @@ public class W_BasePage extends W_SuperBasePage
 	public void clearCookies(){
 		wdriver.manage().deleteAllCookies();
 	}
-	
-	public LogoutSignInPage logoutPP() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
- 		waitUntilElementclickable(userDropdown);
-//		clickElementViaJavaScript(userDropdown);
-		Thread.sleep(1000);
- 		userDropdown.click();
- 		waitUntilElementclickable(logout_Btn);
- 		logout_Btn.click();
- 		return new LogoutSignInPage(wdriver);
- 	}
 
 	public LandingPage goToLandingPage() throws IOException{
 		String domain = getPropValue("domain");
@@ -614,6 +604,16 @@ public class W_BasePage extends W_SuperBasePage
  		waitUntilElementclickable(logout_Btn);
  		logout_Btn.click();
  		return new SignUpPage(wdriver);
+ 	}
+	
+	public LogoutSignInPage logoutPP() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
+ 		waitUntilElementclickable(userDropdown);
+//		clickElementViaJavaScript(userDropdown);
+		Thread.sleep(1000);
+ 		userDropdown.click();
+ 		waitUntilElementclickable(logout_Btn);
+ 		logout_Btn.click();
+ 		return new LogoutSignInPage(wdriver);
  	}
 	
 	public static String[][] readDslUniqueValues(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -933,17 +933,6 @@ public class W_BasePage extends W_SuperBasePage
 		wdriver.manage().window().maximize();
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
 		return wdriver;
-	}
-	
-	@FindBy(css=".global-nav__left>a>img")
-	private WebElement embibeLogo_Ask;
-	
-	public SearchHomepage clickAskEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo_Ask);
-		embibeLogo_Ask.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-		assertSearchHomepage();
-		return new SearchHomepage(wdriver);
 	}
 	
 }

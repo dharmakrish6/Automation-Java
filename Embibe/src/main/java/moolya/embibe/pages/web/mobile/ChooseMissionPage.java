@@ -1,4 +1,4 @@
-package moolya.embibe.pages.web;
+package moolya.embibe.pages.web.mobile;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -6,11 +6,9 @@ import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -132,8 +130,6 @@ public class ChooseMissionPage extends W_BasePage {
 	public void clickRequestMission(){
 		waitUntilElementclickable(requestMission_Btn);
 		requestMission_Btn.click();
-		Assert.assertTrue(missionSearch_TB.isDisplayed(), "Request a Mission window is not opened");
-		Reporter.log("Request a Misson window is opened",true);
 	}
 	
 	public void requestMission(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -189,18 +185,14 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(css = ".Dropdown-option")
 	private List<WebElement> counrtyList;
 	
-	@FindBy(xpath="(//div[@class='selectmission null']/div/div/following::p[1])[1]")
+	@FindBy(xpath="//div[@class='selectmission null']/div/div/following::p[1]")
 	private WebElement assertChinaMisson;
 	
 	public void countryDropdown(String country) throws InterruptedException{
 		Assert.assertTrue(chooseCountry_DD.isDisplayed(), "'Country' dropdown is not present");
 		clickElement(chooseCountry_DD);
 		selectItemFromList(counrtyList, country);
-		Reporter.log("Selected '"+country+"' from the dropdown list",true);
-	}
-	
-	public void assertCountryIndia(){
-		Assert.assertTrue(selectGoalText.isDisplayed(), "Not inside the 'Choose a Mission' window");
+		Reporter.log("Country '"+country+"' is selected", true);
 	}
 	
 	@FindBy(xpath="//a[@class='requestmission']")
@@ -217,11 +209,8 @@ public class ChooseMissionPage extends W_BasePage {
 	}
 	
 	public SearchHomepage clickMissionClose(){
-		Reporter.log("--------------------------------------------------------------------------",true);
 		waitUntilElementclickable(missionClose_Btn);
 		missionClose_Btn.click();
-		Reporter.log("Clicked on 'Choose a mission' close button'",true);
-		assertSearchHomepage();
 		return new SearchHomepage(wdriver);
 	}
 	
@@ -250,95 +239,10 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(css = "div.goals")
 	private WebElement selectGoalText;
 	
-	@FindBy(css = "div.text-center.mission>a")
-	private WebElement chooseMission_Btn;
-	
-	@FindBy(css=".swiper-wrapper>a:nth-child(1)")
-	private WebElement drop_drag_1_point;
-	
-	@FindBy(css=".swiper-wrapper>a:nth-child(3)")
-	private WebElement drop_drag_3_point;
-	
-	@FindBy(css=".swiper-wrapper>a:nth-child(4)")
-	private WebElement drop_drag_4_point;
-	
-	@FindBy(css=".swiper-wrapper>a:nth-child(5)")
-	private WebElement hold_drag_R_point;
-	
-	@FindBy(css=".swiper-wrapper>a:nth-child(6)")
-	private WebElement drop_drag_6_point;
-	
-	@FindBy(css=".swiper-wrapper>a:nth-child(7)")
-	private WebElement drop_drag_7_point;
-	
-	public void swipeMissions_in_GoalSelectors() throws InterruptedException{
-		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop(drop_drag_4_point, drop_drag_1_point).perform();
-		Reporter.log("Swipe towards right side",true);
-		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop( drop_drag_4_point , drop_drag_7_point).perform();
-		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop( drop_drag_3_point , drop_drag_7_point).perform();
-		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop( drop_drag_1_point , drop_drag_4_point).perform();
-		Reporter.log("Swipe towards left side",true);
-		Thread.sleep(2000);
-	}
-	
-	public void selectGoal_and_Exam(String goal) throws InterruptedException{
+	public void selectGoal(String goal) throws InterruptedException{
 		selectItemFromList(goalList, goal);
 		Reporter.log("\n"+"Selected '" + goal + "' as a goal", true);
-		int noOfExam = specificGoalsListsNumber.size();
-		Reporter.log("Number of Links : " + noOfExam, true);
-		List<WebElement> list = specificGoalsListsName;
-		for (WebElement element : list) {
-			//String link = element.getAttribute("href");
-			//Reporter.log("Mission : " + element.getAttribute("textContent") + "  |  Link : " + link, true);
-			Reporter.log("Mission : " + element.getAttribute("textContent"), true);
-		}
-
-		for(int i=1;i<=noOfExam;i++){
-			WebElement examEle = wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/a)["+i+"]"));
-			Thread.sleep(5000);
-			clickElement(examEle);
-			Reporter.log("--------------------------------------------------------------------------",true);
-			Reporter.log("Clicked on '"+examEle.getText()+"'",true);
-			Thread.sleep(10000);
-			Reporter.log("Navigated to : "+ wdriver.getCurrentUrl(),true);
-			Thread.sleep(5000);
-			clickRankupEmbibeLogo();
-			Thread.sleep(5000);
-			chooseMission_Btn.click();
-			//Reporter.log("Clicked on Choose a Mission : ",true);
-			selectItemFromList(goalList, goal);
-			//Reporter.log("Selected '" + goal + "' as a goal", true);
-			if(i>=5){
-				(new Actions(wdriver)).dragAndDrop(drop_drag_4_point, drop_drag_1_point).perform();
-			}
-			else {
-				Reporter.log("");
-			}
-		}
-	}
-	
-	@FindBy(css="a.navbarbrand.logo")
-	private WebElement embibeLogo_RankUp;
-	
-	public void clickRankupEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo_RankUp);
-		embibeLogo_RankUp.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-	}
-	
-	public void selectedGoalLinks() throws InterruptedException{
-		int noOfExam = specificGoalsListsNumber.size();
-		
-		for(int i=0;i<=noOfExam;i++){
-			clickElement(wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/a)["+i+"]")));
-			Thread.sleep(5000);
-			Reporter.log("Current URL is : "+ wdriver.getCurrentUrl());
-			
-		}
+		Reporter.log("Number of Links : " + specificGoalsListsNumber.size(), true);
 		List<WebElement> list = specificGoalsListsName;
 		for (WebElement element : list) {
 			String link = element.getAttribute("href");
@@ -351,7 +255,7 @@ public class ChooseMissionPage extends W_BasePage {
 	
 	public void defaultGoal(){
 		String mission=defaultGoalText.getText();
-		Reporter.log("The default goal for guest user in 'Choose a Mission' is : " + mission,true);
+		Reporter.log("The default goal for guest user is : " + mission,true);
 		Assert.assertEquals(mission, "Missions Available for Engineering");
 	}
 	
@@ -591,14 +495,14 @@ public class ChooseMissionPage extends W_BasePage {
 		clickElement(submitExamButton);
 		Reporter.log("Clicked on exam submit button",true);
 		int list1Count= examLists.size();
-		Reporter.log("Number of related searched exams :  " + list1Count+".Hence, Drop down is not present",true);
+		Reporter.log("Number of related searched exams :  " + list1Count+" Drop down is not present",true);
 	}	
 	
 	public void submitSpecifiedExam(String exam) throws InterruptedException{
 		enterText(enterExamField,exam);
 		Reporter.log("Entered '"+exam+"' in the search field",true);
 		String item = selectFirstListItem.getText();
-		Reporter.log("Selected an '"+item+"' exam in the list",true);
+		Reporter.log("Selecting an '"+item+"' exam in the list",true);
 		clickElement(selectFirstListItem);
 		clickElement(submitSpecifyExam);
 		Reporter.log("Clicked on exam submit button",true);
@@ -615,7 +519,4 @@ public class ChooseMissionPage extends W_BasePage {
 		Reporter.log("Clicked on 'Go to Choose a mission'",true);
 		defaultGoal();
 	}
-	
-	
-	
 }

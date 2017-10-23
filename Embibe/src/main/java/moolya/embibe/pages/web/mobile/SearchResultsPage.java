@@ -1,4 +1,4 @@
-package moolya.embibe.pages.web;
+package moolya.embibe.pages.web.mobile;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -341,7 +341,7 @@ public class SearchResultsPage extends W_BasePage {
 
 	@FindBy(css="div.askWrapper input.inputQuestion")
 	private WebElement askQuestion_TB;
-
+	
 	@FindBy(css="div.askWrapper a.askButton")
 	private WebElement askQuestion_Btn;
 
@@ -372,38 +372,8 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(css=".concept.common-margin+div>div.common-margin")
 	private WebElement mostViewedVideos;
 	
-	@FindBy(xpath="//div[text()='Most Viewed Videos']/..//div[@class='customer-swiper-conatiner']")
+	@FindBy(css="//div[text()='Most Viewed Videos']/..//div[@class='customer-swiper-conatiner']")
 	private WebElement videosLayout_List;
-	
-	@FindBy(xpath="//div[contains(text(),'Concepts in')]/following-sibling::div")
-	private WebElement conceptsInWrapper;
-	
-	@FindBy(xpath="//*[contains(@class,'practice-question-container')]//div[@class='header']/p[text()='Most important questions']/../../..")
-	private WebElement mostImportantQuestionsPracticeContainer;
-	
-	@FindBy(xpath="//*[contains(@class,'practice-question-container')]//div[@class='header']/p[text()='Previous year questions']/../../..")
-	private WebElement previousYearQuestionsContainer;
-	
-	@FindBy(xpath="//*[contains(@class,'practice-question-container')]//div[@class='header']/p[text()='Questions rankers got wrong']/../../..")
-	private WebElement questionsRankersGotWrongContainer;
-	
-	@FindBy(css=".unlockJumpWrapper")
-	private WebElement unlockJumpWrapper;
-	
-	@FindBy(css=".cheatSheetWrap .border")
-	private WebElement cheatSheetWrapper;
-	
-	@FindBy(xpath="//div[contains(@class,'heading') and text()='Chapter Test']/..//div[@class='testWrap']")
-	private WebElement chapterTestContainer;
-	
-	@FindBy(xpath="//div[contains(@class,'progress-wrapper')]/..")
-	private WebElement practiceProgressWrapper;
-	
-	@FindBy(css=".askWrapper")
-	private WebElement askWrapper;
-	
-	@FindBy(css=".repeatables-container .border")
-	private WebElement popularSearchesContainer;
 	
 	@FindBy(css=".paginationCont>ul>li.previous>a")
 	private WebElement pageCountPrevious_Btn;
@@ -552,6 +522,36 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(css="ul.bottom-content>li:nth-child(10)")
 	private WebElement footer_Youtube;
 	
+	@FindBy(xpath="//div[contains(text(),'Concepts in')]/following-sibling::div")
+	private WebElement conceptsInWrapper;
+	
+	@FindBy(xpath="//*[contains(@class,'practice-question-container')]//div[@class='header']/p[text()='Most important questions']/../../..")
+	private WebElement mostImportantQuestionsPracticeContainer;
+	
+	@FindBy(xpath="//*[contains(@class,'practice-question-container')]//div[@class='header']/p[text()='Previous year questions']/../../..")
+	private WebElement previousYearQuestionsContainer;
+	
+	@FindBy(xpath="//*[contains(@class,'practice-question-container')]//div[@class='header']/p[text()='Questions rankers got wrong']/../../..")
+	private WebElement questionsRankersGotWrongContainer;
+	
+	@FindBy(css=".unlockJumpWrapper")
+	private WebElement unlockJumpWrapper;
+	
+	@FindBy(css=".cheatSheetWrap .border")
+	private WebElement cheatSheetWrapper;
+	
+	@FindBy(xpath="//div[contains(@class,'heading') and text()='Chapter Test']/..//div[@class='testWrap']")
+	private WebElement chapterTestContainer;
+	
+	@FindBy(xpath="//div[contains(@class,'progress-wrapper')]/..")
+	private WebElement practiceProgressWrapper;
+	
+	@FindBy(css=".askWrapper")
+	private WebElement askWrapper;
+	
+	@FindBy(css=".repeatables-container .border")
+	private WebElement popularSearchesContainer;
+	
 	public OcularResult checkShowResultsForEngineeringButton(){
 		waitUntilElementclickable(showForEngineering_Btn);
 		return getElementPixelPerfectness(this, showForEngineering_Btn, "showForEngineering_Btn");
@@ -580,55 +580,55 @@ public class SearchResultsPage extends W_BasePage {
 		
 		getPixelData("Data", "201.3-a non registered user", pageCountPrevious_Btn, "pageCountPrevious_Btn");
 		getPixelData("Data", "201.3-a non registered user", pageCountNext_Btn, "pageCountNext_Btn");
-		getPixelData("Data", "201.3-a non registered user", exams_Footer_Header, "exams_Footer_Header");
-		getPixelData("Data", "201.3-a non registered user", classes_Footer_Header, "classes_Footer_Header");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_Header, "mockTests_Footer_Header");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_Header, "crack_Footer_Header");
-		getPixelData("Data", "201.3-a non registered user", resources_Footer_Header, "resources_Footer_Header");
-		
-		getPixelData("Data", "201.3-a non registered user", exams_FooterJEEMain, "exams_FooterJEEMain");
-		getPixelData("Data", "201.3-a non registered user", exams_FooterNEET, "exams_FooterNEET");
-		getPixelData("Data", "201.3-a non registered user", exams_FooterAIIMS, "exams_FooterAIIMS");
-		getPixelData("Data", "201.3-a non registered user", exams_FooterCBSE, "exams_FooterCBSE");
-		getPixelData("Data", "201.3-a non registered user", exams_FooterJEEAdvanced, "exams_FooterJEEAdvanced");
-		getPixelData("Data", "201.3-a non registered user", exams_FooterBITSAT, "exams_FooterBITSAT");
-		getPixelData("Data", "201.3-a non registered user", class8_Footer, "class8_Footer");
-		getPixelData("Data", "201.3-a non registered user", class9_Footer, "class9_Footer");
-		getPixelData("Data", "201.3-a non registered user", class10_Footer, "class10_Footer");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_JEEMain, "mockTests_Footer_JEEMain");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_JEEAdvanced, "mockTests_Footer_JEEAdvanced");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_BITSAT, "mockTests_Footer_BITSAT");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_Gujarat_CET, "mockTests_Footer_Gujarat_CET");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_AP_EAMCET, "mockTests_Footer_AP_EAMCET");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_TS_EAMCET, "mockTests_Footer_TS_EAMCET");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_NEET, "mockTests_Footer_NEET");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_AIIMS, "mockTests_Footer_AIIMS");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_BankClerkPrelims, "mockTests_Footer_BankClerkPrelims");
-		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_BankPOPrelims, "mockTests_Footer_BankPOPrelims");	
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_JEEMain, "crack_Footer_JEEMain");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_JEEAdvanced, "crack_Footer_JEEAdvanced");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_BITSAT, "crack_Footer_BITSAT");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_AP_EAMCET, "crack_Footer_AP_EAMCET");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_TS_EAMCET, "crack_Footer_TS_EAMCET");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_NEET, "crack_Footer_NEET");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_AIIMS, "crack_Footer_AIIMS");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_BankClerkPrelims, "crack_Footer_BankClerkPrelims");
-		getPixelData("Data", "201.3-a non registered user", crack_Footer_BankPOPrelims, "crack_Footer_BankPOPrelims");
-		
-		
-		getPixelData("Data", "201.3-a non registered user", resources_Footer_CEOblog, "resources_Footer_CEOblog");
-		getPixelData("Data", "201.3-a non registered user", resources_Footer_Articles, "resources_Footer_Articles");
-		getPixelData("Data", "201.3-a non registered user", resources_Footer_CollegePredictor, "resources_Footer_CollegePredictor");
-		getPixelData("Data", "201.3-a non registered user", footer_AboutUs, "footer_AboutUs");	
-		getPixelData("Data", "201.3-a non registered user", footer_Press, "footer_Press");
-		getPixelData("Data", "201.3-a non registered user", footer_ContactUs, "footer_ContactUs");
-		getPixelData("Data", "201.3-a non registered user", footer_TermsConditions, "footer_TermsConditions");
-		getPixelData("Data", "201.3-a non registered user", footer_TakeDownPolicy, "footer_TakeDownPolicy");
-		getPixelData("Data", "201.3-a non registered user", footer_PrivacyPolicy, "footer_PrivacyPolicy");
-		getPixelData("Data", "201.3-a non registered user", footer_Facebook, "footer_Facebook");
-		getPixelData("Data", "201.3-a non registered user", footer_Twitter, "footer_Twitter");
-		getPixelData("Data", "201.3-a non registered user", footer_Instagram, "footer_Instagram");
-		getPixelData("Data", "201.3-a non registered user", footer_Youtube, "footer_Youtube");	
+//		getPixelData("Data", "201.3-a non registered user", exams_Footer_Header, "exams_Footer_Header");
+//		getPixelData("Data", "201.3-a non registered user", classes_Footer_Header, "classes_Footer_Header");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_Header, "mockTests_Footer_Header");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_Header, "crack_Footer_Header");
+//		getPixelData("Data", "201.3-a non registered user", resources_Footer_Header, "resources_Footer_Header");
+//		
+//		getPixelData("Data", "201.3-a non registered user", exams_FooterJEEMain, "exams_FooterJEEMain");
+//		getPixelData("Data", "201.3-a non registered user", exams_FooterNEET, "exams_FooterNEET");
+//		getPixelData("Data", "201.3-a non registered user", exams_FooterAIIMS, "exams_FooterAIIMS");
+//		getPixelData("Data", "201.3-a non registered user", exams_FooterCBSE, "exams_FooterCBSE");
+//		getPixelData("Data", "201.3-a non registered user", exams_FooterJEEAdvanced, "exams_FooterJEEAdvanced");
+//		getPixelData("Data", "201.3-a non registered user", exams_FooterBITSAT, "exams_FooterBITSAT");
+//		getPixelData("Data", "201.3-a non registered user", class8_Footer, "class8_Footer");
+//		getPixelData("Data", "201.3-a non registered user", class9_Footer, "class9_Footer");
+//		getPixelData("Data", "201.3-a non registered user", class10_Footer, "class10_Footer");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_JEEMain, "mockTests_Footer_JEEMain");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_JEEAdvanced, "mockTests_Footer_JEEAdvanced");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_BITSAT, "mockTests_Footer_BITSAT");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_Gujarat_CET, "mockTests_Footer_Gujarat_CET");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_AP_EAMCET, "mockTests_Footer_AP_EAMCET");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_TS_EAMCET, "mockTests_Footer_TS_EAMCET");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_NEET, "mockTests_Footer_NEET");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_AIIMS, "mockTests_Footer_AIIMS");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_BankClerkPrelims, "mockTests_Footer_BankClerkPrelims");
+//		getPixelData("Data", "201.3-a non registered user", mockTests_Footer_BankPOPrelims, "mockTests_Footer_BankPOPrelims");	
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_JEEMain, "crack_Footer_JEEMain");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_JEEAdvanced, "crack_Footer_JEEAdvanced");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_BITSAT, "crack_Footer_BITSAT");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_AP_EAMCET, "crack_Footer_AP_EAMCET");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_TS_EAMCET, "crack_Footer_TS_EAMCET");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_NEET, "crack_Footer_NEET");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_AIIMS, "crack_Footer_AIIMS");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_BankClerkPrelims, "crack_Footer_BankClerkPrelims");
+//		getPixelData("Data", "201.3-a non registered user", crack_Footer_BankPOPrelims, "crack_Footer_BankPOPrelims");
+//		
+//		
+//		getPixelData("Data", "201.3-a non registered user", resources_Footer_CEOblog, "resources_Footer_CEOblog");
+//		getPixelData("Data", "201.3-a non registered user", resources_Footer_Articles, "resources_Footer_Articles");
+//		getPixelData("Data", "201.3-a non registered user", resources_Footer_CollegePredictor, "resources_Footer_CollegePredictor");
+//		getPixelData("Data", "201.3-a non registered user", footer_AboutUs, "footer_AboutUs");	
+//		getPixelData("Data", "201.3-a non registered user", footer_Press, "footer_Press");
+//		getPixelData("Data", "201.3-a non registered user", footer_ContactUs, "footer_ContactUs");
+//		getPixelData("Data", "201.3-a non registered user", footer_TermsConditions, "footer_TermsConditions");
+//		getPixelData("Data", "201.3-a non registered user", footer_TakeDownPolicy, "footer_TakeDownPolicy");
+//		getPixelData("Data", "201.3-a non registered user", footer_PrivacyPolicy, "footer_PrivacyPolicy");
+//		getPixelData("Data", "201.3-a non registered user", footer_Facebook, "footer_Facebook");
+//		getPixelData("Data", "201.3-a non registered user", footer_Twitter, "footer_Twitter");
+//		getPixelData("Data", "201.3-a non registered user", footer_Instagram, "footer_Instagram");
+//		getPixelData("Data", "201.3-a non registered user", footer_Youtube, "footer_Youtube");	
 	}
 	
 	public void assertSearchResultsPage(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -649,15 +649,13 @@ public class SearchResultsPage extends W_BasePage {
 	public String getSearchResultTopicHeader(){
 		String text = "";
 		try {
-			waitUntilElementAppears(topicHeader_Lbl,30);
+			waitUntilElementAppears(topicHeader_Lbl);
 			Thread.sleep(5000);
 			mouseHoverOnElement(wdriver, topicHeader_Lbl);
 			text = topicHeaderToolTip.getText();
 		} catch (Exception e) {
 			waitUntilElementAppears(search_TB);
 			text  = searchHint_TB.getAttribute("value");
-			if(text.length()==0)
-				text = search_TB.getAttribute("value");
 		}
 		return text;
 	}
@@ -668,11 +666,11 @@ public class SearchResultsPage extends W_BasePage {
 			waitUntilElementAppears(search_TB);
 			Thread.sleep(2000);
 			text = searchHint_TB.getAttribute("value");
- 			if(text.length()==0)
- 				text = search_TB.getAttribute("value");
+			if(text.length()==0)
+				text = search_TB.getAttribute("value");
 		} catch (Exception e) {}
- 		return text;
- 	}
+		return text;
+	}
 	
 	public void selectGoal(String goal,String exam) throws InterruptedException{
 		waitUntilElementclickable(showingResultsFor_List.get(0));
@@ -750,6 +748,9 @@ public class SearchResultsPage extends W_BasePage {
 	
 	@FindBy(css="div.repeatables-container>div.heading")
 	private WebElement popularSearches_widget;
+	
+	@FindBy(css=".derivedAndLeadsWrap .heading")
+	private WebElement relatedConcepts_Lbl;
 	
 	public void widgets(){
 		scrollToElementViaJavascript(topicDescription_Lbl);
@@ -839,239 +840,9 @@ public class SearchResultsPage extends W_BasePage {
 		clickElement(examCollapse_Btn);
 		Reporter.log("Clicked on Specific Exam's 'Collapse' button",true);
 	}
-	
-	@FindBy(css="div.swiper-slide:nth-child(2)")
-	private WebElement scrolltoExams;
-	
-	@FindBy(xpath="//*[@class='entry-title']")
-	private WebElement examTitle;
-	
-	@FindBy(css="div.title-area>p.site-title")
-	private WebElement examPageEmbibeLogo;
-	
-	@FindBy(css="img.global-nav__logo:nth-child(1)")
-	private WebElement embibeLogo_mockTest;
 
-	
-	public void clickExamPageEmbibeLogo_SRP(){
-		try{
-			waitUntilElementAppears(examPageEmbibeLogo);
-			clickElement(examPageEmbibeLogo);
-			Reporter.log("Clicked on Embibe Logo", true);
-			assertSearchHomepage();
-		}
-		catch(Exception e){
-			waitUntilElementAppears(embibeLogo_mockTest);
-			clickElement(embibeLogo_mockTest);
-			Reporter.log("Clicked on Embibe Logo", true);
-			assertSearchHomepage();
-		}
-		
-	}
-	
-	@FindBy(xpath="(//*[contains(text(),'Use precise location')])[1]")
-	private WebElement examFooter;
-	
-	public void examLinks(int i,String examType,String expURL) throws InterruptedException{
-		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(5000);
-		scrollToElementViaJavascript(examFooter);
-		Thread.sleep(2000);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[1]/li/a)["+i+"]")));
-		Reporter.log("Clicked on "+ examType, true);
-		Thread.sleep(10000);
-		String winHandleBefore = wdriver.getWindowHandle();
-		for (String winHandle : wdriver.getWindowHandles()) {
-			wdriver.switchTo().window(winHandle);
-		}
-		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\nPage Title : '" + examTitle.getText() + "' is displayed", true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		clickExamPageEmbibeLogo_SRP();
-		wdriver.close();
-		wdriver.switchTo().window(winHandleBefore);
-		System.out.println("switched to parent window");
-	}
-
-	@FindBy(css=".global-nav__left>a>img")
-	private WebElement embibeLogo_Ask;
-	
-	public void classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
-		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(2000);
-		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[2]/li/a)["+i+"]")));
-		Reporter.log("Clicked on "+ examType, true);
-		String winHandleBefore = wdriver.getWindowHandle();
-		for (String winHandle : wdriver.getWindowHandles()) {
-			wdriver.switchTo().window(winHandle);
-		}
-		Assert.assertTrue(wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]")).isDisplayed(), "Navigation failed");
-		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
-		
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n '" + classNum.getText() + "' is displayed", true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		embibeLogo_Ask.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-		wdriver.close();
-		wdriver.switchTo().window(winHandleBefore);
-		Thread.sleep(2000);
-	}
-	
-	public void examsPageLogin(int i,String examType){
-		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
-		Reporter.log("Clicked on "+ examType, true);
-	}
-	
-	@FindBy(xpath="//option[@value=0 AND @selected='selected']")
-	private WebElement examPage_Default_DropdownName;
-	
-	public void mockTestsLinks(int i,String examType,String expURL) throws InterruptedException{
-		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(2000);
-		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[3]/li/a)[1]")));
-		Reporter.log("Clicked on "+ examType, true);
-		Thread.sleep(2000);
-		String winHandleBefore = wdriver.getWindowHandle();
-		for (String winHandle : wdriver.getWindowHandles()) {
-			wdriver.switchTo().window(winHandle);
-		}
-		//Assert.assertTrue(examPage_Default_DropdownName.isDisplayed(), "Navigation failed");
-		//Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Default Exam on Dropdown list is : '" + examPage_Default_DropdownName.getText() + "' is displayed", true);
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		clickExamPageEmbibeLogo_SRP();
-		wdriver.close();
-		wdriver.switchTo().window(winHandleBefore);
-	}
-	
-	public void crackTestsLinks(int i,String examType,String expURL) throws InterruptedException{
-		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(2000);
-		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[4]/li/a)[1]")));
-		Reporter.log("Clicked on "+ examType, true);
-		String winHandleBefore = wdriver.getWindowHandle();
-		for (String winHandle : wdriver.getWindowHandles()) {
-			wdriver.switchTo().window(winHandle);
-		}
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		wdriver.close();
-		wdriver.switchTo().window(winHandleBefore);
-	}
-	
-	public void resourcesTestsLinks(int i,String examType,String expURL) throws InterruptedException{
-		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(2000);
-		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[5]/li/a)[1]")));
-		Reporter.log("Clicked on "+ examType, true);
-		String winHandleBefore = wdriver.getWindowHandle();
-		for (String winHandle : wdriver.getWindowHandles()) {
-			wdriver.switchTo().window(winHandle);
-		}
-		Thread.sleep(10000);
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		wdriver.close();
-		wdriver.switchTo().window(winHandleBefore);
-	}
-	
-	@FindBy(xpath="//*[@class='shift-right no-margin']/a")
-	private WebElement facebook_icon;
-	
-	@FindBy(xpath="//*[@id='js_83']")
-	private WebElement fbmbibePageHeader;
-	
-	@FindBy(xpath="(//*[@class='shift-right ']/a)[1]")
-	private WebElement twitter_icon;
-	
-	@FindBy(xpath="//*[@class='ProfileHeaderCard-name']/a[text()='embibe']")
-	private WebElement twitterPageHeader;
-	
-	@FindBy(xpath="(//*[@class='shift-right ']/a)[2]")
-	private WebElement instagram_icon;
-	
-	@FindBy(xpath="//*[@title='embibe.me']")
-	private WebElement instagramPageHeader;
-	
-	@FindBy(xpath="(//*[@class='shift-right ']/a)[3]")
-	private WebElement youtube_icon;
-	
-	@FindBy(xpath="(//*[contains(text(),'embibe.com')])[3]")
-	private WebElement youtubePageHeader;
-	
-	public void clickFacebookIcon() throws InterruptedException{
-		scrollToElementViaJavascript(facebook_icon);
-		waitUntilElementAppears(facebook_icon);
-		Thread.sleep(2000);
-		facebook_icon.click();
-		Reporter.log("Clicked on 'facebook' icon",true);
-	}
-	
-	public void assertFacebookEmbibePage() throws InterruptedException{
-		Thread.sleep(2000);
-		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.facebook.com/embibe.me/");
-		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
-		Reporter.log("Navigated to facebook Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
-	}
-	
-	public void clickTwitterIcon() throws InterruptedException{
-		scrollToElementViaJavascript(twitter_icon);
-		waitUntilElementAppears(twitter_icon);
-		Thread.sleep(2000);
-		twitter_icon.click();
-		Reporter.log("Clicked on 'twitter' icon",true);
-	}
-	
-	public void assertTwitterEmbibePage() throws InterruptedException{
-		Thread.sleep(2000);
-		Assert.assertEquals(wdriver.getCurrentUrl(), "https://twitter.com/embibe");
-		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
-		Reporter.log("Navigated to twitter Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
-	}
-	
-	public void clickInstagramIcon() throws InterruptedException{
-		scrollToElementViaJavascript(instagram_icon);
-		waitUntilElementAppears(instagram_icon);
-		Thread.sleep(2000);
-		instagram_icon.click();
-		Reporter.log("Clicked on 'instagram' icon",true);
-	}
-	
-	public void assertInstagramEmbibePage() throws InterruptedException{
-		Thread.sleep(2000);
-		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.instagram.com/embibe.me/");
-		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
-		Reporter.log("Navigated to instagram Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
-	}
-	
-	public void clickYoutubeIcon() throws InterruptedException{
-		scrollToElementViaJavascript(youtube_icon);
-		waitUntilElementAppears(youtube_icon);
-		Thread.sleep(2000);
-		youtube_icon.click();
-		Reporter.log("Clicked on 'youtube' icon",true);
-	}
-	
-	public void assertYoutubeEmbibePage(){
-		waitUntilElementclickable(youtubePageHeader);
-		Assert.assertTrue(youtubePageHeader.isDisplayed(), "Not navigated to youtube");
-		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
-		Reporter.log("Navigated to Youtube Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
-	}
-	
-	@FindBy(css=".derivedAndLeadsWrap .heading")
-	private WebElement relatedConcepts_Lbl;
-	
 	public void scrollToRelatedConcepts(){
 		scrollToElementViaJavascript(relatedConcepts_Lbl);
 	}
+
 }

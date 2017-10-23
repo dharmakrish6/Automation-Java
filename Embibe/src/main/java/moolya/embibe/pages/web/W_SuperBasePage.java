@@ -647,14 +647,14 @@ public class W_SuperBasePage extends JavaUtils{
 	
 
 	public String getElementWidthViaJavascript(WebElement e){
-		long width = Long.parseLong((String)((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetWidth;", e));
-		return Long.toString(width);
-	}
+		long width = Long.parseLong(String.valueOf(((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetWidth;", e)));
+ 		return Long.toString(width);
+ 	}
 
 	public String getElementHeightViaJavascript(WebElement e){
-		long height = Long.parseLong((String)((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetHeight;", e));
-		return Long.toString(height);
-	}
+		long height = Long.parseLong(String.valueOf(((JavascriptExecutor) wdriver).executeScript("return arguments[0].offsetHeight;", e)));
+ 		return Long.toString(height);
+ 	}
 
 	public  void scrollVertically(String xValue) 
 	{    

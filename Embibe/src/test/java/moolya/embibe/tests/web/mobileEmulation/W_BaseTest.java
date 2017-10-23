@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web;
+package moolya.embibe.tests.web.mobileEmulation;
 
 import java.io.File;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public WebDriver wdriver;
 	/*@BeforeTest
 	public void setUp() throws IOException, ATUTestRecorderException{
 		String dir = System.getProperty("user.dir");
-		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
 		Date date = new Date();
 		if(!new File(dir+"\\script-videos").exists())
 			new File(dir+"\\script-videos").mkdirs();
@@ -86,6 +86,16 @@ public WebDriver wdriver;
 	/*@AfterTest
 	public void tearDown(){
 		
+	}*/
+	
+	/*@DataProvider//(parallel=true)
+	public Object[][] deviceData(){
+		//	"Xperia XA Dual","Galaxy S5","Nexus 5","Galaxy Note 3","iPad Mini","iPhone 6 Plus","iPhone 6"
+		String[] devices = {"Nexus 5"}; 
+		Object[][] obj = new Object[devices.length][1];
+		for(int i=0;i<devices.length;i++)
+			obj[i][0]=devices[i];
+		return obj;
 	}*/
 	
 	@DataProvider(parallel=true)

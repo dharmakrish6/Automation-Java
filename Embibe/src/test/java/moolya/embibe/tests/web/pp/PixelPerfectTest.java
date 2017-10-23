@@ -1,20 +1,14 @@
 package moolya.embibe.tests.web.pp;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.json.JSONException;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import com.testautomationguru.ocular.comparator.OcularResult;
 
 import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.ChooseMissionPage;
@@ -33,7 +27,6 @@ public class PixelPerfectTest{
 	private SearchHomepage shp;
 	private W_BasePage basepage;
 	private WebDriver wdriver;
-	private OcularResult or;
 	private LoginPage lop;
 	private SearchResultsPage srp;
 	private ChooseMissionPage cmp;
@@ -48,48 +41,42 @@ public class PixelPerfectTest{
 		wdriver = basepage.launchWebApp(browser);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
-//		lp.getPixelDataLandingPage();
-//		shp = lp.clickSearchNow();
+		lp.getPixelDataLandingPage();
+		shp = lp.clickSearchNow();
 //		shp = lp.clickStartNow();
-//		lp.analyzeLog();
-//		shp.getPixelDataGlobalNavElements();
-//		shp.getPixelDataSearchHomeElements();
-//		shp.clickLogin();
-//		shp.getPixelDataLogin();
-//		lop = shp.clickForgotPassword();
-//		lop.getPixelDataForgotPassword();
-//		lop.resetPasssword();
-//		lop.getPixelDataResetPassword();
-//		shp = lop.clickResetPasswordClose();
-//		shp.clickLogin();
-//		shp.clickRegister();
-//		shp.getPixelDataSignUp();
-//		shp.clickGoalDropdown();
-//		shp.getPixelDataSignUpGoals();
-//		shp.refreshPage();
-//		cmp = shp.clickChooseMission();
-//		cmp.getPixelDataChooseMission();
-//		cmp.clickRequestMission();
-//		cmp.getPixelDataRequestMission();
-//		cmp.clickGoToChooseMission();
-//		cmp.selectChina();
-//		cmp.getPixelDataCountryChina();
-//		shp = cmp.clickMissionClose();
-//		srp = shp.searchForNonDisambiguitedKeyword("Motion of Satellite");
-//		srp.getPixelDataSearchResults();
-//		shp.login();
-//		shp.clickUserDropdown();
-//		shp.getPixelDataUserDropdown();
-//		shp.refreshPage();
-//		lsp = shp.logout();
-//		lsp.getPixelDataLogoutSignIn();
-//		loutp = lsp.clickSignUp();
-//		loutp.getPixelDataLogoutSignUp();
-		
-		/*String rgba = "rgba(216, 216, 216, 0.28)";
-		basepage = new W_BasePage(wdriver);
-		System.out.println(basepage.rgbaToHex(rgba));*/
-		
+		shp.getPixelDataGlobalNavElements();
+		shp.getPixelDataSearchHomeElements();
+		shp.clickLogin();
+		shp.getPixelDataLogin();
+		lop = shp.clickForgotPassword();
+		lop.getPixelDataForgotPassword();
+		lop.resetPasssword();
+		lop.getPixelDataResetPassword();
+		shp = lop.clickResetPasswordClose();
+		shp.clickLogin();
+		shp.clickRegister();
+		shp.getPixelDataSignUp();
+		shp.clickGoalDropdown();
+		shp.getPixelDataSignUpGoals();
+		shp.refreshPage();
+		cmp = shp.clickChooseMission();
+		cmp.getPixelDataChooseMission();
+		cmp.clickRequestMission();
+		cmp.getPixelDataRequestMission();
+		cmp.clickGoToChooseMission();
+		cmp.selectChina();
+		cmp.getPixelDataCountryChina();
+		shp = cmp.clickMissionClose();
+		srp = shp.searchForNonDisambiguitedKeyword("Ray Optics");
+		srp.getPixelDataSearchResults();
+		shp.login();
+		shp.clickUserDropdown();
+		shp.getPixelDataUserDropdown();
+		shp.refreshPage();
+		lsp = shp.logoutPP();
+		lsp.getPixelDataLogoutSignIn();
+		loutp = lsp.clickSignUp();
+		loutp.getPixelDataLogoutSignUp();		
 	}
 	
 	@AfterMethod
