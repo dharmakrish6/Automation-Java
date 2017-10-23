@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sanity Suite">
+  <test name="Sanity Test">
+    <classes>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_1"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_2"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_3"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_5"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_6"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_7"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_8"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_9"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_10"/>
+      <class name="moolya.embibe.tests.web.mobileEmulation.sanity.Sanity_11"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

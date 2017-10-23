@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web.mobileEmulation;
+package moolya.embibe.tests.web.mobileEmulation.sanity;
 
 import java.io.IOException;
 
@@ -13,6 +13,7 @@ import moolya.embibe.pages.web.mobile.SearchHomepage;
 import moolya.embibe.pages.web.mobile.SearchResultsPage;
 import moolya.embibe.pages.web.mobile.SignUpPage;
 import moolya.embibe.pages.web.mobile.W_BasePage;
+import moolya.embibe.tests.web.mobileEmulation.W_BaseTest;
 import moolya.embibe.utils.JavaUtils;
 import moolya.embibe.utils.SqliteUtils;
 
@@ -33,7 +34,7 @@ public class Sanity_11 extends W_BaseTest {
 		uniqueValue = "Sanity_11";
 	}
 	
-	@Test
+	@Test(dataProvider="browserData")
 	public void Sanity_11test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, ClassNotFoundException{
 		count = SqliteUtils.updateAndGetCounter();
 		email = JavaUtils.getPropValue("emailPrefix")+count+"@mailinator.com";
@@ -42,7 +43,6 @@ public class Sanity_11 extends W_BaseTest {
 		Reporter.log("Starting Test: Sanity_11test", true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
-		lp.getUserAgent();
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
 		shp.signUp(uniqueValue,email);
