@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web;
+package moolya.embibe.tests.web.old;
 
 import java.io.IOException;
 
@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import moolya.embibe.pages.web.EngineeringPage;
 import moolya.embibe.pages.web.HomePage;
 import moolya.embibe.pages.web.TestPage;
+import moolya.embibe.tests.web.W_BaseTest;
 
 public class AnaliseTestScoreTest extends W_BaseTest {
 

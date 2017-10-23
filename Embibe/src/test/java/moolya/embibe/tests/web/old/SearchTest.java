@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web;
+package moolya.embibe.tests.web.old;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
+import moolya.embibe.tests.web.W_BaseTest;
 import moolya.embibe.utils.SqliteUtils;
 
 public class SearchTest extends W_BaseTest {
