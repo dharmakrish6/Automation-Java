@@ -36,48 +36,19 @@ public class ChooseMissionWindowTest extends W_BaseTest {
 		shp.assertSearchHomepage();
 		cmp = shp.clickChooseMission();
 		cmp.defaultGoal();//SHP_24
-		cmp.selectGoal("Bank");//SHP_23
-		cmp.selectGoal("Engineering");
-		cmp.selectGoal("Medical");
-		cmp.selectGoal("Foundation-10");
-		cmp.selectGoal("Foundation-09");
-		cmp.selectGoal("Foundation-08");
-		cmp.selectChina();//SHP_28
+		cmp.swipeMissions_in_GoalSelectors();
+		cmp.selectGoal_and_Exam("Engineering");
+		cmp.selectGoal_and_Exam("Medical");
+		cmp.selectGoal_and_Exam("Foundation-10");
+		cmp.selectGoal_and_Exam("Foundation-09");
+		cmp.selectGoal_and_Exam("Foundation-08");
+		cmp.selectGoal_and_Exam("Bank");
+		shp=cmp.clickMissionClose();//CM_01
+		cmp=shp.clickChooseMission();
 		cmp.countryDropdown("China");
 		cmp.assertChinaRequestMissionWarning();
-		cmp.chinaRequestMission();//SHP_29
-		cmp.submitExam("JEE");
-		cmp.countryDropdown("China");//SHP_30
-		shp=cmp.chinaStudy();
-		cmp=shp.clickChooseMission();//SHP_31
 		cmp.countryDropdown("India");
-		cmp.indiaRequestMission();
-		cmp.enterExam("J");//SHP_32
-		cmp.addNewExam("Comed-K");//SHP_33
-		cmp.gotoChooseMissionInThankYouPage();
-		cmp.countryDropdown("India");//SHP_34
-		cmp.indiaRequestMission();
-		cmp.submitExam("JEE");
-		cmp.countryDropdown("India");//SHP_35
-		cmp.indiaRequestMission();
-		cmp.verifyAutosuggestionList("J");
-		cmp.maxExamSelection("E");//SHP_36
-		cmp.requestBackToChooseMissionPage("J");//SHP_37
-		cmp.indiaRequestMission();//SHP_38
-		cmp.assertClearSearchExamSelection("J");
-		cmp.addExam("main");//SHP_39
-		cmp.removeExam();
-		cmp.countryDropdown("India");//SHP_40
-		cmp.indiaRequestMission();
-		cmp.clearDropdown("main");
-		cmp.clearDropdown("comed-k");
-		cmp.submitSpecifiedExam("main");//SHP_41
-		cmp.clickGoToChooseMission();
-		cmp.indiaRequestMission();
-		cmp.submitSpecifiedExam("main");//SHP_42
-		cmp.gotoChooseMissionInThankYouPage();
-		
-		
-		
+		cmp.assertCountryIndia();	
+		cmp.clickRequestMission();
 	}
 }

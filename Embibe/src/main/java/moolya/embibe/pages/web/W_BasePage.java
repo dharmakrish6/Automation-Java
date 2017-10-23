@@ -923,6 +923,17 @@ public class W_BasePage extends W_SuperBasePage
 		return wdriver;
 	}
 	
+	@FindBy(css=".global-nav__left>a>img")
+	private WebElement embibeLogo_Ask;
+	
+	public SearchHomepage clickAskEmbibeLogo(){
+		waitUntilElementclickable(embibeLogo_Ask);
+		embibeLogo_Ask.click();
+		Reporter.log("Clicked on Embibe Logo", true);
+		assertSearchHomepage();
+		return new SearchHomepage(wdriver);
+	}
+	
 }
 
 

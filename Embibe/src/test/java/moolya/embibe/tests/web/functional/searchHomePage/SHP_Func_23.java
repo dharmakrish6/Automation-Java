@@ -31,11 +31,11 @@ public class SHP_Func_23 extends W_BaseTest {
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
 		cmp = shp.clickChooseMission();
-		cmp.selectGoal("Bank");
-		cmp.selectGoal("Engineering");
-		cmp.selectGoal("Medical");
-		cmp.selectGoal("Foundation-10");
-		cmp.selectGoal("Foundation-09");
-		cmp.selectGoal("Foundation-08");
+		cmp.selectGoal_and_Exam("Bank");
+		cmp.selectGoal_and_Exam("Engineering");
+		cmp.selectGoal_and_Exam("Medical");
+		cmp.selectGoal_and_Exam("Foundation-10");
+		cmp.selectGoal_and_Exam("Foundation-09");
+		cmp.selectGoal_and_Exam("Foundation-08");
 	}
 }

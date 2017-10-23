@@ -16,7 +16,6 @@ public class LandingPageTest extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
-	private SearchHomepage shp;
 
 	@Test(dataProvider="browserData")
 	public void LandingPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException{
@@ -26,14 +25,15 @@ public class LandingPageTest extends W_BaseTest {
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
-		lp.landingPageEmbibeLogo();
+		lp.landingPageEmbibeLogo();	
+		lp.scoreHigher_StartNow_Text();
 		lp.startLearning_SearchNow_Text();
-		lp.scoreHigher_StartNow_Text();//
-		lp.landingPageScrollingScreens();//
+		lp.scrollLeft();
+		lp.scrollRight();
 		lp.clickStartNow();
 		lp.refreshPage();
 		lp.assertSearchHomepage();
-		lp.clearCookies();//
+		lp.clearCookies();
 		lp.goToLandingPage();
 		lp.assertLandingPage();
 		lp.mouseHoverOnKt();

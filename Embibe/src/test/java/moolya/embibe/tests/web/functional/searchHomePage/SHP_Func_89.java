@@ -35,6 +35,6 @@ public class SHP_Func_89 extends W_BaseTest {
 		shp.clickRank();
 		shp.clickRankupEmbibeLogo();
 		shp.clickInstitutes();
-		shp.clickInstituteEmbibeLogo();
+		shp.verifyInstitutePage();
 	}
 }

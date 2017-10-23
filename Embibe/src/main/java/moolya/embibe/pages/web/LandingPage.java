@@ -110,9 +110,6 @@ public class LandingPage extends W_BasePage {
 	
 	public void landingPageScrollingScreens() throws InterruptedException{
 		mouseHoverOnKt();
-		mouseHoverOnVideo();//
-		
-		
 		mouseHoverOnKt();
 		mouseHoverOnVideo();//
 		
@@ -122,6 +119,7 @@ public class LandingPage extends W_BasePage {
 	}
 	
 	public void startLearning_SearchNow_Text() throws InterruptedException{
+		Thread.sleep(5000);
 		mouseHoverOnKt();
 		waitUntilElementAppears(startLearning_Lbl);
 		Assert.assertTrue(startLearning_Lbl.isDisplayed(), "StartLearning Label is not present in the landing page");
