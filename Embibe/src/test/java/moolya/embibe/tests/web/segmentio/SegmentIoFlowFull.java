@@ -22,7 +22,6 @@ import moolya.embibe.utils.SqliteUtils;
 
 public class SegmentIoFlowFull{
 
-	String os;
 	private LandingPage lp;
 	private W_BasePage basepage;
 	private WebDriver wdriver;
@@ -33,7 +32,7 @@ public class SegmentIoFlowFull{
 	private String count;
 	private String email;
 	
-	@Test(invocationCount=50)
+	@Test(invocationCount=20)
 	@Parameters({"browser"})
 	public void segmentIoFlowTest(@Optional("chrome")String browser) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException {
 		basepage = new W_BasePage(wdriver);
@@ -50,7 +49,7 @@ public class SegmentIoFlowFull{
 		srp.selectGoal("Engineering", "JEE Main");
 		srp.mouseOverOnResultTopicHeader();
 		srp.mouseOverOnTakeTour();
-		srp.mouseOverOnBeharivioralMeterStatusText();
+//		srp.mouseOverOnBeharivioralMeterStatusText();
 		srp.mouseOverOnUnlockJumpPack();
 //		srp.mouseOverOnGoToWikipedia();
 		srp.mouseOverOnAskButton();

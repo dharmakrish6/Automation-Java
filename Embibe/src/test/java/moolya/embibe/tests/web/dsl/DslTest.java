@@ -35,13 +35,13 @@ public class DslTest{
 	private String stream = "NA";
 	private WebDriver wdriver;
 	private W_BasePage basepage;
+	HashMap<String, Object> dslData;
+	HashMap<String, Object> actualData;
+	HashMap<String, Object> resultData;
 
 
 	@Test(dataProvider="getDslActualData")
 	public void dslTest(String row,String uniqueValue,String browser) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException {
-		HashMap<String, Object> dslData;
-		HashMap<String, Object> actualData;
-		HashMap<String, Object> resultData;
 		String text = uniqueValue;
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchDsl(browser);
@@ -53,21 +53,25 @@ public class DslTest{
 		if(!stream.equalsIgnoreCase("na"))
 			shp.login();
 		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
-		actualData = shp.searchForDsl(disambiguated, text);
-		if(disambiguated){
-			srp = new SearchResultsPage(wdriver);
-			String resultText = srp.getSearchResultText();
-			System.out.println(resultText);
-			actualData.put("Actual Result", resultText);
-			actualData.put("Target Page", "Search Results Page");
-		}
+		try {
+			actualData = shp.searchForDsl(disambiguated, text);
+			if(disambiguated){
+				srp = new SearchResultsPage(wdriver);
+				String resultText = "";
+				resultText = srp.getSearchResultTopicHeader();
+				actualData.put("Actual Result", resultText);
+				actualData.put("Target Page", "Search Results Page");
+			}
+		} catch (Exception e) {}
 		resultData = dslData;
 		String status;
-		if(dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
+		if(actualData!=null && dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
 			status = "Pass";
 		else
 			status = "Fail";
-		resultData.put("Actual Result", actualData.get("Actual Result"));
+		try {
+			resultData.put("Actual Result", actualData.get("Actual Result"));
+		} catch (Exception e) {}
 		resultData.put("Status", status);
 		shp.writeDslActualData("top1000SearchTerms", resultData, Integer.parseInt(row)+1);
 	}
@@ -95,10 +99,7 @@ public class DslTest{
 			String file =dir+"/screenshots/"+this.getClass().getSimpleName()+"-"+dateFormat.format(date)+".png";
 			try {
 				FileUtils.copyFile(scrFile, new File(file));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} catch (IOException e) {}
 		}
 		else
 			Reporter.log("Test: "+result.getName()+" Passed!", true);
@@ -111,10 +112,7 @@ public class DslTest{
 		try {
 			File file = new File(System.getProperty("java.io.tmpdir"));
 			FileUtils.cleanDirectory(file);
-		}catch (IOException e) {
-			// Do nothing since we do not worry about the files that cannot be deleted
-			// Include exception handler logic if you want to
-		}
+		}catch (IOException e) {}
 	}
 
 

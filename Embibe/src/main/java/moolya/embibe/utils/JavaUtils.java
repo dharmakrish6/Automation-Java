@@ -75,6 +75,26 @@ public class JavaUtils {
 		return dataMap;
 	}
 	
+	public static void writeResultsToFile(String fileName, String results) throws IOException{
+		FileWriter writer = null;
+		if (new File(fileName).exists())
+					new File(fileName).delete();
+		try {
+			File file = new File( fileName );
+			writer = new FileWriter( file,true );
+//			results = results+",\n";	// screenDetails is the text used to write in file
+//			writer.append( results );
+			writer.write(results);
+			file = null;
+		} catch(IOException e) {}
+		finally {
+			if ( writer != null ) {
+				writer.flush();
+				writer.close();
+			}
+		}
+	}
+	
 	public static HashMap<String, String> readGlobalSearchData(String sheetname, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		HashMap<String,String> dataMap = null;
 		String key, value = null;

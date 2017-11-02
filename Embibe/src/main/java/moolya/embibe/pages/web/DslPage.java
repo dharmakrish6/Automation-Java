@@ -1,11 +1,16 @@
 package moolya.embibe.pages.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 
+import org.json.JSONException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import moolya.embibe.utils.EmbibeUtils;
+import moolya.embibe.utils.JavaUtils;
 
 public class DslPage extends W_BasePage {
 
@@ -27,6 +32,21 @@ public class DslPage extends W_BasePage {
 	@FindBy(tagName="body")
 	private WebElement resultBody;
 	
+	public void getSearchQueryJson(String query) throws IOException, JSONException{
+		query = query.trim().replaceAll(" ", "+");
+		wdriver.navigate().to(wdriver.getCurrentUrl()+"?query="+query);
+		String url = wdriver.getCurrentUrl();
+		url = url+"&consumer=tech";
+		wdriver.navigate().to(url);
+		String pagesource = wdriver.getPageSource();
+		pagesource = pagesource.replace("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head><body>", "");
+		pagesource = pagesource.replace("</body></html>", "");
+		pagesource = pagesource.replace("<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">", "");
+		pagesource = pagesource.replace("</pre>", "");
+		String results = EmbibeUtils.getResultsFromJson(pagesource);
+		JavaUtils.writeResultsToFile("dslResults.txt", results);
+	}
+	
 	public HashMap<String,Object> searchQuery(String query,String stream) throws InterruptedException{
 		HashMap<String, Object> dslData = new HashMap<String, Object>();
 		waitUntilElementAppears(query_TB);
@@ -46,7 +66,7 @@ public class DslPage extends W_BasePage {
 			try{
 			resultText = resultBody.getText();
 			resultTextLines1 = resultText.split("\n");
-			if(resultTextLines1.length>3)
+			if(resultTextLines1.length>4)
 				c=10;
 			}catch(Exception e){}
 			Thread.sleep(500);
@@ -55,23 +75,32 @@ public class DslPage extends W_BasePage {
 		String[] finalResult;
 		boolean disambiguated = Boolean.parseBoolean(resultTextLines1[1].split(" ")[1].trim());
 		String searchResultText = ""; 
-		for(String res: resultTextLines1)
 		dslData.put("Disambiguated", disambiguated);
 		if(disambiguated){
 			searchResultText = resultTextLines1[2].split(":")[1].trim();
+			try{
+				searchResultText = searchResultText + ":" + resultTextLines1[2].split(":")[2].trim();
+			}catch(Exception e){}
 			dslData.put("Target Page", "Search Results Page");
 		}
 		else{
 			dslData.put("Target Page", "Search Home Page");
-			if(resultTextLines1.length-3<12){
-				finalResult = new String[resultTextLines1.length-3];
-				for(int i=3;i<resultTextLines1.length;i++)
-					finalResult[i-3] = resultTextLines1[i];
+			int n=0;
+			for(int i=0;i<resultTextLines1.length;i++){
+				if(resultTextLines1[i].toLowerCase().contains("suggestions")){
+					n = i+1;
+					break;
+				}
+			}
+			if(resultTextLines1.length-n<12){
+				finalResult = new String[resultTextLines1.length-n];
+				for(int i=n;i<resultTextLines1.length;i++)
+					finalResult[i-n] = resultTextLines1[i];
 			}
 			else{
 				finalResult = new String[12];
-				for(int i=3;i<15;i++)
-					finalResult[i-3] = resultTextLines1[i];
+				for(int i=n;i<n+12;i++)
+					finalResult[i-n] = resultTextLines1[i];
 			}
 			int count = 0;
 			for(String res:finalResult){
