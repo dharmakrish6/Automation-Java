@@ -60,10 +60,10 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="//li[@class='nav-item ']/a[text()='JUMP']")
 	private WebElement jump_Btn;
-	
+
 	@FindBy(xpath="//li[@class='nav-item ']/a[text()='RANKUP']")
 	private WebElement rankup_Btn;
-	
+
 	@FindBy(xpath="//li[@class='nav-item ']/a[text()='INSTITUTES']")
 	private WebElement institutes_Btn;
 
@@ -108,7 +108,7 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="(//div[@class='forget-pass']/a)[2]")
 	private WebElement forgotPassword_Btn;
-	
+
 	@FindBy(css=".forgotpasswordclose")
 	private WebElement forgotPasswordClose_Btn;
 
@@ -135,13 +135,13 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/../../following-sibling::div[@class='registerlink']//p")
 	private WebElement newUser_Btn;
-	
+
 	@FindBy(css=".close-mail")
 	private WebElement closeSignUp_Btn;
 
 	@FindBy(css=".user-dropdown>.user-name>img")
- 	private WebElement userDropdown;
-	
+	private WebElement userDropdown;
+
 	@FindBy(css=".tooltip-modal>div")
 	private List<WebElement> userDropdownList;
 
@@ -180,13 +180,13 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(css=".Dropdown-option:nth-child(6)")
 	private WebElement goalDropdownOptionFoundation8;
-	
+
 	@FindBy(css=".hamburger")
 	private WebElement hamburger_Btn;
-	
+
 	@FindBy(css=".close-side-options")
 	private WebElement closeHamburger_Btn;
-	
+
 
 	String jeeMain_URL="https://www.embibe.com/exams/jee-main/";
 	String neet_URL="https://preprod.embibe.com/exams/neet/";
@@ -199,7 +199,7 @@ public class W_BasePage extends W_SuperBasePage
 	String class_8_URL="https://preprod.embibe.com/foundation-08/test";
 	String class_9_URL="https://preprod.embibe.com/foundation-09/test";
 	String class_10_URL="https://preprod.embibe.com/foundation-10/test";
-	
+
 	String exam_jeeMain_URL="https://preprod.embibe.com/engineering/test/jee-main";
 	String exam_jeeAdvanced_URL="https://preprod.embibe.com/engineering/test/jee-advanced";
 	String exam_bitsat_URL="https://preprod.embibe.com/engineering/test/bitsat";
@@ -210,7 +210,7 @@ public class W_BasePage extends W_SuperBasePage
 	String exam_aiims_URL="https://preprod.embibe.com/medical/test/aiims";
 	String exam_bank_clerk_prelims_URL="https://preprod.embibe.com/bank/test/bank-clerk-prelims";
 	String exam_bank_po_prelims_URL="https://preprod.embibe.com/bank/test/bank-po-prelims";
-	
+
 
 
 	public void getPixelDataSignUpGoals() throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -234,29 +234,29 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "D_Guest 1st time user", bitsatSwiperFooter, "bitsatSwiperFooter");
 		getPixelData("Data", "D_Guest 1st time user", neetSwiperFooter, "neetSwiperFooter");
 	}
-	
+
 	@FindBy(css=".react-typeahead-input.react-typeahead-usertext")
 	protected WebElement search_TB;
-	
+
 	public void assertSearchHomepage(){
 		waitUntilElementclickable(search_TB);
 		Assert.assertTrue(search_TB.isDisplayed(), "Not in Search Homepage");
 		Reporter.log("Navigated to Search HomePage", true);
 	}
-	
+
 	public void clickHamburger(){
 		waitUntilElementclickable(hamburger_Btn);
 		hamburger_Btn.click();
 		Reporter.log("Clicked on Hamburger", true);
 	}
-	
+
 	public void closeHamburger() throws InterruptedException{
- 		waitUntilElementclickable(closeHamburger_Btn);
-//		Thread.sleep(3000);
- 		clickElementViaJavaScript(closeHamburger_Btn);
-//		closeHamburger_Btn.click();
- 		Reporter.log("Closed Hamburger", true);
- 	}
+		waitUntilElementclickable(closeHamburger_Btn);
+		//		Thread.sleep(3000);
+		clickElementViaJavaScript(closeHamburger_Btn);
+		//		closeHamburger_Btn.click();
+		Reporter.log("Closed Hamburger", true);
+	}
 
 	public void clickLogin(){
 		waitUntilElementclickable(login_Btn);
@@ -267,31 +267,31 @@ public class W_BasePage extends W_SuperBasePage
 			clickElementViaJavaScript(login_Btn);
 		}
 	}
-	
+
 	public void clickRegisterHere(){
 		waitUntilElementclickable(register_Btn);
 		register_Btn.click();
 		Reporter.log("Clicked on Register Here", true);
 	}
-	
+
 	public void clickLoginHere(){
 		waitUntilElementclickable(SignUpLogin_Btn);
 		SignUpLogin_Btn.click();
 		Reporter.log("Clicked on Login Here", true);
 	}
-	
+
 	@FindBy(xpath="//*[@id='header_block']/span[contains(text(),'Log in to Facebook')]")
 	private WebElement assertFbLoginPage;
-	
+
 	@FindBy(xpath="//input[@id='email']")
 	private WebElement enterFbEmail;
-	
+
 	@FindBy(xpath="//input[@id='pass']")
 	private WebElement enterFbPassword;
-	
+
 	@FindBy(xpath="//*[@id='loginbutton']")
 	private WebElement fb_loginBtn;
-	
+
 	public void clickFbLogin() throws InterruptedException{
 		waitUntilElementclickable(fbLogin_Btn);
 		fbLogin_Btn.click();
@@ -300,25 +300,25 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(assertFbLoginPage.isDisplayed(), "Failed to open the Facebook login page");
 		Reporter.log("Facebook Login Page is opened successfully", true);
 	}
-	
+
 	public void enterFbLoginCredentials(String email,String password){
 		enterText(enterFbEmail, email);
 		enterText(enterFbPassword,password);
 		//fb_loginBtn.click();
 	}
-	
+
 	@FindBy(xpath="//*[@id='headingText']/following::button[contains(text(),'embibe.com')]")
 	private WebElement assertGoogleSignInPage;
-	
+
 	@FindBy(xpath="//*[@id='identifierId']")
 	private WebElement enterGoogleMail;
-	
+
 	@FindBy(xpath="//*[@id='identifierNext']")
 	private WebElement google_next_btn;
-	
+
 	@FindBy(xpath="//*[@id='password']/div/div/div/input[@type='password']")
 	private WebElement enterGooglePassword;
-	
+
 	public void clickGoogleLogin(){
 		waitUntilElementclickable(googleLogin_Btn);
 		googleLogin_Btn.click();
@@ -327,93 +327,93 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(assertGoogleSignInPage.isDisplayed(), "Failed to open the Google login page");
 		Reporter.log("Google login page is opened successfully", true);
 	}
-	
+
 	public void enterGoogleLoginCredentials(String email,String password){
 		enterText(enterGoogleMail, email);
 		google_next_btn.click();
 		enterText(enterGooglePassword, password);	
 	}
-	
+
 	public void clickFbSignUp(){
 		waitUntilElementclickable(fbSignUp_Btn);
 		fbSignUp_Btn.click();
 		Reporter.log("Clicked on FB SignUp", true);
 	}
-	
+
 	public void clickGoogleSignUp(){
 		waitUntilElementclickable(googleSignUp_Btn);
 		googleSignUp_Btn.click();
 		Reporter.log("Clicked on Google SignUp", true);
 	}
-	
+
 	public void clickEmbibeLogo(){
 		waitUntilElementclickable(embibeLogo);
 		embibeLogo.click();
 		Reporter.log("Clicked on Embibe Logo", true);
 	}
-	
+
 	public void clickAsk(){
 		waitUntilElementclickable(ask_Btn);
 		ask_Btn.click();
 		Reporter.log("Clicked on Ask", true);
 	}
-	
+
 	public void clickStudy(){
 		waitUntilElementclickable(study_Btn);
 		study_Btn.click();
 		Reporter.log("Clicked on Study", true);
 	}
-	
+
 	public JumpPage clickJump(){
 		waitUntilElementclickable(jump_Btn);
 		jump_Btn.click();
 		Reporter.log("Clicked on Jump", true);
 		return new JumpPage(wdriver);
 	}
-	
+
 	public void clickRank(){
 		waitUntilElementclickable(rankup_Btn);
 		rankup_Btn.click();
 		Reporter.log("Clicked on Rankup", true);
 	}
-	
+
 	public void clickInstitutes(){
 		waitUntilElementclickable(institutes_Btn);
 		institutes_Btn.click();
 		Reporter.log("Clicked on Institutes", true);
 	}
-	
+
 	public void mouseHoverOnAsk() throws InterruptedException{
 		waitUntilElementAppears(ask_Btn);
 		mouseHoverOnElement(wdriver, ask_Btn, "Mouse Hovered on Ask");
 	}
-	
+
 	public void mouseHoverOnStudy() throws InterruptedException{
 		waitUntilElementAppears(study_Btn);
 		mouseHoverOnElement(wdriver, study_Btn, "Mouse Hovered on Study");
 	}
-	
+
 	public void mouseHoverOnJump() throws InterruptedException{
 		waitUntilElementAppears(jump_Btn);
 		mouseHoverOnElement(wdriver, jump_Btn, "Mouse Hovered on Jump");
 	}
-	
+
 	public void mouseHoverOnRankUp() throws InterruptedException{
 		waitUntilElementAppears(rankup_Btn);
 		mouseHoverOnElement(wdriver, rankup_Btn, "Mouse Hovered on Rankup");
 	}
-	
+
 	public void mouseHoverOnInstitutes() throws InterruptedException{
 		waitUntilElementAppears(institutes_Btn);
 		mouseHoverOnElement(wdriver, institutes_Btn, "Mouse Hovered on Institutes");
 	}
-	
+
 	public void clickEmbiumStatus(){
 		waitUntilElementAppears(embiumImage);
 		embiumImage.click();
 		Reporter.log("Clicked On Embium Status", true);
 	}
-	
+
 	public void clickProfileIcon() throws InterruptedException{
 		Thread.sleep(2000);
 		waitUntilElementAppears(guestImage);
@@ -421,7 +421,7 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked On Profile Icon", true);
 		Thread.sleep(2000);
 	}
-	
+
 	public void verifyProfileDropdownList(){
 		List<WebElement> list=userDropdownList;
 		int actualListCount=userDropdownList.size();
@@ -431,7 +431,7 @@ public class W_BasePage extends W_SuperBasePage
 		}
 		Assert.assertEquals(actualListCount, 2);
 	}
-	
+
 
 	public void getPixelDataLogin() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		getPixelData("Data", "login", emailPhone_TB, "emailPhone_TB");
@@ -445,7 +445,7 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="//*[@class='FPHead']")
 	private WebElement assertForgotPasswordWindow;
-	
+
 	public LoginPage clickForgotPassword(){
 		waitUntilElementclickable(forgotPassword_Btn);
 		forgotPassword_Btn.click();
@@ -476,8 +476,8 @@ public class W_BasePage extends W_SuperBasePage
 		getPixelData("Data", "Signup", SignUpLogin_Btn, "SignUpLogin_Btn");
 	}
 
-	
-	
+
+
 	public void login(){
 		waitUntilElementclickable(login_Btn);
 		login_Btn.click();
@@ -485,7 +485,7 @@ public class W_BasePage extends W_SuperBasePage
 		password_TB.sendKeys("moolya123");
 		login_login_Btn.click();
 	}
-	
+
 	public void invalidLogin(String email,String password){
 		waitUntilElementclickable(login_Btn);
 		login_Btn.click();
@@ -496,7 +496,7 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Entered Password",true);
 		login_login_Btn.click();
 		Reporter.log("Clicked on login button",true);
-		
+
 	}
 
 	public void login(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -518,21 +518,21 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	public void signUp(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
- 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
- 		waitUntilElementclickable(login_Btn);
- 		clickElement(login_Btn, "Clicked Login");
- 		clickElement(register_Btn, "Clicked Register Here");
+		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);
+		waitUntilElementclickable(login_Btn);
+		clickElement(login_Btn, "Clicked Login");
+		clickElement(register_Btn, "Clicked Register Here");
 		emailPhoneSignUp_TB.sendKeys(email);
 		Reporter.log("Entered Email/Phone: "+email, true);
- 		selectCustomDropdown(goalSignUp_DD, goalSignUpItems_List, data.get("Goal"), "Selected Goal: "+data.get("Goal"));
+		selectCustomDropdown(goalSignUp_DD, goalSignUpItems_List, data.get("Goal"), "Selected Goal: "+data.get("Goal"));
 		passwordSignUp_TB.sendKeys(data.get("Password"));
 		Reporter.log("Entered Password: "+data.get("Password"), true);
 		confirmPasswordSignUp_Btn.sendKeys(data.get("Password"));
 		Reporter.log("Entered Confirm Password: "+data.get("Password"), true);
- 		clickElement(signUp_Btn, "Clicked SignUp");
- 		clickElement(closeSignUp_Btn, "Clicked on Close");
- 	}
-	
+		clickElement(signUp_Btn, "Clicked SignUp");
+		clickElement(closeSignUp_Btn, "Clicked on Close");
+	}
+
 	public void goToRearchPage(){
 		wdriver.navigate().to("https://rearch.embibe.com");
 	}
@@ -547,26 +547,26 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(login_Btn.isDisplayed(), "Login successful");
 		Reporter.log("Login Failed", true);
 	}
-	
+
 	public void clickUserDropdown(){
 		waitUntilElementclickable(userDropdown);
-//		clickElementViaJavaScript(userDropdown);
+		//		clickElementViaJavaScript(userDropdown);
 		userDropdown.click();
 	}
 
 	public void clearCookies(){
 		wdriver.manage().deleteAllCookies();
 	}
-	
+
 	public LogoutSignInPage logoutPP() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
- 		waitUntilElementclickable(userDropdown);
-//		clickElementViaJavaScript(userDropdown);
+		waitUntilElementclickable(userDropdown);
+		//		clickElementViaJavaScript(userDropdown);
 		Thread.sleep(1000);
- 		userDropdown.click();
- 		waitUntilElementclickable(logout_Btn);
- 		logout_Btn.click();
- 		return new LogoutSignInPage(wdriver);
- 	}
+		userDropdown.click();
+		waitUntilElementclickable(logout_Btn);
+		logout_Btn.click();
+		return new LogoutSignInPage(wdriver);
+	}
 
 	public LandingPage goToLandingPage() throws IOException{
 		String domain = getPropValue("domain");
@@ -594,7 +594,7 @@ public class W_BasePage extends W_SuperBasePage
 		wdriver.navigate().to("http://www.mailinator.com/");
 		return new MailinatorPage(wdriver);
 	}
-	
+
 	public DslPage goToDslPage(){
 		wdriver.navigate().to("http://10.140.10.116:9090/");
 		return new DslPage(wdriver);
@@ -607,15 +607,15 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	public SignUpPage logout() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
- 		waitUntilElementclickable(userDropdown);
-//		clickElementViaJavaScript(userDropdown);
+		waitUntilElementclickable(userDropdown);
+		//		clickElementViaJavaScript(userDropdown);
 		Thread.sleep(1000);
- 		userDropdown.click();
- 		waitUntilElementclickable(logout_Btn);
- 		logout_Btn.click();
- 		return new SignUpPage(wdriver);
- 	}
-	
+		userDropdown.click();
+		waitUntilElementclickable(logout_Btn);
+		logout_Btn.click();
+		return new SignUpPage(wdriver);
+	}
+
 	public static String[][] readDslUniqueValues(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		FileInputStream file = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
 		Workbook wb = WorkbookFactory.create(file);
@@ -734,26 +734,26 @@ public class W_BasePage extends W_SuperBasePage
 			}
 		}	
 	}
-	
+
 	@FindBy(xpath="//*[@id='showInDesktopemailError']")
 	private WebElement signupEmailFieldError;
-	
+
 	public void verifySignupEmailField(String email){
 		emailPhoneSignUp_TB.clear();
 		enterText(emailPhoneSignUp_TB, email);
 		Assert.assertTrue(!signupEmailFieldError.isDisplayed(), "Email format is acceptable");
 		Reporter.log("Entered '"+email+"' is acceptable",true);
 	}
-	
+
 	@FindBy(css=".Dropdown-placeholder")
 	private WebElement defaultSignUpGoal;
-	
+
 	@FindBy(css=".Dropdown-menu ")
 	private List<WebElement> goalSignUp_DDList;
-	
+
 	@FindBy(css=".Dropdown-menu .Dropdown-option")
 	private List<WebElement> goalItems_List;
-	
+
 	public void verifyAndSelectGoal_DD() throws InterruptedException{
 		enterText(emailPhoneSignUp_TB, "testonetest444@gmail.com");
 		clickElement(goalSignUp_DD);
@@ -764,31 +764,31 @@ public class W_BasePage extends W_SuperBasePage
 		for(WebElement ele:list){
 			Reporter.log(ele.getText(),true);
 		}
-			clickElement(goalSignUp_DD);
-			selectCustomDropdown(goalSignUp_DD, goalItems_List, "Bank", "");
-			Thread.sleep(2000);
-			Reporter.log("Selected Goal is  : " + defaultSignUpGoal.getText(),true);
+		clickElement(goalSignUp_DD);
+		selectCustomDropdown(goalSignUp_DD, goalItems_List, "Bank", "");
+		Thread.sleep(2000);
+		Reporter.log("Selected Goal is  : " + defaultSignUpGoal.getText(),true);
 	}
-	
+
 	@FindBy(xpath="//*[@id='showInDesktoppasswordError']")
 	private WebElement passwordFieldError;
-	
+
 	public void verifySignupPasswordField(String password) throws InterruptedException{
-			Thread.sleep(2000);
-			enterText(password_TB, password);
-			Reporter.log("Enter password : "+password,true);
-			if(passwordFieldError.isDisplayed()){
-				Reporter.log("Password length is : '"+ password.length() + "'.So warning '"+passwordFieldError.getText()+"' is displayed " ,true);
-			}
-			else
-			
-				Reporter.log("Password length is : '" +password.length() + "' and Password is accepted",true);
-	
+		Thread.sleep(2000);
+		enterText(password_TB, password);
+		Reporter.log("Enter password : "+password,true);
+		if(passwordFieldError.isDisplayed()){
+			Reporter.log("Password length is : '"+ password.length() + "'.So warning '"+passwordFieldError.getText()+"' is displayed " ,true);
+		}
+		else
+
+			Reporter.log("Password length is : '" +password.length() + "' and Password is accepted",true);
+
 	}
-	
+
 	@FindBy(xpath="//*[@id='showInDesktoppasswordConfirmError']")
 	private WebElement cofirmPasswordFieldError;
-	
+
 	public void verifyConfirmPasswordField(String password,String confirmPassword) throws InterruptedException{
 		enterText(password_TB, password);
 		enterText(confirmPasswordSignUp_Btn, confirmPassword);
@@ -803,16 +803,16 @@ public class W_BasePage extends W_SuperBasePage
 			Reporter.log("Password Matched ",true);		
 		}
 	}
-	
+
 	public void clickLoginSignUpBtn(){
 		waitUntilElementclickable(signUp_Btn);
 		signUp_Btn.click();
 		Reporter.log("Clicked on SignUp Button", true);
 	}
-	
+
 	@FindBy(xpath="//*[@id='showInDesktoppasswordConfirmError']")
 	private WebElement confirmPasswordError;
-	
+
 	public void verifyEmptySignUpFileds() throws InterruptedException{
 		clickLoginSignUpBtn();
 		Assert.assertTrue(signupEmailFieldError.isDisplayed(), "Failed to display warning for empty email field ");
@@ -822,7 +822,7 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(confirmPasswordError.isDisplayed(), "Failed to display warning for empty Confirm password field ");
 		Reporter.log("Warning '"+confirmPasswordError.getText()+"' is displayed for empty Confirm password field",true);
 	}
-	
+
 	public void alreadyRegisterUserSignUp(){
 		enterText(emailPhoneSignUp_TB, "yatheendra@moolya.com");
 		Reporter.log("Entered already registered email id",true);
@@ -835,12 +835,12 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(signupEmailFieldError.isDisplayed(), "Failed to display warning for email field ");
 		Reporter.log("Warning '"+signupEmailFieldError.getText()+"' is displayed for already registered email id",true);
 	}
-	
+
 	public void justEnterLoginCredentials(String email){
 		enterText(emailPhone_TB, email);	
 		enterText(password_TB, "moolya123");
-		}
-	
+	}
+
 	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchDsl(String browser) throws IOException
 	{
@@ -928,16 +928,18 @@ public class W_BasePage extends W_SuperBasePage
 			wdriver = new PhantomJSDriver(caps);
 		}
 
+		//		http://10.140.10.116:7766/search
+		//		http://10.140.10.116:9090/
 		wdriver.get("http://10.140.10.116:9090/");
 		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wdriver.manage().window().maximize();
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
 		return wdriver;
 	}
-	
+
 	@FindBy(css=".global-nav__left>a>img")
 	private WebElement embibeLogo_Ask;
-	
+
 	public SearchHomepage clickAskEmbibeLogo(){
 		waitUntilElementclickable(embibeLogo_Ask);
 		embibeLogo_Ask.click();
@@ -945,35 +947,35 @@ public class W_BasePage extends W_SuperBasePage
 		assertSearchHomepage();
 		return new SearchHomepage(wdriver);
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[1]")
 	private WebElement aboutUs_footer;
-	
+
 	public void click_aboutUs(){
-		
+
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[2]")
 	private WebElement press_footer;
-	
+
 	public void click_press(){
-		
+
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[3]")
 	private WebElement contactUs_footer;
-	
+
 	public void click_contactUs(){
-		
+
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[4]")
 	private WebElement TermsCOnditions_footer;
-	
+
 	public void click_termsCOnditions(){
-		
+
 	}
-	
+
 }
 
 

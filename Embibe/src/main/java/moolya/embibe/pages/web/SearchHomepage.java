@@ -66,6 +66,10 @@ public class SearchHomepage extends W_BasePage {
 	public void search(){
 		enterText(search_TB, "Rotational");
 	}
+	
+	public void waitforSearchHomePage() {
+		waitUntilElementclickable(chooseMission_Btn);
+	}
 
 	public LoginPage clickLoginBtn(){
 		clickLogin();
