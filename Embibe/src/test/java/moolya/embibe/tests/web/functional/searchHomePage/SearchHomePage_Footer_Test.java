@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web.functional.searchHomePage;
+	package moolya.embibe.tests.web.functional.searchHomePage;
 
 import java.awt.AWTException;
 import java.io.IOException;
@@ -19,33 +19,35 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 	private LandingPage lp;
 	private SearchHomepage shp;
 	
-	String jeeMain_URL="https://rearch.embibe.com/exams/jee-main/";
-	String neet_URL="https://rearch.embibe.com/exams/neet/";
-	String aiims_URL="https://rearch.embibe.com/exams/aiims/";
-	String cbse_URL="https://rearch.embibe.com/exams/cbse/";
-	String jeeAdvanced_URL="https://rearch.embibe.com/exams/iit-jee-advanced/";
-	String bitsat_URL="https://rearch.embibe.com/exams/bitsat/";
-	String eamcet_URL="https://rearch.embibe.com/exams/ap-eamcet/";
+	String rearchURL="https://rearch-staging3.embibe.com";
+	
+	String jeeMain_URL=rearchURL+"/exams/jee-main/";
+	String neet_URL=rearchURL+"/exams/neet/";
+	String aiims_URL=rearchURL+"/exams/aiims/";
+	String cbse_URL=rearchURL+"/exams/cbse/";
+	String jeeAdvanced_URL=rearchURL+"/exams/iit-jee-advanced/";
+	String bitsat_URL=rearchURL+"/exams/bitsat/";
+	String eamcet_URL=rearchURL+"/exams/ap-eamcet/";
 
-	String class_8_URL="https://rearch.embibe.com/foundation-08/test";
-	String class_9_URL="https://rearch.embibe.com/foundation-09/test";
-	String class_10_URL="https://rearch.embibe.com/foundation-10/test";
+	String class_8_URL=rearchURL+"/foundation-08/test";
+	String class_9_URL=rearchURL+"/foundation-09/test";
+	String class_10_URL=rearchURL+"/foundation-10/test";
 	
-	String exam_jeeMain_URL="https://rearch.embibe.com/engineering/test/jee-main";
-	String exam_jeeAdvanced_URL="https://rearch.embibe.com/engineering/test/jee-advanced";
-	String exam_bitsat_URL="https://rearch.embibe.com/engineering/test/bitsat";
-	String exam_gujaratCet_URL="https://rearch.embibe.com/engineering/test/gujarat-cet";
-	String exam_AP_Eamcet_URL="https://rearch.embibe.com/engineering/test/ap-eamcet";
-	String exam_TS_Eamcet_URL="https://rearch.embibe.com/engineering/test/ts-eamcet";
-	String exam_neet_URL="https://rearch.embibe.com/medical/test/aipmt";
-	String exam_aiims_URL="https://rearch.embibe.com/medical/test/aiims";
-	String exam_bank_clerk_prelims_URL="https://rearch.embibe.com/bank/test/bank-clerk-prelims";
-	String exam_bank_po_prelims_URL="https://rearch.embibe.com/bank/test/bank-po-prelims";
+	String exam_jeeMain_URL=rearchURL+"/engineering/test/jee-main";
+	String exam_jeeAdvanced_URL=rearchURL+"/engineering/test/jee-advanced";
+	String exam_bitsat_URL=rearchURL+"/engineering/test/bitsat";
+	String exam_gujaratCet_URL=rearchURL+"/engineering/test/gujarat-cet";
+	String exam_AP_Eamcet_URL=rearchURL+"/engineering/test/ap-eamcet";
+	String exam_TS_Eamcet_URL=rearchURL+"/engineering/test/ts-eamcet";
+	String exam_neet_URL=rearchURL+"/medical/test/aipmt";
+	String exam_aiims_URL=rearchURL+"/medical/test/aiims";
+	String exam_bank_clerk_prelims_URL=rearchURL+"/bank/test/bank-clerk-prelims";
+	String exam_bank_po_prelims_URL=rearchURL+"/bank/test/bank-po-prelims";
 	
-	String rankUp_URL="https://rearch.embibe.com/rankup/signup";
+	String rankUp_URL=rearchURL+"/rankup/signup";
 	String blog_URL="https://blog.embibe.com/";
-	String articles_URL="https://rearch.embibe.com/exams/";
-	String collegePredictor_URL="https://rearch.embibe.com/rank-college-predictor/home";
+	String articles_URL=rearchURL+"/exams/";
+	String collegePredictor_URL=rearchURL+"/rank-college-predictor/home";
 	
 	@Test(dataProvider="browserData")
 	public void searchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
@@ -63,11 +65,11 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 		shp.examLinks(4,"CBSE",cbse_URL);
 		shp.examLinks(5,"JEE Advanced",jeeAdvanced_URL);
 		shp.examLinks(6,"BITSAT",bitsat_URL);
-		shp.examLinks(7,"EAMCET",eamcet_URL);
+		shp.examLinks(7,"EAMCET",eamcet_URL);*/
 		Reporter.log("========================================Classes Links====================================",true);
 		shp.classesLinks(1,"Class 8","8th Foundation/NTSE/Olympiad",class_8_URL);
 		shp.classesLinks(2,"Class 9","9th Foundation/NTSE/Olympiad",class_9_URL);
-		shp.classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);*/
+		shp.classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);
 		Reporter.log("========================================Mock tests Links====================================",true);
 		shp.mockTestsLinks(1,"JEE Main",exam_jeeMain_URL);
 		shp.mockTestsLinks(2,"JEE Advanced",exam_jeeAdvanced_URL);
@@ -111,8 +113,6 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 		shp.clickYoutubeIcon();
 		shp.switchToNextWindow(mainWindow);
 		shp.assertYoutubeEmbibePage();
-		shp.closeChildAndSwitchToMainWindow(mainWindow);
-		
-		
+		shp.closeChildAndSwitchToMainWindow(mainWindow);	
 	}
 }

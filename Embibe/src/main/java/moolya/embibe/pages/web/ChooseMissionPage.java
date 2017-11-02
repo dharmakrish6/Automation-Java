@@ -268,19 +268,25 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(css=".swiper-wrapper>a:nth-child(6)")
 	private WebElement drop_drag_6_point;
 	
-	@FindBy(css=".swiper-wrapper>a:nth-child(7)")
-	private WebElement drop_drag_7_point;
+	@FindBy(css=".swiper-wrapper>a:nth-child(5)")
+	private WebElement drop_drag_5_point;
+	
+	@FindBy(css=".swiper-wrapper>a:nth-child(2)")
+	private WebElement drop_drag_2_point;
+	
+	@FindBy(css=".swiper-wrapper>a:nth-child(9)")
+	private WebElement drop_drag_9_point;
 	
 	public void swipeMissions_in_GoalSelectors() throws InterruptedException{
 		Thread.sleep(1000);
 		(new Actions(wdriver)).dragAndDrop(drop_drag_4_point, drop_drag_1_point).perform();
 		Reporter.log("Swipe towards right side",true);
 		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop( drop_drag_4_point , drop_drag_7_point).perform();
+		(new Actions(wdriver)).dragAndDrop( drop_drag_6_point , drop_drag_9_point).perform();
 		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop( drop_drag_3_point , drop_drag_7_point).perform();
+		(new Actions(wdriver)).dragAndDrop( drop_drag_2_point , drop_drag_4_point).perform();
 		Thread.sleep(1000);
-		(new Actions(wdriver)).dragAndDrop( drop_drag_1_point , drop_drag_4_point).perform();
+		(new Actions(wdriver)).dragAndDrop( drop_drag_1_point , drop_drag_3_point).perform();
 		Reporter.log("Swipe towards left side",true);
 		Thread.sleep(2000);
 	}
@@ -299,13 +305,13 @@ public class ChooseMissionPage extends W_BasePage {
 
 		for(int i=1;i<=noOfExam;i++){
 			WebElement examEle = wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/a)["+i+"]"));
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			clickElement(examEle);
 			Reporter.log("--------------------------------------------------------------------------",true);
 			Reporter.log("Clicked on '"+examEle.getText()+"'",true);
-			Thread.sleep(10000);
+			Thread.sleep(2000);
 			Reporter.log("Navigated to : "+ wdriver.getCurrentUrl(),true);
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			clickRankupEmbibeLogo();
 			Thread.sleep(5000);
 			chooseMission_Btn.click();

@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -16,6 +17,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.testng.Assert;
 import org.testng.Reporter;
 
@@ -58,6 +60,9 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(css="input.ask-input:nth-child(1)")
 	private WebElement askORsearchField;
 
+	@FindBy(css=".find-cool")
+	private WebElement findSomethingCool;
+	
 	public void search(){
 		enterText(search_TB, "Rotational");
 	}
@@ -247,11 +252,26 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(xpath="//*[@class='exam_goal_logo']")
 	private WebElement guestGoalIcon;
 
-	public void guestGoalIcon(){
+	public void header_guestIcons() throws InterruptedException{
+		clickEmbiumStatus();
+		clickProfileIcon();
 		guestGoalIcon.equals("?");
 		Reporter.log("Guest user goal icon is '"+guestGoalIcon.getText()+"'",true);
+		Assert.assertTrue(login_Btn.isDisplayed(), "'Login Button' is not found");
+		Reporter.log("Login button is present in the Search Home Page Header",true);
 	}
 
+	public void searchEngineSection(){
+		Assert.assertTrue(searchSlogan.isDisplayed(), "'Search Engine label' is not found");
+		Reporter.log("'Search Engine label' is present in the Search Home Page",true);
+		Assert.assertTrue(search_TB.isDisplayed(), "'Search Engine' is not found");
+		Reporter.log(";Search Engine' is present in the Search Home Page",true);
+		Assert.assertTrue(chooseMission_Btn.isDisplayed(), "'Choose a Misson' Button is not found");
+		Reporter.log("'Choose a Misson' button is present in the Search Home Page",true);
+		Assert.assertTrue(findSomethingCool.isDisplayed(), "'Find Something Cool' is not found");
+		Reporter.log("'Find Something Cool' is present in the Search Home Page",true);
+	}
+	
 	@FindBy(xpath="//*[@class='search-container']/div/ul/li[@role='option']")
 	private WebElement autoSearchList;
 
@@ -292,8 +312,8 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(xpath="(//*[@id='root']/div/div[2]/div/div[4]/div[1]/div/div[1]/div[1]/ul/li/a)[1]")
 	private WebElement jeelink;
 
-	/*@FindBy(xpath="//*[@class='site-title']/a")
-	private WebElement examPageEmbibeLogo;*/
+	@FindBy(xpath="//*[@class='site-title']/a")
+	private WebElement title_examPageEmbibeLogo;
 
 
 	/*@FindBy(xpath="//a[@title='Embibe Exams']")
@@ -304,10 +324,19 @@ public class SearchHomepage extends W_BasePage {
 	
 
 	public void clickExamPageEmbibeLogo(){
-		waitUntilElementAppears(examPageEmbibeLogo);
-		clickElement(examPageEmbibeLogo);
-		Reporter.log("Clicked on Embibe Logo", true);
-		assertSearchHomepage();
+		try{
+			waitUntilElementAppears(examPageEmbibeLogo);
+			clickElement(examPageEmbibeLogo);
+			Reporter.log("Clicked on Embibe Logo", true);
+			assertSearchHomepage();
+		}
+		catch(Exception e){
+			waitUntilElementAppears(title_examPageEmbibeLogo);
+			clickElement(title_examPageEmbibeLogo);
+			Reporter.log("Clicked on Embibe Logo", true);
+			assertSearchHomepage();
+		}
+		
 	}
 	
 	public void examLinks(int i,String examType,String expURL) throws InterruptedException{
@@ -323,7 +352,7 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		clickExamPageEmbibeLogo();
+		
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 	}
@@ -511,6 +540,24 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(css="div.swiper-button-prev")
 	private WebElement clickPrev;
 	
+		public void searchFooterLinks(int i,String examType,String expURL) throws InterruptedException{
+			Reporter.log("----------------------------------------------------------------------------------------------",true);
+			Thread.sleep(2000);
+			clickElement(wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/div)["+i+"]")));
+			Reporter.log("Clicked on "+ examType, true);
+			String winHandleBefore = wdriver.getWindowHandle();
+			for (String winHandle : wdriver.getWindowHandles()) {
+				wdriver.switchTo().window(winHandle);
+			}
+			Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
+			Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\nPage Title : '" + examTitle.getText() + "' is displayed", true);
+			Thread.sleep(2000);
+			//Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+			clickExamPageEmbibeLogo();
+			wdriver.close();
+			wdriver.switchTo().window(winHandleBefore);
+		}
+	
 	public void clickNextSwiper() throws InterruptedException{
 		waitUntilElementAppears(clickNext);
 		Thread.sleep(2000);
@@ -524,6 +571,38 @@ public class SearchHomepage extends W_BasePage {
 		clickPrev.click();
 		Reporter.log("Clicked on swiper 'Prev' button",true);
 	}
+	
+	public void assert_findSomethingCool() throws InterruptedException{
+		waitUntilElementAppears(findSomethingCool);
+		String winHandleBefore = wdriver.getWindowHandle();
+		findSomethingCool.click();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Reporter.log("Clicked on 'Find Something Cool' option",true);
+		Thread.sleep(5000);
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
+		assertSearchHomepage();
+	}
+	
+	@FindBy(css="div.footer-div div.row.device-location")
+	private WebElement precise_location;
+	
+	public void assert_preciseLoction(){
+		waitUntilElementAppears(precise_location);
+		precise_location.click();
+		Reporter.log("Clicked on 'Use Precise Location' option",true);
+	}
+	
+	/*@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[1]")
+	private WebElement aboutUs_footer;
+	
+	public void clickAboutUs(){
+		clickElement();
+	}*/
+	
+	
 	
 	@FindBy(xpath="//*[@class='shift-right no-margin']/a")
 	private WebElement facebook_icon;

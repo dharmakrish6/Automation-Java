@@ -27,6 +27,9 @@ public class SearchResultsPageTest extends W_BaseTest {
 	public void SearchRequestPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
+		/*Thread.sleep(3000);
+		wdriver.get("https://rearch-staging3.embibe.com");
+		Thread.sleep(3000);*/
 		Reporter.log("Starting Test: Functional : Search Request Page Test"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
@@ -42,7 +45,7 @@ public class SearchResultsPageTest extends W_BaseTest {
 		//shp.noResultsFound();//SHP_14,No results page
 		shp.clickEmbibeLogo();
 		shp.assertSearchHomepage();
-		shp.guestGoalIcon();//SHP_15
+		shp.header_guestIcons();//SHP_15
 		shp.validSearchResult(uniqueValue2);//SHP_17
 		
 	}

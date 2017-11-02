@@ -9,7 +9,6 @@
       <class name="moolya.embibe.tests.web.functional.searchHomePage.ChooseMissionWindowTest"/>
       <class name="moolya.embibe.tests.web.functional.searchHomePage.RequestMissionWindowTest"/>
       <class name="moolya.embibe.tests.web.functional.askPage.AskPageTest"/>
-      
        <class name="moolya.embibe.tests.web.functional.searchHomePage.SearchHomePage_Footer_Test"/>
     </classes>
   </test> <!-- Test -->

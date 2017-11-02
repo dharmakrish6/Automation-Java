@@ -931,7 +931,7 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[3]/li/a)[1]")));
+		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[3]/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		Thread.sleep(2000);
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -951,7 +951,7 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[4]/li/a)[1]")));
+		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[4]/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
@@ -967,7 +967,7 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(examFooter);
-		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[5]/li/a)[1]")));
+		clickElement(wdriver.findElement(By.xpath("((//*[@class='no-underline-link']/../../../ul)[5]/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {

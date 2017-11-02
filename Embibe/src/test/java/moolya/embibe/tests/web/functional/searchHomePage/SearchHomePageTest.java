@@ -24,6 +24,12 @@ public class SearchHomePageTest extends W_BaseTest {
 		uniqueValue2 = "Sanity_12";
 	}
 	
+	String jeeMain_URL="https://rearch.embibe.com/exams/jee-main/";
+	String neet_URL="https://rearch.embibe.com/exams/neet/";
+	String aiims_URL="https://rearch.embibe.com/exams/aiims/";
+	String jeeAdvanced_URL="https://rearch.embibe.com/exams/iit-jee-advanced/";
+	String bitsat_URL="https://rearch.embibe.com/exams/bitsat/";
+	
 	@Test(dataProvider="browserData")
 	public void SearchHomePage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
@@ -42,23 +48,16 @@ public class SearchHomePageTest extends W_BaseTest {
 		shp.clickInstitutes();
 		shp.verifyInstitutePage();
 		shp.navigateBack();
+		shp.header_guestIcons();
+		shp.searchEngineSection();
+		shp.searchFooterLinks(1,"JEE Main",jeeMain_URL);
+		shp.searchFooterLinks(2,"JEE Advanced",jeeAdvanced_URL);
+		shp.searchFooterLinks(3,"BITSAT",bitsat_URL);
+		shp.searchFooterLinks(4,"NEET",neet_URL);
 		shp.clickNextSwiper();
+		shp.searchFooterLinks(5,"AIIMS",aiims_URL);
 		shp.clickPrevSwiper();
-		shp.clickNextSwiper();
-		
-		shp.disappearFloatingKeywords(uniqueValue);//SHP_5
-		shp.autoFillSearchResults();//SHP_9
-		shp.clickEmbibeLogo();
-		shp.assertSearchHomepage();
-		shp.wrongKeywordInSearchField();//SHP_11
-		shp.searchInNewTab(uniqueValue);//SHP_8
-		shp.correctKeywordInSearchField();//SHP_12
-		//shp.noResultsFound();//SHP_14,No results page
-		shp.clickEmbibeLogo();
-		shp.assertSearchHomepage();
-		shp.guestGoalIcon();//SHP_15
-		shp.validSearchResult(uniqueValue2);//SHP_17
-		
-	
+		shp.assert_findSomethingCool();
+		shp.assert_preciseLoction();
 	}
 }

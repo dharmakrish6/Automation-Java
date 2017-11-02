@@ -56,6 +56,9 @@ public class SearchResultsPage_Footer_Test extends W_BaseTest {
 	public void searchResultsPage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
+		/*Thread.sleep(3000);
+		wdriver.get("https://rearch-staging3.embibe.com");
+		Thread.sleep(3000);*/
 		Reporter.log("Starting Test: Functional : SearchResultPage Footers :"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();

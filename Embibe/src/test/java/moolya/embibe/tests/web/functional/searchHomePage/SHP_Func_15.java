@@ -28,6 +28,6 @@ public class SHP_Func_15 extends W_BaseTest {
 		lp.assertLandingPage();
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
-		shp.guestGoalIcon();
+		shp.header_guestIcons();
 	}
 }

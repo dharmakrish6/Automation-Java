@@ -946,6 +946,34 @@ public class W_BasePage extends W_SuperBasePage
 		return new SearchHomepage(wdriver);
 	}
 	
+	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[1]")
+	private WebElement aboutUs_footer;
+	
+	public void click_aboutUs(){
+		
+	}
+	
+	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[2]")
+	private WebElement press_footer;
+	
+	public void click_press(){
+		
+	}
+	
+	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[3]")
+	private WebElement contactUs_footer;
+	
+	public void click_contactUs(){
+		
+	}
+	
+	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[4]")
+	private WebElement TermsCOnditions_footer;
+	
+	public void click_termsCOnditions(){
+		
+	}
+	
 }
 
 
