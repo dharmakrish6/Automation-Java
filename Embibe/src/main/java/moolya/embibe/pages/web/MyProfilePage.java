@@ -34,10 +34,17 @@ public class MyProfilePage extends W_BasePage {
 	@FindBy(xpath="//*[@class='profile_label' AND contains(text(),'PREPARING FOR')]/../select")
 	private List<WebElement> preparingForList;
 	
+	@FindBy(css=".profile_display_pic")
+	private WebElement profilePic;
+	
 	public void clickMyProfile(){
 		waitUntilElementclickable(myProfile_Btn);
 		myProfile_Btn.click();
 		Reporter.log("Clicked on My Profile Button", true);
+	}
+	
+	public void waitForMyProfilePageToLoad(){
+		waitUntilElementAppears(profilePic);
 	}
 	
 	public void clickEditProfile(){

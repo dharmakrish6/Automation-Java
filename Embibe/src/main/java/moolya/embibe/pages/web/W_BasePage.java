@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -15,6 +16,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -372,6 +374,13 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on Jump", true);
 		return new JumpPage(wdriver);
 	}
+	
+	public MyProfilePage goToMyProfile(){
+		clickUserDropdown();
+		waitUntilElementclickable(myProfile_Btn);
+		myProfile_Btn.click();
+		return new MyProfilePage(wdriver);
+	}
 
 	public void clickRank(){
 		waitUntilElementclickable(rankup_Btn);
@@ -554,6 +563,14 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementclickable(userDropdown);
 		//		clickElementViaJavaScript(userDropdown);
 		userDropdown.click();
+	}
+	
+	public void printAllCookies(){
+		Set<Cookie> cookies = wdriver.manage().getCookies();
+		for(Cookie c:cookies){
+			System.out.println("Name: "+c.getName()+"\nDomain: "+c.getDomain()+"\nPath: "+c.getPath()+"\nValue: "+c.getValue()
+			+"\nClass: "+c.getClass()+"\nExpiry: "+c.getExpiry());
+		}
 	}
 
 	public void clearCookies(){
