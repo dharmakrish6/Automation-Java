@@ -20,6 +20,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.ie.InternetExplorerOptions;
@@ -854,7 +856,14 @@ public class W_BasePage extends W_SuperBasePage
 		if (browser.equalsIgnoreCase("ff")) 
 		{
 			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
-			wdriver = new FirefoxDriver();
+			FirefoxProfile ffProfile = new FirefoxProfile();
+			ffProfile.setPreference("geo.enabled", false);
+			ffProfile.setPreference("geo.provider.use_corelocation", false);
+			ffProfile.setPreference("geo.prompt.testing", false);
+			ffProfile.setPreference("geo.prompt.testing.allow", false);
+			FirefoxOptions ffOptions = new FirefoxOptions();
+			ffOptions.setProfile(ffProfile);
+			wdriver = new FirefoxDriver(ffOptions);
 		}
 
 		//	Only for windows
@@ -892,6 +901,9 @@ public class W_BasePage extends W_SuperBasePage
 			ChromeOptions chromeOptions = new ChromeOptions();
 			LoggingPreferences logPrefs = new LoggingPreferences();
 			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
 			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 			wdriver = new ChromeDriver(chromeOptions);
 		}

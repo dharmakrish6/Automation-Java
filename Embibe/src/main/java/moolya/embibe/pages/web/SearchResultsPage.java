@@ -551,6 +551,9 @@ public class SearchResultsPage extends W_BasePage {
 
 	@FindBy(css="ul.bottom-content>li:nth-child(10)")
 	private WebElement footer_Youtube;
+	
+	@FindBy(css=".didWrap .button-hollow")
+	private List<WebElement> didYouMeanTermsBtns_List;
 
 	public OcularResult checkShowResultsForEngineeringButton(){
 		waitUntilElementclickable(showForEngineering_Btn);
@@ -1095,4 +1098,46 @@ public class SearchResultsPage extends W_BasePage {
 	public void scrollToRelatedConcepts(){
 		scrollToElementViaJavascript(relatedConcepts_Lbl);
 	}
+	
+	public void getWidgetsOrder(){
+		String[] widgetClassArray = new String[]{"topic-head","askWrapper",
+				"concept-more","cheatSheetWrap"};
+		String[] widgetStringArray = new String[]{"Practice for","Most Viewed Videos","Chapter Test"};
+		HashMap<String, String> widgetMap = new HashMap<String, String>(){{
+			put("topic-head", "description");put("askWrapper","ask-box");put("concept-more","chapter-concepts");
+			put("cheatSheetWrap","cheat-sheet");put("Practice for","practice-set");
+			put("Most Viewed Videos","curated-videos");put("Chapter Test","chapter-tests");}};
+		String srDiv = "";
+		for(int i=0;i<widgetClassArray.length;i++){
+			if(srDiv.length()==0)
+				srDiv = "//*[contains(@class,'"+widgetClassArray[i]+"')";
+			else
+				srDiv = srDiv + " or " + "contains(@class,'"+widgetClassArray[i]+"')";
+		}
+		for(int i=0;i<widgetStringArray.length;i++){
+				srDiv = srDiv + " or " + "contains(text(),'"+widgetStringArray[i]+"')";
+		}
+		srDiv = srDiv + "]";
+		List<WebElement> searchResultsDiv = wdriver.findElements(By.xpath(srDiv));
+		int length = searchResultsDiv.size();
+		for(int i=0;i<length;i++){
+			String className = searchResultsDiv.get(i).getAttribute("class");
+			String text = searchResultsDiv.get(i).getText();
+			for(int j=0;j<widgetClassArray.length;j++){
+				if(className.contains(widgetClassArray[j])){
+					String cls = widgetMap.get(widgetClassArray[j]);
+					System.out.println("Widget: "+cls);
+				}
+			}
+			for(int j=0;j<widgetStringArray.length;j++){
+				if(text.contains(widgetStringArray[j])){
+					String txt = widgetMap.get(widgetStringArray[j]);
+					System.out.println("Widget: "+txt);
+				}
+			}
+			
+		}
+	}
+	
+	
 }

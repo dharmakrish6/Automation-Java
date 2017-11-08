@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
@@ -35,9 +35,9 @@ public class DslTest{
 	private String stream = "NA";
 	private WebDriver wdriver;
 	private W_BasePage basepage;
-	HashMap<String, Object> dslData;
-	HashMap<String, Object> actualData;
-	HashMap<String, Object> resultData;
+	LinkedHashMap<String, String> dslData;
+	LinkedHashMap<String, String> actualData;
+	LinkedHashMap<String, String> resultData;
 
 
 	@Test(dataProvider="getDslActualData")

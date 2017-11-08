@@ -1,7 +1,9 @@
 package moolya.embibe.pages.web;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import org.json.JSONException;
 import org.openqa.selenium.WebDriver;
@@ -32,7 +34,7 @@ public class DslPage extends W_BasePage {
 	@FindBy(tagName="body")
 	private WebElement resultBody;
 	
-	public void getSearchQueryJson(String query) throws IOException, JSONException{
+	public LinkedHashMap<String, String> getSearchQueryJson(String query,int maxLength) throws IOException, JSONException{
 		query = query.trim().replaceAll(" ", "+");
 		wdriver.navigate().to(wdriver.getCurrentUrl()+"?query="+query);
 		String url = wdriver.getCurrentUrl();
@@ -43,12 +45,13 @@ public class DslPage extends W_BasePage {
 		pagesource = pagesource.replace("</body></html>", "");
 		pagesource = pagesource.replace("<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">", "");
 		pagesource = pagesource.replace("</pre>", "");
-		String results = EmbibeUtils.getResultsFromJson(pagesource);
-		JavaUtils.writeResultsToFile("dslResults.txt", results);
+		LinkedHashMap<String,String> results = EmbibeUtils.getResultsFromJson(pagesource, maxLength);
+//		JavaUtils.writeResultsToFile("dslResults.txt", results);
+		return results;
 	}
 	
-	public HashMap<String,Object> searchQuery(String query,String stream) throws InterruptedException{
-		HashMap<String, Object> dslData = new HashMap<String, Object>();
+	public LinkedHashMap<String,String> searchQuery(String query,String stream) throws InterruptedException{
+		LinkedHashMap<String, String> dslData = new LinkedHashMap<String, String>();
 		waitUntilElementAppears(query_TB);
 		query_TB.clear();
 		query_TB.sendKeys(query);
@@ -75,7 +78,7 @@ public class DslPage extends W_BasePage {
 		String[] finalResult;
 		boolean disambiguated = Boolean.parseBoolean(resultTextLines1[1].split(" ")[1].trim());
 		String searchResultText = ""; 
-		dslData.put("Disambiguated", disambiguated);
+		dslData.put("Disambiguated", Boolean.toString(disambiguated));
 		if(disambiguated){
 			searchResultText = resultTextLines1[2].split(":")[1].trim();
 			try{

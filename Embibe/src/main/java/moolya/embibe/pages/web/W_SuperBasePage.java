@@ -50,6 +50,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerDriverService;
 import org.openqa.selenium.ie.InternetExplorerOptions;
@@ -111,7 +113,14 @@ public class W_SuperBasePage extends JavaUtils{
 		if (browser.equalsIgnoreCase("ff")) 
 		{
 			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
-			wdriver = new FirefoxDriver();
+			FirefoxProfile ffProfile = new FirefoxProfile();
+			ffProfile.setPreference("geo.enabled", false);
+			ffProfile.setPreference("geo.provider.use_corelocation", false);
+			ffProfile.setPreference("geo.prompt.testing", false);
+			ffProfile.setPreference("geo.prompt.testing.allow", false);
+			FirefoxOptions ffOptions = new FirefoxOptions();
+			ffOptions.setProfile(ffProfile);
+			wdriver = new FirefoxDriver(ffOptions);
 		}
 
 		//	Only for windows
@@ -149,6 +158,9 @@ public class W_SuperBasePage extends JavaUtils{
 			ChromeOptions chromeOptions = new ChromeOptions();
 			LoggingPreferences logPrefs = new LoggingPreferences();
 			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
 			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 			wdriver = new ChromeDriver(chromeOptions);
 		}
@@ -208,7 +220,14 @@ public class W_SuperBasePage extends JavaUtils{
 			if (environment.equalsIgnoreCase("ff")) 
 			{
 				System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
-				wdriver = new FirefoxDriver();
+				FirefoxProfile ffProfile = new FirefoxProfile();
+				ffProfile.setPreference("geo.enabled", false);
+				ffProfile.setPreference("geo.provider.use_corelocation", false);
+				ffProfile.setPreference("geo.prompt.testing", false);
+				ffProfile.setPreference("geo.prompt.testing.allow", false);
+				FirefoxOptions ffOptions = new FirefoxOptions();
+				ffOptions.setProfile(ffProfile);
+				wdriver = new FirefoxDriver(ffOptions);
 			}
 
 			//	Only for windows
@@ -246,6 +265,9 @@ public class W_SuperBasePage extends JavaUtils{
 				ChromeOptions chromeOptions = new ChromeOptions();
 				LoggingPreferences logPrefs = new LoggingPreferences();
 				logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+				chromeOptions.addArguments("test-type");
+				chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+				chromeOptions.addArguments("disable-geolocation");
 				chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
 				wdriver = new ChromeDriver(chromeOptions);
 			}
@@ -1153,13 +1175,13 @@ public class W_SuperBasePage extends JavaUtils{
 		return e_events;
 	}
 	
-	public void writeDslActualData(String sheetName, HashMap<String, Object> resultData, int row) throws EncryptedDocumentException, InvalidFormatException, IOException{
+	public void writeDslActualData(String sheetName, LinkedHashMap<String, String> resultData, int row) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		FileInputStream fis = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
 		Workbook wb = WorkbookFactory.create(fis);
 		Sheet sheet = wb.getSheet(sheetName);
 		Row headers = sheet.getRow(0);
 		Row record = sheet.getRow(row);
-		for(Map.Entry<String, Object> m:resultData.entrySet()){
+		for(Map.Entry<String, String> m:resultData.entrySet()){
 			for(int i=1;i<headers.getLastCellNum();i++){
 				try{
 					if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){

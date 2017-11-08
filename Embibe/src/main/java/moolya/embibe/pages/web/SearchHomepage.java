@@ -5,8 +5,8 @@ import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -17,7 +17,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.events.WebDriverEventListener;
 import org.testng.Assert;
 import org.testng.Reporter;
 
@@ -458,14 +457,14 @@ public class SearchHomepage extends W_BasePage {
 		}
 	}
 
-	public HashMap<String,Object> searchForDsl(boolean disambiguated, String keyword) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
-		HashMap<String, Object> actualData = new HashMap<String, Object>();
+	public LinkedHashMap<String, String> searchForDsl(boolean disambiguated, String keyword) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
+		LinkedHashMap<String, String> actualData = new LinkedHashMap<String, String>();
 		waitUntilElementAppears(search_TB);
 		search_TB.sendKeys(keyword);
 		Reporter.log("Searching for: "+keyword, true);
 		String text = "";
 		if(!disambiguated){
-			actualData.put("Disambiguated", false);
+			actualData.put("Disambiguated", "false");
 			waitUntilElementclickable(floatingKeywords.get(0));
 			if(getSearchHomepage())
 				actualData.put("Target Page", "Search Home Page");
@@ -481,7 +480,7 @@ public class SearchHomepage extends W_BasePage {
 			actualData.put("Actual Result", text);
 		}
 		else
-			actualData.put("Disambiguated", true);
+			actualData.put("Disambiguated", "true");
 		return actualData;
 	}
 	
@@ -591,8 +590,9 @@ public class SearchHomepage extends W_BasePage {
 		//assertSearchHomepage();
 	}
 	
-	@FindBy(css="div.footer-div div.row.device-location ul li a")
-	private WebElement precise_location;
+//	@FindBy(css="div.footer-div div.row.device-location ul li a")
+	@FindBy(linkText="Use precise location")
+ 	private WebElement precise_location;
 	
 	@FindBy(css="div.footer-div div.row.device-location ul li")
 	private WebElement locationName;

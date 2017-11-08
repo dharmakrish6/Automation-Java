@@ -1,24 +1,27 @@
 package moolya.embibe.tests.web.dummy;
 
-import org.apache.commons.lang.StringUtils;
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
+
+import moolya.embibe.pages.web.LandingPage;
+import moolya.embibe.pages.web.SearchHomepage;
+import moolya.embibe.pages.web.W_BasePage;
 
 public class Dummy2 {
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		String s1 = "Chemistry of Manganese From Pyrosulite,Chemistry,p Block Elements,"
-				+ "Chemistry of Chromium From Chromite,Inorganic Chemistry,General Organic Chemistry,"
-				+ "Physical Chemistry,Characteristics of P-block elements,Inorganic Compounds in Cellular Pool,"
-				+ "Electronic Configuration of p block elements,Nuclear and Surface Chemistry,null";
-		String s2 = "Chemistry of Manganese From Pyrosulite,Chemistry,p Block Elements,"
-				+ "Chemistry of Chromium From Chromite,Inorganic Chemistry,General Organic Chemistry,"
-				+ "Physical Chemistry,Characteristics of P-block elements,Inorganic Compounds in Cellular Pool,"
-				+ "Electronic Configuration of p block elements,Nuclear and Surface Chemistry,d and f Block elements";
-		System.out.println(s1.equals(s2));
-		String diff1 = StringUtils.difference(s1, s2);
-		String diff2 = StringUtils.difference(s2, s1);
-		System.out.println(diff1);
-		System.out.println(diff2);
+	private static WebDriver wdriver;
+	private static W_BasePage basepage;
+	private static LandingPage lp;
+	private static SearchHomepage shp;
+
+	public static void main(String[] args) throws IOException {
+		basepage = new W_BasePage(wdriver);
+		wdriver = basepage.launchWebApp("ff");
+		lp = new LandingPage(wdriver);
+		lp.waitForLandingPageToLoad();
+		shp = lp.clickStartNow();
+		shp.assert_preciseLoction();
 	}
 
 }

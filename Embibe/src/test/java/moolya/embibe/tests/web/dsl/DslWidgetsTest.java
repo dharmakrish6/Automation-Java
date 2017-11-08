@@ -4,8 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
@@ -37,9 +40,9 @@ public class DslWidgetsTest {
 	private String stream = "NA";
 	private WebDriver wdriver;
 	private W_BasePage basepage;
-	HashMap<String, Object> dslData;
-	HashMap<String, Object> actualData;
-	HashMap<String, Object> resultData;
+	LinkedHashMap<String, String> dslData;
+	LinkedHashMap<String, String> actualData;
+	LinkedHashMap<String, String> resultData;
 
 
 	@Test//(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
@@ -48,31 +51,45 @@ public class DslWidgetsTest {
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchDsl("chrome");
 		dslp = new DslPage(wdriver);
-		dslp.getSearchQueryJson(text);
-		
-		
-//		lp = basepage.goToLandingPage();
-//		lp.waitForLandingPageToLoad();
-//		shp = lp.clickStartNow();
-//		if(!stream.equalsIgnoreCase("na"))
-//			shp.login();
-//		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
-//		try {
-//			actualData = shp.searchForDsl(disambiguated, text);
-//			if(disambiguated){
-//				srp = new SearchResultsPage(wdriver);
-//				String resultText = "";
-//				resultText = srp.getSearchResultTopicHeader();
-//				actualData.put("Actual Result", resultText);
-//				actualData.put("Target Page", "Search Results Page");
-//			}
-//		} catch (Exception e) {}
+		dslData = dslp.getSearchQueryJson(text,10);
+		for(Map.Entry<String, String> m:dslData.entrySet()){
+				System.out.println(m.getKey()+": "+m.getValue());
+			}
+		lp = basepage.goToLandingPage();
+		lp.waitForLandingPageToLoad();
+		shp = lp.clickStartNow();
+		if(!stream.equalsIgnoreCase("na"))
+			shp.login();
+		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
+		try {
+			actualData = shp.searchForDsl(disambiguated, text);
+			if(disambiguated){
+				srp = new SearchResultsPage(wdriver);
+				String resultText = "";
+				resultText = srp.getSearchResultTopicHeader();
+				srp.getWidgetsOrder();
+				actualData.put("Actual Result", resultText);
+				actualData.put("Target Page", "Search Results Page");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 //		resultData = dslData;
 //		String status;
-//		if(actualData!=null && dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
-//			status = "Pass";
-//		else
-//			status = "Fail";
+//		if(disambiguated){
+//			if(actualData!=null 
+//					&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
+//				status = "Pass";
+//			else
+//				status = "Fail";
+//		}else{
+//			if(actualData!=null 
+//					&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString())
+//					&& dslData.get("Dsl Widgets").toString().equalsIgnoreCase(actualData.get("Actual Widgets").toString()))
+//				status = "Pass";
+//			else
+//				status = "Fail";
+//		}
 //		try {
 //			resultData.put("Actual Result", actualData.get("Actual Result"));
 //		} catch (Exception e) {}
