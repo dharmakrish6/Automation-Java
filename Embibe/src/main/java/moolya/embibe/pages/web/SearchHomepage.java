@@ -269,7 +269,7 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertTrue(searchSlogan.isDisplayed(), "'Search Engine label' is not found");
 		Reporter.log("'Search Engine label' is present in the Search Home Page",true);
 		Assert.assertTrue(search_TB.isDisplayed(), "'Search Engine' is not found");
-		Reporter.log(";Search Engine' is present in the Search Home Page",true);
+		Reporter.log("Search Engine' is present in the Search Home Page",true);
 		Assert.assertTrue(chooseMission_Btn.isDisplayed(), "'Choose a Misson' Button is not found");
 		Reporter.log("'Choose a Misson' button is present in the Search Home Page",true);
 		Assert.assertTrue(findSomethingCool.isDisplayed(), "'Find Something Cool' is not found");
@@ -367,7 +367,7 @@ public class SearchHomepage extends W_BasePage {
 	public void classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
-		scrollToElementViaJavascript(scrolltoExams);
+		scrollToElementViaJavascript(precise_location);
 		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -578,25 +578,33 @@ public class SearchHomepage extends W_BasePage {
 	
 	public void assert_findSomethingCool() throws InterruptedException{
 		waitUntilElementAppears(findSomethingCool);
-		String winHandleBefore = wdriver.getWindowHandle();
 		findSomethingCool.click();
+		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
 		Reporter.log("Clicked on 'Find Something Cool' option",true);
-		Thread.sleep(5000);
-		wdriver.close();
+		Reporter.log("Navigated to 'Blog Page'",true);
+		//Thread.sleep(5000);
+		//wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
-		assertSearchHomepage();
+		//assertSearchHomepage();
 	}
 	
-	@FindBy(css="div.footer-div div.row.device-location")
+	@FindBy(css="div.footer-div div.row.device-location ul li a")
 	private WebElement precise_location;
 	
-	public void assert_preciseLoction(){
+	@FindBy(css="div.footer-div div.row.device-location ul li")
+	private WebElement locationName;
+	
+	
+	public void assert_preciseLocation() throws Exception{
 		waitUntilElementAppears(precise_location);
 		precise_location.click();
+		Thread.sleep(1000);
 		Reporter.log("Clicked on 'Use Precise Location' option",true);
+		Thread.sleep(1000);
+		Reporter.log("Obtained Location :"+locationName.getText(),true);
 	}
 	
 	/*@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[1]")
@@ -717,19 +725,7 @@ public class SearchHomepage extends W_BasePage {
 		mouseHoverOnElement(wdriver, articles_Link);
 	}
 
-	public void assertAskPage(){
-		
-	}
+	
 
-
-
-	/*public void choosemission() throws InterruptedException{
-		waitUntilElementAppears(search_TB);
-		assertSearchHomepage();
-		Assert.assertTrue(chooseMission_Btn.isDisplayed(), "'Choose a Mission' option is not present");
-		Reporter.log("'Choose a Mission' is present", true);
-		clickElement(chooseMission_Btn);
-		Assert.assertTrue(selectGoalText.isDisplayed(), "'Choose a Misson' window is not opened.");
-	}*/	
 
 }

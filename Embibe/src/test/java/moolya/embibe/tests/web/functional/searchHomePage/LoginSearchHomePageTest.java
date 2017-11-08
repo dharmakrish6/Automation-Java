@@ -8,7 +8,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class SearchHomePageTest extends W_BaseTest {
+public class LoginSearchHomePageTest extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -17,15 +17,7 @@ public class SearchHomePageTest extends W_BaseTest {
 		uniqueValue = "Sanity_3";
 		uniqueValue2 = "Sanity_12";
 	}
-	
-	String rearchURL="https://www.embibe.com";
-	
-	String jeeMain_URL=rearchURL+"/exams/jee-main/";
-	String neet_URL=rearchURL+"/exams/neet/";
-	String aiims_URL=rearchURL+"/exams/aiims/";
-	String jeeAdvanced_URL=rearchURL+"/exams/iit-jee-advanced/";
-	String bitsat_URL=rearchURL+"/exams/bitsat/";
-	
+
 	@Test(dataProvider="browserData")
 	public void SearchHomePage_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
@@ -35,15 +27,7 @@ public class SearchHomePageTest extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		shp.clickAsk();
-		shp.clickAskEmbibeLogo();
-		shp.clickJump();
-		shp.clickJumpEmbibeLogo();
-		shp.clickRank();
-		shp.clickRankupEmbibeLogo();
-		shp.clickInstitutes();
-		shp.verifyInstitutePage();
-		shp.navigateBack();
+		/*shp.login();
 		shp.header_guestIcons();
 		shp.searchEngineSection();
 		shp.searchFooterLinks(1,"JEE Main",jeeMain_URL);
@@ -52,7 +36,7 @@ public class SearchHomePageTest extends W_BaseTest {
 		shp.searchFooterLinks(4,"NEET",neet_URL);
 		shp.clickNextSwiper();
 		shp.searchFooterLinks(5,"AIIMS",aiims_URL);
-		shp.clickPrevSwiper();
+		shp.clickPrevSwiper();*/
 		shp.assert_findSomethingCool();
 		shp.assert_preciseLocation();
 	}

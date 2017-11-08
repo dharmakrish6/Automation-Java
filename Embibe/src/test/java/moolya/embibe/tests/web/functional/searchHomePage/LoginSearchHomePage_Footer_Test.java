@@ -13,13 +13,13 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class SearchHomePage_Footer_Test extends W_BaseTest {
+public class LoginSearchHomePage_Footer_Test extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
 	private SearchHomepage shp;
 	
-	String rearchURL="https://rearch.embibe.com";
+	String rearchURL="https://rearch-staging3.embibe.com";
 	
 	String jeeMain_URL=rearchURL+"/exams/jee-main/";
 	String neet_URL=rearchURL+"/exams/neet/";
@@ -50,14 +50,15 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 	String collegePredictor_URL=rearchURL+"/rank-college-predictor/home";
 	
 	@Test(dataProvider="browserData")
-	public void searchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void loginSearchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional : SearchHomePage Footers :"+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional : Login usre searchHomePage Footers :"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
 		shp = lp.clickStartNow();
+		shp.login();
 		/*Reporter.log("========================================Exam Links====================================",true);
 		shp.examLinks(1,"JEE Main",jeeMain_URL);
 		shp.examLinks(2,"NEET",neet_URL);
@@ -65,11 +66,11 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 		shp.examLinks(4,"CBSE",cbse_URL);
 		shp.examLinks(5,"JEE Advanced",jeeAdvanced_URL);
 		shp.examLinks(6,"BITSAT",bitsat_URL);
-		shp.examLinks(7,"EAMCET",eamcet_URL);
+		shp.examLinks(7,"EAMCET",eamcet_URL);*/
 		Reporter.log("========================================Classes Links====================================",true);
 		shp.classesLinks(1,"Class 8","8th Foundation/NTSE/Olympiad",class_8_URL);
 		shp.classesLinks(2,"Class 9","9th Foundation/NTSE/Olympiad",class_9_URL);
-		shp.classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);*/
+		shp.classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);
 		Reporter.log("========================================Mock tests Links====================================",true);
 		shp.mockTestsLinks(1,"JEE Main",exam_jeeMain_URL);
 		shp.mockTestsLinks(2,"JEE Advanced",exam_jeeAdvanced_URL);

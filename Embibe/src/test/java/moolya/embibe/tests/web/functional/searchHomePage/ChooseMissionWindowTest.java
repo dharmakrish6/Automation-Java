@@ -36,12 +36,12 @@ public class ChooseMissionWindowTest extends W_BaseTest {
 		shp.assertSearchHomepage();
 		cmp = shp.clickChooseMission();
 		cmp.defaultGoal();//SHP_24
-		cmp.swipeMissions_in_GoalSelectors();
-		/*cmp.selectGoal_and_Exam("Engineering");
+		//cmp.swipeMissions_in_GoalSelectors();
+		cmp.selectGoal_and_Exam("Engineering");
 		cmp.selectGoal_and_Exam("Medical");
 		cmp.selectGoal_and_Exam("Foundation-10");
 		cmp.selectGoal_and_Exam("Foundation-09");
-		cmp.selectGoal_and_Exam("Foundation-08");*/
+		cmp.selectGoal_and_Exam("Foundation-08");
 		cmp.selectGoal_and_Exam("Bank");
 		shp=cmp.clickMissionClose();//CM_01
 		cmp=shp.clickChooseMission();
