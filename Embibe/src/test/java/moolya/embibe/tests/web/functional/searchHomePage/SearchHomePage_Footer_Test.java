@@ -58,7 +58,7 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
 		shp = lp.clickStartNow();
-		/*Reporter.log("========================================Exam Links====================================",true);
+		Reporter.log("========================================Exam Links====================================",true);
 		shp.examLinks(1,"JEE Main",jeeMain_URL);
 		shp.examLinks(2,"NEET",neet_URL);
 		shp.examLinks(3,"AIIMS",aiims_URL);
@@ -69,7 +69,7 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 		Reporter.log("========================================Classes Links====================================",true);
 		shp.classesLinks(1,"Class 8","8th Foundation/NTSE/Olympiad",class_8_URL);
 		shp.classesLinks(2,"Class 9","9th Foundation/NTSE/Olympiad",class_9_URL);
-		shp.classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);*/
+		shp.classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);
 		Reporter.log("========================================Mock tests Links====================================",true);
 		shp.mockTestsLinks(1,"JEE Main",exam_jeeMain_URL);
 		shp.mockTestsLinks(2,"JEE Advanced",exam_jeeAdvanced_URL);
@@ -113,6 +113,30 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 		shp.clickYoutubeIcon();
 		shp.switchToNextWindow(mainWindow);
 		shp.assertYoutubeEmbibePage();
-		shp.closeChildAndSwitchToMainWindow(mainWindow);	
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_aboutUs();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertAboutUs_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_press();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertPress_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_contactUs();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertContactUs_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_termsConditions();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertTOS_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_takeDownPolicy();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertTakeDownPolicy_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_privacyPolicy();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertPrivacyPolicy_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
 	}
 }

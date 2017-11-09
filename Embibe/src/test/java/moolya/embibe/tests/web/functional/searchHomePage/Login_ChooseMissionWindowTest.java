@@ -14,7 +14,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class ChooseMissionWindowTest extends W_BaseTest {
+public class Login_ChooseMissionWindowTest extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -34,9 +34,8 @@ public class ChooseMissionWindowTest extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		Thread.sleep(5000);
+		shp.login();
 		cmp = shp.clickChooseMission();
-		cmp.defaultGoal();//SHP_24
 		//cmp.swipeMissions_in_GoalSelectors();
 		cmp.selectGoal_and_Exam("Engineering");
 		cmp.selectGoal_and_Exam("Medical");
@@ -44,9 +43,8 @@ public class ChooseMissionWindowTest extends W_BaseTest {
 		cmp.selectGoal_and_Exam("Foundation-09");
 		cmp.selectGoal_and_Exam("Foundation-08");
 		cmp.selectGoal_and_Exam("Bank");
-		shp=cmp.clickMissionClose();//CM_01
+		shp=cmp.clickMissionClose();
 		cmp=shp.clickChooseMission();
-
 		cmp.countryDropdown("China");
 		cmp.assertChinaRequestMissionWarning();
 		cmp.countryDropdown("India");

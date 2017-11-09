@@ -84,6 +84,8 @@ public class W_SuperBasePage extends JavaUtils{
 
 	public WebDriver wdriver;
 	private Local l;
+	
+	String rearchURL="https://rearch.embibe.com";
 
 	public W_SuperBasePage(WebDriver wdriver) {
 		this.wdriver = wdriver;

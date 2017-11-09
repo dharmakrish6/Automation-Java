@@ -14,7 +14,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class RequestMissionWindowTest extends W_BaseTest {
+public class Login_RequestMissionWindowTest extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -30,20 +30,20 @@ public class RequestMissionWindowTest extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		Thread.sleep(5000);
+		shp.login();
 		cmp = shp.clickChooseMission();
+		cmp.countryDropdown("China");
 		//cmp.selectChina();//SHP_28
 		cmp.countryDropdown("China");
 		cmp.assertChinaRequestMissionWarning();
 		cmp.chinaRequestMission();//SHP_29
+		Thread.sleep(10000);
 		cmp.submitExam("JEE");
-		cmp.clickRequestMission();
-		/*cmp.countryDropdown("China");//SHP_30
+		cmp.countryDropdown("China");//SHP_30
 		shp=cmp.chinaStudy();
 		cmp=shp.clickChooseMission();//SHP_31
-		cmp.clickRequestMission();*/
-		//cmp.countryDropdown("India");
-		//cmp.indiaRequestMission();
+		cmp.countryDropdown("India");
+		cmp.indiaRequestMission();
 		cmp.enterExam("J");//SHP_32
 		cmp.addNewExam("Comed-K");//SHP_33
 		cmp.gotoChooseMissionInThankYouPage();

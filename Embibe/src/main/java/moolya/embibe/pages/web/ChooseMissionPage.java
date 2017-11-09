@@ -24,7 +24,8 @@ public class ChooseMissionPage extends W_BasePage {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@FindBy(css=".Dropdown-placeholder")
+	//@FindBy(css=".Dropdown-placeholder")
+	@FindBy(css=".Dropdown-root")
 	private WebElement chooseCountry_DD;
 	
 	@FindBy(css=".Dropdown-control+div>div:nth-child(1)")
@@ -192,10 +193,25 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(xpath="(//div[@class='selectmission null']/div/div/following::p[1])[1]")
 	private WebElement assertChinaMisson;
 	
+	@FindBy(css="div.Select-value")
+	private WebElement countryDDLabel;
+	
+	//@FindBy(css="div.select-menu-order")
+	@FindBy(xpath=".//*[@id='react-select-2--list']/div[@class='Select-option']")
+	private List<WebElement> newCountryList;
+	
+	
 	public void countryDropdown(String country) throws InterruptedException{
 		Assert.assertTrue(chooseCountry_DD.isDisplayed(), "'Country' dropdown is not present");
-		clickElement(chooseCountry_DD);
-		selectItemFromList(counrtyList, country);
+		clickElement(countryDDLabel);
+		int NumOfCountries=newCountryList.size();
+		Reporter.log("Total Countries in dropdown list is : " + NumOfCountries ,true);
+		List<WebElement> list = newCountryList;
+		Reporter.log("Country list are : ", true);
+		for (WebElement element : list) {
+			Reporter.log(element.getAttribute("textContent"), true);
+		}
+		selectItemFromList(list, country);
 		Reporter.log("Selected '"+country+"' from the dropdown list",true);
 	}
 	
@@ -214,6 +230,7 @@ public class ChooseMissionPage extends W_BasePage {
 		String expectedAssertText="We are working on making missions available for your country. Help us fast track Mission launches for your country by requesting a mission below:";
 		String actualAssertText=assertChinaMisson.getText();
 		Assert.assertEquals(actualAssertText,expectedAssertText);
+		Reporter.log("We are working on........ warning displayed",true);
 	}
 	
 	public SearchHomepage clickMissionClose(){
@@ -313,7 +330,7 @@ public class ChooseMissionPage extends W_BasePage {
 			Reporter.log("Navigated to : "+ wdriver.getCurrentUrl(),true);
 			Thread.sleep(2000);
 			clickRankupEmbibeLogo();
-			Thread.sleep(5000);
+			Thread.sleep(10000);
 			chooseMission_Btn.click();
 			//Reporter.log("Clicked on Choose a Mission : ",true);
 			selectItemFromList(goalList, goal);
@@ -399,7 +416,9 @@ public class ChooseMissionPage extends W_BasePage {
 		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");
 		Reporter.log("'Request Mission' sent successfully",true);
 		clickElement(goToChooseMission_Btn);
+		Reporter.log("Clicked on 'Goto choose a mission'",true);
 	}
+	
 	
 	@FindBy(xpath="//*[@class='study']")
 	private WebElement studyLink;

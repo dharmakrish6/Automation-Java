@@ -13,42 +13,78 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SignUpPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
+import moolya.embibe.utils.JavaUtils;
 
 public class SignupPage_Footer_Test extends W_BaseTest {
 
+	private static String rearchURL;
+	private static String jeeMain_URL;
+	private static String neet_URL;
+	private static String aiims_URL;
+	private static String cbse_URL;
+	private static String jeeAdvanced_URL;
+	private static String bitsat_URL;
+	private static String eamcet_URL;
+	private static String class_8_URL;
+	private static String class_9_URL;
+	private static String class_10_URL;
+	private static String exam_jeeMain_URL;
+	private static String exam_jeeAdvanced_URL;
+	private static String exam_bitsat_URL;
+	private static String exam_gujaratCet_URL;
+	private static String exam_AP_Eamcet_URL;
+	private static String exam_TS_Eamcet_URL;
+	private static String exam_neet_URL;
+	private static String exam_aiims_URL;
+	private static String exam_bank_clerk_prelims_URL;
+	private static String exam_bank_po_prelims_URL;
+	private static String rankUp_URL;
+	private static String blog_URL;
+	private static String articles_URL;
+	private static String collegePredictor_URL;
+	
+	
 	private W_BasePage basepage;
 	private LandingPage lp;
 	private SearchHomepage shp;
 	
-	String rearchURL="https://rearch-staging3.embibe.com";
-	
-	String jeeMain_URL=rearchURL+"/exams/jee-main/";
-	String neet_URL=rearchURL+"/exams/neet/";
-	String aiims_URL=rearchURL+"/exams/aiims/";
-	String cbse_URL=rearchURL+"/exams/cbse/";
-	String jeeAdvanced_URL=rearchURL+"/exams/iit-jee-advanced/";
-	String bitsat_URL=rearchURL+"/exams/bitsat/";
-	String eamcet_URL=rearchURL+"/exams/ap-eamcet/";
+	static{
+		try {
+			rearchURL = JavaUtils.getPropValue("testAppUrl");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		jeeMain_URL=rearchURL+"exams/jee-main/";
+		neet_URL=rearchURL+"exams/neet/";
+		aiims_URL=rearchURL+"exams/aiims/";
+		cbse_URL=rearchURL+"exams/cbse/";
+		jeeAdvanced_URL=rearchURL+"exams/iit-jee-advanced/";
+		bitsat_URL=rearchURL+"exams/bitsat/";
+		eamcet_URL=rearchURL+"exams/ap-eamcet/";
 
-	String class_8_URL=rearchURL+"/foundation-08/test";
-	String class_9_URL=rearchURL+"/foundation-09/test";
-	String class_10_URL=rearchURL+"/foundation-10/test";
+		class_8_URL=rearchURL+"foundation-08/test";
+		class_9_URL=rearchURL+"foundation-09/test";
+		class_10_URL=rearchURL+"foundation-10/test";
+		
+		exam_jeeMain_URL=rearchURL+"engineering/test/jee-main";
+		exam_jeeAdvanced_URL=rearchURL+"engineering/test/jee-advanced";
+		exam_bitsat_URL=rearchURL+"engineering/test/bitsat";
+		exam_gujaratCet_URL=rearchURL+"engineering/test/gujarat-cet";
+		exam_AP_Eamcet_URL=rearchURL+"engineering/test/ap-eamcet";
+		exam_TS_Eamcet_URL=rearchURL+"engineering/test/ts-eamcet";
+		exam_neet_URL=rearchURL+"medical/test/aipmt";
+		exam_aiims_URL=rearchURL+"medical/test/aiims";
+		exam_bank_clerk_prelims_URL=rearchURL+"bank/test/bank-clerk-prelims";
+		exam_bank_po_prelims_URL=rearchURL+"bank/test/bank-po-prelims";
+		
+		rankUp_URL=rearchURL+"rankup/signup";
+		blog_URL="https://blog.embibe.com/";
+		articles_URL=rearchURL+"exams/";
+		collegePredictor_URL=rearchURL+"rank-college-predictor/home";
+	}
 	
-	String exam_jeeMain_URL=rearchURL+"/engineering/test/jee-main";
-	String exam_jeeAdvanced_URL=rearchURL+"/engineering/test/jee-advanced";
-	String exam_bitsat_URL=rearchURL+"/engineering/test/bitsat";
-	String exam_gujaratCet_URL=rearchURL+"/engineering/test/gujarat-cet";
-	String exam_AP_Eamcet_URL=rearchURL+"/engineering/test/ap-eamcet";
-	String exam_TS_Eamcet_URL=rearchURL+"/engineering/test/ts-eamcet";
-	String exam_neet_URL=rearchURL+"/medical/test/aipmt";
-	String exam_aiims_URL=rearchURL+"/medical/test/aiims";
-	String exam_bank_clerk_prelims_URL=rearchURL+"/bank/test/bank-clerk-prelims";
-	String exam_bank_po_prelims_URL=rearchURL+"/bank/test/bank-po-prelims";
-	
-	String rankUp_URL=rearchURL+"/rankup/signup";
-	String blog_URL="https://blog.embibe.com/";
-	String articles_URL=rearchURL+"/exams/";
-	String collegePredictor_URL=rearchURL+"/rank-college-predictor/home";
 	
 	@Test(dataProvider="browserData")
 	public void signupPage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
@@ -61,6 +97,19 @@ public class SignupPage_Footer_Test extends W_BaseTest {
 		shp = lp.clickStartNow();
 		shp.login();
 		SignUpPage sup = shp.logout();
+		shp.clickAsk();
+		shp.clickAskEmbibeLogo();
+		shp.goToSignUpPage();
+		shp.clickJump();
+		shp.clickJumpEmbibeLogo();
+		shp.goToSignUpPage();
+		shp.clickRank();
+		shp.clickRankupEmbibeLogo();
+		shp.goToSignUpPage();
+		shp.clickInstitutes();
+		shp.verifyInstitutePage();
+		shp.navigateBack();
+		shp.goToSignUpPage();
 		Reporter.log("========================================Exam Links====================================",true);
 		sup.examLinks(1,"JEE Main",jeeMain_URL);
 		sup.examLinks(2,"NEET",neet_URL);
@@ -116,6 +165,31 @@ public class SignupPage_Footer_Test extends W_BaseTest {
 		sup.clickYoutubeIcon();
 		sup.switchToNextWindow(mainWindow);
 		sup.assertYoutubeEmbibePage();
-		sup.closeChildAndSwitchToMainWindow(mainWindow);	
+		sup.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("========================================Bottom footer Links====================================",true);
+		shp.click_aboutUs();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertAboutUs_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_press();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertPress_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_contactUs();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertContactUs_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_termsConditions();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertTOS_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_takeDownPolicy();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertTakeDownPolicy_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
+		shp.click_privacyPolicy();
+		shp.switchToNextWindow(mainWindow);
+		shp.assertPrivacyPolicy_Page();
+		shp.closeChildAndSwitchToMainWindow(mainWindow);
 	}
 }

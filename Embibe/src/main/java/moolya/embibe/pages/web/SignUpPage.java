@@ -160,6 +160,9 @@ public class SignUpPage extends W_BasePage {
 		wdriver.switchTo().window(winHandleBefore);
 	}
 	
+	@FindBy(linkText="Use precise location")
+ 	private WebElement precise_location;
+	
 	public void classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
@@ -177,6 +180,7 @@ public class SignUpPage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		embibeLogo_Ask.click();
 		Reporter.log("Clicked on Embibe Logo", true);
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 		Thread.sleep(2000);

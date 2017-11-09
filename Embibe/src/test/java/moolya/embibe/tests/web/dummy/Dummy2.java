@@ -21,7 +21,7 @@ public class Dummy2 {
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		shp = lp.clickStartNow();
-		shp.assert_preciseLoction();
+		//shp.assert_preciseLoction();
 	}
 
 }

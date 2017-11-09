@@ -78,7 +78,7 @@ public class W_BasePage extends W_SuperBasePage
 	private WebElement goalImage;
 
 	@FindBy(css=".guestImage")
-	private WebElement guestImage;
+	protected WebElement guestImage;
 
 	@FindBy(css=".create-profile.button-common")
 	private WebElement login_Btn;
@@ -360,6 +360,8 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementclickable(ask_Btn);
 		ask_Btn.click();
 		Reporter.log("Clicked on Ask", true);
+		waitUntilElementAppears(embibeLogo_Ask);
+		Reporter.log("Navigated to ASK page", true);
 	}
 
 	public void clickStudy(){
@@ -967,7 +969,7 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	@FindBy(css=".global-nav__left>a>img")
-	private WebElement embibeLogo_Ask;
+	protected WebElement embibeLogo_Ask;
 
 	public SearchHomepage clickAskEmbibeLogo(){
 		waitUntilElementclickable(embibeLogo_Ask);
@@ -981,28 +983,127 @@ public class W_BasePage extends W_SuperBasePage
 	private WebElement aboutUs_footer;
 
 	public void click_aboutUs(){
-
+		scrollToElementViaJavascript(aboutUs_footer);
+		waitUntilElementAppears(aboutUs_footer);
+		aboutUs_footer.click();
+		Reporter.log("Clicked on 'aboutUs' icon",true);
+	}
+	
+	@FindBy(css="div.about-page-top")
+	private WebElement assertAboutUs;
+	
+	public void assertAboutUs_Page(){
+		waitUntilElementclickable(assertAboutUs);
+		Assert.assertTrue(assertAboutUs.isDisplayed(), "Not navigated to About Us Page");
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Navigated to About Us Page", true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[2]")
 	private WebElement press_footer;
 
 	public void click_press(){
-
+		scrollToElementViaJavascript(press_footer);
+		waitUntilElementAppears(press_footer);
+		press_footer.click();
+		Reporter.log("Clicked on 'press' icon",true);
 	}
+	
+	@FindBy(css="div.u-alignBlock div.buttonSet button.button--primary")
+	private WebElement assertPress;
 
+	public void assertPress_Page(){
+		waitUntilElementclickable(assertPress);
+		Assert.assertTrue(assertPress.isDisplayed(), "Not navigated to Press Page");
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Navigated to Press Page", true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
+	}
+	
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[3]")
 	private WebElement contactUs_footer;
 
 	public void click_contactUs(){
-
+		scrollToElementViaJavascript(contactUs_footer);
+		waitUntilElementAppears(contactUs_footer);
+		contactUs_footer.click();
+		Reporter.log("Clicked on 'contact us' icon",true);
 	}
 
+	@FindBy(css="body.contact-us-page")
+	private WebElement assertContactUs;
+	
+	public void assertContactUs_Page(){
+		waitUntilElementclickable(assertContactUs);
+		Assert.assertTrue(assertContactUs.isDisplayed(), "Not navigated to Contact us Page");
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Navigated to Contact Us Page", true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
+	}
+	
+	
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[4]")
-	private WebElement TermsCOnditions_footer;
+	private WebElement termsConditions_footer;
 
-	public void click_termsCOnditions(){
+	public void click_termsConditions(){
+		scrollToElementViaJavascript(termsConditions_footer);
+		waitUntilElementAppears(termsConditions_footer);
+		termsConditions_footer.click();
+		Reporter.log("Clicked on 'TermsConditions' icon",true);
+	}
+	
+	@FindBy(css="div.tos-section")
+	private WebElement assertTOS;
+	
+	public void assertTOS_Page(){
+		waitUntilElementclickable(assertTOS);
+		Assert.assertTrue(assertTOS.isDisplayed(), "Not navigated to 'Terms of Service' Page");
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Navigated to 'Terms of Service' Page", true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
+	}
+	
+	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[5]")
+	private WebElement takeDownPolicy;
 
+	public void click_takeDownPolicy(){
+		scrollToElementViaJavascript(takeDownPolicy);
+		waitUntilElementAppears(takeDownPolicy);
+		takeDownPolicy.click();
+		Reporter.log("Clicked on 'TakeDown Policy' icon",true);
+	}
+	
+	@FindBy(css="div.takedown-section")
+	private WebElement assertTDP;
+	
+	public void assertTakeDownPolicy_Page(){
+		waitUntilElementclickable(assertTDP);
+		Assert.assertTrue(assertTDP.isDisplayed(), "Not navigated to 'Take Down Policy' Page");
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Navigated to 'Take Down Policy' Page", true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
+	}
+	
+	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[6]")
+	private WebElement privacyPolicy;
+
+	public void click_privacyPolicy(){
+		scrollToElementViaJavascript(privacyPolicy);
+		waitUntilElementAppears(privacyPolicy);
+		privacyPolicy.click();
+		Reporter.log("Clicked on 'privacy Policy' icon",true);
+	}
+	
+	@FindBy(css="div.tos-section")
+	private WebElement assertPrivacyPolicy;
+	
+	public void assertPrivacyPolicy_Page(){
+		waitUntilElementclickable(assertPrivacyPolicy);
+		Assert.assertTrue(assertPrivacyPolicy.isDisplayed(), "Not navigated to 'Privacy Policy' Page");
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Navigated to 'Privacy Policy' Page", true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 
 }

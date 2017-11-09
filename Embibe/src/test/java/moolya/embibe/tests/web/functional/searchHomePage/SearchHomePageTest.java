@@ -18,7 +18,7 @@ public class SearchHomePageTest extends W_BaseTest {
 		uniqueValue2 = "Sanity_12";
 	}
 	
-	String rearchURL="https://www.embibe.com";
+	String rearchURL="https://rearch.embibe.com";
 	
 	String jeeMain_URL=rearchURL+"/exams/jee-main/";
 	String neet_URL=rearchURL+"/exams/neet/";
@@ -35,7 +35,7 @@ public class SearchHomePageTest extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		shp.clickAsk();
+		/*shp.clickAsk();
 		shp.clickAskEmbibeLogo();
 		shp.clickJump();
 		shp.clickJumpEmbibeLogo();
@@ -46,7 +46,7 @@ public class SearchHomePageTest extends W_BaseTest {
 		shp.navigateBack();
 		shp.header_guestIcons();
 		shp.searchEngineSection();
-		shp.searchFooterLinks(1,"JEE Main",jeeMain_URL);
+		shp.searchFooterLinks(1,"JEE Main",jeeMain_URL);*/
 		shp.searchFooterLinks(2,"JEE Advanced",jeeAdvanced_URL);
 		shp.searchFooterLinks(3,"BITSAT",bitsat_URL);
 		shp.searchFooterLinks(4,"NEET",neet_URL);
