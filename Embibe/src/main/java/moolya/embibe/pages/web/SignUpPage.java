@@ -109,6 +109,9 @@ public class SignUpPage extends W_BasePage {
 		Reporter.log("Entered Confirm Password: "+data.get("Password"), true);
 		signUp_Btn.click();
 		Reporter.log("Clicked SignUp", true);
+		waitUntilElementclickable(closeForgotPassword_Btn);
+		closeForgotPassword_Btn.click();
+		Reporter.log("Clicked on Close", true);
 		return new SearchHomepage(wdriver);
 	}
 	
