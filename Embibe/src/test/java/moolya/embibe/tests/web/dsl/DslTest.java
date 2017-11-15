@@ -25,6 +25,7 @@ import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
+import moolya.embibe.utils.EmbibeUtils;
 
 public class DslTest{
 
@@ -73,13 +74,13 @@ public class DslTest{
 			resultData.put("Actual Result", actualData.get("Actual Result"));
 		} catch (Exception e) {}
 		resultData.put("Status", status);
-		shp.writeDslActualData("top1000SearchTerms", resultData, Integer.parseInt(row)+1);
+		EmbibeUtils.writeDslActualData("top1000SearchTerms", resultData, Integer.parseInt(row)+1);
 	}
 
 	@DataProvider
 	public Object[][] getDslActualData() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		Object[][] obj = null;
-		obj = W_BasePage.readDslUniqueValues("top1000SearchTerms");
+		obj = EmbibeUtils.readDslUniqueValues("top1000SearchTerms");
 		for(int i=0;i<obj.length;i++)
 			obj[i][2] = "chrome";
 		return obj;

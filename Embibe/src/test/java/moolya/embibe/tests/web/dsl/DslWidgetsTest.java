@@ -19,7 +19,10 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -29,6 +32,7 @@ import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
+import moolya.embibe.utils.EmbibeUtils;
 import moolya.embibe.utils.JavaUtils;
 
 public class DslWidgetsTest {
@@ -44,65 +48,80 @@ public class DslWidgetsTest {
 	LinkedHashMap<String, String> actualData;
 	LinkedHashMap<String, String> resultData;
 
-
-	@Test//(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
-	public void dslWidgetsTest() throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
-		String text = "ray optics";
+	@BeforeTest
+	public void setup() throws IOException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchDsl("chrome");
+	}
+
+	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
+	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
+		String text = uniqueValue;
 		dslp = new DslPage(wdriver);
-		dslData = dslp.getSearchQueryJson(text,10);
-		for(Map.Entry<String, String> m:dslData.entrySet()){
-				System.out.println(m.getKey()+": "+m.getValue());
-			}
-		lp = basepage.goToLandingPage();
-		lp.waitForLandingPageToLoad();
-		shp = lp.clickStartNow();
-		if(!stream.equalsIgnoreCase("na"))
-			shp.login();
-		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
-		try {
-			actualData = shp.searchForDsl(disambiguated, text);
-			if(disambiguated){
-				srp = new SearchResultsPage(wdriver);
-				String resultText = "";
-				resultText = srp.getSearchResultTopicHeader();
-				srp.getWidgetsOrder();
-				actualData.put("Actual Result", resultText);
-				actualData.put("Target Page", "Search Results Page");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-//		resultData = dslData;
+		dslData = dslp.getSearchQueryJson(text,20);
+		resultData = dslData;
+//		lp = basepage.goToLandingPage();
+//		lp.waitForLandingPageToLoad();
+//		shp = lp.clickStartNow();
+//		if(!stream.equalsIgnoreCase("na"))
+//			shp.login();
+//		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
+//		try {
+//			actualData = shp.searchForDsl(disambiguated, text);
+//			if(disambiguated){
+//				srp = new SearchResultsPage(wdriver);
+//				String resultText = "";
+//				resultText = srp.getSearchResultTopicHeader();
+//				String actualWidgets = srp.getWidgetsOrder(10);
+//				actualData.put("Target Page", "Search Results Page");
+//				actualData.put("Actual Result", resultText);
+//				actualData.put("Actual Widgets", actualWidgets);
+//			}
+//		} catch (Exception e) {}
 //		String status;
-//		if(disambiguated){
-//			if(actualData!=null 
-//					&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
-//				status = "Pass";
-//			else
-//				status = "Fail";
-//		}else{
-//			if(actualData!=null 
-//					&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString())
-//					&& dslData.get("Dsl Widgets").toString().equalsIgnoreCase(actualData.get("Actual Widgets").toString()))
-//				status = "Pass";
-//			else
-//				status = "Fail";
-//		}
+//		if(actualData!=null 
+//				&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
+//			status = "Pass";
+//		else
+//			status = "Fail";
 //		try {
 //			resultData.put("Actual Result", actualData.get("Actual Result"));
+//			resultData.put("Actual Widgets", actualData.get("Actual Widgets"));
 //		} catch (Exception e) {}
 //		resultData.put("Status", status);
-//		shp.writeDslActualData("top1000SearchTerms", resultData, Integer.parseInt(row)+1);
+//		String[] dslWidgets = dslData.get("Dsl Widgets").split(",");
+//		for(int i=0;i<dslWidgets.length;i++){
+//			String[] widget = dslWidgets[i].split("=");
+//			try {
+//				resultData.put("Dsl Widget Type "+(i+1), widget[0]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Dsl Widget Name "+(i+1), widget[1]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Dsl Widget Value "+(i+1), widget[2]);
+//			} catch (Exception e) {}
+//		}
+//		String[] actualWidgets = actualData.get("Actual Widgets").split(",");
+//		for(int i=0;i<actualWidgets.length;i++){
+//			String[] widget = actualWidgets[i].split("=");
+//			try {
+//				resultData.put("Actual Widget Type "+(i+1), widget[0]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Actual Widget Name "+(i+1), widget[1]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Actual Widget Value "+(i+1), widget[2]);
+//			} catch (Exception e) {}
+//		}
+		EmbibeUtils.writeDslActualData("top1000SearchTerms", resultData, Integer.parseInt(row)+1);
 	}
 
 	@DataProvider
 	public Object[][] getDslActualData() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		Object[][] obj = null;
-		obj = W_BasePage.readDslUniqueValues("top1000SearchTerms");
-		for(int i=0;i<obj.length;i++)
-			obj[i][2] = "chrome";
+		obj = EmbibeUtils.readDslUniqueValues("top1000SearchTerms");
 		return obj;
 	}
 
@@ -124,16 +143,22 @@ public class DslWidgetsTest {
 		}
 		else
 			Reporter.log("Test: "+result.getName()+" Passed!", true);
+		
+		try {
+			File file = new File(System.getProperty("java.io.tmpdir"));
+			FileUtils.cleanDirectory(file);
+		}catch (IOException e) {}
+//		wdriver.navigate().to(JavaUtils.getPropValue("dslUrl"));
+	}
+	
+	@AfterTest
+	public void tearDown(){
 		try{
 			wdriver.quit();
 		}catch(Exception e){
 			wdriver.close();
 		}
 
-		try {
-			File file = new File(System.getProperty("java.io.tmpdir"));
-			FileUtils.cleanDirectory(file);
-		}catch (IOException e) {}
 	}
 	
 }

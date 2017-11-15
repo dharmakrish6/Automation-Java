@@ -507,6 +507,7 @@ public class W_SuperBasePage extends JavaUtils{
 			act.moveToElement(element).build().perform();
 		} catch (Exception e) {
 			scrollToElementViaJavascript(element);
+			scrollVertically("-100");
 			Actions act = new Actions(driver);
 			act.moveToElement(element).build().perform();
 		}
@@ -520,6 +521,7 @@ public class W_SuperBasePage extends JavaUtils{
 			act.moveToElement(element).build().perform();
 		} catch (Exception e) {
 			scrollToElementViaJavascript(element);
+			scrollVertically("-100");
 			Actions act = new Actions(driver);
 			act.moveToElement(element).build().perform();
 		}
@@ -1175,39 +1177,6 @@ public class W_SuperBasePage extends JavaUtils{
 		wb.close();
 		file.close();
 		return e_events;
-	}
-	
-	public void writeDslActualData(String sheetName, LinkedHashMap<String, String> resultData, int row) throws EncryptedDocumentException, InvalidFormatException, IOException{
-		FileInputStream fis = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
-		Workbook wb = WorkbookFactory.create(fis);
-		Sheet sheet = wb.getSheet(sheetName);
-		Row headers = sheet.getRow(0);
-		Row record = sheet.getRow(row);
-		for(Map.Entry<String, String> m:resultData.entrySet()){
-			for(int i=1;i<headers.getLastCellNum();i++){
-				try{
-					if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){
-						Cell cell = null;
-						try{
-							cell = record.getCell(i);
-							cell.setCellType(Cell.CELL_TYPE_STRING);
-							cell.setCellValue(m.getValue().toString());
-						}catch(Exception e){
-							cell = record.createCell(i);
-							cell.setCellType(Cell.CELL_TYPE_STRING);
-							cell.setCellValue(m.getValue().toString());
-						}
-
-						break;
-					}
-				}catch(Exception e){}
-			}
-		}
-		FileOutputStream fos = new FileOutputStream("./test-data/GlobalSearchTestCases.xlsx");
-		wb.write(fos);
-		wb.close();
-		fis.close();
-		fos.close();
 	}
 
 }

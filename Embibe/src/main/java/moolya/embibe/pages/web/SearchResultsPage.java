@@ -1156,5 +1156,132 @@ public class SearchResultsPage extends W_BasePage {
 		}
 	}
 	
+	public String getWidgetsOrder(int maxLength) throws InterruptedException{
+		String actualWidgets = "";
+		String[] widgetClassArray = new String[]{"topic-head","askWrapper",
+				"concept-more","cheatSheetWrap","progressHeading"};
+		String[] widgetStringArray = new String[]{"Practice for","Most Viewed Videos","Chapter Test",
+				"Wikipedia for"};
+		HashMap<String, String> widgetMap = new HashMap<String, String>(){{
+			put("topic-head", "description");put("askWrapper","ask-box");
+			put("concept-more","chapter-concepts");put("cheatSheetWrap","cheat-sheet");
+			put("Practice for","practice-set");put("Most Viewed Videos","curated-videos");
+			put("Chapter Test","chapter-tests");put("progressHeading","practice-actionables");}};
+		String srDiv = "";
+		for(int i=0;i<widgetClassArray.length;i++){
+			if(srDiv.length()==0)
+				srDiv = "//*[contains(@class,'"+widgetClassArray[i]+"')";
+			else
+				srDiv = srDiv + " or " + "contains(@class,'"+widgetClassArray[i]+"')";
+		}
+		for(int i=0;i<widgetStringArray.length;i++){
+				srDiv = srDiv + " or " + "contains(text(),'"+widgetStringArray[i]+"')";
+		}
+		srDiv = srDiv + "]";
+		List<WebElement> searchResultsDiv = wdriver.findElements(By.xpath(srDiv));
+		int length = searchResultsDiv.size();
+		if(length>maxLength)
+			length=maxLength;
+		for(int i=0;i<length;i++){
+			String className = searchResultsDiv.get(i).getAttribute("class");
+			String text = searchResultsDiv.get(i).getText();
+			for(int j=0;j<widgetClassArray.length;j++){
+				if(className.contains(widgetClassArray[j])){
+					String widgetType = widgetMap.get(widgetClassArray[j]);
+					String widgetName = getWidgetName(widgetType, searchResultsDiv.get(i));
+					String widgetValue = getWidgetValue(widgetType, searchResultsDiv.get(i));
+					String widget = widgetType + "," + widgetName;
+					if(widgetValue.length()!=0)
+						widget = widget + "," +widgetValue;
+					if(actualWidgets.length()==0)
+						actualWidgets = widget;
+					else
+						actualWidgets = actualWidgets + ";" + widget;
+				}
+			}
+			for(int j=0;j<widgetStringArray.length;j++){
+				if(text.contains(widgetStringArray[j])){
+					String widgetType = widgetMap.get(widgetStringArray[j]);
+					String widgetName = getWidgetName(widgetType, searchResultsDiv.get(i));
+					String widgetValue = getWidgetValue(widgetType, searchResultsDiv.get(i));
+					String widget = widgetType + "," + widgetName;
+					if(widgetValue.length()!=0)
+						widget = widget + "," +widgetValue;
+					if(actualWidgets.length()==0)
+						actualWidgets = widget;
+					else
+						actualWidgets = actualWidgets + ";" + widget;
+				}
+			}
+			
+		}
+		return actualWidgets;
+	}
+	
+	public String getWidgetName(String type,WebElement e) throws InterruptedException{
+		String text = "";
+		switch(type){
+		case "description"	:	text = e.getText();
+		break;
+		case "chapter-concepts"	:	text = e.findElement(By.xpath("../preceding-sibling::div")).getText();
+		break;
+		case "cheat-sheet"	:	text = e.findElement(By.xpath("div[1]")).getText();
+		break;
+		case "practice-set"	:	text = e.getText();	
+		if(text.contains("...")){
+			mouseHoverOnElement(wdriver, e);
+			text = e.findElement(By.xpath("div[@class='toolTip']")).getText();
+		}
+		break;
+		case "curated-videos"	:	text = e.getText();
+		break;
+		case "chapter-tests" : text = e.getText();
+		break;
+		case "practice-actionables" : text = e.getText();
+		break;
+		}
+		
+		return text;
+	}
+	
+	public String getWidgetValue(String type,WebElement e){
+		String text = "";
+		switch(type){
+		case "chapter-concepts"	:	List<WebElement> concepts = e.findElements(By.xpath("./preceding-sibling::ul/a/li/div"));
+		for(WebElement concept:concepts){
+			String s = concept.getText();
+			if(text.length()==0)
+				text = s;
+			else
+				text = text + "+" + s;
+		}
+		break;
+		case "curated-videos"	:	List<WebElement> videos = e.findElements(By.xpath("./following-sibling::div//p"));
+		int length = videos.size();
+		if(length>10)
+			length = 10;
+		for(int i=0;i<length;i++){
+			String s = videos.get(i).getText();
+			if(text.length()==0)
+				text = s;
+			else
+				text = text + "+" + s;
+		}
+		break;
+		case "chapter-tests" : List<WebElement> tests = e.findElements(By.xpath("./following-sibling::div//a"));
+		for(WebElement test:tests){
+			String s = test.getText();
+			if(text.length()==0)
+				text = s;
+			else
+				text = text + "+" + s;
+		}
+		break;
+		default : break;
+		}
+		
+		return text;
+	}
+	
 	
 }

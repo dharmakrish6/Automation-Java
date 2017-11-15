@@ -36,17 +36,19 @@ public class DslPage extends W_BasePage {
 	
 	public LinkedHashMap<String, String> getSearchQueryJson(String query,int maxLength) throws IOException, JSONException{
 		query = query.trim().replaceAll(" ", "+");
-		wdriver.navigate().to(wdriver.getCurrentUrl()+"?query="+query);
+		wdriver.navigate().to(JavaUtils.getPropValue("dslUrl")+"?query="+query);
 		String url = wdriver.getCurrentUrl();
 		url = url+"&consumer=tech";
 		wdriver.navigate().to(url);
 		String pagesource = wdriver.getPageSource();
+		JavaUtils.writeResultsToFile("dslResults.txt", pagesource);
 		pagesource = pagesource.replace("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head><body>", "");
 		pagesource = pagesource.replace("</body></html>", "");
 		pagesource = pagesource.replace("<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">", "");
 		pagesource = pagesource.replace("</pre>", "");
+//		String response = EmbibeUtils.getDslResponse(query);
+//		JavaUtils.writeResultsToFile("dslResults.txt", response);
 		LinkedHashMap<String,String> results = EmbibeUtils.getResultsFromJson(pagesource, maxLength);
-//		JavaUtils.writeResultsToFile("dslResults.txt", results);
 		return results;
 	}
 	

@@ -693,27 +693,6 @@ public class W_BasePage extends W_SuperBasePage
 		return new SignUpPage(wdriver);
 	}
 
-	public static String[][] readDslUniqueValues(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
-		FileInputStream file = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
-		Workbook wb = WorkbookFactory.create(file);
-		Sheet sheet = wb.getSheet(sheetName);
-		int noOfRows = sheet.getLastRowNum(); 
-		String[][] values = new String[noOfRows][3];
-		for(int i=1;i<=noOfRows;i++) {
-			Row record = sheet.getRow(i);
-			try {
-				values[i-1][0] = Integer.toString(i-1);
-				values[i-1][1] = record.getCell(0).toString().trim();
-			} catch (Exception e) {
-				values[i-1][0] = Integer.toString(i-1);
-				values[i-1][1] = record.getCell(0).getStringCellValue();
-			}
-		}
-		wb.close();
-		file.close();
-		return values;
-	}
-
 	public LogoutSignInPage signOut() throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
 		waitUntilElementclickable(userDropdown);
 		clickElementViaJavaScript(userDropdown);
