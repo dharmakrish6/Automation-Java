@@ -20,35 +20,42 @@ public class Login_ChooseMissionWindowTest extends W_BaseTest {
 	private LandingPage lp;
 	private SearchHomepage shp;
 	private ChooseMissionPage cmp;
-	{
-		uniqueValue = "Sanity_3";
-		uniqueValue2 = "Sanity_12";
-	}
 	
 	@Test(dataProvider="browserData")
-	public void ChooseMisson_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void login_ChooseMisson_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional : ChooseMisson Test"+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional : Login user ChooseMisson Test"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
 		shp.login();
 		cmp = shp.clickChooseMission();
+		Reporter.log("-------------------------------------------------------------------------------------------------",true);
+		cmp.defaultGoal();//SHP_24
 		//cmp.swipeMissions_in_GoalSelectors();
+		Reporter.log("====================Mission for Engineering , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Engineering");
+		Reporter.log("====================Mission for Medical , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Medical");
+		Reporter.log("====================Mission for Foundation-10 , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Foundation-10");
+		Reporter.log("====================Mission for Foundation-09 , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Foundation-09");
+		Reporter.log("====================Mission for Foundation-08 , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Foundation-08");
+		Reporter.log("====================Mission for Bank , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Bank");
-		shp=cmp.clickMissionClose();
+		Reporter.log("-------------------------------------------------------------------------------------------------",true);
+		shp.refreshPage();
+		Thread.sleep(5000);
 		cmp=shp.clickChooseMission();
 		cmp.countryDropdown("China");
 		cmp.assertChinaRequestMissionWarning();
 		cmp.countryDropdown("India");
 		cmp.assertCountryIndia();	
 		cmp.clickRequestMission();
+		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);
 	}
 }

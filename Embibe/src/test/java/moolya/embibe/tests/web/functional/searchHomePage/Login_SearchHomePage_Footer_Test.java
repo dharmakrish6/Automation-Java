@@ -55,45 +55,44 @@ public class Login_SearchHomePage_Footer_Test extends W_BaseTest {
 			e.printStackTrace();
 		}
 		
-		jeeMain_URL=rearchURL+"/exams/jee-main/";
-		neet_URL=rearchURL+"/exams/neet/";
-		aiims_URL=rearchURL+"/exams/aiims/";
-		cbse_URL=rearchURL+"/exams/cbse/";
-		jeeAdvanced_URL=rearchURL+"/exams/iit-jee-advanced/";
-		bitsat_URL=rearchURL+"/exams/bitsat/";
-		eamcet_URL=rearchURL+"/exams/ap-eamcet/";
+		jeeMain_URL=rearchURL+"exams/jee-main/";
+		neet_URL=rearchURL+"exams/neet/";
+		aiims_URL=rearchURL+"exams/aiims/";
+		cbse_URL=rearchURL+"exams/cbse/";
+		jeeAdvanced_URL=rearchURL+"exams/iit-jee-advanced/";
+		bitsat_URL=rearchURL+"exams/bitsat/";
+		eamcet_URL=rearchURL+"exams/ap-eamcet/";
 
-		class_8_URL=rearchURL+"/foundation-08/test";
-		class_9_URL=rearchURL+"/foundation-09/test";
-		class_10_URL=rearchURL+"/foundation-10/test";
+		class_8_URL=rearchURL+"foundation-08/test";
+		class_9_URL=rearchURL+"foundation-09/test";
+		class_10_URL=rearchURL+"foundation-10/test";
 		
-		exam_jeeMain_URL=rearchURL+"/engineering/test/jee-main";
-		exam_jeeAdvanced_URL=rearchURL+"/engineering/test/jee-advanced";
-		exam_bitsat_URL=rearchURL+"/engineering/test/bitsat";
-		exam_gujaratCet_URL=rearchURL+"/engineering/test/gujarat-cet";
-		exam_AP_Eamcet_URL=rearchURL+"/engineering/test/ap-eamcet";
-		exam_TS_Eamcet_URL=rearchURL+"/engineering/test/ts-eamcet";
-		exam_neet_URL=rearchURL+"/medical/test/aipmt";
-		exam_aiims_URL=rearchURL+"/medical/test/aiims";
-		exam_bank_clerk_prelims_URL=rearchURL+"/bank/test/bank-clerk-prelims";
-		exam_bank_po_prelims_URL=rearchURL+"/bank/test/bank-po-prelims";
+		exam_jeeMain_URL=rearchURL+"engineering/test/jee-main";
+		exam_jeeAdvanced_URL=rearchURL+"engineering/test/jee-advanced";
+		exam_bitsat_URL=rearchURL+"engineering/test/bitsat";
+		exam_gujaratCet_URL=rearchURL+"engineering/test/gujarat-cet";
+		exam_AP_Eamcet_URL=rearchURL+"engineering/test/ap-eamcet";
+		exam_TS_Eamcet_URL=rearchURL+"engineering/test/ts-eamcet";
+		exam_neet_URL=rearchURL+"medical/test/aipmt";
+		exam_aiims_URL=rearchURL+"medical/test/aiims";
+		exam_bank_clerk_prelims_URL=rearchURL+"bank/test/bank-clerk-prelims";
+		exam_bank_po_prelims_URL=rearchURL+"bank/test/bank-po-prelims";
 		
-		rankUp_URL=rearchURL+"/rankup/signup";
+		rankUp_URL=rearchURL+"rankup/signup";
 		blog_URL="https://blog.embibe.com/";
-		articles_URL=rearchURL+"/exams/";
-		collegePredictor_URL=rearchURL+"/rank-college-predictor/home";
+		articles_URL=rearchURL+"exams/";
+		collegePredictor_URL=rearchURL+"rank-college-predictor/home";
 	}
 	
 	@Test(dataProvider="browserData")
-	public void loginSearchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void login_SearchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional : Login usre searchHomePage Footers :"+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional flow : Login user 'Search Home Page' Footers Test on : "+ "'" + browser + "'", true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
 		shp = lp.clickStartNow();
-		shp.login();
 		lfp=shp.loginFooters();
 		Reporter.log("========================================Exam Links====================================",true);
 		lfp.loginUser_examLinks(1,"JEE Main",jeeMain_URL);
@@ -151,5 +150,31 @@ public class Login_SearchHomePage_Footer_Test extends W_BaseTest {
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertYoutubeEmbibePage();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);	
+		Reporter.log("========================================Bottom footer Links====================================",true);
+		lfp.click_aboutUs();
+		lfp.switchToNextWindow(mainWindow);
+		lfp.assertAboutUs_Page();
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		lfp.click_press();
+		lfp.switchToNextWindow(mainWindow);
+		lfp.assertPress_Page();
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		lfp.click_contactUs();
+		lfp.switchToNextWindow(mainWindow);
+		lfp.assertContactUs_Page();
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		lfp.click_termsConditions();
+		lfp.switchToNextWindow(mainWindow);
+		lfp.assertTOS_Page();
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		lfp.click_takeDownPolicy();
+		lfp.switchToNextWindow(mainWindow);
+		lfp.assertTakeDownPolicy_Page();
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		lfp.click_privacyPolicy();
+		lfp.switchToNextWindow(mainWindow);
+		lfp.assertPrivacyPolicy_Page();
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		
 	}
 }

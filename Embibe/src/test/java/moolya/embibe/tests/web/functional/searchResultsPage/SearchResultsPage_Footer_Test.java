@@ -104,7 +104,9 @@ public class SearchResultsPage_Footer_Test extends W_BaseTest {
 		srp.resourcesTestsLinks(2,"Articles",articles_URL);
 		srp.resourcesTestsLinks(3,"College Predictor",collegePredictor_URL);
 		Reporter.log("========================================Social Media Links====================================",true);
-		String mainWindow = shp.getMainWindowHandle();
+		
+		
+		String mainWindow = srp.getMainWindowHandle();
 		srp.clickFacebookIcon();
 		srp.switchToNextWindow(mainWindow);
 		srp.assertFacebookEmbibePage();

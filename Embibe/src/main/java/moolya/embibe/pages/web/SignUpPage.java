@@ -158,7 +158,10 @@ public class SignUpPage extends W_BasePage {
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		
+		waitUntilElementclickable(title_examPageEmbibeLogo);
+		title_examPageEmbibeLogo.click();
+		Reporter.log("Clicked on Embibe logo",true);
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 	}
@@ -314,7 +317,6 @@ public class SignUpPage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.facebook.com/embibe.me/");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to facebook Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 	
 	public void clickTwitterIcon() throws InterruptedException{
@@ -330,7 +332,6 @@ public class SignUpPage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(), "https://twitter.com/embibe");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to twitter Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 	
 	public void clickInstagramIcon() throws InterruptedException{
@@ -346,7 +347,6 @@ public class SignUpPage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.instagram.com/embibe.me/");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to instagram Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 	
 	public void clickYoutubeIcon() throws InterruptedException{
@@ -362,7 +362,6 @@ public class SignUpPage extends W_BasePage {
 		Assert.assertTrue(youtubePageHeader.isDisplayed(), "Not navigated to youtube");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to Youtube Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}	
 	
 }

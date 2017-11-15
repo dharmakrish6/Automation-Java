@@ -205,7 +205,8 @@ public class FootersPage extends W_BasePage {
 		}
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Page Title : " + examTitle.getText(), true);
 		boolean isExamLogOutBtn = false;
 		try{
 			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
@@ -213,8 +214,9 @@ public class FootersPage extends W_BasePage {
 		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
 		//Assert.assertTrue(isExamLogOutBtn,"Page should not be in Logged out state.");
 		Reporter.log("In logged-in state",true);
-		embibeLogo_Ask.click();
-		Reporter.log("Clicked on Embibe Logo", true);
+		title_examPageEmbibeLogo.click();
+		Reporter.log("Clicked on Embibe logo",true);
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 	}
@@ -235,7 +237,8 @@ public class FootersPage extends W_BasePage {
 		Assert.assertTrue(wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]")).isDisplayed(), "Navigation failed");
 		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
 		
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n '" + classNum.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
+		Reporter.log("Class Name : '" + classNum.getText(), true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		boolean isExamLogOutBtn = false;
 		try{
@@ -330,8 +333,8 @@ public class FootersPage extends W_BasePage {
 		precise_location.click();
 		Thread.sleep(1000);
 		Reporter.log("Clicked on 'Use Precise Location' option",true);
-		Thread.sleep(1000);
-		Reporter.log("Obtained Location :"+locationName.getText(),true);
+		Thread.sleep(5000);
+		Reporter.log("Obtained Location : "+locationName.getText(),true);
 	}
 	
 	@FindBy(xpath="//*[@class='shift-right no-margin']/a")
@@ -458,7 +461,7 @@ public class FootersPage extends W_BasePage {
 		}
 		softAssert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
 		//Assert.assertTrue( examTitle.isDisplayed(),"Navigation failed");
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\nPage Title : '" + examTitle.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
 		Thread.sleep(2000);
 		boolean isExamLogOutBtn = false;
 		try{
@@ -468,7 +471,9 @@ public class FootersPage extends W_BasePage {
 		//Assert.assertTrue(isExamLogOutBtn,"Page should not be in Logged out state.");
 		Reporter.log("In logged-in state",true);
 		//Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		clickExamPageEmbibeLogo();
+		title_examPageEmbibeLogo.click();
+		Reporter.log("Clicked on Embibe logo",true);
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 	}

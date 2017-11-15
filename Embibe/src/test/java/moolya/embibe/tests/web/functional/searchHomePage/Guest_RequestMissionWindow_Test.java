@@ -14,7 +14,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class Login_RequestMissionWindowTest extends W_BaseTest {
+public class Guest_RequestMissionWindow_Test extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -22,10 +22,10 @@ public class Login_RequestMissionWindowTest extends W_BaseTest {
 	private ChooseMissionPage cmp;
 	
 	@Test(dataProvider="browserData")
-	public void login_RequestMisson_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void guest_RequestMisson_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional :Login user 'Request a Mission Test' "+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional flow : Guest 'Request a Mission Test' on browser :-  "+ "'" + browser + "'",  true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
@@ -58,6 +58,5 @@ public class Login_RequestMissionWindowTest extends W_BaseTest {
 		Reporter.log("======================================Clearing exam text field > Select Exam > Submit =================================",true);
 		cmp.requestBackToChooseMissionPage("J");//SHP_37
 		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);
-		
 	}
 }

@@ -13,8 +13,9 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
+import moolya.embibe.utils.JavaUtils;
 
-public class Login_SearchResultsPageTest extends W_BaseTest {
+public class Guest_SearchResultsPage_Test extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -24,46 +25,81 @@ public class Login_SearchResultsPageTest extends W_BaseTest {
 		uniqueValue = "Sanity_3";
 		uniqueValue2 = "Sanity_12";
 	}
-	
 
-	String jeeMain_URL="https://rearch.embibe.com/exams/jee-main/";
-	String neet_URL="https://rearch.embibe.com/exams/neet/";
-	String aiims_URL="https://rearch.embibe.com/exams/aiims/";
-	String cbse_URL="https://rearch.embibe.com/exams/cbse/";
-	String jeeAdvanced_URL="https://rearch.embibe.com/exams/iit-jee-advanced/";
-	String bitsat_URL="https://rearch.embibe.com/exams/bitsat/";
-	String eamcet_URL="https://rearch.embibe.com/exams/ap-eamcet/";
+	private static String rearchURL;
+	private static String jeeMain_URL;
+	private static String neet_URL;
+	private static String aiims_URL;
+	private static String cbse_URL;
+	private static String jeeAdvanced_URL;
+	private static String bitsat_URL;
+	private static String eamcet_URL;
+	private static String class_8_URL;
+	private static String class_9_URL;
+	private static String class_10_URL;
+	private static String exam_jeeMain_URL;
+	private static String exam_jeeAdvanced_URL;
+	private static String exam_bitsat_URL;
+	private static String exam_gujaratCet_URL;
+	private static String exam_AP_Eamcet_URL;
+	private static String exam_TS_Eamcet_URL;
+	private static String exam_neet_URL;
+	private static String exam_aiims_URL;
+	private static String exam_bank_clerk_prelims_URL;
+	private static String exam_bank_po_prelims_URL;
+	private static String rankUp_URL;
+	private static String blog_URL;
+	private static String articles_URL;
+	private static String collegePredictor_URL;
 
-	String class_8_URL="https://rearch.embibe.com/foundation-08/test";
-	String class_9_URL="https://rearch.embibe.com/foundation-09/test";
-	String class_10_URL="https://rearch.embibe.com/foundation-10/test";
-	
-	String exam_jeeMain_URL="https://rearch.embibe.com/engineering/test/jee-main";
-	String exam_jeeAdvanced_URL="https://rearch.embibe.com/engineering/test/jee-advanced";
-	String exam_bitsat_URL="https://rearch.embibe.com/engineering/test/bitsat";
-	String exam_gujaratCet_URL="https://rearch.embibe.com/engineering/test/gujarat-cet";
-	String exam_AP_Eamcet_URL="https://rearch.embibe.com/engineering/test/ap-eamcet";
-	String exam_TS_Eamcet_URL="https://rearch.embibe.com/engineering/test/ts-eamcet";
-	String exam_neet_URL="https://rearch.embibe.com/medical/test/aipmt";
-	String exam_aiims_URL="https://rearch.embibe.com/medical/test/aiims";
-	String exam_bank_clerk_prelims_URL="https://rearch.embibe.com/bank/test/bank-clerk-prelims";
-	String exam_bank_po_prelims_URL="https://rearch.embibe.com/bank/test/bank-po-prelims";
-	
-	String rankUp_URL="https://rearch.embibe.com/rankup/signup";
-	String blog_URL="https://blog.embibe.com/";
-	String articles_URL="https://rearch.embibe.com/exams/";
-	String collegePredictor_URL="https://rearch.embibe.com/rank-college-predictor/home";
-	
+
+
+	static{
+		try {
+			rearchURL = JavaUtils.getPropValue("testAppUrl");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		jeeMain_URL=rearchURL+"exams/jee-main/";
+		neet_URL=rearchURL+"exams/neet/";
+		aiims_URL=rearchURL+"exams/aiims/";
+		cbse_URL=rearchURL+"exams/cbse/";
+		jeeAdvanced_URL=rearchURL+"exams/iit-jee-advanced/";
+		bitsat_URL=rearchURL+"exams/bitsat/";
+		eamcet_URL=rearchURL+"exams/ap-eamcet/";
+
+		class_8_URL=rearchURL+"foundation-08/test";
+		class_9_URL=rearchURL+"foundation-09/test";
+		class_10_URL=rearchURL+"foundation-10/test";
+
+		exam_jeeMain_URL=rearchURL+"engineering/test/jee-main";
+		exam_jeeAdvanced_URL=rearchURL+"engineering/test/jee-advanced";
+		exam_bitsat_URL=rearchURL+"engineering/test/bitsat";
+		exam_gujaratCet_URL=rearchURL+"engineering/test/gujarat-cet";
+		exam_AP_Eamcet_URL=rearchURL+"engineering/test/ap-eamcet";
+		exam_TS_Eamcet_URL=rearchURL+"engineering/test/ts-eamcet";
+		exam_neet_URL=rearchURL+"medical/test/aipmt";
+		exam_aiims_URL=rearchURL+"medical/test/aiims";
+		exam_bank_clerk_prelims_URL=rearchURL+"bank/test/bank-clerk-prelims";
+		exam_bank_po_prelims_URL=rearchURL+"bank/test/bank-po-prelims";
+
+		rankUp_URL=rearchURL+"rankup/signup";
+		blog_URL="https://blog.embibe.com/";
+		articles_URL=rearchURL+"exams/";
+		collegePredictor_URL=rearchURL+"rank-college-predictor/home";
+	}
+
 	@Test(dataProvider="browserData")
-	public void login_SearchRequestPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void guest_SearchRequestPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional :Login User Search Result Page Test"+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional : Guest Search Result Page Test"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		shp.login();
 		Reporter.log("===================================No floating keywords after clearing search field============================",true);
 		shp.disappearFloatingKeywords(uniqueValue);//SHP_5
 		Reporter.log("===================================Disambiguated keyword search===============================",true);
@@ -184,5 +220,6 @@ public class Login_SearchResultsPageTest extends W_BaseTest {
 		shp.closeChildAndSwitchToMainWindow(mainWindow);
 		Reporter.log("Privacy Policy window closed",true);
 		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);
+
 	}
 }

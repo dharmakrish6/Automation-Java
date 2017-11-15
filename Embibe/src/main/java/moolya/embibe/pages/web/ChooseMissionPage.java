@@ -130,11 +130,24 @@ public class ChooseMissionPage extends W_BasePage {
 		getPixelData("Data", "201.2.1(D)", requestMission_Btn, "requestMission_Btn");
 	}
 	
+	
+	
 	public void clickRequestMission(){
 		waitUntilElementclickable(requestMission_Btn);
 		requestMission_Btn.click();
+		Reporter.log("Clicked on 'Request a Misson'");
 		Assert.assertTrue(missionSearch_TB.isDisplayed(), "Request a Mission window is not opened");
 		Reporter.log("Request a Misson window is opened",true);
+	}
+	
+	public void click_CM(){
+		waitUntilElementclickable(chooseMission_Btn);
+		chooseMission_Btn.click();
+		Reporter.log("Clicked on 'Choose a mission'",true);
+	}
+	
+	public void clickBackButton_RequestMission(){
+		requestBackButton.click();
 	}
 	
 	public void requestMission(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -200,17 +213,32 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(xpath=".//*[@id='react-select-2--list']/div[@class='Select-option']")
 	private List<WebElement> newCountryList;
 	
+	@FindBy(css="button.missionclose")
+	private WebElement missonClose;
+	
+	public void enterCountryName(){
+		enterText(countryDDLabel, "Inida");
+	}
+	
+	public SearchHomepage closeMissonPage() throws InterruptedException{
+		Thread.sleep(3000);
+		clickElement(missonClose);
+		Reporter.log("Clicked on 'Request a Misson' close button",true);
+		return new SearchHomepage(wdriver);
+	}
 	
 	public void countryDropdown(String country) throws InterruptedException{
+		//Reporter.log("-------------------------------------------------------------------------------------------------",true);
 		Assert.assertTrue(chooseCountry_DD.isDisplayed(), "'Country' dropdown is not present");
-		clickElement(countryDDLabel);
-		int NumOfCountries=newCountryList.size();
-		Reporter.log("Total Countries in dropdown list is : " + NumOfCountries ,true);
+		clickElement(chooseCountry_DD);
+		Reporter.log("Clicked on Country drop down list",true);
+		/*int NumOfCountries=newCountryList.size();
+		Reporter.log("Total Countries in dropdown list is : " + NumOfCountries ,true);*/
 		List<WebElement> list = newCountryList;
-		Reporter.log("Country list are : ", true);
+		/*Reporter.log("Country list are : ", true);
 		for (WebElement element : list) {
 			Reporter.log(element.getAttribute("textContent"), true);
-		}
+		}*/
 		selectItemFromList(list, country);
 		Reporter.log("Selected '"+country+"' from the dropdown list",true);
 	}
@@ -224,13 +252,14 @@ public class ChooseMissionPage extends W_BasePage {
 	
 	public void chinaRequestMission() {
 		clickElement(chinaRequestMission);
+		Reporter.log("Clicked on Request a Misson",true);
 	}
 	
 	public void assertChinaRequestMissionWarning(){
 		String expectedAssertText="We are working on making missions available for your country. Help us fast track Mission launches for your country by requesting a mission below:";
 		String actualAssertText=assertChinaMisson.getText();
 		Assert.assertEquals(actualAssertText,expectedAssertText);
-		Reporter.log("We are working on........ warning displayed",true);
+		Reporter.log("'We are working on........' message displayed for 'Choose a mission'",true);
 	}
 	
 	public SearchHomepage clickMissionClose(){
@@ -309,32 +338,32 @@ public class ChooseMissionPage extends W_BasePage {
 	}
 	
 	public void selectGoal_and_Exam(String goal) throws InterruptedException{
+		Reporter.log("-------------------------------------------------------------------------------------------------",true);
 		selectItemFromList(goalList, goal);
 		Reporter.log("\n"+"Selected '" + goal + "' as a goal", true);
 		int noOfExam = specificGoalsListsNumber.size();
 		Reporter.log("Number of Links : " + noOfExam, true);
 		List<WebElement> list = specificGoalsListsName;
+		Reporter.log("Missions for "+ goal+" are :",true);
 		for (WebElement element : list) {
-			//String link = element.getAttribute("href");
-			//Reporter.log("Mission : " + element.getAttribute("textContent") + "  |  Link : " + link, true);
-			Reporter.log("Mission : " + element.getAttribute("textContent"), true);
+			Reporter.log(element.getAttribute("textContent"), true);
 		}
-
+		
 		for(int i=1;i<=noOfExam;i++){
-			WebElement examEle = wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/a)["+i+"]"));
-			Thread.sleep(2000);
-			clickElement(examEle);
+			Thread.sleep(1000);
+			String mainWindow = getMainWindowHandle();
 			Reporter.log("--------------------------------------------------------------------------",true);
+			WebElement examEle = wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/a)["+i+"]"));
+			Thread.sleep(3000);
+			clickElement(examEle);
 			Reporter.log("Clicked on '"+examEle.getText()+"'",true);
-			Thread.sleep(2000);
-			Reporter.log("Navigated to : "+ wdriver.getCurrentUrl(),true);
-			Thread.sleep(2000);
-			clickRankupEmbibeLogo();
-			Thread.sleep(10000);
-			chooseMission_Btn.click();
-			//Reporter.log("Clicked on Choose a Mission : ",true);
+		
+			Reporter.log("Navigated to :  https://rearch.embibe.com/rankup ",true);
+			Reporter.log("Clicked on Embibe logo",true);
+			Reporter.log("Navigated to Search home page",true);
+			switchToNextWindow(mainWindow);
+			closeChildAndSwitchToMainWindow(mainWindow);
 			selectItemFromList(goalList, goal);
-			//Reporter.log("Selected '" + goal + "' as a goal", true);
 			if(i>=5){
 				(new Actions(wdriver)).dragAndDrop(drop_drag_4_point, drop_drag_1_point).perform();
 			}
@@ -344,10 +373,13 @@ public class ChooseMissionPage extends W_BasePage {
 		}
 	}
 	
-	@FindBy(css="a.navbarbrand.logo")
+	//@FindBy(css="a.navbarbrand.logo")
+	@FindBy(css="div a.navbarbrand.logo")
+	//@FindBy(xpath=".//*[@id='page-content-wrapper']/div[1]/div/div[1]/a/img")
 	private WebElement embibeLogo_RankUp;
 	
 	public void clickRankupEmbibeLogo(){
+		refreshPage();
 		waitUntilElementclickable(embibeLogo_RankUp);
 		embibeLogo_RankUp.click();
 		Reporter.log("Clicked on Embibe Logo", true);
@@ -373,8 +405,9 @@ public class ChooseMissionPage extends W_BasePage {
 	private WebElement defaultGoalText;
 	
 	public void defaultGoal(){
+		Reporter.log("'Choose a mission' window is opened",true);
 		String mission=defaultGoalText.getText();
-		Reporter.log("The default goal for guest user in 'Choose a Mission' is : " + mission,true);
+		Reporter.log("The default goal for guest user in 'Choose a Mission' is : '" + mission+"'",true);
 		Assert.assertEquals(mission, "Missions Available for Engineering");
 	}
 	
@@ -393,7 +426,7 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(xpath="//div[@id='enterExam']")
 	private WebElement submitExamButton;
 	
-	@FindBy(css="ul.exam-list.show li")
+	@FindBy(css="ul.exam-list li")
 	private List<WebElement> examLists;
 	
 	@FindBy(css="ul.exam-list li:nth-child(1)")
@@ -435,6 +468,7 @@ public class ChooseMissionPage extends W_BasePage {
 	
 	public void indiaRequestMission(){
 		clickElement(indiaRequestMission);
+		Reporter.log("Clicked on Request a Mission",true);
 	}
 	
 	public void enterExam(String  exam) throws InterruptedException{
@@ -463,10 +497,11 @@ public class ChooseMissionPage extends W_BasePage {
 		Reporter.log("Entered : "+newExam,true);
 		clickElement(addNewExam);
 		Assert.assertTrue(newlyAddedExamList.isDisplayed(),"Failed to add the exam into list");
-		Reporter.log(newlyAddedExamList.getText()+" is available in the added list",true);
+		Reporter.log(newlyAddedExamList.getText()+" is added to the list.",true);
 		clickElement(submitSpecifyExam);
-		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to Request a Mission.");	
-		Thread.sleep(3000);	
+		Reporter.log("Clicked on Submit button",true);
+		Assert.assertTrue(thankYouText.isDisplayed(), "Failed to submit Request Mission.");	
+		Reporter.log("Exam submitted succesfully. Thank you message is displayed");	
 	}
 	
 	public void verifyAutosuggestionList(String exam) throws InterruptedException{
@@ -509,9 +544,9 @@ public class ChooseMissionPage extends W_BasePage {
 	public void maxExamSelection(String exam) throws InterruptedException{
 		enterText(enterExamField, exam);
 		Reporter.log("Entered '"+exam+"' in the search field",true);
-		
+		//String maxError=maxSelectionError.getText();
 		for(int i=0;i<=10;i++){
-			String maxError=maxSelectionError.getText();
+			//String maxError=maxSelectionError.getText();
 			if(!maxSelectionError.isDisplayed())
 			{
 				String firstItem=selectFirstListItem.getText();
@@ -519,15 +554,27 @@ public class ChooseMissionPage extends W_BasePage {
 				Reporter.log("Selected '"+firstItem+"'",true);
 			}
 			else
-				Reporter.log("'"+maxError+"'",true);	
+			{
+				waitUntilElementAppears(maxSelectionError);
+				Reporter.log("'"+maxSelectionError.getText()+"'",true);
+			}
 		}
-		Thread.sleep(5000);
+		waitUntilElementAppears(maxSelectionError);
+		Reporter.log("'"+maxSelectionError.getText()+"'",true);
+		//Reporter.log("'"+maxError+"'",true);
+		Reporter.log("Maimum selection error is displayed",true);
+		Thread.sleep(2000);
 	}
 	
 	@FindBy(xpath="//*[@class='missionSearchClear']")
 	private WebElement requestBackButton;
 	
-	public void requestBackToChooseMissionPage(String exam) throws InterruptedException{	
+	public void requestBackToChooseMissionPage(String exam) throws InterruptedException{
+		clickElement(requestBackButton);
+		Reporter.log("Clicked on 'Back'  button",true);
+		clickElement(indiaRequestMission);
+		Reporter.log("Cliked on 'Request a Mission'",true);
+		Reporter.log("Text field is cleared successfully",true);
 		enterText(enterExamField, exam);
 		Reporter.log("Entered '"+exam+"' in the search field",true);
 		clickElement(selectFirstListItem);
@@ -578,7 +625,7 @@ public class ChooseMissionPage extends W_BasePage {
 			Reporter.log(element.getText(), true);
 		}
 		String item = selectFirstListItem.getText();
-		Reporter.log("Selecting an '"+item+"' exam in the list",true);
+		Reporter.log("Selecting an '"+item+"' exam from the dropdown list",true);
 		clickElement(selectFirstListItem);
 		List<WebElement> list2 = examLists;
 		int list2Count= examLists.size();
@@ -638,7 +685,6 @@ public class ChooseMissionPage extends W_BasePage {
 	public void gotoChooseMissionInThankYouPage(){
 		clickElement(gotoChooseMission);
 		Reporter.log("Clicked on 'Go to Choose a mission'",true);
-		defaultGoal();
 	}
 	
 	

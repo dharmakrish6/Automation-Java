@@ -21,18 +21,20 @@ public class LandingPageTest extends W_BaseTest {
 	public void LandingPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional : LandingPage Test"+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional flow : LandingPage Test on browser :-  "+ "'" + browser + "'",  true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
 		lp.landingPageEmbibeLogo();	
 		lp.scoreHigher_StartNow_Text();
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		lp.startLearning_SearchNow_Text();
-		lp.scrollLeft();
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		lp.scrollRight();
 		lp.clickStartNow();
 		lp.refreshPage();
 		lp.assertSearchHomepage();
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		lp.clearCookies();
 		lp.goToLandingPage();
 		lp.assertLandingPage();

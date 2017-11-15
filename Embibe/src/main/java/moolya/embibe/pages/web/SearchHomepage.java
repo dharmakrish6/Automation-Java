@@ -84,7 +84,7 @@ public class SearchHomepage extends W_BasePage {
 	public void assertSearchHomepage(){
 		waitUntilElementclickable(search_TB);
 		Assert.assertTrue(search_TB.isDisplayed(), "Not in Search Homepage");
-		Reporter.log("Navigated to Search HomePage", true);
+		Reporter.log("Navigated to Search Home Page", true);
 	}
 
 	public OcularResult checkWhatWouldYouLikeToStudy(){
@@ -118,10 +118,14 @@ public class SearchHomepage extends W_BasePage {
 		return new SearchResultsPage(wdriver);
 	}
 
+	@FindBy(xpath="(//*[@class='goals']/following-sibling::p)[1]")
+	private WebElement defaultGoalText;
+	
 	public ChooseMissionPage clickChooseMission(){
 		waitUntilElementclickable(chooseMission_Btn);
 		chooseMission_Btn.click();
 		Reporter.log("Clicked on 'Choose a mission'",true);
+		waitUntilElementAppears(defaultGoalText);
 		return new ChooseMissionPage(wdriver);
 	}
 
@@ -146,8 +150,8 @@ public class SearchHomepage extends W_BasePage {
 		HashMap<String, String> data = readExcelData("SearchHomePage", uniqueValue);
 		waitUntilElementAppears(search_TB);
 		String searchKeyword = data.get("Search Keyword"); 
-		enterText(search_TB, searchKeyword, "Searching for: "+searchKeyword);
-		Reporter.log("Entered : "+searchKeyword,true);
+		enterText(search_TB, searchKeyword,searchKeyword);
+		Reporter.log("Entered keyword : "+searchKeyword,true);
 		//search_TB.clear();
 		for(int i=0;i<=10;i++){
 			search_TB.sendKeys(Keys.BACK_SPACE);
@@ -158,6 +162,7 @@ public class SearchHomepage extends W_BasePage {
 		Reporter.log("Cleared the search field",true);
 		Reporter.log("The number of floating keywords are: "+ floatingKeywords.size(),true);
 		Assert.assertEquals(floatingKeywords.size(),0 );
+		Reporter.log("Floating keywords dissappered successfully.",true);
 	}
 
 	@FindBy(xpath="//*[@title='Properties of Triangle']")
@@ -198,68 +203,85 @@ public class SearchHomepage extends W_BasePage {
 		HashMap<String, String> data = readExcelData("SearchHomePage", uniqueValue);
 		waitUntilElementAppears(search_TB);
 		String searchKeyword = data.get("Search Keyword"); 
-		enterText(search_TB, searchKeyword, "Searching for: "+searchKeyword);
-
+		enterText(search_TB, searchKeyword);
+		Reporter.log("Entered keyword : "+searchKeyword,true);
 		Thread.sleep(5000);
 		Actions action = new Actions(wdriver);
 		//action.moveToElement(rotMotionFirst).click(rotMotionFirst).build().perform();
 		action.moveToElement(rotMotionFirst).contextClick(rotMotionFirst).sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ARROW_DOWN).build().perform();
+		Reporter.log("Right clicked on "+searchKeyword ,true);
 		Thread.sleep(1000);
 		Robot robot = new Robot();
 		robot.keyPress(KeyEvent.VK_DOWN);
 		robot.keyRelease(KeyEvent.VK_DOWN);
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
-		System.out.println("opened  'rotational motion' in new tab");
+		Reporter.log("Opened 'Rotational motion' floating keyword in new tab",true);
 		Thread.sleep(2000);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
+			Reporter.log("Navigated to Search Results Page",true);
 		}
 		Reporter.log("Switched to New Tab", true);
-		Thread.sleep(2000);
-		/*wdriver.switchTo().window(winHandleBefore);
-		Thread.sleep(2000);*/
+		Thread.sleep(1000);
+		wdriver.switchTo().window(winHandleBefore);
+		assertSearchHomepage();
 
 	}
 
 	public void wrongKeywordInSearchField() throws InterruptedException{
 		waitUntilElementAppears(search_TB);
-		enterText(search_TB, "rtati");
-		Reporter.log("Entered wrong Spelling : 'rtati'" ,true);
+		enterText(search_TB, "alk");
+		Reporter.log("Entered keyword : 'alk'" ,true);
 		waitUntilElementclickable(floatingKeywords.get(0));
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Reporter.log("The number of floating keywords are: "+ floatingKeywords.size(),true);
 		Assert.assertFalse(floatingKeywords.size()==0, "No suggestions are available");
+		Reporter.log("Auto suggestion floating keywords are available for entered misspell  keyword" ,true);
 	}
 
+	@FindBy(css=".search_results>div>a")
+	private WebElement floatingKeywordText;
+	
 	public void correctKeywordInSearchField() throws InterruptedException{
 		waitUntilElementAppears(search_TB);
 		search_TB.clear();
 		Thread.sleep(2000);
 		enterText(search_TB, "orga");
+		Reporter.log("Entered keyword : 'orga'" ,true);
 		waitUntilElementclickable(floatingKeywords.get(0));
-		Thread.sleep(5000);
+		Thread.sleep(3000);
+		String floatingKeyword=floatingKeywordText.getText();
 		Reporter.log("The number of floating keywords are: "+ floatingKeywords.size(),true);
 		Assert.assertFalse(floatingKeywords.size()==0, "No suggestions are available");
+		/*Reporter.log("Obtained floating keywords are : "+floatingKeywordText.getText(),true);
+		for(int i=0;i<=floatingKeywords.size();i++){
+			Reporter.log(floatingKeyword,true);
+		}*/
 	}
-
 
 	public void noResultsFound() throws InterruptedException{
 		waitUntilElementAppears(search_TB);
 		enterText(search_TB, "dffffdd");
+		Reporter.log("Entered keyword : 'dffffdd'",true);
 		waitUntilElementAppears(noResultsView);
 		Assert.assertTrue(noResultsView.isDisplayed(), "'No results found' is not found");
+		Reporter.log("'No results found' is showed",true);
 	}
 
 	@FindBy(xpath="//*[@class='exam_goal_logo']")
 	private WebElement guestGoalIcon;
+	
+	@FindBy(xpath="//*[@class='exam_goal_tooltip']")
+	private WebElement guestGoalToolTip;
 
 	public void header_guestIcons() throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		clickEmbiumStatus();
 		clickProfileIcon();
-		guestGoalIcon.equals("?");
-		Reporter.log("Guest user goal icon is '"+guestGoalIcon.getText()+"'",true);
+		mouseHoverOnElement(wdriver, guestGoalIcon, "Mouse Hovered on Goal Icon");
+		Reporter.log("Guest user goal icon is '"+guestGoalToolTip.getText()+"'",true);
 		Assert.assertTrue(login_Btn.isDisplayed(), "'Login Button' is not found");
 		Reporter.log("Login button is present in the Search Home Page Header",true);
 	}
@@ -282,13 +304,13 @@ public class SearchHomepage extends W_BasePage {
 
 	public void searchEngineSection(){
 		Assert.assertTrue(searchSlogan.isDisplayed(), "'Search Engine label' is not found");
-		Reporter.log("'Search Engine label' is present in the Search Home Page",true);
+		Reporter.log("'Search Engine label' is present",true);
 		Assert.assertTrue(search_TB.isDisplayed(), "'Search Engine' is not found");
-		Reporter.log("Search Engine' is present in the Search Home Page",true);
+		Reporter.log("Search Text field' is present",true);
 		Assert.assertTrue(chooseMission_Btn.isDisplayed(), "'Choose a Misson' Button is not found");
-		Reporter.log("'Choose a Misson' button is present in the Search Home Page",true);
+		Reporter.log("'Choose a Misson' button is present",true);
 		Assert.assertTrue(findSomethingCool.isDisplayed(), "'Find Something Cool' is not found");
-		Reporter.log("'Find Something Cool' is present in the Search Home Page",true);
+		Reporter.log("'Find Something Cool' is present",true);
 	}
 	
 	@FindBy(xpath="//*[@class='search-container']/div/ul/li[@role='option']")
@@ -297,12 +319,13 @@ public class SearchHomepage extends W_BasePage {
 	public void autoFillSearchResults() throws InterruptedException, AWTException{
 		waitUntilElementAppears(search_TB);
 		enterText(search_TB, "proper");
-		Reporter.log("Entered : 'proper' ",true);
-		Thread.sleep(5000);
+		Reporter.log("Entered keyword : 'proper' ",true);
+		Thread.sleep(2000);
+		Reporter.log("Navigated to 'Search Result Page'",true);
 		search_TB.sendKeys(Keys.BACK_SPACE);
 		Thread.sleep(2000);
 		Assert.assertTrue(autoSearchList.isDisplayed(), "Auto search results is not displayed.");
-		Reporter.log("Auto search results is displayed",true);
+		Reporter.log("Auto search results list is displayed",true);
 
 	}
 
@@ -310,15 +333,20 @@ public class SearchHomepage extends W_BasePage {
 	private WebElement acclTimeGraph;
 
 	public SearchResultsPage validSearchResult(String uniqueValue) throws InterruptedException, EncryptedDocumentException, InvalidFormatException, IOException{
-		HashMap<String, String> data = readExcelData("SearchHomePage", uniqueValue);
+		/*HashMap<String, String> data = readExcelData("SearchHomePage", uniqueValue);
 		waitUntilElementAppears(search_TB);
-		String searchKeyword = data.get("Search Keyword"); 
-		enterText(search_TB, searchKeyword, "Searching for: "+searchKeyword);
-
+		String searchKeyword = data.get("Search Keyword");*/ 
+		waitUntilElementAppears(search_TB);
+		String searchKeyword = "acc";
+		enterText(search_TB, searchKeyword);
+		Reporter.log("Entered keyword : "+searchKeyword,true);
+		waitUntilElementclickable(floatingKeywords.get(0));
+		Reporter.log("Floating keywords are displayed",true);
 		Thread.sleep(5000);
 		Actions action = new Actions(wdriver);
 		action.moveToElement(acclTimeGraph).click(acclTimeGraph).build().perform();	
 		Thread.sleep(5000);
+		Reporter.log("Clicked on 'Accleration Time Graph' floating keyword",true);
 		return new SearchResultsPage(wdriver);
 	}
 
@@ -369,9 +397,10 @@ public class SearchHomepage extends W_BasePage {
 			wdriver.switchTo().window(winHandle);
 		}
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Page Title : '" + examTitle.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Page Title : " + examTitle.getText(), true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		examPageEmbibeLogo.click();
+		title_examPageEmbibeLogo.click();
 		Reporter.log("Clicked on Embibe logo",true);
 		assertSearchHomepage();
 		wdriver.close();
@@ -384,7 +413,7 @@ public class SearchHomepage extends W_BasePage {
 	public void classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
-		scrollToElementViaJavascript(precise_location);
+		scrollToElementViaJavascript(scrolltoExams);
 		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -394,10 +423,12 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertTrue(wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]")).isDisplayed(), "Navigation failed");
 		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
 		
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n '" + classNum.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
+		Reporter.log("Class Name : '" + classNum.getText(), true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		embibeLogo_Ask.click();
 		Reporter.log("Clicked on Embibe Logo", true);
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 		Thread.sleep(2000);
@@ -426,6 +457,7 @@ public class SearchHomepage extends W_BasePage {
 		//Assert.assertTrue(examPage_Default_DropdownName.isDisplayed(), "Navigation failed");
 		//Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Default Exam on Dropdown list is : '" + examPage_Default_DropdownName.getText() + "' is displayed", true);
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Thread.sleep(2000);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		clickExamPageEmbibeLogo();
 		wdriver.close();
@@ -445,12 +477,13 @@ public class SearchHomepage extends W_BasePage {
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		wdriver.close();
+		Reporter.log("Closed the Rankup signup window",true);
 		wdriver.switchTo().window(winHandleBefore);
 	}
 	
 	public void resourcesTestsLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		scrollToElementViaJavascript(scrolltoExams);
 		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[5]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
@@ -458,10 +491,11 @@ public class SearchHomepage extends W_BasePage {
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
-		Thread.sleep(10000);
+		Thread.sleep(5000);
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		wdriver.close();
+		Reporter.log("Closed the "+examType+" window",true);
 		wdriver.switchTo().window(winHandleBefore);
 	}
 
@@ -513,48 +547,9 @@ public class SearchHomepage extends W_BasePage {
 		clickAsk();
 		waitUntilElementAppears(askPageTitle);
 		Assert.assertTrue(askPageTitle.isDisplayed(),"Navigation failed to ask page");
-		Reporter.log("Navigated to 'Ask' page",true);
 		return new AskPage(wdriver);
 	}
-	
-	
-	
-	@FindBy(xpath="//a[@href='/home']/img")
-	private WebElement embibeLogo_Jump;
-	
-	public void clickJumpEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo_Jump);
-		embibeLogo_Jump.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-	}
-	
-	@FindBy(css="a.navbarbrand.logo")
-	private WebElement embibeLogo_RankUp;
-	
-	public void clickRankupEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo_RankUp);
-		embibeLogo_RankUp.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-	}
-	
-	@FindBy(css="span>img.logo")
-	private WebElement embibeLogo_Institute;
 
-	@FindBy(css="span.hd-institute")
-	private WebElement insitituePageHeader;
-	
-	public void clickInstituteEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo_Institute);
-		embibeLogo_Institute.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-	}
-	
-	public void verifyInstitutePage(){
-		waitUntilElementclickable(embibeLogo_Institute);
-		Assert.assertTrue(insitituePageHeader.isDisplayed(), "Institute Page is not loaded");
-		Reporter.log("Institute Page opened successfully", true);
-	}
-	
 	@FindBy(css="div.swiper-button-next")
 	private WebElement clickNext;
 	
@@ -562,7 +557,7 @@ public class SearchHomepage extends W_BasePage {
 	private WebElement clickPrev;
 	
 		public void searchFooterLinks(int i,String examType,String expURL) throws InterruptedException{
-			Reporter.log("----------------------------------------------------------------------------------------------",true);
+			Reporter.log("-------------------------------------------------------------------------------------------------",true);
 			Thread.sleep(2000);
 			clickElement(wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/div)["+i+"]")));
 			Reporter.log("Clicked on "+ examType, true);
@@ -571,10 +566,12 @@ public class SearchHomepage extends W_BasePage {
 				wdriver.switchTo().window(winHandle);
 			}
 			Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
-			Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\nPage Title : '" + examTitle.getText() + "' is displayed", true);
-			Thread.sleep(2000);
+			Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
+			Reporter.log("Page Title : '" + examTitle.getText(), true);
 			//Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-			clickExamPageEmbibeLogo();
+			title_examPageEmbibeLogo.click();
+			Reporter.log("Clicked on Embibe logo",true);
+			assertSearchHomepage();
 			wdriver.close();
 			wdriver.switchTo().window(winHandleBefore);
 		}
@@ -584,6 +581,8 @@ public class SearchHomepage extends W_BasePage {
 		Thread.sleep(2000);
 		clickNext.click();
 		Reporter.log("Clicked on swiper 'Next' button",true);
+		Reporter.log("Swiped to Right side",true);
+		
 	}
 	
 	public void clickPrevSwiper() throws InterruptedException{
@@ -591,9 +590,11 @@ public class SearchHomepage extends W_BasePage {
 		Thread.sleep(2000);
 		clickPrev.click();
 		Reporter.log("Clicked on swiper 'Prev' button",true);
+		Reporter.log("Swiped to Left side",true);
 	}
 	
 	public void assert_findSomethingCool() throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		waitUntilElementAppears(findSomethingCool);
 		findSomethingCool.click();
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -601,11 +602,11 @@ public class SearchHomepage extends W_BasePage {
 			wdriver.switchTo().window(winHandle);
 		}
 		Reporter.log("Clicked on 'Find Something Cool' option",true);
+		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to 'Blog Page'",true);
-		//Thread.sleep(5000);
-		//wdriver.close();
+		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
-		//assertSearchHomepage();
+		assertSearchHomepage();
 	}
 	
 //	@FindBy(css="div.footer-div div.row.device-location ul li a")
@@ -658,6 +659,10 @@ public class SearchHomepage extends W_BasePage {
 	@FindBy(xpath="(//*[contains(text(),'embibe.com')])[3]")
 	private WebElement youtubePageHeader;
 	
+	//div.draggable img.kt-image
+	@FindBy(css="kt-image")
+	private WebElement hold_KT_graph_icon;
+	
 	public void clickFacebookIcon() throws InterruptedException{
 		scrollToElementViaJavascript(facebook_icon);
 		waitUntilElementAppears(facebook_icon);
@@ -671,7 +676,6 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.facebook.com/embibe.me/");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to facebook Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 	
 	public void clickTwitterIcon() throws InterruptedException{
@@ -679,7 +683,7 @@ public class SearchHomepage extends W_BasePage {
 		waitUntilElementAppears(twitter_icon);
 		Thread.sleep(2000);
 		twitter_icon.click();
-		Reporter.log("Clicked on 'twitter' icon",true);
+		Reporter.log("Clicked on 'Twitter' icon",true);
 	}
 	
 	public void assertTwitterEmbibePage() throws InterruptedException{
@@ -687,7 +691,6 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(), "https://twitter.com/embibe");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to twitter Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 	
 	public void clickInstagramIcon() throws InterruptedException{
@@ -695,7 +698,7 @@ public class SearchHomepage extends W_BasePage {
 		waitUntilElementAppears(instagram_icon);
 		Thread.sleep(2000);
 		instagram_icon.click();
-		Reporter.log("Clicked on 'instagram' icon",true);
+		Reporter.log("Clicked on 'Instagram' icon",true);
 	}
 	
 	public void assertInstagramEmbibePage() throws InterruptedException{
@@ -703,7 +706,6 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(), "https://www.instagram.com/embibe.me/");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to instagram Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}
 	
 	public void clickYoutubeIcon() throws InterruptedException{
@@ -711,7 +713,7 @@ public class SearchHomepage extends W_BasePage {
 		waitUntilElementAppears(youtube_icon);
 		Thread.sleep(2000);
 		youtube_icon.click();
-		Reporter.log("Clicked on 'youtube' icon",true);
+		Reporter.log("Clicked on 'Youtube' icon",true);
 	}
 	
 	public void assertYoutubeEmbibePage(){
@@ -719,7 +721,6 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertTrue(youtubePageHeader.isDisplayed(), "Not navigated to youtube");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to Youtube Page", true);
-		Reporter.log("-------------------------------------------------------------------------------",true);
 	}	
 	
 	public void hoverOnFloatingKeywords(int count) throws InterruptedException{

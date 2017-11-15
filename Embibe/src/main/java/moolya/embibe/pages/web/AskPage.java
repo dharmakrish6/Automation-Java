@@ -57,8 +57,10 @@ public class AskPage extends W_BasePage {
 		JavascriptExecutor jse = (JavascriptExecutor) wdriver;
 		jse.executeScript("scroll(250, 0)");
 		enterText(askORsearchField, question);
+		Reporter.log("Entered '"+ question +"'",true);
 		jse.executeScript("scroll(250, 0)");
 		clickElement(searchButton);
+		Reporter.log("Clicked on search button",true);
 		jse.executeScript("scroll(250, 0)");
 		Thread.sleep(5000);		
 		WebElement frame = wdriver.findElement(By.xpath("//iframe[@id='ui-tinymce-0_ifr']"));
@@ -66,24 +68,31 @@ public class AskPage extends W_BasePage {
 		//System.out.println("inside frame");
 		WebElement body = wdriver.findElement(By.tagName("body"));
 		body.sendKeys("Text in Subject");
-		System.out.println("entered text in subject field");
+		Reporter.log("Entered text in subject field",true);
 		wdriver.switchTo().defaultContent();
-		//enterText(subjectField, question);
 		scrollToElementViaJavascript(subjectField);
 		Thread.sleep(5000);
 		clickElement(askQuestionButton);
-		System.out.println("Clicked on ask a question");
-		waitUntilElementAppears(loginWndow);
-		System.out.println("Login window has appeared");
+		Reporter.log("Clicked on ask button",true);
 	}
 	
+	public void askLogin(){
+		waitUntilElementAppears(loginWndow);
+		Reporter.log("Login window has appeared",true);
+		askLoginWindow("yatheendra@moolya.com", "moolya123");
+	}
+	
+	public void verifyAskSuccessful(){
+		waitUntilElementAppears(Ask_Question_successfullMessage);
+		Reporter.log("Question asked successfully",true);
+	}
 	public void askLoginWindow(String email,String password){
 		clickElement(ask_login_here_btn);
 		Reporter.log("Clicked on 'Login Here' Button",true);
 		enterText(ask_login_email_field, email);
-		Reporter.log("Enter email : " +email,true);
+		Reporter.log("Entered email ",true);
 		enterText(ask_login_password_field, password);
-		Reporter.log("Enter password : " +password,true);
+		Reporter.log("Entered password ",true);
 		clickElement(ask_login_submit_Btn);
 		Reporter.log("Clicked on submit button",true);
 		Assert.assertTrue(verifyAskPageLogin.isDisplayed(), "Login Failed");
@@ -106,5 +115,9 @@ public class AskPage extends W_BasePage {
 		Reporter.log("Logout successful..!!",true);
 		
 	}
+	
+	@FindBy(css="div.ask_user_popup_message")
+	private WebElement Ask_Question_successfullMessage;
+	
 	
 }

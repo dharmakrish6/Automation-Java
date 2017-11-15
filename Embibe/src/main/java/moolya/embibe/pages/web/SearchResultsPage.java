@@ -896,6 +896,9 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(xpath="(//*[contains(text(),'Use precise location')])[1]")
 	private WebElement examFooter;
 
+	@FindBy(xpath="//*[@class='site-title']/a")
+	private WebElement title_examPageEmbibeLogo;
+	
 	public void examLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(5000);
@@ -908,13 +911,17 @@ public class SearchResultsPage extends W_BasePage {
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
+		waitUntilElementAppears(examTitle);
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\nPage Title : '" + examTitle.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl() ,true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		clickExamPageEmbibeLogo_SRP();
+		Reporter.log("Page Title : '" + examTitle.getText(), true);
+		title_examPageEmbibeLogo.click();
+		Reporter.log("Clicked on Embibe logo",true);
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
-		System.out.println("switched to parent window");
+		//System.out.println("switched to parent window");
 	}
 
 	@FindBy(css=".global-nav__left>a>img")
@@ -933,11 +940,14 @@ public class SearchResultsPage extends W_BasePage {
 		Assert.assertTrue(wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]")).isDisplayed(), "Navigation failed");
 		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
 
-		Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n '" + classNum.getText() + "' is displayed", true);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
+		Reporter.log("Class Name : '" + classNum.getText(), true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		embibeLogo_Ask.click();
 		Reporter.log("Clicked on Embibe Logo", true);
+		assertSearchHomepage();
 		wdriver.close();
+		Reporter.log("Closed the Rankup signup window",true);
 		wdriver.switchTo().window(winHandleBefore);
 		Thread.sleep(2000);
 	}
@@ -966,7 +976,10 @@ public class SearchResultsPage extends W_BasePage {
 		//Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Default Exam on Dropdown list is : '" + examPage_Default_DropdownName.getText() + "' is displayed", true);
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		clickExamPageEmbibeLogo_SRP();
+		embibeLogo_mockTest.click();
+		Reporter.log("Clicked on Embibe Logo");
+		assertSearchHomepage();
+		//clickExamPageEmbibeLogo_SRP();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 	}
@@ -984,9 +997,12 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		wdriver.close();
+		Reporter.log("Closed the Rankup signup window",true);
 		wdriver.switchTo().window(winHandleBefore);
 	}
 
+	
+	
 	public void resourcesTestsLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
@@ -1001,6 +1017,7 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		wdriver.close();
+		Reporter.log("Closed the "+examType+" window",true);
 		wdriver.switchTo().window(winHandleBefore);
 	}
 

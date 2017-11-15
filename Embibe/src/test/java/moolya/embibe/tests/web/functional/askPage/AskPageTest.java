@@ -33,10 +33,14 @@ public class AskPageTest extends W_BaseTest {
 		ap = shp.verifyAskLink();//SHP_Func_85
 		shp = ap.clickAskEmbibeLogo();//SHP_Func_87
 		ap = shp.verifyAskLink();
+		Reporter.log("--------------------------Guest user asking question---------------------",true);
 		ap.guestAskQuestion("embibe1234");//SHP_Func_86
 		Thread.sleep(2000);
-		ap.askLoginWindow("yatheendra@moolya.com", "moolya123");
+		Reporter.log("--------------------------Login user asking question---------------------",true);
+		ap.askLogin();
+		Reporter.log("------------------------------------------------------------------",true);
 		Thread.sleep(2000);
-		ap.askLogout();
+		ap.guestAskQuestion("embibe1234");//SHP_Func_86
+		
 	}
 }

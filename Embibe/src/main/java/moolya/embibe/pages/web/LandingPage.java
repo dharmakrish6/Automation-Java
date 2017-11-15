@@ -101,10 +101,10 @@ public class LandingPage extends W_BasePage {
 	public void scoreHigher_StartNow_Text(){
 		waitUntilElementAppears(scoreHigher_Lbl);
 		Assert.assertTrue(scoreHigher_Lbl.isDisplayed(), "ScoreHigher Label is not present in the landing page");
-		Reporter.log("ScoreHigher Label is present in the landing page",true);
+		Reporter.log("'Score Higher' Label is present",true);
 		waitUntilElementAppears(startNow_Btn);
-		Assert.assertTrue(startNow_Btn.isDisplayed(), "StartNow text is not present in the landing page");
-		Reporter.log("StartNow text is present in the landing page",true);
+		Assert.assertTrue(startNow_Btn.isDisplayed(), "StartNow button is not present in the landing page");
+		Reporter.log("'Start Now' button is present",true);
 		
 	}
 	
@@ -123,10 +123,10 @@ public class LandingPage extends W_BasePage {
 		mouseHoverOnKt();
 		waitUntilElementAppears(startLearning_Lbl);
 		Assert.assertTrue(startLearning_Lbl.isDisplayed(), "StartLearning Label is not present in the landing page");
-		Reporter.log("StartLearning Label is present in the landing page",true);
+		Reporter.log("'Start Learning' Label is present",true);
 		waitUntilElementAppears(searchNow_Btn);
-		Assert.assertTrue(searchNow_Btn.isDisplayed(), "SearchNow text is not present in the landing page");
-		Reporter.log("SearchNow text is present in the landing page",true);
+		Assert.assertTrue(searchNow_Btn.isDisplayed(), "SearchNow button is not present in the landing page");
+		Reporter.log("'Search Now' button is present",true);
 	}
 	
 	public void waitForLandingPageToLoad(){
@@ -149,7 +149,7 @@ public class LandingPage extends W_BasePage {
 	}
 	
 	public void mouseHoverOnKt() throws InterruptedException{
-		mouseHoverOnElement(wdriver, kt_Canvas, "Mouse Hovered on Knowledge Tree");
+		mouseHoverOnElement(wdriver, kt_Canvas, "Mouse Hovered on Knowledge Tree, Scrolled Page Left");
 	}
 	
 	public void mouseHoverOnVideo() throws InterruptedException{
@@ -163,15 +163,15 @@ public class LandingPage extends W_BasePage {
 	}
 	
 	public void scrollRight() throws InterruptedException{
-		mouseHover(wdriver, kt_Canvas, -50, 0, "Scrolled Page Right");
+		mouseHover(wdriver, kt_Canvas, -50, 0, "Mouse Hovered on Knowledge Tree, Scrolled Page Right");
 	}
 	
 	public void scrollLeft() throws InterruptedException{
-		mouseHoverOnElement(wdriver, kt_Canvas, "Scrolled Page Left");
+		mouseHoverOnElement(wdriver, kt_Canvas, "Mouse Hovered on Knowledge Tree,Scrolled Page Left");
 	}
 	
 	public SearchHomepage clickSearchNow(){
-		clickElement(searchNow_Btn);
+		clickElement(searchNow_Btn,"Clicked on Search Now Button");
 		return new SearchHomepage(wdriver);
 	}
 	
