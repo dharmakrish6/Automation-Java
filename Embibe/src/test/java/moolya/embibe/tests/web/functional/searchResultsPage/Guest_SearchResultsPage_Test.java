@@ -92,7 +92,7 @@ public class Guest_SearchResultsPage_Test extends W_BaseTest {
 	}
 
 	@Test(dataProvider="browserData")
-	public void guest_SearchRequestPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void guest_SearchResultsPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Functional : Guest Search Result Page Test"+ ", Browser is :" + browser, true);

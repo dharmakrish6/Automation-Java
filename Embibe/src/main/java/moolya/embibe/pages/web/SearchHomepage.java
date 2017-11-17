@@ -618,9 +618,11 @@ public class SearchHomepage extends W_BasePage {
 	
 	
 	public void assert_preciseLocation() throws Exception{
+		scrollToElementViaJavascript(precise_location);
+		Thread.sleep(30000);
 		waitUntilElementAppears(precise_location);
 		precise_location.click();
-		Thread.sleep(1000);
+		Thread.sleep(30000);
 		Reporter.log("Clicked on 'Use Precise Location' option",true);
 		Thread.sleep(1000);
 		Reporter.log("Obtained Location :"+locationName.getText(),true);

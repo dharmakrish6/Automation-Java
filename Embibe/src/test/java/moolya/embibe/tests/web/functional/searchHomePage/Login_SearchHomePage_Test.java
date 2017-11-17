@@ -12,7 +12,7 @@ import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 import moolya.embibe.utils.JavaUtils;
 
-public class Login_SearchHomePageTest extends W_BaseTest {
+public class Login_SearchHomePage_Test extends W_BaseTest {
 
 	private static String rearchURL;
 	private static String jeeMain_URL;
@@ -98,8 +98,6 @@ public class Login_SearchHomePageTest extends W_BaseTest {
 		lfp.login_searchEngineSection();
 		Reporter.log("-------------------------------------------------------------------------------------------------",true);
 		lfp.assert_findSomethingCool();
-		Reporter.log("-------------------------------------------------------------------------------------------------",true);
-		lfp.assert_preciseLocation();
 		Reporter.log("===================================Search Footer Exam Links======================================",true);
 		lfp.loginuser_searchFooterLinks(1,"JEE Main",jeeMain_URL);
 		lfp.loginuser_searchFooterLinks(2,"JEE Advanced",jeeAdvanced_URL);
@@ -113,9 +111,7 @@ public class Login_SearchHomePageTest extends W_BaseTest {
 		lfp.loginuser_searchFooterLinks(5,"AIIMS",aiims_URL);
 		lfp.clickPrevSwiper();
 		Reporter.log("-------------------------------------------------------------------------------------------------",true);
-		lfp.assert_findSomethingCool();
-		//Reporter.log("-------------------------------------------------------------------------------------------------",true);
-		//lfp.assert_preciseLocation();
+		lfp.assert_preciseLocation();
 		Reporter.log("========================================Global Footer,Exam Links====================================",true);
 		lfp.loginUser_examLinks(1,"JEE Main",jeeMain_URL);
 		lfp.loginUser_examLinks(2,"NEET",neet_URL);

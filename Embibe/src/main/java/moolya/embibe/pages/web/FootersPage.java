@@ -120,7 +120,8 @@ public class FootersPage extends W_BasePage {
 		return new ChooseMissionPage(wdriver);
 	}
 	
-	@FindBy(xpath="//*[@class='exam_goal_logo']")
+	//@FindBy(xpath="//*[@class='exam_goal_logo']")
+	@FindBy(css="div.exam_goal_logo")
 	private WebElement guestGoalIcon;
 	
 	@FindBy(css="span.embibumcoins ")
@@ -212,7 +213,6 @@ public class FootersPage extends W_BasePage {
 			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
 		}catch(Exception e){}
 		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
-		//Assert.assertTrue(isExamLogOutBtn,"Page should not be in Logged out state.");
 		Reporter.log("In logged-in state",true);
 		title_examPageEmbibeLogo.click();
 		Reporter.log("Clicked on Embibe logo",true);
@@ -227,7 +227,7 @@ public class FootersPage extends W_BasePage {
 	public void loginUser_classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
-		scrollToElementViaJavascript(precise_location);
+		scrollToElementViaJavascript(scrolltoExams);
 		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -245,7 +245,6 @@ public class FootersPage extends W_BasePage {
 			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
 		}catch(Exception e){}
 		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
-		//Assert.assertTrue(isExamLogOutBtn,"Page should not be in Logged out state.");
 		Reporter.log("In logged-in state",true);
 		embibeLogo_Ask.click();
 		Reporter.log("Clicked on Embibe Logo", true);
@@ -269,8 +268,6 @@ public class FootersPage extends W_BasePage {
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
-		//Assert.assertTrue(examPage_Default_DropdownName.isDisplayed(), "Navigation failed");
-		//Reporter.log("Navigated to " + wdriver.getCurrentUrl() +"\n Default Exam on Dropdown list is : '" + examPage_Default_DropdownName.getText() + "' is displayed", true);
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		boolean isExamLogOutBtn = false;
@@ -278,7 +275,6 @@ public class FootersPage extends W_BasePage {
 			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
 		}catch(Exception e){}
 		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
-		//Assert.assertTrue(isExamLogOutBtn,"Page should not be in Logged out state.");
 		Reporter.log("In logged-in state",true);
 		clickExamPageEmbibeLogo();
 		wdriver.close();
@@ -329,9 +325,11 @@ public class FootersPage extends W_BasePage {
 	
 	
 	public void assert_preciseLocation() throws Exception{
+		scrollToElementViaJavascript(precise_location);
+		Thread.sleep(20000);
 		waitUntilElementAppears(precise_location);
 		precise_location.click();
-		Thread.sleep(1000);
+		Thread.sleep(10000);
 		Reporter.log("Clicked on 'Use Precise Location' option",true);
 		Thread.sleep(5000);
 		Reporter.log("Obtained Location : "+locationName.getText(),true);

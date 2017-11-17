@@ -67,6 +67,17 @@ public class SignUpPage extends W_BasePage {
 	@FindBy(css=".responsebox a[href='/signup']")
 	private WebElement resetOk_Btn;
 	
+	public SearchHomepage loginSignUp() throws EncryptedDocumentException, InvalidFormatException, IOException{
+		waitUntilElementclickable(login_Btn);
+		email_TB.sendKeys("yashuu@gmail.com");
+		Reporter.log("Entered Email id", true);
+		password_TB.sendKeys("qwertyuiop");
+		Reporter.log("Entered Password", true);
+		login_Btn.click();
+		Reporter.log("Clicked Login", true);
+		return new SearchHomepage(wdriver);
+	}
+	
 	
 	public SearchHomepage loginSignUpPage(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);

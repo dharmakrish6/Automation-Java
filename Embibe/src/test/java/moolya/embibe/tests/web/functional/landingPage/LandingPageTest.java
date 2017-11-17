@@ -18,7 +18,7 @@ public class LandingPageTest extends W_BaseTest {
 	private LandingPage lp;
 
 	@Test(dataProvider="browserData")
-	public void LandingPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException{
+	public void landingPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Functional flow : LandingPage Test on browser :-  "+ "'" + browser + "'",  true);

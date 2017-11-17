@@ -14,7 +14,7 @@ import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class Login_SearchResultsPageTest extends W_BaseTest {
+public class Login_SearchResultsPage_Test extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -55,7 +55,7 @@ public class Login_SearchResultsPageTest extends W_BaseTest {
 	String collegePredictor_URL="https://rearch.embibe.com/rank-college-predictor/home";
 	
 	@Test(dataProvider="browserData")
-	public void login_SearchRequestPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void login_SearchResultsPage_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Functional :Login User Search Result Page Test"+ ", Browser is :" + browser, true);
