@@ -35,7 +35,7 @@ import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.utils.EmbibeUtils;
 import moolya.embibe.utils.JavaUtils;
 
-public class DslWidgetsTest {
+public class DslActualWidgetsTest {
 
 	private LandingPage lp;
 	private DslPage dslp;
@@ -48,28 +48,13 @@ public class DslWidgetsTest {
 	LinkedHashMap<String, String> actualData;
 	LinkedHashMap<String, String> resultData;
 	private String goalCode = "gl8";	// Enrg=gl8,Medical=gl9
-	private String examCode = "ex6";	// Bitsat=ex6,Jipmer=ex58,NEET=ex9,JEE Main=ex4
-	HashMap<String, String> goalExamMap = new HashMap<String, String>(){{
-		put("gl8", "Engineering");put("gl9","Medical");
-		put("ex6","BITSAT");put("ex58","JIPMER");
-		put("ex9","NEET");put("ex4","JEE Main");
-	}};
-	String goal;
-	String exam;
+	private String examCode = "na";	// Bitsat=ex6,Jipmer=ex58
 	String sheetName = "top1000SearchTerms";
 
 	@BeforeTest
 	public void setup() throws IOException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchDsl("chrome");
-		if(goalCode.equalsIgnoreCase("na"))
-			goal=goalCode;
-		else
-			goal = goalExamMap.get(goalCode);
-		if(examCode.equalsIgnoreCase("na"))
-			exam=examCode;
-		else
-			exam = goalExamMap.get(examCode);
 	}
 
 	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
@@ -78,8 +63,61 @@ public class DslWidgetsTest {
 		dslp = new DslPage(wdriver);
 		dslData = dslp.getSearchQueryJson(text,goalCode,examCode,20);
 		resultData = dslData;
-		resultData.put("Goal", goal);
-		resultData.put("Exam", exam);
+//		lp = basepage.goToLandingPage();
+//		lp.waitForLandingPageToLoad();
+//		shp = lp.clickStartNow();
+//		if(!stream.equalsIgnoreCase("na"))
+//			shp.login();
+//		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
+//		try {
+//			actualData = shp.searchForDsl(disambiguated, text);
+//			if(disambiguated){
+//				srp = new SearchResultsPage(wdriver);
+//				String resultText = "";
+//				resultText = srp.getSearchResultTopicHeader();
+//				String actualWidgets = srp.getWidgetsOrder(10);
+//				actualData.put("Target Page", "Search Results Page");
+//				actualData.put("Actual Result", resultText);
+//				actualData.put("Actual Widgets", actualWidgets);
+//			}
+//		} catch (Exception e) {}
+//		String status;
+//		if(actualData!=null 
+//				&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
+//			status = "Pass";
+//		else
+//			status = "Fail";
+//		try {
+//			resultData.put("Actual Result", actualData.get("Actual Result"));
+//			resultData.put("Actual Widgets", actualData.get("Actual Widgets"));
+//		} catch (Exception e) {}
+//		resultData.put("Status", status);
+//		String[] dslWidgets = dslData.get("Dsl Widgets").split(",");
+//		for(int i=0;i<dslWidgets.length;i++){
+//			String[] widget = dslWidgets[i].split("=");
+//			try {
+//				resultData.put("Dsl Widget Type "+(i+1), widget[0]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Dsl Widget Name "+(i+1), widget[1]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Dsl Widget Value "+(i+1), widget[2]);
+//			} catch (Exception e) {}
+//		}
+//		String[] actualWidgets = actualData.get("Actual Widgets").split(",");
+//		for(int i=0;i<actualWidgets.length;i++){
+//			String[] widget = actualWidgets[i].split("=");
+//			try {
+//				resultData.put("Actual Widget Type "+(i+1), widget[0]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Actual Widget Name "+(i+1), widget[1]);
+//			} catch (Exception e) {}
+//			try {
+//				resultData.put("Actual Widget Value "+(i+1), widget[2]);
+//			} catch (Exception e) {}
+//		}
 		EmbibeUtils.writeDslActualData(sheetName, resultData, Integer.parseInt(row)+1);
 	}
 

@@ -17,6 +17,7 @@ import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
+import moolya.embibe.utils.EmbibeUtils;
 import moolya.embibe.utils.JavaUtils;
 import moolya.embibe.utils.SqliteUtils;
 
@@ -54,7 +55,7 @@ public class FailedSearchesTest {
 	public void tearDown() throws EncryptedDocumentException, InvalidFormatException, IOException, ClassNotFoundException{
 		lp = new LandingPage(wdriver);
 		
-		ArrayList<LinkedHashMap<String, String>> results = lp.getEventLogs(this.getClass().getSimpleName());
+		ArrayList<LinkedHashMap<String, String>> results = EmbibeUtils.getEventLogs(wdriver, this.getClass().getSimpleName());
 
 		ArrayList<String> msgIds = SqliteUtils.storeSegmentIoResultsToDb(results);
 		for(String id:msgIds)

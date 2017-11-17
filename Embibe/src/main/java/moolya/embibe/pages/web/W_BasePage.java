@@ -1,9 +1,13 @@
 package moolya.embibe.pages.web;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,10 +16,16 @@ import java.util.logging.Level;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.Picture;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.util.IOUtils;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -1001,6 +1011,316 @@ public class W_BasePage extends W_SuperBasePage
 		wdriver.manage().window().maximize();
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
 		return wdriver;
+	}
+	
+	public HashMap<String, String> readPixelData(String sheetName,String pageName,String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		int width = wdriver.manage().window().getSize().width;
+		int height = wdriver.manage().window().getSize().height;
+		sheetName = width+"X"+height;
+		HashMap<String,String> dataMap = null;
+		String key = null, value = null;
+		FileInputStream file = new FileInputStream("./test-data/PixelData.xlsx");
+		dataMap = new HashMap<String, String>();
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			if(cellPageValue.equals(pageName)&&cellValue.equals(uniqueValue)) {
+				for(int i=3;i<headers.getLastCellNum();i++){
+					if(headers.getCell(i).toString().trim().startsWith("z_")){
+						try{
+							try {
+								value = record.getCell(i).toString().trim();
+								key = headers.getCell(i).toString().trim();
+							} catch (Exception e) {
+								value = record.getCell(i).getStringCellValue();
+								key = headers.getCell(i).toString().trim();
+							}
+						}catch(Exception e){
+							continue;
+						}
+					}
+
+					dataMap.put(key, value);
+				}
+
+				break;
+			}
+		}
+		wb.close();
+		file.close();
+		return dataMap;
+	}
+
+	public HashMap<String, String> readAllPixelData(String sheetName,String pageName,String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		int width = wdriver.manage().window().getSize().width;
+		int height = wdriver.manage().window().getSize().height;
+		sheetName = width+"X"+height;
+		HashMap<String,String> dataMap = null;
+		String key = null, value = null;
+		FileInputStream file = new FileInputStream("./test-data/PixelData.xlsx");
+		dataMap = new HashMap<String, String>();
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			if(cellPageValue.equals(pageName)&&cellValue.equals(uniqueValue)) {
+				for(int i=3;i<headers.getLastCellNum();i++){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = headers.getCell(i).toString().trim();
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = headers.getCell(i).toString().trim();
+						}
+					}catch(Exception e){
+						continue;
+					}
+					dataMap.put(key, value);
+				}
+
+				break;
+			}
+		}
+		wb.close();
+		file.close();
+		return dataMap;
+	}
+
+	public void writePixelData(String sheetName, String uniqueValue, String pageName, String columnName, String data) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		int width = wdriver.manage().window().getSize().width;
+		int height = wdriver.manage().window().getSize().height;
+		sheetName = width+"X"+height;
+		FileInputStream fis = new FileInputStream("./test-data/PixelData.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			if(cellPageValue.equals(pageName)&&cellValue.equals(uniqueValue)) {
+				for(int i=1;i<headers.getLastCellNum();i++){
+					try{
+						if (headers.getCell(i).toString().trim().equalsIgnoreCase(columnName)){
+							Cell cell = null;
+							try{
+								cell = record.getCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								if(data.contains("px")&&data.contains(".")){
+									String tmp = data.replaceAll("px", "");
+									double d = Double.parseDouble(tmp);
+									String result = String.format("%.1f", d);
+									cell.setCellValue(result+"px");
+								}
+								else
+									cell.setCellValue(data);
+							}catch(Exception e){
+								cell = record.createCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								if(data.contains("px")&&data.contains(".")){
+									String tmp = data.replaceAll("px", "");
+									double d = Double.parseDouble(tmp);
+									String result = String.format("%.1f", d);
+									cell.setCellValue(result+"px");
+								}
+								else
+									cell.setCellValue(data);
+							}
+
+							break;
+						}
+					}catch(Exception e){}
+				}
+				break;
+			}
+		}
+		FileOutputStream fos = new FileOutputStream("./test-data/PixelData.xlsx");
+		wb.write(fos);
+		wb.close();
+		fis.close();
+		fos.close();
+	}
+
+	public void writeElementImageToData(String uniqueValue,String pageName,String columnName,File image, int width, int height) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream fis = new FileInputStream("./test-data/PixelData.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sheet = wb.getSheet("Images");
+		Iterator<Row> it = sheet.rowIterator();
+		InputStream inputStream = new FileInputStream(image);
+		//Get the contents of an InputStream as a byte[].
+
+		byte[] bytes = IOUtils.toByteArray(inputStream);
+		//Adds a picture to the workbook
+		int pictureIdx = wb.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+		//close the input stream
+
+		inputStream.close();
+		//Returns an object that handles instantiating concrete classes
+		CreationHelper helper = wb.getCreationHelper();
+		//Creates the top-level drawing patriarch.
+		Drawing drawing = sheet.createDrawingPatriarch();
+
+		//Create an anchor that is attached to the worksheet
+		ClientAnchor anchor = helper.createClientAnchor();
+		//		anchor.setAnchorType(ClientAnchor.DONT_MOVE_AND_RESIZE);
+
+		Row headers = it.next();
+		int c=0;
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			if(cellPageValue.equals(pageName)&&cellValue.equals(uniqueValue)) {
+				for(int i=1;i<headers.getLastCellNum();i++){
+					try{
+						if (headers.getCell(i).toString().trim().equalsIgnoreCase(columnName)){
+							if(sheet.getColumnWidth(i)<=width)
+								sheet.setColumnWidth(i, width);
+							record.setHeight((short)(height*20));
+							anchor.setCol1(i);
+							anchor.setRow1(c+1);
+							break;
+						}
+					}catch(Exception e){}
+				}
+				break;
+			}
+			c++;
+		}
+
+		//Creates a picture
+		Picture pict = drawing.createPicture(anchor, pictureIdx);
+		pict.resize();
+		//Reset the image to the original size
+
+		FileOutputStream fos = new FileOutputStream("./test-data/PixelData.xlsx");
+		wb.write(fos);
+		wb.close();
+		fis.close();
+		fos.close();
+	}
+
+	public void writeExpectedPixelData(String uniqueValue, String pageName, String columnName, String data) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		int width = wdriver.manage().window().getSize().width;
+		int height = wdriver.manage().window().getSize().height;
+		String sheetName = width+"X"+height;
+		FileInputStream fis = new FileInputStream("./test-data/PixelData.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			if(cellPageValue.equals(pageName)&&cellValue.equals(uniqueValue)) {
+				for(int i=1;i<headers.getLastCellNum();i++){
+					try{
+						if (headers.getCell(i).toString().trim().equalsIgnoreCase(columnName)){
+							Cell cell = null;
+							try{
+								cell = record.getCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								if(data.contains("px")&&data.contains(".")){
+									String tmp = data.replaceAll("px", "");
+									double d = Double.parseDouble(tmp);
+									String result = String.format("%.1f", d);
+									cell.setCellValue(result+"px");
+								}
+								else
+									cell.setCellValue(data);
+							}catch(Exception e){
+								cell = record.createCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								if(data.contains("px")&&data.contains(".")){
+									String tmp = data.replaceAll("px", "");
+									double d = Double.parseDouble(tmp);
+									String result = String.format("%.1f", d);
+									cell.setCellValue(result+"px");
+								}
+								else
+									cell.setCellValue(data);
+							}
+
+							break;
+						}
+					}catch(Exception e){}
+				}
+				break;
+			}
+		}
+		FileOutputStream fos = new FileOutputStream("./test-data/PixelData.xlsx");
+		wb.write(fos);
+		wb.close();
+		fis.close();
+		fos.close();
+	}
+
+	public void updatePixelResults(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream fis = new FileInputStream("./test-data/PixelData.xlsx");
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			Cell cell;
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			for(int i=3;i<headers.getLastCellNum();i++){
+				try{
+					if (headers.getCell(i).toString().trim().startsWith("z_")){
+						String z_result = record.getCell(i).toString();
+						String a_result = record.getCell(i+1).toString();
+						boolean flag = z_result.equals(a_result);
+						try{
+							cell = record.getCell(i+2);
+							cell.setCellType(Cell.CELL_TYPE_STRING);
+							if(flag){
+								cell.setCellValue("True");
+							}else{
+								cell.setCellValue("False");
+							}
+						}catch(Exception e){
+							cell = record.createCell(i+2);
+							cell.setCellType(Cell.CELL_TYPE_STRING);
+							if(flag){
+								cell.setCellValue("True");
+							}else{
+								cell.setCellValue("False");
+							}
+						}
+					}
+				}catch(Exception e){}
+			}
+		}
+		FileOutputStream fos = new FileOutputStream("./test-data/PixelData.xlsx");
+		wb.write(fos);
+		wb.close();
+		fis.close();
+		fos.close();
 	}
 
 	@FindBy(css=".global-nav__left>a>img")

@@ -21,6 +21,7 @@ import moolya.embibe.pages.web.LoginPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SignUpPage;
 import moolya.embibe.pages.web.W_BasePage;
+import moolya.embibe.utils.EmbibeUtils;
 import moolya.embibe.utils.JavaUtils;
 import moolya.embibe.utils.SqliteUtils;
 
@@ -66,13 +67,20 @@ public class HeadersTest{
 		shp.clickProfileIcon();
 		shp.clickLogin();
 		loginPage = shp.clickForgotPassword();
-		shp = loginPage.closeForgotPassword();
+		loginPage.clickLoginHere();
+		loginPage.resetPasssword();
+		loginPage.closeForgotPassword();
+		shp = new SearchHomepage(wdriver);
 		shp.clickLogin();
 		shp.clickFbLogin();
+		shp.navigateBack();
+		shp.clickGoogleLogin();
 		shp.navigateBack();
 		shp.clickLogin();
 		shp.clickRegisterHere();
 		shp.clickFbSignUp();
+		shp.navigateBack();
+		shp.clickGoogleSignUp();
 		shp.navigateBack();
 		shp.clickLogin();
 		shp.clickRegisterHere();
@@ -97,7 +105,7 @@ public class HeadersTest{
 	public void tearDown() throws EncryptedDocumentException, InvalidFormatException, IOException, ClassNotFoundException{
 		lp = new LandingPage(wdriver);
 		
-		ArrayList<LinkedHashMap<String, String>> results = lp.getEventLogs(this.getClass().getSimpleName());
+		ArrayList<LinkedHashMap<String, String>> results = EmbibeUtils.getEventLogs(wdriver, this.getClass().getSimpleName());
 
 		ArrayList<String> msgIds = SqliteUtils.storeSegmentIoResultsToDb(results);
 		for(String id:msgIds)

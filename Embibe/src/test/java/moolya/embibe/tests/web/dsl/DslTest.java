@@ -39,6 +39,7 @@ public class DslTest{
 	LinkedHashMap<String, String> dslData;
 	LinkedHashMap<String, String> actualData;
 	LinkedHashMap<String, String> resultData;
+	String sheetName = "top1000SearchTerms";
 
 
 	@Test(dataProvider="getDslActualData")
@@ -74,13 +75,13 @@ public class DslTest{
 			resultData.put("Actual Result", actualData.get("Actual Result"));
 		} catch (Exception e) {}
 		resultData.put("Status", status);
-		EmbibeUtils.writeDslActualData("top1000SearchTerms", resultData, Integer.parseInt(row)+1);
+		EmbibeUtils.writeDslActualData(sheetName, resultData, Integer.parseInt(row)+1);
 	}
 
 	@DataProvider
 	public Object[][] getDslActualData() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		Object[][] obj = null;
-		obj = EmbibeUtils.readDslUniqueValues("top1000SearchTerms");
+		obj = EmbibeUtils.readDslUniqueValues(sheetName);
 		for(int i=0;i<obj.length;i++)
 			obj[i][2] = "chrome";
 		return obj;

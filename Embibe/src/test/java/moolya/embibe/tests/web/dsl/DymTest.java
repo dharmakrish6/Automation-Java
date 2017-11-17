@@ -4,11 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.EncryptedDocumentException;
@@ -19,7 +17,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -33,10 +30,9 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.utils.EmbibeUtils;
-import moolya.embibe.utils.JavaUtils;
 
-public class DslWidgetsTest {
-
+public class DymTest {
+	
 	private LandingPage lp;
 	private DslPage dslp;
 	private SearchHomepage shp;
@@ -57,7 +53,7 @@ public class DslWidgetsTest {
 	String goal;
 	String exam;
 	String sheetName = "top1000SearchTerms";
-
+	
 	@BeforeTest
 	public void setup() throws IOException{
 		basepage = new W_BasePage(wdriver);
@@ -73,7 +69,7 @@ public class DslWidgetsTest {
 	}
 
 	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
-	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
+	public void dymTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
 		String text = uniqueValue;
 		dslp = new DslPage(wdriver);
 		dslData = dslp.getSearchQueryJson(text,goalCode,examCode,20);
@@ -125,5 +121,5 @@ public class DslWidgetsTest {
 		}
 
 	}
-	
+
 }

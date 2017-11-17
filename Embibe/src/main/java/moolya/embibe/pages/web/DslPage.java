@@ -34,20 +34,23 @@ public class DslPage extends W_BasePage {
 	@FindBy(tagName="body")
 	private WebElement resultBody;
 	
-	public LinkedHashMap<String, String> getSearchQueryJson(String query,int maxLength) throws IOException, JSONException{
+	public LinkedHashMap<String, String> getSearchQueryJson(String query, String goalCode, String examCode, int maxLength) throws IOException, JSONException{
 		query = query.trim().replaceAll(" ", "+");
 		wdriver.navigate().to(JavaUtils.getPropValue("dslUrl")+"?query="+query);
 		String url = wdriver.getCurrentUrl();
+		if(!goalCode.equalsIgnoreCase("na"))
+			url = url+"&goal_code="+goalCode;
+		if(!examCode.equalsIgnoreCase("na"))
+			url = url+"&exam_code="+examCode;
 		url = url+"&consumer=tech";
 		wdriver.navigate().to(url);
 		String pagesource = wdriver.getPageSource();
-		JavaUtils.writeResultsToFile("dslResults.txt", pagesource);
 		pagesource = pagesource.replace("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head><body>", "");
 		pagesource = pagesource.replace("</body></html>", "");
 		pagesource = pagesource.replace("<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">", "");
 		pagesource = pagesource.replace("</pre>", "");
 //		String response = EmbibeUtils.getDslResponse(query);
-//		JavaUtils.writeResultsToFile("dslResults.txt", response);
+//		JavaUtils.writeResultsToFile("dslResults.txt", pagesource);
 		LinkedHashMap<String,String> results = EmbibeUtils.getResultsFromJson(pagesource, maxLength);
 		return results;
 	}

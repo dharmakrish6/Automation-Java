@@ -19,6 +19,15 @@ public class LoginPage extends W_BasePage {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@FindBy(css="#inputvalue")
+	private WebElement emailPhone_TB;
+	
+	@FindBy(css=".resp-but")
+	private WebElement resetPassword_Btn;
+	
+	@FindBy(css=".resend")
+	private WebElement loginHere_Btn;
+	
 	@FindBy(css=".showRP ")
 	private WebElement resetPasswordSentLogo;
 	
@@ -40,35 +49,34 @@ public class LoginPage extends W_BasePage {
 	@FindBy(css=".FPMessage")
 	private WebElement forgotPasswordMessage;
 	
-	@FindBy(id="inputvalue")
-	private WebElement forgotPasswordEmail_TB;
-	
-	@FindBy(xpath="//button[text()='Reset Password']")
-	private WebElement resetPassword_Btn;
-	
 	@FindBy(css=".FPAgain")
 	private WebElement loginHereDiv;
 	
 	public void getPixelDataForgotPassword() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		waitUntilElementAppears(forgotPasswordHeader_Lbl);
-		forgotPasswordEmail_TB.sendKeys("yatheendra@moolya.com");
+		resetPasswordEmail_TB.sendKeys("yatheendra@moolya.com");
 		getPixelData("Data", "001.1.3(D)", forgotPasswordHeader_Lbl, "forgotPasswordHeader_Lbl");
 		getPixelData("Data", "001.1.3(D)", forgotPasswordMessage, "forgotPasswordMessage");
-		getPixelData("Data", "001.1.3(D)", forgotPasswordEmail_TB, "forgotPasswordEmail_TB");
+		getPixelData("Data", "001.1.3(D)", resetPasswordEmail_TB, "forgotPasswordEmail_TB");
 		getPixelData("Data", "001.1.3(D)", resetPassword_Btn, "resetPassword_Btn");
 		getPixelData("Data", "001.1.3(D)", loginHereDiv, "loginHereDiv");
 	}
 	
+	public void clickLoginHere(){
+		waitUntilElementclickable(loginHere_Btn);
+		loginHere_Btn.click();
+	}
+	
 	public void resetPasssword(){
-		waitUntilElementclickable(forgotPasswordEmail_TB);
+		waitUntilElementclickable(emailPhone_TB);
+		emailPhone_TB.sendKeys("yatheendra@moolya.com");
 		resetPassword_Btn.click();
 	}
 	
-	public SearchHomepage closeForgotPassword(){
+	public void closeForgotPassword(){
 		waitUntilElementclickable(forgotPasswordClose_Btn);
 		forgotPasswordClose_Btn.click();
 		Reporter.log("Clicked on Close Forgot Password", true);
-		return new SearchHomepage(wdriver);
 	}
 
 	public void getPixelDataResetPassword() throws EncryptedDocumentException, InvalidFormatException, IOException{

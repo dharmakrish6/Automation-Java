@@ -2,6 +2,7 @@ package moolya.embibe.pages.web;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.apache.poi.EncryptedDocumentException;
@@ -552,8 +553,17 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(css="ul.bottom-content>li:nth-child(10)")
 	private WebElement footer_Youtube;
 	
+	@FindBy(css=".didWrap>div>div")
+	private WebElement didYouMean_Lbl;
+	
 	@FindBy(css=".didWrap .button-hollow")
 	private List<WebElement> didYouMeanTermsBtns_List;
+	
+	@FindBy(xpath="//div[@class='heading' and text()='Are you looking for']")
+	private WebElement areYouLookingFor_Lbl;
+	
+	@FindBy(xpath="//div[@class='heading' and text()='Are you looking for']/following-sibling::div//*[contains(@class,'button-hollow')]")
+	private List<WebElement> areYouLookingForItems_List;
 
 	public OcularResult checkShowResultsForEngineeringButton(){
 		waitUntilElementclickable(showForEngineering_Btn);
@@ -1281,6 +1291,31 @@ public class SearchResultsPage extends W_BasePage {
 		}
 		
 		return text;
+	}
+	
+	public String getDymAlaTerms(String type) throws InterruptedException{
+		String terms = "";
+		Thread.sleep(5000);
+		if(type.equals("dym")){
+			waitUntilElementAppears(didYouMean_Lbl);
+				for(WebElement e:didYouMeanTermsBtns_List){
+					String term = e.getText();
+					if(terms.length()==0)
+						terms = term;
+					else
+						terms = terms + "\n" + term;
+				}
+		}else{
+			waitUntilElementAppears(areYouLookingFor_Lbl);
+			for(WebElement e:areYouLookingForItems_List){
+				String term = e.getText();
+				if(terms.length()==0)
+					terms = term;
+				else
+					terms = terms + "\n" + term;
+			}
+		}
+		return terms;
 	}
 	
 	

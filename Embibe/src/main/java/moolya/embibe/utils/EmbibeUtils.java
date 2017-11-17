@@ -23,6 +23,10 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.logging.LogType;
 import org.testng.Assert;
 
 import io.restassured.http.ContentType;
@@ -45,6 +49,194 @@ public class EmbibeUtils {
 		put("ex32", "VITEEE");put("ex47", "Assam CEE");put("ex58", "JIPMER");
 		put("ex9", "NEET");put("ex19", "AIIMS");
 	}};
+	
+	public static ArrayList<LinkedHashMap<String,String>> getEventLogs(WebDriver wdriver, String className){
+		String text = "";
+		ArrayList<LinkedHashMap<String, String>> events = new ArrayList<LinkedHashMap<String,String>>();
+		LogEntries logEntries = wdriver.manage().logs().get(LogType.PERFORMANCE);
+		String[] mandatoryParams = {"log_type","event_name","event_type","intent_to_pay","nav_element"};
+		String[] extraParams = {"embium_count","email_id","type","capture_goal_name","credentials",
+				"content-id","content-type","content_id","content_name","query","content_type",
+				"content_position","search_query","exam_selected","goal","country_code",
+				"exam_name","widget_position","widget_cta","widget_type","xpath","pack_id",
+				"pack_name","scroll_location","capture_element_type","position_x","position_y","mouse_over_element","mouse_over_text"};
+		for (Iterator<LogEntry> it = logEntries.iterator(); it.hasNext();)
+		{
+//			boolean flag = false;
+			LogEntry entry = it.next();
+			try {
+//				JSONObject json = new JSONObject(entry.getMessage());
+//				JSONObject message = json.getJSONObject("message");
+//				JSONObject params = message.getJSONObject("params");
+				JSONObject request = new JSONObject(entry.getMessage())
+						.getJSONObject("message")
+						.getJSONObject("params")
+						.getJSONObject("request");
+				if(request.getString("url").equals("https://api.segment.io/v1/t")){
+//					flag = false;
+					LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
+					String postData = request.getString("postData");
+					JSONObject postDataJson = new JSONObject(postData);
+					JSONObject properties = postDataJson.getJSONObject("properties");
+					String messageId = postDataJson.getString("messageId");
+					String userId = postDataJson.getString("userId");
+					try {
+						/*for(LinkedHashMap<String, String> m:events){
+							if(m.get("event_code").equals(properties.getString("event_code"))){
+								flag = true;
+								break;
+							}
+
+						}
+						if(flag)
+							continue;*/
+						map.put("userId", userId);
+						map.put("messageId", messageId);
+						map.put("className", className);
+						map.put("event_code", properties.getString("event_code"));
+					} catch (Exception e1) {}
+					for(String s:mandatoryParams){
+						try {
+							map.put(s, properties.getString(s));
+						} catch (Exception e1) {
+							continue;
+						}
+					}
+					for(String s:extraParams){
+						try {
+							JSONObject obj = properties.getJSONObject("extra_params");
+							map.put(s, obj.getString(s));
+						} catch (Exception e) {
+							continue;
+						}
+						
+					}	
+//					if(flag)
+//						continue;
+					events.add(map);
+				}
+			} catch (Exception e1) {}
+		}
+		return events;
+	}
+	
+	public ArrayList<LinkedHashMap<String,String>> getEventData(String sheetName) throws IOException, EncryptedDocumentException, InvalidFormatException{
+		ArrayList<LinkedHashMap<String, String>> e_events = new ArrayList<LinkedHashMap<String, String>>();
+		LinkedHashMap<String, String> map = null;
+		FileInputStream file = new FileInputStream("./test-data/SegmentIoData.xlsx");
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+			map = new LinkedHashMap<String, String>();
+			Row record = it.next();
+			String cellPageValue = record.getCell(0).toString();
+			String cellValue = record.getCell(1).toString();
+			for(int i=0;i<headers.getLastCellNum();i++){
+				String value = null;
+				String key = null;
+				if(headers.getCell(i).toString().trim().equals("event_code")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "event_code";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "event_code";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_log_type")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "log_type";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "log_type";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_event_name")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "event_name";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "event_name";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_nav_element")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "nav_element";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "nav_element";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_event_type")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "event_type";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "event_type";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_intent_to_pay")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "intent_to_pay";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "intent_to_pay";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				else if(headers.getCell(i).toString().trim().equals("e_extra_params")){
+					try{
+						try {
+							value = record.getCell(i).toString().trim();
+							key = "extra_params";
+						} catch (Exception e) {
+							value = record.getCell(i).getStringCellValue();
+							key = "extra_params";
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+				if(key!=null)
+					map.put(key, value);
+			}
+			e_events.add(map);
+		}
+		wb.close();
+		file.close();
+		return e_events;
+	}
 	
 	public static String getDslResponse(String query) throws IOException{
 		Response response = null;
@@ -229,6 +421,43 @@ public class EmbibeUtils {
 		wb.close();
 		file.close();
 		return values;
+	}
+	
+	public static LinkedHashMap<String, String> readDslExcelData(String sheetname,int row) throws EncryptedDocumentException, InvalidFormatException, IOException {
+		LinkedHashMap<String,String> dataMap = null;
+		String key, value = null;
+		FileInputStream file = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
+		dataMap = new LinkedHashMap<String, String>();
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetname);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		Row record  = sheet.getRow(row);
+		for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
+							try{
+								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+								value = record.getCell(i).toString().trim();
+							}catch(Exception e){}
+							key = headers.getCell(i).toString().trim();
+
+						} else {
+
+							key = headers.getCell(i).toString().trim();
+							try {
+								value = record.getCell(i).toString().trim();
+							} catch (Exception e) {}
+						}
+					}catch(Exception e){
+						continue;
+					}
+
+					dataMap.put(key, value);
+				}
+
+		return dataMap;
 	}
 	
 }
