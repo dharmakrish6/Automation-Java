@@ -96,25 +96,28 @@ public class LoginPage extends W_BasePage {
 	@FindBy(css="#showInDesktopemailError")
 	private WebElement unregErrWarning_Email;
 	
-	public void unRegisterUser(String email,String password) throws InterruptedException{
+	public SearchHomepage unRegisterUser(String email,String password) throws InterruptedException{
+		Thread.sleep(3000);
 		invalidLogin(email,password);
 		waitUntilElementAppears(unregErrWarning_Email);
 		Assert.assertTrue(unregErrWarning_Email.isDisplayed(), "Failed to display the error warning for unregistered user");
 		String warning=unregErrWarning_Email.getText();
 		Thread.sleep(3000);
 		Reporter.log("'"+warning+"' is displayed",true);
+		return new SearchHomepage(wdriver);
 	}
 	
 	@FindBy(css="#showInDesktoppasswordError")
 	private WebElement errWarning_password;
 	
-	public void invalidLoginCredentials(String email,String password) throws InterruptedException{
+	public SearchHomepage invalidLoginCredentials(String email,String password) throws InterruptedException{
 		unRegisterUser(email,password);
 		waitUntilElementAppears(unregErrWarning_Email);
 		Assert.assertTrue(errWarning_password.isDisplayed(), "Failed to display the error warning for invalid password");
 		String passwordWarning=errWarning_password.getText();
 		Thread.sleep(3000);
 		Reporter.log("'"+passwordWarning+"' is displayed",true);	
+		return new SearchHomepage(wdriver);
 	}
 	
 	@FindBy(xpath="//input[@id='inputvalue']")

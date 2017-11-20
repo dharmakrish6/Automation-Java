@@ -30,6 +30,7 @@ public class Login_RequestMissionWindow_Test extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
+		shp.login();
 		Thread.sleep(5000);
 		cmp = shp.clickChooseMission();
 		Reporter.log("======================================China Request a Misson=================================",true);

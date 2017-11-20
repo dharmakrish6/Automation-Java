@@ -194,6 +194,47 @@ public class FootersPage extends W_BasePage {
 	@FindBy(xpath="(//span[contains(text(),'Log Out')])[1]")
 	private WebElement ExamPage_logoutButton;
 	
+	
+	
+	
+	public void login_examPage() throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		clickElement(ExamPage_logInButton);
+		Reporter.log("Clicked on Login Button",true);
+		enterText(examPage_emailField, "yashujan01@gmail.com");
+		Reporter.log("Entered email id",true);
+		enterText(examPage_passwordField, "1234567890");
+		Reporter.log("Entered password",true);
+		clickElement(expg_lgn_Btn);
+		Reporter.log("Clicked on Login Button",true);
+		boolean isExamLogOutBtn = true;
+		try{
+			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
+		}catch(Exception e){}
+		softAssert.assertTrue(isExamLogOutBtn, "Page should be in Logged out state.");
+		Reporter.log("Logged in successfully",true);
+	}
+	
+	@FindBy(css=".user-dropdown .user-name[href='/profile']")
+	private WebElement myProfile_Btn;
+	
+	public void logout_examPage() throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		//clickElement(myProfile_Btn);
+		clickElement(ExamPage_logoutButton);
+		Reporter.log("Clicked on Logout Button",true);
+		Reporter.log("Logged out successfully",true);
+	}
+	
+	@FindBy(xpath="(//a[contains(text(),'Login')])[3]")
+	private WebElement expg_lgn_Btn;
+	
+	@FindBy(css="input.login-email")
+	private WebElement examPage_emailField;
+	
+	@FindBy(css="input.login-password")
+	private WebElement examPage_passwordField;
+	
 	public void loginUser_examLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
@@ -208,14 +249,8 @@ public class FootersPage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Page Title : " + examTitle.getText(), true);
-		boolean isExamLogOutBtn = false;
-		try{
-			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
-		}catch(Exception e){}
-		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
-		Reporter.log("In logged-in state",true);
-		title_examPageEmbibeLogo.click();
-		Reporter.log("Clicked on Embibe logo",true);
+		login_examPage();
+		logout_examPage();
 		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
@@ -223,6 +258,56 @@ public class FootersPage extends W_BasePage {
 	
 	@FindBy(css=".global-nav__left>a>img")
 	private WebElement embibeLogo_Ask;
+	
+	@FindBy(xpath="(//*[contains(text(),'Sign Up')])[2]")
+	private WebElement testPage_signUp_Btn;
+	
+	@FindBy(xpath="//a[contains(text(),'Login Here')]")
+	private WebElement testPg_login_here_btn;
+	
+	@FindBy(xpath="//input[@id='login-email-or-mobile']")
+	private WebElement testPg_login_email_field;
+	
+	@FindBy(xpath="//*[@id='login-form']/ul/li[2]/input")
+	private WebElement testPg_login_password_field;
+	
+	@FindBy(xpath="(//*[@class='loginBTN'])[1]")
+	private WebElement ask_login_submit_Btn;
+	
+	public void login_testPage() throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		clickElement(testPage_signUp_Btn);
+		Reporter.log("Clicked on Signup Button",true);
+		clickElement(testPg_login_here_btn);
+		Reporter.log("Clicked on 'Login Here' Button",true);
+		enterText(testPg_login_email_field, "yashujan01@gmail.com");
+		Reporter.log("Entered email id",true);
+		enterText(testPg_login_password_field, "1234567890");
+		Reporter.log("Entered password",true);
+		clickElement(ask_login_submit_Btn);
+		Reporter.log("Clicked on Login Button",true);
+		boolean isExamLogOutBtn = true;
+		try{
+			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
+		}catch(Exception e){}
+		softAssert.assertTrue(isExamLogOutBtn, "Page should be in Logged out state.");
+		Reporter.log("Logged in successfully",true);
+	}
+	
+	@FindBy(xpath="//*[@id='global_nav_right-profilename']")
+	private WebElement testPg_myProfile_Btn;
+	
+	@FindBy(xpath="//*[@id='global_nav_right-logout']")
+	private WebElement testPg_myProfile_Logout_Btn;
+	
+	public void logout_testPage() throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		mouseHoverOnElement(wdriver, testPg_myProfile_Btn);
+		Reporter.log("Mousehovered on MyProfile icon",true);
+		clickElement(testPg_myProfile_Logout_Btn);
+		Reporter.log("Clicked on Logout Button",true);
+		Reporter.log("Logged out successfully",true);
+	}
 	
 	public void loginUser_classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
@@ -240,14 +325,9 @@ public class FootersPage extends W_BasePage {
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
 		Reporter.log("Class Name : '" + classNum.getText(), true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		boolean isExamLogOutBtn = false;
-		try{
-			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
-		}catch(Exception e){}
-		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
-		Reporter.log("In logged-in state",true);
-		embibeLogo_Ask.click();
-		Reporter.log("Clicked on Embibe Logo", true);
+		login_testPage();
+		logout_testPage();
+		assertSearchHomepage();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 		Thread.sleep(2000);
@@ -270,12 +350,10 @@ public class FootersPage extends W_BasePage {
 		}
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		boolean isExamLogOutBtn = false;
-		try{
-			isExamLogOutBtn = ExamPage_logoutButton.isDisplayed();
-		}catch(Exception e){}
-		softAssert.assertTrue(isExamLogOutBtn, "Page should not be in Logged out state.");
-		Reporter.log("In logged-in state",true);
+	
+		login_testPage();
+		logout_testPage();
+		
 		clickExamPageEmbibeLogo();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);

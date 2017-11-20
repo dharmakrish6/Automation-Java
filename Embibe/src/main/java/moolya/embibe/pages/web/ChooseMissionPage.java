@@ -8,9 +8,11 @@ import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.SendKeysAction;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
@@ -357,11 +359,9 @@ public class ChooseMissionPage extends W_BasePage {
 			Thread.sleep(3000);
 			clickElement(examEle);
 			Reporter.log("Clicked on '"+examEle.getText()+"'",true);
-		
-			Reporter.log("Navigated to :  https://rearch.embibe.com/rankup ",true);
-			Reporter.log("Clicked on Embibe logo",true);
-			Reporter.log("Navigated to Search home page",true);
+			Thread.sleep(3000);
 			switchToNextWindow(mainWindow);
+			Reporter.log("Navigated to : " + wdriver.getCurrentUrl(),true);
 			closeChildAndSwitchToMainWindow(mainWindow);
 			selectItemFromList(goalList, goal);
 			if(i>=5){
@@ -507,7 +507,12 @@ public class ChooseMissionPage extends W_BasePage {
 	public void verifyAutosuggestionList(String exam) throws InterruptedException{
 		enterText(enterExamField, exam);
 		Reporter.log("Entered '"+exam+"' in the search field",true);
+		//enterText(enterExamField, "E");
+		//Reporter.log("Entered 'E' in the search field",true);
 		Thread.sleep(3000);
+		enterExamField.sendKeys(Keys.SPACE);
+		Thread.sleep(100);
+		enterExamField.sendKeys(Keys.BACK_SPACE);
 		List<WebElement> list1 = examLists;
 		int list1Count= examLists.size();
 		Reporter.log("Number of related searched exams :  " + list1Count,true);

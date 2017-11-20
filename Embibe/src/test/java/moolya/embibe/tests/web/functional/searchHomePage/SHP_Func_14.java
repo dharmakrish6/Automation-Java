@@ -29,5 +29,6 @@ public class SHP_Func_14 extends W_BaseTest {
 		shp = lp.clickStartNow();
 		shp.assertSearchHomepage();
 		shp.noResultsFound();
+		Thread.sleep(5000);
 	}
 }

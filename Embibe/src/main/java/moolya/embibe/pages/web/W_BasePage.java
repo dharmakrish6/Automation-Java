@@ -63,7 +63,8 @@ public class W_BasePage extends W_SuperBasePage
 
 	//	Global Navigation Elements
 
-	@FindBy(css=".embibeLogo>a:nth-child(1)>img")
+	//@FindBy(css=".embibeLogo>a:nth-child(1)>img")
+	@FindBy(xpath=".//*[@id='root']/div/div[1]/div[2]/div[1]/a[1]/img")
 	private WebElement embibeLogo;
 
 	@FindBy(xpath="//li[@class='nav-item']/a[text()='Ask']")
@@ -128,7 +129,13 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
 	private WebElement fbLogin_Btn;
-
+	
+	@FindBy(xpath=".//*[@id='btn-facebook']")
+	protected WebElement signupPage_fb_loginBtn;
+	
+	@FindBy(xpath=".//*[@id='btn-google']")
+	protected WebElement signupPage_google_loginBtn;
+	
 	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
 	private WebElement fbSignUp_Btn;
 
@@ -319,8 +326,11 @@ public class W_BasePage extends W_SuperBasePage
 
 	public void enterFbLoginCredentials(String email,String password){
 		enterText(enterFbEmail, email);
+		Reporter.log("Entered Email id",true);
 		enterText(enterFbPassword,password);
-		//fb_loginBtn.click();
+		Reporter.log("Entered password",true);
+		fb_loginBtn.click();
+		Reporter.log("Clicked on facebook login button",true);
 	}
 
 	@FindBy(xpath="//*[@id='headingText']/following::button[contains(text(),'embibe.com')]")
@@ -331,6 +341,10 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="//*[@id='identifierNext']")
 	private WebElement google_next_btn;
+	
+	
+	@FindBy(xpath="//*[@id='passwordNext']")
+	private WebElement google_Final_next_btn;
 
 	@FindBy(xpath="//*[@id='password']/div/div/div/input[@type='password']")
 	private WebElement enterGooglePassword;
@@ -346,8 +360,13 @@ public class W_BasePage extends W_SuperBasePage
 
 	public void enterGoogleLoginCredentials(String email,String password){
 		enterText(enterGoogleMail, email);
+		Reporter.log("Entered Email id",true);
 		google_next_btn.click();
-		enterText(enterGooglePassword, password);	
+		Reporter.log("Clicked on Next Button",true);
+		enterText(enterGooglePassword, password);
+		Reporter.log("Entered Password",true);
+		google_Final_next_btn.click();
+		Reporter.log("Clicked on Next Button",true);
 	}
 
 	public void clickFbSignUp(){
@@ -489,6 +508,12 @@ public class W_BasePage extends W_SuperBasePage
 		embiumImage.click();
 		Reporter.log("Embium Image is present in the Header", true);
 	}
+	
+	public void loginBtn(){
+		waitUntilElementclickable(login_Btn);
+		clickElement(login_Btn);
+		Reporter.log("Clicked on Login button",true);
+	}
 
 	public void clickProfileIcon() throws InterruptedException{
 		waitUntilElementAppears(guestImage);
@@ -565,8 +590,8 @@ public class W_BasePage extends W_SuperBasePage
 
 	public void invalidLogin(String email,String password){
 		waitUntilElementclickable(login_Btn);
-		login_Btn.click();
-		Reporter.log("Clicked on Login Button",true);
+		//login_Btn.click();
+		//Reporter.log("Clicked on Login Button",true);
 		emailPhone_TB.sendKeys(email);
 		Reporter.log("Entered '"+email+"'",true);
 		password_TB.sendKeys(password);
@@ -697,8 +722,10 @@ public class W_BasePage extends W_SuperBasePage
 		//		clickElementViaJavaScript(userDropdown);
 		Thread.sleep(1000);
 		userDropdown.click();
+		Reporter.log("Clicked on Profile icon",true);
 		waitUntilElementclickable(logout_Btn);
 		logout_Btn.click();
+		Reporter.log("Clicked on logout button",true);
 		Reporter.log("Logged out succesfully",true);
 		return new SignUpPage(wdriver);
 	}

@@ -94,28 +94,45 @@ public class Login_Logout_ExamPages_test extends W_BaseTest {
 		lp.assertLandingPage();
 		shp = lp.clickStartNow();
 		lfp=shp.loginFooters();
-		Reporter.log("========================================Exam Links====================================",true);
+		Reporter.log("=====================================Exam Links========================================",true);
 		lfp.loginUser_examLinks(1,"JEE Main",jeeMain_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_examLinks(2,"NEET",neet_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_examLinks(3,"AIIMS",aiims_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_examLinks(4,"CBSE",cbse_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_examLinks(5,"JEE Advanced",jeeAdvanced_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_examLinks(6,"BITSAT",bitsat_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_examLinks(7,"EAMCET",eamcet_URL);
 		Reporter.log("========================================Classes Links====================================",true);
 		lfp.loginUser_classesLinks(1,"Class 8","8th Foundation/NTSE/Olympiad",class_8_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_classesLinks(2,"Class 9","9th Foundation/NTSE/Olympiad",class_9_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_classesLinks(3,"Class 10","10th Foundation/NTSE/Olympiad",class_10_URL);
 		Reporter.log("========================================Mock tests Links====================================",true);
 		lfp.loginUser_mockTestsLinks(1,"JEE Main",exam_jeeMain_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(2,"JEE Advanced",exam_jeeAdvanced_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(3,"BITSAT",exam_bitsat_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(4,"Gujarat-CET",exam_gujaratCet_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(5,"AP-EAMCET",exam_AP_Eamcet_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(6,"TS-EAMCET",exam_TS_Eamcet_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(7,"NEET",exam_neet_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(8,"AIIMS",exam_aiims_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(9,"Bank Clerk Prelims",exam_bank_clerk_prelims_URL);
+		Reporter.log("=======================================================================================",true);
 		lfp.loginUser_mockTestsLinks(10,"Bank PO Prelims",exam_bank_po_prelims_URL);
 		Reporter.log("========================================Crack tests Links====================================",true);
 		lfp.loginUser_crackTestsLinks(1,"JEE Main",rankUp_URL);
@@ -175,6 +192,5 @@ public class Login_Logout_ExamPages_test extends W_BaseTest {
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertPrivacyPolicy_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
-		
 	}
 }

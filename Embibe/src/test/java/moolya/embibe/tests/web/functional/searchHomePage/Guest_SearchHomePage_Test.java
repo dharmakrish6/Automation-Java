@@ -4,6 +4,7 @@ import org.testng.Reporter;
 import org.testng.annotations.Test;
 
 import moolya.embibe.pages.web.LandingPage;
+import moolya.embibe.pages.web.LoginPage;
 import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
@@ -13,6 +14,7 @@ public class Guest_SearchHomePage_Test extends W_BaseTest {
 	private W_BasePage basepage;
 	private LandingPage lp;
 	private SearchHomepage shp;
+	private LoginPage log_p;
 	{
 		uniqueValue = "Sanity_3";
 		uniqueValue2 = "Sanity_12";
@@ -65,18 +67,26 @@ public class Guest_SearchHomePage_Test extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		Reporter.log("========================================Search Home Page Header====================================",true);
+		/*Reporter.log("========================================Search Home Page Header====================================",true);
 		shp.clickAsk();
 		shp.clickAskEmbibeLogo();
 		shp.clickJump();
 		shp.clickJumpEmbibeLogo();
 		shp.clickRank();
-		shp.clickRankupEmbibeLogo();
+		shp.clickRankupEmbibeLogo();*/
 		/*shp.clickInstitutes();
 		shp.verifyInstitutePage();
 		shp.navigateBack();
 		shp.header_guestIcons();
 		shp.searchEngineSection();*/
+		Reporter.log("========================================Unregistered User====================================",true);
+		log_p=shp.clickLoginBtn();
+		shp=log_p.unRegisterUser("unregistered@moolya.com","moolya123456");
+		shp.clickLoginBtn();
+		Reporter.log("=====================================Invalid Login Credentials================================",true);
+		log_p=shp.clickLoginBtn();
+		shp=log_p.invalidLoginCredentials("invalidLogin@gmailcom", "");
+		shp.clickLoginBtn();
 		Reporter.log("===================================Search Footer Exam Links======================================",true);
 		shp.searchFooterLinks(1,"JEE Main",jeeMain_URL);
 		shp.searchFooterLinks(2,"JEE Advanced",jeeAdvanced_URL);

@@ -15,6 +15,10 @@
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_RequestMissionWindow_Test"/>
       <class name="moolya.embibe.tests.web.functional.searchResultsPage.Login_SearchResultsPage_Test"/>
        
+      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Home_Page"/>
+      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Result_Page"/>
+      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Signup_Page"/>
+      
       <class name="moolya.embibe.tests.web.functional.searchHomePage.SignupPage_Footer_Test"/>
       <class name="moolya.embibe.tests.web.functional.askPage.AskPageTest"/>
       

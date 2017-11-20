@@ -114,10 +114,10 @@ public class Guest_SearchResultsPage_Test extends W_BaseTest {
 		shp.correctKeywordInSearchField();//SHP_12
 		shp.clickEmbibeLogo();
 		shp.assertSearchHomepage();
-		/*Reporter.log("===================================Invalid keyword search========================================",true);
+		Reporter.log("===================================Invalid keyword search========================================",true);
 		shp.noResultsFound();//SHP_14,No results page
 		shp.clickEmbibeLogo();
-		shp.assertSearchHomepage();*/
+		shp.assertSearchHomepage();
 		//Reporter.log("===================================Valid keyword search========================================",true);
 		srp=shp.validSearchResult(uniqueValue2);//SHP_17
 		Reporter.log("===================================Exam Links====================================",true);

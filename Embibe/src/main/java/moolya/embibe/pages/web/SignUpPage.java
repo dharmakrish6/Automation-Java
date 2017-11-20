@@ -78,6 +78,16 @@ public class SignUpPage extends W_BasePage {
 		return new SearchHomepage(wdriver);
 	}
 	
+	public void click_SignUp_fb_Login(){
+		waitUntilElementclickable(signupPage_fb_loginBtn);
+		clickElement(signupPage_fb_loginBtn);
+	}
+	
+	public void click_SignUp_Google_Login(){
+		waitUntilElementclickable(signupPage_google_loginBtn);
+		clickElement(signupPage_google_loginBtn);
+	}
+	
 	
 	public SearchHomepage loginSignUpPage(String uniqueValue,String email) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		HashMap<String, String> data = readExcelData("SignUpPage", uniqueValue);

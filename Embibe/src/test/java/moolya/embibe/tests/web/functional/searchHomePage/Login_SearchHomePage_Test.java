@@ -91,7 +91,7 @@ public class Login_SearchHomePage_Test extends W_BaseTest {
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
 		Reporter.log("===================================User Logins======================================",true);
-		lfp=shp.loginFooters();
+		lfp=shp.footerLogins();
 		Reporter.log("===================================Header contents======================================",true);
 		lfp.header_loginUserIcons();
 		Reporter.log("===================================Search Engine Section======================================",true);
