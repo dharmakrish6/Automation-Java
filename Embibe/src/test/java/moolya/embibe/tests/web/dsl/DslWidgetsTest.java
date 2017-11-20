@@ -47,8 +47,8 @@ public class DslWidgetsTest {
 	LinkedHashMap<String, String> dslData;
 	LinkedHashMap<String, String> actualData;
 	LinkedHashMap<String, String> resultData;
-	private String goalCode = "gl8";	// Enrg=gl8,Medical=gl9
-	private String examCode = "ex6";	// Bitsat=ex6,Jipmer=ex58,NEET=ex9,JEE Main=ex4
+	private String goalCode = "gl9";	// Enrg=gl8,Medical=gl9
+	private String examCode = "na";	// Bitsat=ex6,Jipmer=ex58,NEET=ex9,JEE Main=ex4
 	HashMap<String, String> goalExamMap = new HashMap<String, String>(){{
 		put("gl8", "Engineering");put("gl9","Medical");
 		put("ex6","BITSAT");put("ex58","JIPMER");
@@ -80,6 +80,7 @@ public class DslWidgetsTest {
 		resultData = dslData;
 		resultData.put("Goal", goal);
 		resultData.put("Exam", exam);
+		System.out.println((Integer.parseInt(row)+1)+" Completed");
 		EmbibeUtils.writeDslActualData(sheetName, resultData, Integer.parseInt(row)+1);
 	}
 

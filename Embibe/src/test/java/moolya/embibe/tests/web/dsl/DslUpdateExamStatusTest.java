@@ -67,6 +67,12 @@ public class DslUpdateExamStatusTest {
 		else if(goal.equals("Medical") && exam.equals("JEE Main") 
 				&& (currentExam.equals(null) || currentExam.equals("")))
 			examStatus = "Pass";
+		else if(goal.equals("Engineering") && exam.equals("na") 
+				&& (currentExam.equals("JEE Main") || currentExam.equals(null) || currentExam.equals("")))
+			examStatus = "Pass";
+		else if(goal.equals("Medical") && exam.equals("na") 
+				&& (currentExam.equals("NEET") || currentExam.equals(null) || currentExam.equals("")))
+			examStatus = "Pass";
 		else
 			examStatus = "Fail";
 		resultData = new LinkedHashMap<String, String>();
