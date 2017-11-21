@@ -18,51 +18,58 @@ import org.testng.annotations.BeforeClass;
 
 import moolya.filpkartdemo.pages.W_BasePage;
 import moolya.filpkartdemo.utils.JavaUtils;
+import moolya.filpkartdemo.utils.ReporterUtils;
 
 public class W_BaseTest 
 {
 
-public WebDriver wdriver;
-	
+	public WebDriver wdriver;
+
 	W_BasePage basepage;
 
-//	ATUTestRecorder recorder;
-	
+	//	ATUTestRecorder recorder;
+
 	@BeforeClass
 	public void setUp() throws IOException{
 		String dir = System.getProperty("user.dir");
 		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
 		Date date = new Date();
-//		recorder = new ATUTestRecorder(dir+"\\script-videos\\", "Fipkart-" + dateFormat.format(date), false);
+		//		recorder = new ATUTestRecorder(dir+"\\script-videos\\", "Fipkart-" + dateFormat.format(date), false);
 		// To start video recording.
 		basepage = new W_BasePage(wdriver);
-//		recorder.start();
+		//		recorder.start();
 		wdriver = basepage.launchWebApp();
 	}
-	
+
 	@AfterMethod
 	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
-		/*String dir = System.getProperty("user.dir");
+		String dir = System.getProperty("user.dir");
 		String[] clsParts = result.getInstanceName().split("\\.");
 		String clsName = clsParts[(clsParts.length)-1];
 		if(!result.isSuccess()){            
 			File scrFile = ((TakesScreenshot)wdriver).getScreenshotAs(OutputType.FILE);
-			String file =dir+"/screenshots/"+clsName+".png";
+			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yy HH-mm-ss");
+		Date date = new Date();
+		String strDate = dateFormat.format(date);
+
+		String filePath = dir+"\\screenshots\\"+clsName+"-"+strDate+".png";
+		System.out.println(filePath);
+		ReporterUtils.filePath = filePath;
 			try {
-				FileUtils.copyFile(scrFile, new File(file));
+				FileUtils.copyFile(scrFile, new File(filePath));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}*/
+		}
 		wdriver.get(JavaUtils.getPropValue("appUrl"));
 	}
-	
+
 	@AfterClass
 	public void tearDown(){
 		wdriver.close();
-//		recorder.stop();
+		//		recorder.stop();
 	}
-	
+
 }

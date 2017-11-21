@@ -32,11 +32,10 @@ import com.aventstack.extentreports.ReportConfigurator;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.ExtentXReporter;
-import com.aventstack.extentreports.reporter.KlovReporter;
 
 import moolya.filpkartdemo.pages.W_BasePage;
 
-public class ReporterUtils implements ITestListener,ISuiteListener,IResultListener,IExecutionListener,IReporter{
+public class ReporterUtils2 implements ITestListener,ISuiteListener,IResultListener,IExecutionListener,IReporter{
 
 	public ExtentReports extent;
 	public ExtentXReporter extentxReporter;
@@ -45,8 +44,6 @@ public class ReporterUtils implements ITestListener,ISuiteListener,IResultListen
 	public ReportConfigurator rc;
 
 	String dir = System.getProperty("user.dir");
-	private KlovReporter klov;
-	public static String filePath;
 
 	public void onStart(ISuite arg0) {
 		
@@ -56,27 +53,26 @@ public class ReporterUtils implements ITestListener,ISuiteListener,IResultListen
 		int port=0;
 		String project="";
 		String report="";
-		String klovServerPort="";
+		String nodejsPort="";
 		String url="";
 		try {
 			host = JavaUtils.getPropValue("host");
 			port = Integer.parseInt(JavaUtils.getPropValue("port"));
 			project = JavaUtils.getPropValue("project");
 			report = JavaUtils.getPropValue("report");
-			klovServerPort = JavaUtils.getPropValue("klovServerPort");
-			url = "http://"+host+":"+klovServerPort;
+			nodejsPort = JavaUtils.getPropValue("nodejsPort");
+			url = "http://"+host+":"+nodejsPort;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		klov = new KlovReporter();
-		klov.initMongoDbConnection(host, port);
-		klov.setProjectName(project);
-		klov.setReportName(report);
-		klov.setKlovUrl("http://"+host+":"+klovServerPort);
+		extentxReporter = new ExtentXReporter(host, port);
+		extentxReporter.config().setProjectName(project);
+		extentxReporter.config().setReportName(report);
+		extentxReporter.config().setServerUrl(url);
 		extent = new ExtentReports();
-		extent.attachReporter(htmlReporter,klov);
+		extent.attachReporter(htmlReporter,extentxReporter);
 		
 	}
 
@@ -128,7 +124,39 @@ public class ReporterUtils implements ITestListener,ISuiteListener,IResultListen
 		String[] clsParts = result.getInstanceName().split("\\.");
 		String clsName = clsParts[(clsParts.length)-1];
 
+//		W_BasePage bp=new W_BasePage(null);
+		/*Row ids=bp.readExcel("Execution sheet", clsName, 1);
+		try {
+			bp.writeexcel("Execution sheet", clsName, "Report", "FAIL");
+		} catch (Exception e) {
+
+		}*/
+
 		test.log(Status.FAIL, clsName +" failed..!");
+		
+		DateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH-mm-ss");
+		Date date = new Date();
+		String strDate = dateFormat.format(date);
+		
+		String filePath = dir+"/screenshots/"+strDate+".png";
+		System.out.println(filePath);
+		File file = new File(filePath);
+		try {
+			FileUtils.copyFile(file, file);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		byte imageData[] = new byte[(int) file.length()];
+		try {
+			FileInputStream imageInFile = new FileInputStream(file);
+			imageInFile.read(imageData);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		// Converting Image byte array into Base64 String
+		String imageDataString = Base64.encodeBase64URLSafeString(imageData);
 		MediaEntityModelProvider mediaModel = null;
 		try {
 			mediaModel = MediaEntityBuilder.createScreenCaptureFromPath(filePath).build();
@@ -136,7 +164,8 @@ public class ReporterUtils implements ITestListener,ISuiteListener,IResultListen
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		test.fail(result.getThrowable(),mediaModel);
+		test.log(Status.INFO, "<img alt=\"Screenshot\" src=\"data:image/png;base64,"+imageDataString+"\" width=\"500\" height=\"600\"/>");
+		test.fail(result.getThrowable());
 	}
 
 	public void onTestSkipped(ITestResult result) {

@@ -43,7 +43,7 @@
 		<commonsio.version>2.4</commonsio.version>
 		<velocity.version>1.6.4</velocity.version>
 		<velocitydep.version>1.4</velocitydep.version>
-		<extentsreport.version>3.0.1</extentsreport.version>
+		<extentsreport.version>3.1.1</extentsreport.version>
 		<jsch.version>0.1.42</jsch.version>
 		<appium.version>3.3.0</appium.version>
 		<blocoio-faker.version>1.2.5</blocoio-faker.version>

@@ -22,16 +22,16 @@ import moolya.filpkartdemo.pages.MobilesPage;
 import moolya.filpkartdemo.utils.DbUtils;
 import moolya.filpkartdemo.utils.ReporterUtils;
 
-public class FlipkartTest extends W_BaseTest2 {
+public class FlipkartTest2 extends W_BaseTest2 {
 
 	HomePage hp;
 	MobilesPage mp;
-	String uniqueValue = "fk002";
+//	String uniqueValue = "fk002";
 	String[] details;
 	DbUtils dbu;
 
-	@Test//(dataProvider="getData")//String uniqueValue
-	public void FlipkartTest() throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException, ClassNotFoundException{
+	@Test(dataProvider="getData")
+	public void demo2Test(String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException, ClassNotFoundException{
 		hp = new HomePage(wdriver);
 		((ExtentTest) test.get()).log(Status.INFO, "Launched FLipkart");
 		mp = hp.goToMobiles();
