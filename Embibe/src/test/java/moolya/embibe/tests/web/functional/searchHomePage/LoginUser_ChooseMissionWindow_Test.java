@@ -1,10 +1,5 @@
 package moolya.embibe.tests.web.functional.searchHomePage;
 
-import java.awt.AWTException;
-import java.io.IOException;
-
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
@@ -14,7 +9,7 @@ import moolya.embibe.pages.web.SearchHomepage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class Login_ChooseMissionWindow_Test extends W_BaseTest {
+public class LoginUser_ChooseMissionWindow_Test extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -31,6 +26,7 @@ public class Login_ChooseMissionWindow_Test extends W_BaseTest {
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
 		shp.login();
+		Thread.sleep(5000);
 		cmp = shp.clickChooseMission();
 		Reporter.log("-------------------------------------------------------------------------------------------------",true);
 		cmp.defaultGoal();//SHP_24
@@ -46,7 +42,7 @@ public class Login_ChooseMissionWindow_Test extends W_BaseTest {
 		Reporter.log("====================Mission for Foundation-08 , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Foundation-08");
 		Reporter.log("====================Mission for Bank , Exam Links====================",true);
-		cmp.selectGoal_and_Exam("Bank");
+		cmp.selectGoal_and_Exam("Banking & Clerical");
 		Reporter.log("-------------------------------------------------------------------------------------------------",true);
 		shp.refreshPage();
 		Thread.sleep(5000);

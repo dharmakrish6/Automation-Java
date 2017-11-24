@@ -21,7 +21,7 @@ public class Login_in_Signup_Page extends W_BaseTest {
 	}
 	
 	@Test(dataProvider="browserData")
-	public void login_SignupPage_Test(String browser) throws Exception{
+	public void login_In_SignupPage_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Functional flow : Login-In test in SignUp Page on browser :-  "+ "'" + browser + "'",  true);

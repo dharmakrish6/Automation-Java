@@ -67,13 +67,13 @@ public class Guest_SearchHomePage_Test extends W_BaseTest {
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
 		shp.assertSearchHomepage();
-		/*Reporter.log("========================================Search Home Page Header====================================",true);
+		Reporter.log("========================================Search Home Page Header====================================",true);
 		shp.clickAsk();
 		shp.clickAskEmbibeLogo();
 		shp.clickJump();
 		shp.clickJumpEmbibeLogo();
 		shp.clickRank();
-		shp.clickRankupEmbibeLogo();*/
+		shp.clickRankupEmbibeLogo();
 		/*shp.clickInstitutes();
 		shp.verifyInstitutePage();
 		shp.navigateBack();

@@ -160,12 +160,12 @@ public class Guest_SearchResultsPage_Test extends W_BaseTest {
 		srp.resourcesTestsLinks(3,"College Predictor",collegePredictor_URL);
 		Reporter.log("========================================Social Media Links====================================",true);
 		String mainWindow = shp.getMainWindowHandle();
-		/*shp.clickFacebookIcon();
+		shp.clickFacebookIcon();
 		shp.switchToNextWindow(mainWindow);
 		shp.assertFacebookEmbibePage();
 		shp.closeChildAndSwitchToMainWindow(mainWindow);
 		Reporter.log("Facebook signup window closed",true);
-		Reporter.log("-------------------------------------------------------------------------------",true);*/
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		shp.clickTwitterIcon();
 		shp.switchToNextWindow(mainWindow);
 		shp.assertTwitterEmbibePage();

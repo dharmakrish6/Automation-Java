@@ -249,6 +249,28 @@ public class FootersPage extends W_BasePage {
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Page Title : " + examTitle.getText(), true);
+		/*login_examPage();
+		logout_examPage();
+		assertSearchHomepage();*/
+		clickExamPageEmbibeLogo();
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
+	}
+	
+	public void forLogin_in_examLinks(int i,String examType,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[1]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Reporter.log("Page Title : " + examTitle.getText(), true);
 		login_examPage();
 		logout_examPage();
 		assertSearchHomepage();
@@ -325,6 +347,28 @@ public class FootersPage extends W_BasePage {
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
 		Reporter.log("Class Name : '" + classNum.getText(), true);
 		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		clickExamPageEmbibeLogo();
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
+		Thread.sleep(2000);
+	}
+	
+	public void forLogin_classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Assert.assertTrue(wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]")).isDisplayed(), "Navigation failed");
+		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
+		
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
+		Reporter.log("Class Name : '" + classNum.getText(), true);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
 		login_testPage();
 		logout_testPage();
 		assertSearchHomepage();
@@ -338,6 +382,25 @@ public class FootersPage extends W_BasePage {
 	private WebElement examPage_Default_DropdownName;
 	
 	public void loginUser_mockTestsLinks(int i,String examType,String expURL) throws InterruptedException{
+		Reporter.log("----------------------------------------------------------------------------------------------",true);
+		Thread.sleep(2000);
+		scrollToElementViaJavascript(scrolltoExams);
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[3]/ul/li/a)["+i+"]")));
+		Reporter.log("Clicked on "+ examType, true);
+		Thread.sleep(2000);
+		String winHandleBefore = wdriver.getWindowHandle();
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}
+		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
+		Thread.sleep(3000);
+		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		clickExamPageEmbibeLogo();
+		wdriver.close();
+		wdriver.switchTo().window(winHandleBefore);
+	}
+	
+	public void forLoginsss_mockTestsLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(scrolltoExams);
@@ -401,15 +464,17 @@ public class FootersPage extends W_BasePage {
 	@FindBy(css="div.footer-div div.row.device-location ul li")
 	private WebElement locationName;
 	
+	@FindBy(css="div.searchfooter")
+	private WebElement getviewpreciseLocation;
 	
 	public void assert_preciseLocation() throws Exception{
-		scrollToElementViaJavascript(precise_location);
-		Thread.sleep(20000);
+		scrollToElementViaJavascript(getviewpreciseLocation);
+		Thread.sleep(3000);
 		waitUntilElementAppears(precise_location);
 		precise_location.click();
-		Thread.sleep(10000);
+		Thread.sleep(1000);
 		Reporter.log("Clicked on 'Use Precise Location' option",true);
-		Thread.sleep(5000);
+		Thread.sleep(1000);
 		Reporter.log("Obtained Location : "+locationName.getText(),true);
 	}
 	
@@ -587,6 +652,12 @@ public class FootersPage extends W_BasePage {
 		//wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 		//assertSearchHomepage();
+	}
+	
+public LearnPage goToLearnPage(){
+		
+		return new LearnPage(wdriver);
+		
 	}
 
 }

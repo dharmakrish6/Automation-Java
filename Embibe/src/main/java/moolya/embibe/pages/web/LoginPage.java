@@ -160,4 +160,10 @@ public class LoginPage extends W_BasePage {
 		return new SignUpPage(wdriver);
 	}
 	
+	public LearnPage goToLearnPage(){
+		
+		return new LearnPage(wdriver);
+		
+	}
+	
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 import com.testautomationguru.ocular.snapshot.Snap;
 
@@ -105,7 +107,130 @@ public class LearnPage extends W_BasePage {
 	@FindBy(css="div.DidYouKnowWrapper div.dykEmbiums")
 	private WebElement didYouKnowEmbiums_Lbl;
 	
+	@FindBy(xpath="(//*[@class='guest_signup'])[2]")
+	private WebElement learn_Login_Btn;
 	
-	
+	public void ClickSignupBtn(){
+		waitUntilElementAppears(learn_Login_Btn);
+		clickElement(learn_Login_Btn);
+		Reporter.log("Clicked on Signup btn",true);
+	}
+		
+	@FindBy(xpath="(//*[contains(text(),'  Login Here')])[1]")
+	private WebElement loginHereBtn;
 
+	public void ClickLearnPageLoginHereBtn(){
+		waitUntilElementAppears(loginHereBtn);
+		clickElement(loginHereBtn);
+		Reporter.log("Clicked on Login Here Button",true);
+	}
+	
+	@FindBy(xpath="(//input[@id='login-email-or-mobile'])[1]")
+	private WebElement learnPage_login_email_field;
+	
+	@FindBy(xpath="(//*[@id='login-form']/ul/li[2]/input)[1]")
+	private WebElement learnPage_login_password_field;
+	
+	@FindBy(xpath="(//*[@class='loginBTN'])[1]")
+	private WebElement learnPage_login_submit_Btn;
+	
+	@FindBy(xpath="//li[@id='global_nav_right-profilename']")
+	private WebElement verifyLearnPageLoginUser;
+	
+	@FindBy(css=".global-nav__left>a>img")
+	private WebElement embibeLogo_Ask;
+	
+	public void learnPageLoginWindow(String email,String password){
+		ClickLearnPageLoginHereBtn();
+		enterText(learnPage_login_email_field, email);
+		Reporter.log("Entered email ",true);
+		enterText(learnPage_login_password_field, password);
+		Reporter.log("Entered password ",true);
+		clickElement(learnPage_login_submit_Btn);
+		Reporter.log("Clicked on submit button",true);
+		Assert.assertTrue(verifyLearnPageLoginUser.isDisplayed(), "Login Failed");
+		Reporter.log("Login successful..!!",true);
+	}
+	
+	@FindBy(xpath="//*[@id='global_nav_right-logout']/span")
+	private WebElement learnPage_logout_btn;
+	
+	@FindBy(css="div.Signin-Signup-form")
+	private WebElement verifyLearnPageLogout;
+	
+	public void learnPageLogout() throws InterruptedException{
+		waitUntilElementAppears(verifyLearnPageLoginUser);
+		mouseHoverOnElement(wdriver, verifyLearnPageLoginUser);
+		Reporter.log("Clicked on Profile icon ",true);
+		clickElement(learnPage_logout_btn);
+		Reporter.log("Clicked on logout button",true);
+		////Assert.assertTrue(verifyLearnPageLogout.isDisplayed(), "Logout Failed");
+		assertSearchHomepage();
+		Reporter.log("Logout successful..!!",true);
+		
+	}
+	
+	@FindBy(css="div.fb-login.mixpanel-fb-signup")
+	private WebElement learnPageFBbtn;
+	
+	public void ClickLearnPageFBlogin(){
+		waitUntilElementAppears(learnPageFBbtn);
+		clickElement(learnPageFBbtn);
+		Reporter.log("Clicked on Facebook login button",true);
+	}
+	
+	@FindBy(xpath="//input[@id='email']")
+	private WebElement enterFbEmail;
+
+	@FindBy(xpath="//input[@id='pass']")
+	private WebElement enterFbPassword;
+
+	@FindBy(xpath="//*[@id='loginbutton']")
+	private WebElement fb_loginBtn;
+	
+	public void enterFbLoginCredentials(String email,String password){
+		enterText(enterFbEmail, email);
+		Reporter.log("Entered Email id",true);
+		enterText(enterFbPassword,password);
+		Reporter.log("Entered password",true);
+		fb_loginBtn.click();
+		Reporter.log("Clicked on facebook login button",true);
+	}
+	
+	@FindBy(css="div.google-login.mixpanel-google-signup")
+	private WebElement google_loginBtn;
+	
+	public void ClickLearnPageGooglelogin(){
+		waitUntilElementAppears(google_loginBtn);
+		clickElement(google_loginBtn);
+		Reporter.log("Clicked on Google login button",true);
+	}
+	
+	@FindBy(xpath="//*[@id='headingText']/following::button[contains(text(),'embibe.com')]")
+	private WebElement assertGoogleSignInPage;
+
+	@FindBy(xpath="//*[@id='identifierId']")
+	private WebElement enterGoogleMail;
+
+	@FindBy(xpath="//*[@id='identifierNext']")
+	private WebElement google_next_btn;
+	
+	
+	@FindBy(xpath="//*[@id='passwordNext']")
+	private WebElement google_Final_next_btn;
+
+	@FindBy(xpath="//*[@id='password']/div/div/div/input[@type='password']")
+	private WebElement enterGooglePassword;
+	
+	public void enterGoogleLoginCredentials(String email,String password){
+		enterText(enterGoogleMail, email);
+		Reporter.log("Entered Email id",true);
+		google_next_btn.click();
+		Reporter.log("Clicked on Next Button",true);
+		enterText(enterGooglePassword, password);
+		Reporter.log("Entered Password",true);
+		google_Final_next_btn.click();
+		Reporter.log("Clicked on Next Button",true);
+	}
+		
 }

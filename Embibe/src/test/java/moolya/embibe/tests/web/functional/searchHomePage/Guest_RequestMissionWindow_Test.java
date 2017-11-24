@@ -57,8 +57,8 @@ public class Guest_RequestMissionWindow_Test extends W_BaseTest {
 		cmp.maxExamSelection("E");//SHP_36
 		Reporter.log("======================================Clearing exam text field > Select Exam > Submit =================================",true);
 		cmp.requestBackToChooseMissionPage("J");//SHP_37
-		shp.assertSearchHomepage();
-		cmp=shp.clickChooseMission();
+		/*shp.assertSearchHomepage();
+		cmp=shp.clickChooseMission();*/
 		cmp.countryDropdown("India");
 		cmp.indiaRequestMission();
 		cmp.verifyAutosuggestionList("J");

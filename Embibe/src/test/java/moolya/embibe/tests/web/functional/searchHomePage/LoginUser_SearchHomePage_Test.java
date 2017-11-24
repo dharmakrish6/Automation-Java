@@ -1,10 +1,7 @@
-	package moolya.embibe.tests.web.functional.searchHomePage;
+package moolya.embibe.tests.web.functional.searchHomePage;
 
-import java.awt.AWTException;
 import java.io.IOException;
 
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.testng.Reporter;
 import org.testng.annotations.Test;
 
@@ -15,15 +12,15 @@ import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 import moolya.embibe.utils.JavaUtils;
 
-public class Login_SearchHomePage_Footer_Test extends W_BaseTest {
+public class LoginUser_SearchHomePage_Test extends W_BaseTest {
 
 	private static String rearchURL;
 	private static String jeeMain_URL;
 	private static String neet_URL;
 	private static String aiims_URL;
-	private static String cbse_URL;
 	private static String jeeAdvanced_URL;
 	private static String bitsat_URL;
+	private static String cbse_URL;
 	private static String eamcet_URL;
 	private static String class_8_URL;
 	private static String class_9_URL;
@@ -42,10 +39,10 @@ public class Login_SearchHomePage_Footer_Test extends W_BaseTest {
 	private static String blog_URL;
 	private static String articles_URL;
 	private static String collegePredictor_URL;
-	private W_BasePage basepage;
+	
 	private LandingPage lp;
-	private SearchHomepage shp;
 	private FootersPage lfp;
+	private SearchHomepage shp;
 	
 	static{
 		try {
@@ -83,18 +80,39 @@ public class Login_SearchHomePage_Footer_Test extends W_BaseTest {
 		articles_URL=rearchURL+"exams/";
 		collegePredictor_URL=rearchURL+"rank-college-predictor/home";
 	}
-	
+
 	@Test(dataProvider="browserData")
-	public void login_SearchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
+	public void loginUser_SearchHomePage_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional flow : Login user 'Search Home Page' Footers Test on : "+ "'" + browser + "'", true);
+		Reporter.log("Starting Test: Functional : Login User, Search Home Page Test"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
-		lp.assertLandingPage();
-		shp = lp.clickStartNow();
-		lfp=shp.loginFooters();
-		Reporter.log("========================================Exam Links====================================",true);
+		shp=lp.clickStartNow();
+		shp.assertSearchHomepage();
+		Reporter.log("===================================User Logins======================================",true);
+		lfp=shp.footerLogins();
+		Reporter.log("===================================Header contents======================================",true);
+		lfp.header_loginUserIcons();
+		Reporter.log("===================================Search Engine Section======================================",true);
+		lfp.login_searchEngineSection();
+		Reporter.log("-------------------------------------------------------------------------------------------------",true);
+		lfp.assert_findSomethingCool();
+		Reporter.log("===================================Search Footer Exam Links======================================",true);
+		lfp.loginuser_searchFooterLinks(1,"JEE Main",jeeMain_URL);
+		lfp.loginuser_searchFooterLinks(2,"JEE Advanced",jeeAdvanced_URL);
+		lfp.loginuser_searchFooterLinks(3,"BITSAT",bitsat_URL);
+		lfp.loginuser_searchFooterLinks(4,"NEET",neet_URL);
+		lfp.clickNextSwiper();
+		lfp.loginuser_searchFooterLinks(5,"AIIMS",aiims_URL);
+		lfp.clickPrevSwiper();
+		Reporter.log("-------------------------------------------------------------------------------------------------",true);
+		lfp.clickNextSwiper();
+		lfp.loginuser_searchFooterLinks(5,"AIIMS",aiims_URL);
+		lfp.clickPrevSwiper();
+		Reporter.log("-------------------------------------------------------------------------------------------------",true);
+		lfp.assert_preciseLocation();
+		Reporter.log("========================================Global Footer,Exam Links====================================",true);
 		lfp.loginUser_examLinks(1,"JEE Main",jeeMain_URL);
 		lfp.loginUser_examLinks(2,"NEET",neet_URL);
 		lfp.loginUser_examLinks(3,"AIIMS",aiims_URL);
@@ -138,43 +156,62 @@ public class Login_SearchHomePage_Footer_Test extends W_BaseTest {
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertFacebookEmbibePage();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Facebook signup window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.clickTwitterIcon();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertTwitterEmbibePage();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Twitter signup window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.clickInstagramIcon();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertInstagramEmbibePage();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Instagram signup window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.clickYoutubeIcon();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertYoutubeEmbibePage();
-		lfp.closeChildAndSwitchToMainWindow(mainWindow);	
+		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Youtube signup window closed",true);
 		Reporter.log("========================================Bottom footer Links====================================",true);
 		lfp.click_aboutUs();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertAboutUs_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("AboutUs window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.click_press();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertPress_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Press window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.click_contactUs();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertContactUs_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("ContactUs window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.click_termsConditions();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertTOS_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Terms & Conditions window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.click_takeDownPolicy();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertTakeDownPolicy_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
+		Reporter.log("Take Down Policy signup window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
 		lfp.click_privacyPolicy();
 		lfp.switchToNextWindow(mainWindow);
 		lfp.assertPrivacyPolicy_Page();
 		lfp.closeChildAndSwitchToMainWindow(mainWindow);
-		
+		Reporter.log("Privacy Policy window closed",true);
+		Reporter.log("-------------------------------------------------------------------------------",true);
+		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);
 	}
 }
