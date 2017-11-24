@@ -52,6 +52,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import moolya.embibe.utils.JavaUtils;
+
 @SuppressWarnings("unused")
 public class W_BasePage extends W_SuperBasePage 
 {
@@ -587,6 +589,29 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementAppears(guestImage);
 		Reporter.log("Logged in Successfully",true);
 	}
+	
+	public void loginWithGoal(String goal){
+		String email = "";
+		switch(goal){
+		case "Engineering": email="engineering@moolya.com";
+		break;
+		case "Medical": email="medical@moolya.com";
+		break;
+		default: break;
+		}
+		if(!goal.equalsIgnoreCase("na")){
+			waitUntilElementclickable(login_Btn);
+			login_Btn.click();
+			emailPhone_TB.sendKeys(email);
+			Reporter.log("Entered student mail id ",true);
+			password_TB.sendKeys("moolya123");
+			Reporter.log("Entered password ",true);
+			login_login_Btn.click();
+			Reporter.log("Clicked on Login button",true);
+			waitUntilElementAppears(guestImage);
+			Reporter.log("Logged in Successfully",true);
+		}
+	}
 
 	public void invalidLogin(String email,String password){
 		waitUntilElementclickable(login_Btn);
@@ -937,13 +962,8 @@ public class W_BasePage extends W_SuperBasePage
 	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchDsl(String browser) throws IOException
 	{
-		String domain = getPropValue("domain");
 		String url = null;
-		if(domain.equalsIgnoreCase("test"))
-			url = getPropValue("testAppUrl");
-		else if(domain.equalsIgnoreCase("dev"))
-			url = getPropValue("devAppUrl");
-
+		url = JavaUtils.getPropValue("dslUrl");
 		if (browser.equalsIgnoreCase("ff")) 
 		{
 			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
@@ -1033,7 +1053,7 @@ public class W_BasePage extends W_SuperBasePage
 
 		//		http://10.140.10.116:7766/search
 		//		http://10.140.10.116:9090/
-		wdriver.get("http://10.140.10.116:9090/");
+		wdriver.get(url);
 		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		wdriver.manage().window().maximize();
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);

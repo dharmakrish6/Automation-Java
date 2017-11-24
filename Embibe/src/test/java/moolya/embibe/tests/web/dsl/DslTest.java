@@ -56,7 +56,7 @@ public class DslTest{
 			shp.login();
 		boolean disambiguated = Boolean.parseBoolean(String.valueOf(dslData.get("Disambiguated"))); 
 		try {
-			actualData = shp.searchForDsl(disambiguated, text);
+//			actualData = shp.searchForDsl(disambiguated, text);
 			if(disambiguated){
 				srp = new SearchResultsPage(wdriver);
 				String resultText = "";

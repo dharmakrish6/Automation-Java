@@ -38,7 +38,7 @@ import io.restassured.specification.RequestSpecification;
 
 
 public class EmbibeUtils {
-	
+
 	public static HashMap<String, String> examsMap = new HashMap<String, String>(){{
 		put("ex15", "10th Foundation");put("ex14", "10th NTSE");put("ex16", "9th Foundation");
 		put("ex17", "8th Foundation");put("ex27", "IBPS Clerk Mains");put("ex13", "IBPS PO Prelims");
@@ -48,8 +48,10 @@ public class EmbibeUtils {
 		put("ex31", "TS EAMCET");put("ex18", "JEE Advanced");put("ex29", "GUJCET");
 		put("ex32", "VITEEE");put("ex47", "Assam CEE");put("ex58", "JIPMER");
 		put("ex9", "NEET");put("ex19", "AIIMS");
+		put("gl1","10th Foundation");put("gl2","9th Foundation");put("gl9","Medical");
+		put("gl3","8th Foundation");put("gl6","Banking & Clerical");put("gl8","Engineering");
 	}};
-	
+
 	public static ArrayList<LinkedHashMap<String,String>> getEventLogs(WebDriver wdriver, String className){
 		String text = "";
 		ArrayList<LinkedHashMap<String, String>> events = new ArrayList<LinkedHashMap<String,String>>();
@@ -62,18 +64,18 @@ public class EmbibeUtils {
 				"pack_name","scroll_location","capture_element_type","position_x","position_y","mouse_over_element","mouse_over_text"};
 		for (Iterator<LogEntry> it = logEntries.iterator(); it.hasNext();)
 		{
-//			boolean flag = false;
+			//			boolean flag = false;
 			LogEntry entry = it.next();
 			try {
-//				JSONObject json = new JSONObject(entry.getMessage());
-//				JSONObject message = json.getJSONObject("message");
-//				JSONObject params = message.getJSONObject("params");
+				//				JSONObject json = new JSONObject(entry.getMessage());
+				//				JSONObject message = json.getJSONObject("message");
+				//				JSONObject params = message.getJSONObject("params");
 				JSONObject request = new JSONObject(entry.getMessage())
 						.getJSONObject("message")
 						.getJSONObject("params")
 						.getJSONObject("request");
 				if(request.getString("url").equals("https://api.segment.io/v1/t")){
-//					flag = false;
+					//					flag = false;
 					LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 					String postData = request.getString("postData");
 					JSONObject postDataJson = new JSONObject(postData);
@@ -109,17 +111,17 @@ public class EmbibeUtils {
 						} catch (Exception e) {
 							continue;
 						}
-						
+
 					}	
-//					if(flag)
-//						continue;
+					//					if(flag)
+					//						continue;
 					events.add(map);
 				}
 			} catch (Exception e1) {}
 		}
 		return events;
 	}
-	
+
 	public ArrayList<LinkedHashMap<String,String>> getEventData(String sheetName) throws IOException, EncryptedDocumentException, InvalidFormatException{
 		ArrayList<LinkedHashMap<String, String>> e_events = new ArrayList<LinkedHashMap<String, String>>();
 		LinkedHashMap<String, String> map = null;
@@ -237,7 +239,7 @@ public class EmbibeUtils {
 		file.close();
 		return e_events;
 	}
-	
+
 	public static String getDslResponse(String query) throws IOException{
 		Response response = null;
 		String url = JavaUtils.getPropValue("dslUrl");
@@ -249,26 +251,39 @@ public class EmbibeUtils {
 		Assert.assertTrue(statusCode==200||statusCode==201,"Response Failure!!! --> Status Code: "+statusCode);
 		return response.asString();
 	}
-	
+
 	public static LinkedHashMap<String,String> getResultsFromJson(String jsonString,int maxLength) throws JSONException{
-//		ArrayList<LinkedHashMap<String, String>> widgetList = new ArrayList<LinkedHashMap<String, String>>();
+		//		ArrayList<LinkedHashMap<String, String>> widgetList = new ArrayList<LinkedHashMap<String, String>>();
 		String widgets = "";
 		JSONObject json = new JSONObject(jsonString);
 		JSONObject disambiguation = json.getJSONObject("disambiguation");
 		boolean isDisambiguated = disambiguation.getBoolean("is_disambiguated");
 		LinkedHashMap<String, String> dslData = new LinkedHashMap<String, String>();
 		dslData.put("Disambiguated", Boolean.toString(isDisambiguated));
-		
-		if(isDisambiguated){
+		JSONObject dym = json.getJSONObject("dym");
+		boolean isDymValid = dym.getBoolean("valid");
+		dslData.put("Dym", Boolean.toString(isDymValid));
+		if(isDymValid)
+			dslData.put("Dym Type", dym.getString("type"));
+		if(isDisambiguated && !isDymValid){
 			String currentExam = json.getString("current_exam");
-			dslData.put("Current Exam", EmbibeUtils.examsMap.get(currentExam));
+			dslData.put("Dsl Current Exam", EmbibeUtils.examsMap.get(currentExam));
+			String currentGoal = json.getString("current_goal");
+			dslData.put("Dsl Current Goal", EmbibeUtils.examsMap.get(currentGoal));
+			JSONArray validGoalsArray = json.getJSONArray("valid_goals");
+			ArrayList<String> goals = new ArrayList<String>();
+			for(int i=0;i<validGoalsArray.length();i++){
+				goals.add(EmbibeUtils.examsMap.get(validGoalsArray.getString(i)));
+			}
+			String validGoals = String.join("\n", goals);
+			dslData.put("Dsl Valid Goals", validGoals);
 			JSONArray validExamsArray = json.getJSONArray("valid_exams");
 			ArrayList<String> exams = new ArrayList<String>();
 			for(int i=0;i<validExamsArray.length();i++){
 				exams.add(EmbibeUtils.examsMap.get(validExamsArray.getString(i)));
 			}
-			String validExams = String.join(",", exams);
-			dslData.put("Valid Exams", validExams);
+			String validExams = String.join("\n", exams);
+			dslData.put("Dsl Valid Exams", validExams);
 			dslData.put("Target Page", "Search Results Page");
 			String autofill = disambiguation.getString("autofill");
 			dslData.put("Dsl Result", autofill);
@@ -281,55 +296,32 @@ public class EmbibeUtils {
 			for(int i =0;i<length;i++){
 				LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 				JSONObject result = results.getJSONObject(i);
-				String widgetType = result.getString("widget");
-				String widgetName = result.getString("name");
-				String widgetIndex = result.getString("index");
-//				String widgetValue = "";
-				if(!widgetType.equalsIgnoreCase("pack-reco")){
-//					if(widgetType.equalsIgnoreCase("chapter-concepts") || 
-//							widgetType.equalsIgnoreCase("curated-videos")
-//							|| widgetType.equalsIgnoreCase("unit-chapters")
-//							|| widgetType.equalsIgnoreCase("subject-chapters")){
-//						JSONArray concepts = result.getJSONArray("actionables");
-//						for(int j=0;j<3;j++){
-//							try {
-//								JSONObject concept = concepts.getJSONObject(j);
-//								String conceptName = concept.getString("name");
-//								if(widgetValue.length()==0)
-//									widgetValue = conceptName;
-//								else
-//									widgetValue = widgetValue + "+" + conceptName;
-//							} catch (Exception e) {}
-//						}
-//					}
-//					else if(widgetType.equalsIgnoreCase("chapter-tests")){
-//						JSONArray actionables = result.getJSONArray("actionables");
-//						for(int j=0;j<actionables.length();j++){
-//							JSONArray tests = actionables.getJSONObject(j).getJSONArray("tests");
-//							for(int n=0;n<tests.length();n++){
-//								JSONObject test = tests.getJSONObject(n);
-//								String xpath = test.getString("xpath");
-//								if(widgetValue.length()==0)
-//									widgetValue = xpath;
-//								else
-//									widgetValue = widgetValue + "+" + xpath;
-//							}
-//						}
-//						
-//					}
+				String widgetType = result.getString("widget").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+				String widgetName = result.getString("name").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+				String widgetIndex = result.getString("index").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+				if(!widgetType.equalsIgnoreCase("pack-reco") && !widgetType.equalsIgnoreCase("ask-box")){
 					String widget = widgetType+"="+widgetName+"="+widgetIndex;
-//					if(widgetValue.length()!=0)
-//						widget = widget+","+widgetValue;
 					if(widgets.length()==0)
 						widgets = widget;
 					else
 						widgets = widgets + "\n" + widget;
 				}
-				
+
 			}
 			dslData.put("Dsl Widgets", widgets);
-		}else{
-			dslData.put("Target Page", "Search Home Page");
+		}else{ 
+			if(!isDisambiguated && isDymValid){
+				JSONArray dymTerms = dym.getJSONArray("terms");
+				ArrayList<String> termsArr = new ArrayList<String>();
+				for(int i=0;i<dymTerms.length();i++){
+					termsArr.add(dymTerms.getString(i).replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'"));
+				}
+				String terms = String.join("\n", termsArr);
+				dslData.put("Dsl Dym Terms", terms);
+				dslData.put("Target Page", "Search Results Page");
+			}else{
+				dslData.put("Target Page", "Search Home Page");
+			}
 			JSONArray suggestions = json.getJSONArray("suggestions");
 			int len = 0;
 			if(suggestions.length()<12)
@@ -338,7 +330,7 @@ public class EmbibeUtils {
 				len = 12;
 			String searchResultText = "";
 			for(int i=0;i<len;i++){
-				String name = suggestions.getJSONObject(i).getString("name");
+				String name = suggestions.getJSONObject(i).getString("name").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
 				if(searchResultText.length()==0)
 					searchResultText = name;
 				else
@@ -346,22 +338,21 @@ public class EmbibeUtils {
 			}
 			dslData.put("Dsl Result", searchResultText);
 		}
-//		widgetList.add(dslData);
 		return dslData;
 	}
-	
+
 	public static void printJsonObject(JSONObject json) throws JSONException {
 		Iterator<?> keys = json.keys();
 		while( keys.hasNext() ) {
-		    String key = (String) keys.next();
-		    Object value = json.get(key);
-		    System.out.println(key+" : "+value);
-		    if ( value instanceof JSONObject ) {
-		    	printJsonObject(new JSONObject(json.get(key)));
-		    }
+			String key = (String) keys.next();
+			Object value = json.get(key);
+			System.out.println(key+" : "+value);
+			if ( value instanceof JSONObject ) {
+				printJsonObject(new JSONObject(json.get(key)));
+			}
 		}
 	}
-	
+
 	public static void writeDslActualData(String sheetName, LinkedHashMap<String, String> resultData, int row) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		FileInputStream fis = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
 		Workbook wb = WorkbookFactory.create(fis);
@@ -401,7 +392,7 @@ public class EmbibeUtils {
 		fis.close();
 		fos.close();
 	}
-	
+
 	public static String[][] readDslUniqueValues(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		FileInputStream file = new FileInputStream("./test-data/GlobalSearchTestCases.xlsx");
 		Workbook wb = WorkbookFactory.create(file);
@@ -422,7 +413,7 @@ public class EmbibeUtils {
 		file.close();
 		return values;
 	}
-	
+
 	public static LinkedHashMap<String, String> readDslExcelData(String sheetname,int row) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		LinkedHashMap<String,String> dataMap = null;
 		String key, value = null;
@@ -435,29 +426,29 @@ public class EmbibeUtils {
 		Row headers = it.next();
 		Row record  = sheet.getRow(row);
 		for(int i=0;i<headers.getLastCellNum();i++){
+			try{
+				if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
 					try{
-						if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
-							try{
-								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
-								value = record.getCell(i).toString().trim();
-							}catch(Exception e){}
-							key = headers.getCell(i).toString().trim();
+						record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+						value = record.getCell(i).toString().trim();
+					}catch(Exception e){}
+					key = headers.getCell(i).toString().trim();
 
-						} else {
+				} else {
 
-							key = headers.getCell(i).toString().trim();
-							try {
-								value = record.getCell(i).toString().trim();
-							} catch (Exception e) {}
-						}
-					}catch(Exception e){
-						continue;
-					}
-
-					dataMap.put(key, value);
+					key = headers.getCell(i).toString().trim();
+					try {
+						value = record.getCell(i).toString().trim();
+					} catch (Exception e) {}
 				}
+			}catch(Exception e){
+				continue;
+			}
+
+			dataMap.put(key, value);
+		}
 
 		return dataMap;
 	}
-	
+
 }

@@ -510,14 +510,13 @@ public class SearchHomepage extends W_BasePage {
 		}
 	}
 
-	public LinkedHashMap<String, String> searchForDsl(boolean disambiguated, String keyword) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
+	public LinkedHashMap<String, String> searchForDsl(boolean disambiguated, boolean dymValid, String keyword) throws EncryptedDocumentException, InvalidFormatException, IOException, InterruptedException{
 		LinkedHashMap<String, String> actualData = new LinkedHashMap<String, String>();
 		waitUntilElementAppears(search_TB);
 		search_TB.sendKeys(keyword);
 		Reporter.log("Searching for: "+keyword, true);
 		String text = "";
-		if(!disambiguated){
-			actualData.put("Disambiguated", "false");
+		if(!disambiguated && !dymValid){
 			waitUntilElementclickable(floatingKeywords.get(0));
 			if(getSearchHomepage())
 				actualData.put("Target Page", "Search Home Page");
@@ -527,13 +526,11 @@ public class SearchHomepage extends W_BasePage {
 				if(count==0)
 					text = res;
 				else
-					text = text + "," + res;
+					text = text + "\n" + res;
 				count++;
 			}
 			actualData.put("Actual Result", text);
 		}
-		else
-			actualData.put("Disambiguated", "true");
 		return actualData;
 	}
 	

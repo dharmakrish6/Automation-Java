@@ -552,16 +552,16 @@ public class SearchResultsPage extends W_BasePage {
 
 	@FindBy(css="ul.bottom-content>li:nth-child(10)")
 	private WebElement footer_Youtube;
-	
+
 	@FindBy(css=".didWrap>div>div")
 	private WebElement didYouMean_Lbl;
-	
+
 	@FindBy(css=".didWrap .button-hollow")
 	private List<WebElement> didYouMeanTermsBtns_List;
-	
+
 	@FindBy(xpath="//div[@class='heading' and text()='Are you looking for']")
 	private WebElement areYouLookingFor_Lbl;
-	
+
 	@FindBy(xpath="//div[@class='heading' and text()='Are you looking for']/following-sibling::div//*[contains(@class,'button-hollow')]")
 	private List<WebElement> areYouLookingForItems_List;
 
@@ -676,8 +676,9 @@ public class SearchResultsPage extends W_BasePage {
 		} catch (Exception e) {
 			waitUntilElementAppears(search_TB);
 			text  = searchHint_TB.getAttribute("value");
-			if(text.length()==0)
+			if(text.length()==0){
 				text = search_TB.getAttribute("value");
+			}
 		}
 		return text;
 	}
@@ -694,26 +695,108 @@ public class SearchResultsPage extends W_BasePage {
 		return text;
 	}
 
-	public void selectGoal(String goal,String exam) throws InterruptedException{
-		waitUntilElementclickable(showingResultsFor_List.get(0));
-		Thread.sleep(1000);
-		clickElement(showingResultsForExpand_Btn, "Clicked on Show More Goals");
-		Thread.sleep(1000);
-		for(WebElement e:showingResultsFor_List)
-			if(e.getText().equals(goal)){
-				clickElement(e, "Clicked on "+e.getText());
-				break;
-			}
-		waitUntilElementclickable(specificExam_List.get(0));
-		Thread.sleep(1000);
-		clickElement(specificExamExpand_Btn, "Clicked on Show more exams");
-		Thread.sleep(1000);
-		for(WebElement e:specificExam_List)
-			if(e.getText().equals(exam)){
-				clickElement(e, "Clicked on "+e.getText());
-				break;
-			}
+	@FindBy(css=".goal-approval-button")
+	private WebElement goalApproval_Btn;
 
+	@FindBy(css=".srLine1 .srOptionItem.option-selected")
+	private WebElement currentGoal_Btn;
+
+	@FindBy(css=".srLine2 .srOptionItem.option-selected")
+	private WebElement currentExam_Btn;
+
+	public void selectGoal(String goal,String exam) throws InterruptedException{
+		boolean flag = true;
+		if(!goal.equals("na")){
+			waitUntilElementclickable(showingResultsFor_List.get(0));
+			Thread.sleep(500);
+			try {
+				showingResultsForExpand_Btn.click();
+				Reporter.log("Clicked on Show More Goals", true);
+			} catch (Exception e1) {}
+			Thread.sleep(500);
+			for(WebElement e:showingResultsFor_List)
+				if(e.getText().equals(goal)){
+					clickElement(e, "Clicked on "+e.getText());
+					Thread.sleep(500);
+					waitUntilElementclickable(goalApproval_Btn);
+					goalApproval_Btn.click();
+					flag = false;
+					break;
+				}
+			if(flag)
+				Reporter.log(goal+" not found", true);
+		}
+		flag = true;
+		if(!exam.equals("na")){
+			waitUntilElementclickable(specificExam_List.get(0));
+			Thread.sleep(500);
+			try {
+				specificExamExpand_Btn.click();
+				Reporter.log("Clicked on Show more exams", true);
+			} catch (Exception e1) {}
+			Thread.sleep(500);
+			for(WebElement e:specificExam_List)
+				if(e.getText().equals(exam)){
+					clickElement(e, "Clicked on "+e.getText());
+					flag = false;
+					break;
+				}
+			if(flag)
+				Reporter.log(exam+" not found", true);
+		}
+
+	}
+
+	public String getValidGoals() throws InterruptedException{
+		String text = "";
+		waitUntilElementclickable(showingResultsFor_List.get(0));
+		Thread.sleep(500);
+		try {
+			showingResultsForExpand_Btn.click();
+			Reporter.log("Clicked on Show More Goals", true);
+		} catch (Exception e1) {}
+		Thread.sleep(500);
+		for(WebElement e:showingResultsFor_List){
+			String s = e.getText();
+			if(text.length()==0)
+				text = s;
+			else
+				text = text + "\n" + s;
+		}
+		return text;
+	}
+	
+	public String getValidExams() throws InterruptedException{
+		String text = "";
+		waitUntilElementclickable(specificExam_List.get(0));
+		Thread.sleep(500);
+		try {
+			specificExamExpand_Btn.click();
+			Reporter.log("Clicked on Show more exams", true);
+		} catch (Exception e1) {}
+		Thread.sleep(500);
+		int i=0;
+		for(WebElement e:specificExam_List){
+			String s = e.getText();
+			if(i>0){
+				if(text.length()==0)
+					text = s;
+				else
+					text = text + "\n" + s;
+			}
+			i++;	
+		}
+		return text;
+	}
+
+	public String getCurrentGoal(){
+		waitUntilElementAppears(showingResultsFor_List.get(0));
+		return currentGoal_Btn.getText();
+	}
+
+	public String getCurrentExam(){
+		waitUntilElementAppears(showingResultsFor_List.get(0));
+		return currentExam_Btn.getText();
 	}
 
 	public void waitForResultTopicHeader(){
@@ -908,7 +991,7 @@ public class SearchResultsPage extends W_BasePage {
 
 	@FindBy(xpath="//*[@class='site-title']/a")
 	private WebElement title_examPageEmbibeLogo;
-	
+
 	public void examLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(5000);
@@ -1011,8 +1094,8 @@ public class SearchResultsPage extends W_BasePage {
 		wdriver.switchTo().window(winHandleBefore);
 	}
 
-	
-	
+
+
 	public void resourcesTestsLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
@@ -1125,7 +1208,7 @@ public class SearchResultsPage extends W_BasePage {
 	public void scrollToRelatedConcepts(){
 		scrollToElementViaJavascript(relatedConcepts_Lbl);
 	}
-	
+
 	public void getWidgetsOrder(){
 		String[] widgetClassArray = new String[]{"topic-head","askWrapper",
 				"concept-more","cheatSheetWrap"};
@@ -1134,105 +1217,105 @@ public class SearchResultsPage extends W_BasePage {
 			put("topic-head", "description");put("askWrapper","ask-box");put("concept-more","chapter-concepts");
 			put("cheatSheetWrap","cheat-sheet");put("Practice for","practice-set");
 			put("Most Viewed Videos","curated-videos");put("Chapter Test","chapter-tests");}};
-		String srDiv = "";
-		for(int i=0;i<widgetClassArray.length;i++){
-			if(srDiv.length()==0)
-				srDiv = "//*[contains(@class,'"+widgetClassArray[i]+"')";
-			else
-				srDiv = srDiv + " or " + "contains(@class,'"+widgetClassArray[i]+"')";
-		}
-		for(int i=0;i<widgetStringArray.length;i++){
+			String srDiv = "";
+			for(int i=0;i<widgetClassArray.length;i++){
+				if(srDiv.length()==0)
+					srDiv = "//*[contains(@class,'"+widgetClassArray[i]+"')";
+				else
+					srDiv = srDiv + " or " + "contains(@class,'"+widgetClassArray[i]+"')";
+			}
+			for(int i=0;i<widgetStringArray.length;i++){
 				srDiv = srDiv + " or " + "contains(text(),'"+widgetStringArray[i]+"')";
-		}
-		srDiv = srDiv + "]";
-		List<WebElement> searchResultsDiv = wdriver.findElements(By.xpath(srDiv));
-		int length = searchResultsDiv.size();
-		for(int i=0;i<length;i++){
-			String className = searchResultsDiv.get(i).getAttribute("class");
-			String text = searchResultsDiv.get(i).getText();
-			for(int j=0;j<widgetClassArray.length;j++){
-				if(className.contains(widgetClassArray[j])){
-					String cls = widgetMap.get(widgetClassArray[j]);
-					System.out.println("Widget: "+cls);
-				}
 			}
-			for(int j=0;j<widgetStringArray.length;j++){
-				if(text.contains(widgetStringArray[j])){
-					String txt = widgetMap.get(widgetStringArray[j]);
-					System.out.println("Widget: "+txt);
+			srDiv = srDiv + "]";
+			List<WebElement> searchResultsDiv = wdriver.findElements(By.xpath(srDiv));
+			int length = searchResultsDiv.size();
+			for(int i=0;i<length;i++){
+				String className = searchResultsDiv.get(i).getAttribute("class");
+				String text = searchResultsDiv.get(i).getText();
+				for(int j=0;j<widgetClassArray.length;j++){
+					if(className.contains(widgetClassArray[j])){
+						String cls = widgetMap.get(widgetClassArray[j]);
+						System.out.println("Widget: "+cls);
+					}
 				}
+				for(int j=0;j<widgetStringArray.length;j++){
+					if(text.contains(widgetStringArray[j])){
+						String txt = widgetMap.get(widgetStringArray[j]);
+						System.out.println("Widget: "+txt);
+					}
+				}
+
 			}
-			
-		}
 	}
-	
+
 	public String getWidgetsOrder(int maxLength) throws InterruptedException{
 		String actualWidgets = "";
-		String[] widgetClassArray = new String[]{"topic-head","askWrapper",
-				"concept-more","cheatSheetWrap","progressHeading"};
+		String[] widgetClassArray = new String[]{"topic-head",
+				"concept-more","cheatSheetWrap","progressHeading"};	//"askWrapper",
 		String[] widgetStringArray = new String[]{"Practice for","Most Viewed Videos","Chapter Test",
-				"Wikipedia for"};
+				"Wikipedia for","Full Test","Part Test"};
 		HashMap<String, String> widgetMap = new HashMap<String, String>(){{
 			put("topic-head", "description");put("askWrapper","ask-box");
 			put("concept-more","chapter-concepts");put("cheatSheetWrap","cheat-sheet");
 			put("Practice for","practice-set");put("Most Viewed Videos","curated-videos");
-			put("Chapter Test","chapter-tests");put("progressHeading","practice-actionables");}};
-		String srDiv = "";
-		for(int i=0;i<widgetClassArray.length;i++){
-			if(srDiv.length()==0)
-				srDiv = "//*[contains(@class,'"+widgetClassArray[i]+"')";
-			else
-				srDiv = srDiv + " or " + "contains(@class,'"+widgetClassArray[i]+"')";
-		}
-		for(int i=0;i<widgetStringArray.length;i++){
+			put("Chapter Test","chapter-tests");put("progressHeading","practice-actionables");
+			put("Full Test","full-tests");put("Part Test","unit-tests");
+			put("Wikipedia for","wikipedia");}};
+			String srDiv = "";
+			for(int i=0;i<widgetClassArray.length;i++){
+				if(srDiv.length()==0)
+					srDiv = "//*[contains(@class,'"+widgetClassArray[i]+"')";
+				else
+					srDiv = srDiv + " or " + "contains(@class,'"+widgetClassArray[i]+"')";
+			}
+			for(int i=0;i<widgetStringArray.length;i++){
 				srDiv = srDiv + " or " + "contains(text(),'"+widgetStringArray[i]+"')";
-		}
-		srDiv = srDiv + "]";
-		List<WebElement> searchResultsDiv = wdriver.findElements(By.xpath(srDiv));
-		int length = searchResultsDiv.size();
-		if(length>maxLength)
-			length=maxLength;
-		for(int i=0;i<length;i++){
-			String className = searchResultsDiv.get(i).getAttribute("class");
-			String text = searchResultsDiv.get(i).getText();
-			for(int j=0;j<widgetClassArray.length;j++){
-				if(className.contains(widgetClassArray[j])){
-					String widgetType = widgetMap.get(widgetClassArray[j]);
-					String widgetName = getWidgetName(widgetType, searchResultsDiv.get(i));
-					String widgetValue = getWidgetValue(widgetType, searchResultsDiv.get(i));
-					String widget = widgetType + "," + widgetName;
-					if(widgetValue.length()!=0)
-						widget = widget + "," +widgetValue;
-					if(actualWidgets.length()==0)
-						actualWidgets = widget;
-					else
-						actualWidgets = actualWidgets + ";" + widget;
-				}
 			}
-			for(int j=0;j<widgetStringArray.length;j++){
-				if(text.contains(widgetStringArray[j])){
-					String widgetType = widgetMap.get(widgetStringArray[j]);
-					String widgetName = getWidgetName(widgetType, searchResultsDiv.get(i));
-					String widgetValue = getWidgetValue(widgetType, searchResultsDiv.get(i));
-					String widget = widgetType + "," + widgetName;
-					if(widgetValue.length()!=0)
-						widget = widget + "," +widgetValue;
-					if(actualWidgets.length()==0)
-						actualWidgets = widget;
-					else
-						actualWidgets = actualWidgets + ";" + widget;
+			srDiv = srDiv + "]";
+			List<WebElement> searchResultsDiv = wdriver.findElements(By.xpath(srDiv));
+			int length = searchResultsDiv.size();
+			if(length>maxLength)
+				length=maxLength;
+			for(int i=0;i<length;i++){
+				String className = searchResultsDiv.get(i).getAttribute("class");
+				String text = searchResultsDiv.get(i).getText();
+				for(int j=0;j<widgetClassArray.length;j++){
+					if(className.contains(widgetClassArray[j])){
+						String widgetType = widgetMap.get(widgetClassArray[j]);
+						String widgetName = getWidgetName(widgetType, searchResultsDiv.get(i));
+						//					String widgetValue = getWidgetValue(widgetType, searchResultsDiv.get(i));
+						String widget = widgetType + "=" + widgetName;
+						//					if(widgetValue.length()!=0)
+						//						widget = widget + "," +widgetValue;
+						if(actualWidgets.length()==0)
+							actualWidgets = widget;
+						else
+							actualWidgets = actualWidgets + "\n" + widget;
+					}
 				}
+				for(int j=0;j<widgetStringArray.length;j++){
+					if(text.contains(widgetStringArray[j]) && !searchResultsDiv.get(i).getAttribute("class").equals("toolTip")){
+						String widgetType = widgetMap.get(widgetStringArray[j]);
+						String widgetName = getWidgetName(widgetType, searchResultsDiv.get(i));
+						//					String widgetValue = getWidgetValue(widgetType, searchResultsDiv.get(i));
+						String widget = widgetType + "=" + widgetName;
+						//					if(widgetValue.length()!=0)
+						//						widget = widget + "," +widgetValue;
+						if(actualWidgets.length()==0)
+							actualWidgets = widget;
+						else
+							actualWidgets = actualWidgets + "\n" + widget;
+					}
+				}
+
 			}
-			
-		}
-		return actualWidgets;
+			return actualWidgets;
 	}
-	
+
 	public String getWidgetName(String type,WebElement e) throws InterruptedException{
 		String text = "";
 		switch(type){
-		case "description"	:	text = e.getText();
-		break;
 		case "chapter-concepts"	:	text = e.findElement(By.xpath("../preceding-sibling::div")).getText();
 		break;
 		case "cheat-sheet"	:	text = e.findElement(By.xpath("div[1]")).getText();
@@ -1243,17 +1326,13 @@ public class SearchResultsPage extends W_BasePage {
 			text = e.findElement(By.xpath("div[@class='toolTip']")).getText();
 		}
 		break;
-		case "curated-videos"	:	text = e.getText();
-		break;
-		case "chapter-tests" : text = e.getText();
-		break;
-		case "practice-actionables" : text = e.getText();
+		default	:	text = e.getText();	//description,curated-videos,chapter-tests,practice-actionables,full-tests
 		break;
 		}
-		
+
 		return text;
 	}
-	
+
 	public String getWidgetValue(String type,WebElement e){
 		String text = "";
 		switch(type){
@@ -1289,22 +1368,22 @@ public class SearchResultsPage extends W_BasePage {
 		break;
 		default : break;
 		}
-		
+
 		return text;
 	}
-	
+
 	public String getDymAlaTerms(String type) throws InterruptedException{
 		String terms = "";
 		Thread.sleep(5000);
 		if(type.equals("dym")){
 			waitUntilElementAppears(didYouMean_Lbl);
-				for(WebElement e:didYouMeanTermsBtns_List){
-					String term = e.getText();
-					if(terms.length()==0)
-						terms = term;
-					else
-						terms = terms + "\n" + term;
-				}
+			for(WebElement e:didYouMeanTermsBtns_List){
+				String term = e.getText();
+				if(terms.length()==0)
+					terms = term;
+				else
+					terms = terms + "\n" + term;
+			}
 		}else{
 			waitUntilElementAppears(areYouLookingFor_Lbl);
 			for(WebElement e:areYouLookingForItems_List){
@@ -1317,6 +1396,24 @@ public class SearchResultsPage extends W_BasePage {
 		}
 		return terms;
 	}
-	
-	
+
+	@FindBy(css=".react-typeahead-container li>div")
+	private List<WebElement> suggestions_List;
+
+	public String getSuggestions() throws InterruptedException{
+		String text = "";
+		waitUntilElementAppears(search_TB);
+		search_TB.sendKeys(Keys.DOWN);
+		Thread.sleep(500);
+		for(WebElement e: suggestions_List){
+			String suggestion = e.getText();
+			if(text.length()==0)
+				text = suggestion;
+			else
+				text = text + "\n" + suggestion;
+		}
+		return text;
+	}
+
+
 }

@@ -32,7 +32,7 @@ import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.utils.EmbibeUtils;
 import moolya.embibe.utils.JavaUtils;
 
-public class DslActualWidgetsTest {
+public class DslActualWidgetsTest3 {
 
 	private LandingPage lp;
 	private DslPage dslp;
@@ -44,7 +44,7 @@ public class DslActualWidgetsTest {
 	LinkedHashMap<String, String> dslData;
 	LinkedHashMap<String, String> actualData;
 	LinkedHashMap<String, String> resultData;
-	private String goalCode = "na";	// Enrg=gl8,Medical=gl9
+	private String goalCode = "gl9";	// Enrg=gl8,Medical=gl9
 	private String examCode = "na";	// Bitsat=ex6,Jipmer=ex58
 	HashMap<String, String> goalExamMap = new HashMap<String, String>(){{
 		put("gl8", "Engineering");put("gl9","Medical");
@@ -53,7 +53,7 @@ public class DslActualWidgetsTest {
 	}};
 	String goal;
 	String exam;
-	String sheetName = "Sheet1";
+	String sheetName = "Sheet3";
 
 	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
 	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
