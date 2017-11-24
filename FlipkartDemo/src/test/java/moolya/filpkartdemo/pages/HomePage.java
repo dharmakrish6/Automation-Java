@@ -36,7 +36,6 @@ public class HomePage extends W_BasePage {
 	public MobilesPage goToMobiles(){
 		waitUntilElementclickable(mobiles);
 		mobiles.click();
-		ReporterUtils.test.log(Status.INFO, "Clicked on Mobiles");
 		return new MobilesPage(wdriver);
 	}
 	
