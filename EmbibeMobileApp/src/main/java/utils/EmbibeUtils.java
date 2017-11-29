@@ -21,13 +21,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class EmbibeUtils {
 	
 	public static void writePdfVideoResults(ArrayList<LinkedHashMap<String, String>> results) throws EncryptedDocumentException, InvalidFormatException, IOException{
-		String fileName = "./test-data/PdfVideoResults.xlsx";
+		String fileName = "\\test-data\\PdfVideoResults.xlsx";
+		String dir = System.getProperty("user.dir");
+		fileName = dir+ fileName;
 		if (new File(fileName).exists()){
 			new File(fileName).delete();
 		}
 		
-		FileInputStream fis = new FileInputStream(fileName);
-		Workbook wb = new XSSFWorkbook(fis);
+		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet("Sheet1");
 		Row headers = sheet.createRow(0);
 		int h=0;
