@@ -1,5 +1,6 @@
 package Screens;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +14,7 @@ import org.testng.annotations.Test;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import utils.JavaUtils;
 
 public class BasePageMob
 {
@@ -24,20 +26,20 @@ public class BasePageMob
 	}  
 	
 //	@Test
-	public AppiumDriver<MobileElement> LaunchmobApp() throws MalformedURLException
+	public AppiumDriver<MobileElement> LaunchmobApp() throws IOException
         {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
         	
-        	capabilities.setCapability("platformName", "Android");
-        	capabilities.setCapability("platformVersion", "5.1");
-        	capabilities.setCapability("deviceName", "Tablet");
+        	capabilities.setCapability("platformName", JavaUtils.getPropValue("platformName"));
+        	capabilities.setCapability("platformVersion", JavaUtils.getPropValue("platformVersion"));
+        	capabilities.setCapability("deviceName", JavaUtils.getPropValue("deviceName"));
         	
         	//For engineering
         	/*capabilities.setCapability("appPackage", "com.embibe.institute.sinhal.engineering");
         	capabilities.setCapability("appActivity", "com.embibe.institute.sinhal.engineering.activities.SplashActivity");
         	*/
-        	capabilities.setCapability("appPackage", "com.embibe.institute.sinhal.medical");
-        	capabilities.setCapability("appActivity", "com.embibe.institute.sinhal.medical.activities.SplashActivity");
+        	capabilities.setCapability("appPackage", JavaUtils.getPropValue("appPackage"));
+        	capabilities.setCapability("appActivity", JavaUtils.getPropValue("appActivity"));
         	try {
     			driverMob = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
 

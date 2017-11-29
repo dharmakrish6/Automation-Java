@@ -1,11 +1,12 @@
 package utils;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -15,19 +16,19 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class EmbibeUtils {
 	
 	public static void writePdfVideoResults(ArrayList<LinkedHashMap<String, String>> results) throws EncryptedDocumentException, InvalidFormatException, IOException{
-		String fileName = "\\test-data\\PdfVideoResults.xlsx";
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+		Date date = new Date();
+		String fileName = "\\test-data\\PdfVideoResults-"+dateFormat.format(date)+".xlsx";
 		String dir = System.getProperty("user.dir");
 		fileName = dir+ fileName;
 		if (new File(fileName).exists()){
 			new File(fileName).delete();
 		}
-		
 		Workbook wb = new XSSFWorkbook();
 		Sheet sheet = wb.createSheet("Sheet1");
 		Row headers = sheet.createRow(0);
@@ -39,7 +40,7 @@ public class EmbibeUtils {
 		for(LinkedHashMap<String, String> resultData:results){
 			Row record = sheet.createRow(r++);
 			for(Map.Entry<String, String> m:resultData.entrySet()){
-				for(int i=1;i<headers.getLastCellNum();i++){
+				for(int i=0;i<headers.getLastCellNum();i++){
 					try{
 						if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){
 							Cell cell = null;
