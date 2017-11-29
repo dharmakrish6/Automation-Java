@@ -1,8 +1,12 @@
 package Screens;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Reporter;
@@ -12,6 +16,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import utils.EmbibeUtils;
 
 public class StudyScreen extends BasePageMob
 {
@@ -21,7 +26,7 @@ public class StudyScreen extends BasePageMob
 		super(driverMob);
 		PageFactory.initElements(new AppiumFieldDecorator(driverMob), this);
 	}
-
+	
 	@AndroidFindBy(name="STUDY")
 	MobileElement studyLink;
 
@@ -59,8 +64,10 @@ public class StudyScreen extends BasePageMob
 	MobileElement videoContainer;
 
 
-	public HomeScreen studyScreen() throws InterruptedException, IOException
+	public HomeScreen studyScreen() throws InterruptedException, IOException, EncryptedDocumentException, InvalidFormatException
 	{
+		ArrayList<LinkedHashMap<String, String>> results = new ArrayList<LinkedHashMap<String, String>>();
+		LinkedHashMap<String, String> resultData = new LinkedHashMap<String, String>();
 		studyLink.click();
 		List<MobileElement> list=subjectList;
 		for(MobileElement ele:list){
@@ -90,6 +97,10 @@ public class StudyScreen extends BasePageMob
 						List<MobileElement> list5=titleLists;
 						for(MobileElement ele5:list5){
 							String title = ele5.getText();
+							String path = subject + " > " + unit + " > "  + chapter + " > "  + concept;
+							String name = title;
+							String type = "PDF";
+							String status = "";
 							ele5.click();//Title
 							/*//Reporter.log(title.getText(), true);
 						String titleText = title.getText();
@@ -99,15 +110,25 @@ public class StudyScreen extends BasePageMob
 							try{
 								isPDFview = pdfView.isDisplayed();
 								Reporter.log(title+" PDF opened successfully",true);
+								status = "Found";
 								driverMob.navigate().back();
 							}catch(Exception e){
 								Reporter.log(title+" Pdf not found",true);
-								ele5.isDisplayed();
+								status = "Not Found";
 //								driverMob.navigate().back();
 							}
+							resultData.put("Path", path);
+							resultData.put("Name", name);
+							resultData.put("Type", type);
+							resultData.put("Status", status);
+							results.add(resultData);
 						}
 						for(int i=0;i<videotitle.size();i++){
 							String videoText = videotitle.get(i).getText();
+							String path = subject + " > " + unit + " > "  + chapter + " > "  + concept;
+							String name = videoText;
+							String type = "Video";
+							String status = "";
 							Thread.sleep(1000);
 							try{
 								videoThumbNail1.get(i).click();
@@ -121,11 +142,17 @@ public class StudyScreen extends BasePageMob
 							try{
 								isVideoView = videoContainer.isDisplayed();
 								Reporter.log(videoText+ " Video opened successfully",true);
+								status = "Found";
 								driverMob.navigate().back();
 							}catch(Exception e){
 								Reporter.log(videoText+ " Video not found",true);
+								status = "Not Found";
 							}
-
+							resultData.put("Path", path);
+							resultData.put("Name", name);
+							resultData.put("Type", type);
+							resultData.put("Status", status);
+							results.add(resultData);
 						}
 						driverMob.navigate().back();
 					}
@@ -135,6 +162,7 @@ public class StudyScreen extends BasePageMob
 			}
 			driverMob.navigate().back();	
 		}
+		EmbibeUtils.writePdfVideoResults("Sheet1", results);
 		return new HomeScreen(driverMob);
 	}
 }
