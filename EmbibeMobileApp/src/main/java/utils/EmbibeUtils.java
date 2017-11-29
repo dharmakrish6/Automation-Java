@@ -26,8 +26,8 @@ public class EmbibeUtils {
 			new File(fileName).delete();
 		}
 		
-//		FileInputStream fis = new FileInputStream(fileName);
-		Workbook wb = new XSSFWorkbook(new File(fileName));
+		FileInputStream fis = new FileInputStream(fileName);
+		Workbook wb = new XSSFWorkbook(fis);
 		Sheet sheet = wb.createSheet("Sheet1");
 		Row headers = sheet.createRow(0);
 		int h=0;
