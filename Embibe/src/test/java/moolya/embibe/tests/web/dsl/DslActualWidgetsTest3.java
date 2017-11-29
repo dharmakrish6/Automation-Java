@@ -107,24 +107,22 @@ public class DslActualWidgetsTest3 {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-//		String status;
-//		if(actualData!=null 
-//				&& dslData.get("Dsl Result").toString().equalsIgnoreCase(actualData.get("Actual Result").toString()))
-//			status = "Pass";
-//		else
-//			status = "Fail";
 		try {
-			resultData.put("Actual Result", actualData.get("Actual Result"));
-			resultData.put("Actual Widgets", actualData.get("Actual Widgets"));
-			resultData.put("Actual Dym Terms", actualData.get("Actual Dym Terms"));
-			resultData.put("Actual Current Goal", actualData.get("Actual Current Goal"));
-			resultData.put("Actual Current Exam", actualData.get("Actual Current Exam"));
-			resultData.put("Actual Valid Goals", actualData.get("Actual Valid Goals"));
-			resultData.put("Actual Valid Exams", actualData.get("Actual Valid Exams"));
+			resultData = JavaUtils.addDataToResult("Actual Result", actualData.get("Actual Result"), resultData);
+			resultData = JavaUtils.addDataToResult("Actual Widgets", actualData.get("Actual Widgets"), resultData);
+			resultData = JavaUtils.addDataToResult("Actual Dym Terms", actualData.get("Actual Dym Terms"), resultData);
+			resultData = JavaUtils.addDataToResult("Actual Current Goal", actualData.get("Actual Current Goal"), resultData);
+			resultData = JavaUtils.addDataToResult("Actual Current Exam", actualData.get("Actual Current Exam"), resultData);
+			resultData = JavaUtils.addDataToResult("Actual Valid Goals", actualData.get("Actual Valid Goals"), resultData);
+			resultData = JavaUtils.addDataToResult("Actual Valid Exams", actualData.get("Actual Valid Exams"), resultData);
 		} catch (Exception e) {}
-//		resultData.put("Result Status", status);
+		String result = JavaUtils.getResultStatus(resultData);
+		String[] status = result.split("=");
+		resultData.put("Status", status[0]);
+		if(status.length>1)
+			resultData.put("Comments", status[1]);
 		EmbibeUtils.writeDslActualData(sheetName, resultData, Integer.parseInt(row)+1);
-		System.out.println((Integer.parseInt(row)+1)+" Completed");
+		System.out.println(getClass().getSimpleName()+": "+(Integer.parseInt(row)+1)+" "+status[0]);
 	}
 
 	@DataProvider
@@ -157,8 +155,11 @@ public class DslActualWidgetsTest3 {
 			File file = new File(System.getProperty("java.io.tmpdir"));
 			FileUtils.cleanDirectory(file);
 		}catch (IOException e) {}
-		wdriver.close();
-//		wdriver.navigate().to(JavaUtils.getPropValue("dslUrl"));
+		try{
+			wdriver.quit();
+		}catch(Exception e){
+			wdriver.close();
+		}
 	}
 	
 }

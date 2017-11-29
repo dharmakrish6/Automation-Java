@@ -296,11 +296,11 @@ public class EmbibeUtils {
 			for(int i =0;i<length;i++){
 				LinkedHashMap<String, String> map = new LinkedHashMap<String, String>();
 				JSONObject result = results.getJSONObject(i);
-				String widgetType = result.getString("widget").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
-				String widgetName = result.getString("name").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
-				String widgetIndex = result.getString("index").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+				String widgetType = result.getString("widget").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+				String widgetName = result.getString("name").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+//				String widgetIndex = result.getString("index").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
 				if(!widgetType.equalsIgnoreCase("pack-reco") && !widgetType.equalsIgnoreCase("ask-box")){
-					String widget = widgetType+"="+widgetName+"="+widgetIndex;
+					String widget = widgetType+"="+widgetName;
 					if(widgets.length()==0)
 						widgets = widget;
 					else

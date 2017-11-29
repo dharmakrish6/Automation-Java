@@ -164,6 +164,10 @@ public class ApiUtils {
 		Response response=get(apiUri);
 		return response;
 	}
+	
+	public static String getStatusCode(Response response){
+		return String.valueOf(response.getStatusCode());
+	}
 
 	public static String getJSONObjectValue(String stringResponse, String objectPath){
 		String string;

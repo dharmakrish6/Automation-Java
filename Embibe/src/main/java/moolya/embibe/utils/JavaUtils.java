@@ -10,15 +10,21 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
+import org.apache.commons.exec.DefaultExecutor;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -317,5 +323,93 @@ public class JavaUtils {
 	}
 	
 
+	public static void killDriver(String type) throws IOException, InterruptedException { 
+		// Add different arguments In command line which requires to stop appium server. 
+		Thread.sleep(2000);
+		CommandLine command = new CommandLine("cmd"); 
+		command.addArgument("/c"); 
+		command.addArgument("taskkill"); 
+		command.addArgument("/F"); 
+		command.addArgument("/IM"); 
+		switch(type){
+		
+		case "chrome": command.addArgument("chromedriver.exe");
+		break;
+		case "ff": command.addArgument("geckodriver.exe");
+		break;
+		
+		}
+		// Execute command line arguments to stop appium server. 
+		DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler(); 
+		DefaultExecutor executor = new DefaultExecutor(); 
+		executor.setExitValue(1); 
+		executor.execute(command, resultHandler);
+	}
+	
+	public static LinkedHashMap<String, String> addDataToResult(String key, String value, LinkedHashMap<String, String> resultData){
+		try{
+			resultData.put(key, value);
+		}catch(Exception e){}
+		return resultData;
+	}
+	
+	public static String checkIfListContainAnother(String s1,String s2){
+		boolean flag = true;
+		String status = "Pass";
+		try {
+			flag = !Collections.disjoint(Arrays.asList(s1.split("\n")), Arrays.asList(s2.split("\n")));
+			if(!flag){
+				status = "Fail";
+				return status;
+			}
+		} catch (Exception e) {}
+		return status;
+	}
+	
+	public static String getResultStatus(LinkedHashMap<String, String> resultData){
+		String status = "Pass";
+		try{
+			if(!resultData.get("Dsl Result").equalsIgnoreCase(resultData.get("Actual Result"))){
+				status = "Fail=Result";
+				return status;
+			}
+		}catch(Exception e){}
+		try{
+			if(!resultData.get("Dsl Dym Terms").equalsIgnoreCase(resultData.get("Actual Dym Terms"))){
+				status = "Fail=Dym Terms";
+				return status;
+			}
+		}catch(Exception e){}
+		try{
+			if(!resultData.get("Dsl Current Goal").equalsIgnoreCase(resultData.get("Actual Current Goal"))){
+				status = "Fail=Current Goal";
+				return status;
+			}
+		}catch(Exception e){}
+		try{
+			if(!resultData.get("Dsl Current Exam").equalsIgnoreCase(resultData.get("Actual Current Exam"))){
+				status = "Fail=Current Exam";
+				return status;
+			}
+		}catch(Exception e){}
+		status = checkIfListContainAnother(resultData.get("Dsl Valid Goals"), resultData.get("Actual Valid Goals"));
+		if(status.equals("Fail")){
+			status = "Fail=Valid Goals";
+			return status;
+		}
+		status = checkIfListContainAnother(resultData.get("Dsl Valid Exams"), resultData.get("Actual Valid Exams"));
+		if(status.equals("Fail")){
+			status = "Fail=Valid Exams";
+			return status;
+		}
+		/*try{
+			if(!resultData.get("Dsl Dym Terms").equals(resultData.get("Actual Dym Terms"))){
+				status = "Fail";
+				return status;
+			}
+		}catch(Exception e){}*/
+		
+		return status;
+	}
 
 }

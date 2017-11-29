@@ -23,6 +23,9 @@ public class LearnPage extends W_BasePage {
 
 	@FindBy(css="div.desp-content")
 	private WebElement desciption_Lbl;
+	
+	@FindBy(css="Woops")
+	private WebElement woopsMessage;
 
 	//	Social Strength Objects
 
@@ -231,6 +234,15 @@ public class LearnPage extends W_BasePage {
 		Reporter.log("Entered Password",true);
 		google_Final_next_btn.click();
 		Reporter.log("Clicked on Next Button",true);
+	}
+	
+	public boolean checkForWoopsPage(){
+		try{
+			waitUntilElementAppears(woopsMessage);
+			return false;
+		}catch(Exception e){
+			return true;
+		}
 	}
 		
 }

@@ -93,7 +93,7 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(css="div.topic-wrapper div.topic-description")
 	private WebElement topicDescription_Lbl;
 
-	@FindBy(css="div.topic-wrapper div.linkMore")
+	@FindBy(css="div.topic-wrapper a.linkMore")
 	private WebElement learMore_Link;
 
 	@FindBy(css="div.concept>div.heading")
@@ -658,6 +658,11 @@ public class SearchResultsPage extends W_BasePage {
 		Reporter.log("Navigated to Search Results Page", true);
 		Reporter.log("Showing Search Results for: "+text, true);
 	}
+	
+	public String getLearnMoreLink(){
+		waitUntilElementclickable(learMore_Link);
+		return learMore_Link.getAttribute("href");
+	}
 
 	public String getSearchResultTopicHeader(){
 		String text = "";
@@ -705,98 +710,91 @@ public class SearchResultsPage extends W_BasePage {
 	private WebElement currentExam_Btn;
 
 	public void selectGoal(String goal,String exam) throws InterruptedException{
-		boolean flag = true;
 		if(!goal.equals("na")){
-			waitUntilElementclickable(showingResultsFor_List.get(0));
-			Thread.sleep(500);
 			try {
-				showingResultsForExpand_Btn.click();
-				Reporter.log("Clicked on Show More Goals", true);
-			} catch (Exception e1) {}
-			Thread.sleep(500);
-			for(WebElement e:showingResultsFor_List)
-				if(e.getText().equals(goal)){
-					clickElement(e, "Clicked on "+e.getText());
-					Thread.sleep(500);
-					waitUntilElementclickable(goalApproval_Btn);
-					goalApproval_Btn.click();
-					flag = false;
-					break;
-				}
-			if(flag)
-				Reporter.log(goal+" not found", true);
+				waitUntilElementclickable(showingResultsFor_List.get(0));
+				Thread.sleep(500);
+				for(WebElement e:showingResultsFor_List)
+					if(e.getText().equals(goal)){
+						clickElement(e, "Clicked on "+e.getText());
+						Thread.sleep(500);
+						waitUntilElementclickable(goalApproval_Btn);
+						goalApproval_Btn.click();
+						break;
+					}
+			} catch (Exception e) {}
 		}
-		flag = true;
 		if(!exam.equals("na")){
-			waitUntilElementclickable(specificExam_List.get(0));
 			Thread.sleep(500);
 			try {
+				waitUntilElementclickable(specificExam_List.get(0));
 				specificExamExpand_Btn.click();
 				Reporter.log("Clicked on Show more exams", true);
+				Thread.sleep(500);
 			} catch (Exception e1) {}
-			Thread.sleep(500);
-			for(WebElement e:specificExam_List)
-				if(e.getText().equals(exam)){
-					clickElement(e, "Clicked on "+e.getText());
-					flag = false;
-					break;
-				}
-			if(flag)
-				Reporter.log(exam+" not found", true);
+			try {
+				for(WebElement e:specificExam_List)
+					if(e.getText().equals(exam)){
+						clickElement(e, "Clicked on "+e.getText());
+						break;
+					}
+			} catch (Exception e) {}
 		}
 
 	}
 
 	public String getValidGoals() throws InterruptedException{
 		String text = "";
-		waitUntilElementclickable(showingResultsFor_List.get(0));
-		Thread.sleep(500);
 		try {
-			showingResultsForExpand_Btn.click();
-			Reporter.log("Clicked on Show More Goals", true);
-		} catch (Exception e1) {}
-		Thread.sleep(500);
-		for(WebElement e:showingResultsFor_List){
-			String s = e.getText();
-			if(text.length()==0)
-				text = s;
-			else
-				text = text + "\n" + s;
-		}
-		return text;
-	}
-	
-	public String getValidExams() throws InterruptedException{
-		String text = "";
-		waitUntilElementclickable(specificExam_List.get(0));
-		Thread.sleep(500);
-		try {
-			specificExamExpand_Btn.click();
-			Reporter.log("Clicked on Show more exams", true);
-		} catch (Exception e1) {}
-		Thread.sleep(500);
-		int i=0;
-		for(WebElement e:specificExam_List){
-			String s = e.getText();
-			if(i>0){
+			waitUntilElementclickable(showingResultsFor_List.get(0));
+			Thread.sleep(500);
+			for(WebElement e:showingResultsFor_List){
+				String s = e.getText();
 				if(text.length()==0)
 					text = s;
 				else
 					text = text + "\n" + s;
 			}
-			i++;	
-		}
+		} catch (Exception e) {}
+		return text;
+	}
+	
+	public String getValidExams() throws InterruptedException{
+		String text = "";
+		
+		try {
+			waitUntilElementclickable(specificExam_List.get(0));
+			Thread.sleep(500);
+			specificExamExpand_Btn.click();
+			Reporter.log("Clicked on Show more exams", true);
+			Thread.sleep(500);
+		} catch (Exception e1) {}
+		try {
+			for(WebElement e:specificExam_List){
+				String s = e.getText();
+				if(text.length()==0)
+						text = s;
+					else
+						text = text + "\n" + s;
+			}
+		} catch (Exception e) {}
 		return text;
 	}
 
 	public String getCurrentGoal(){
-		waitUntilElementAppears(showingResultsFor_List.get(0));
-		return currentGoal_Btn.getText();
+		try {
+			waitUntilElementAppears(showingResultsFor_List.get(0));
+			return currentGoal_Btn.getText();
+		} catch (Exception e) {}
+		return "";
 	}
 
 	public String getCurrentExam(){
-		waitUntilElementAppears(showingResultsFor_List.get(0));
-		return currentExam_Btn.getText();
+		try {
+			waitUntilElementAppears(showingResultsFor_List.get(0));
+			return currentExam_Btn.getText();
+		} catch (Exception e) {}
+		return "";
 	}
 
 	public void waitForResultTopicHeader(){
@@ -1254,14 +1252,16 @@ public class SearchResultsPage extends W_BasePage {
 		String[] widgetClassArray = new String[]{"topic-head",
 				"concept-more","cheatSheetWrap","progressHeading"};	//"askWrapper",
 		String[] widgetStringArray = new String[]{"Practice for","Most Viewed Videos","Chapter Test",
-				"Wikipedia for","Full Test","Part Test"};
+				"Wikipedia for","Related Concepts","Full Test","Part Test","Videos on","Previous Year Paper","11th Revision Test"};
 		HashMap<String, String> widgetMap = new HashMap<String, String>(){{
 			put("topic-head", "description");put("askWrapper","ask-box");
 			put("concept-more","chapter-concepts");put("cheatSheetWrap","cheat-sheet");
 			put("Practice for","practice-set");put("Most Viewed Videos","curated-videos");
 			put("Chapter Test","chapter-tests");put("progressHeading","practice-actionables");
 			put("Full Test","full-tests");put("Part Test","unit-tests");
-			put("Wikipedia for","wikipedia");}};
+			put("Wikipedia for","wikipedia");put("Videos on","all-videos");
+			put("Previous Year Paper","previous-year-test");put("11th Revision Test","11th-revision");
+			put("Related Concepts","related-concepts");}};
 			String srDiv = "";
 			for(int i=0;i<widgetClassArray.length;i++){
 				if(srDiv.length()==0)
