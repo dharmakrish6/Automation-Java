@@ -11,7 +11,7 @@ import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class Login_in_LearnPage extends W_BaseTest {
+public class Login_in_Learn_Page extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;
@@ -25,7 +25,7 @@ public class Login_in_LearnPage extends W_BaseTest {
 	}
 	
 	@Test(dataProvider="browserData")
-	public void login_SearchResultsPage_Test(String browser) throws Exception{
+	public void loginIn_LearnPage_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Functional flow : Login-In test in LEARN PAGE on browser :-  "+ "'" + browser + "'",  true);

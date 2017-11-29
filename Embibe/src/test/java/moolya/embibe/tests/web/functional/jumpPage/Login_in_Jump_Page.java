@@ -12,7 +12,7 @@ import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.tests.web.W_BaseTest;
 
-public class Login_in_JumpPage extends W_BaseTest {
+public class Login_in_Jump_Page extends W_BaseTest {
 
 	private W_BasePage basepage;
 	private LandingPage lp;

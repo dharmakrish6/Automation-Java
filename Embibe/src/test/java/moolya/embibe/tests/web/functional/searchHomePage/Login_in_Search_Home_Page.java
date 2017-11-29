@@ -32,6 +32,7 @@ public class Login_in_Search_Home_Page extends W_BaseTest {
 		shp.login();
 		shp.logout();
 		shp.clickEmbibeLogo();
+		shp.loginBtn();
 		Reporter.log("------------------------------------------Facebook Login------------------------------------------",true);
 		shp.clickFbLogin();
 		shp.enterFbLoginCredentials("testonetest444@gmail.com", "Testing@ccount");

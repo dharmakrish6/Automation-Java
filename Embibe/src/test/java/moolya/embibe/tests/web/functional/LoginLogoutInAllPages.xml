@@ -4,14 +4,12 @@
   <test name="Test">
     <classes>
        
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Home_Page"/>
+     <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Home_Page"/>
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Result_Page"/>
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Signup_Page"/>
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Learn_Page"/>
-      
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_Logout_ExamPages_test"/>
-      
-      
+      <class name="moolya.embibe.tests.web.functional.jumpPage.Login_in_Jump_Page"/>
+        
        
     </classes>
   </test> <!-- Test -->

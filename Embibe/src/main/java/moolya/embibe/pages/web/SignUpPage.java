@@ -69,7 +69,7 @@ public class SignUpPage extends W_BasePage {
 	
 	public SearchHomepage loginSignUp() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		waitUntilElementclickable(login_Btn);
-		email_TB.sendKeys("yashuu@gmail.com");
+		email_TB.sendKeys("jimmy@gmail.com");
 		Reporter.log("Entered Email id", true);
 		password_TB.sendKeys("qwertyuiop");
 		Reporter.log("Entered Password", true);
