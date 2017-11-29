@@ -164,7 +164,7 @@ public class StudyScreen extends BasePageMob
 				driverMob.navigate().back();	
 			}
 		} catch (Exception e) {}
-		EmbibeUtils.writePdfVideoResults("Sheet1", results);
+		EmbibeUtils.writePdfVideoResults(results);
 		return new HomeScreen(driverMob);
 	}
 }
