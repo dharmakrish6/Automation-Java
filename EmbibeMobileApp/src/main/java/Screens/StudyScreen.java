@@ -69,7 +69,7 @@ public class StudyScreen extends BasePageMob
 	public HomeScreen studyScreen() throws InterruptedException, IOException, EncryptedDocumentException, InvalidFormatException
 	{
 		ArrayList<LinkedHashMap<String, String>> results = new ArrayList<LinkedHashMap<String, String>>();
-		LinkedHashMap<String, String> resultData = new LinkedHashMap<String, String>();
+		LinkedHashMap<String, String> resultData;
 		studyLink.click();
 		int subjectCount = Integer.parseInt(JavaUtils.getPropValue("subject"));
 		int unitCount = Integer.parseInt(JavaUtils.getPropValue("unit"));
@@ -123,6 +123,7 @@ public class StudyScreen extends BasePageMob
 									Reporter.log(title+" Pdf not found",true);
 									status = "Not Found";
 								}
+								resultData = new LinkedHashMap<String, String>();
 								resultData.put("Path", path);
 								resultData.put("Name", name);
 								resultData.put("Type", type);
@@ -154,6 +155,7 @@ public class StudyScreen extends BasePageMob
 									Reporter.log(videoText+ " Video not found",true);
 									status = "Not Found";
 								}
+								resultData = new LinkedHashMap<String, String>();
 								resultData.put("Path", path);
 								resultData.put("Name", name);
 								resultData.put("Type", type);
@@ -176,7 +178,13 @@ public class StudyScreen extends BasePageMob
 			JavaUtils.setPropValue("unit", String.valueOf(b));
 			JavaUtils.setPropValue("chapter", String.valueOf(c));
 			JavaUtils.setPropValue("concept", String.valueOf(d));
+			EmbibeUtils.writePdfVideoResults(results);
+			return new HomeScreen(driverMob);
 		}
+		JavaUtils.setPropValue("subject", String.valueOf(0));
+		JavaUtils.setPropValue("unit", String.valueOf(0));
+		JavaUtils.setPropValue("chapter", String.valueOf(0));
+		JavaUtils.setPropValue("concept", String.valueOf(0));
 		EmbibeUtils.writePdfVideoResults(results);
 		return new HomeScreen(driverMob);
 	}
