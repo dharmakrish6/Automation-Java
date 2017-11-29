@@ -69,99 +69,101 @@ public class StudyScreen extends BasePageMob
 		ArrayList<LinkedHashMap<String, String>> results = new ArrayList<LinkedHashMap<String, String>>();
 		LinkedHashMap<String, String> resultData = new LinkedHashMap<String, String>();
 		studyLink.click();
-		List<MobileElement> list=subjectList;
-		for(MobileElement ele:list){
-			String subject = ele.getText();
-			ele.click();//Subject
-			Reporter.log("Clicked on Subject "+subject, true);
-			List<MobileElement> list2=chapterList;
-			waitUntilElementclickable(list2.get(0));
-			for(MobileElement ele2:list2){
-				String unit = ele2.getText();
-				ele2.click();//Unit
-				Reporter.log("Clicked on Unit "+unit, true);
-				List<MobileElement> list3=unitList;
-				waitUntilElementclickable(list3.get(0));
-				for(MobileElement ele3:list3){
-					String chapter = ele3.getText();
-					ele3.click();//Chapter
-					Reporter.log("Clicked on Chapter "+chapter, true);
-					List<MobileElement> list4=chapterList;
-					Thread.sleep(2000);
-					//waitUntilElementclickable(list4.get(0));
-					for(MobileElement ele4:list4){
-						String concept = ele4.getText();
-						ele4.click();//Concept
-						Reporter.log("Clicked on Concept "+concept, true);
+		try {
+			List<MobileElement> list=subjectList;
+			for(MobileElement ele:list){
+				String subject = ele.getText();
+				ele.click();//Subject
+				Reporter.log("Clicked on Subject "+subject, true);
+				List<MobileElement> list2=chapterList;
+				waitUntilElementclickable(list2.get(0));
+				for(MobileElement ele2:list2){
+					String unit = ele2.getText();
+					ele2.click();//Unit
+					Reporter.log("Clicked on Unit "+unit, true);
+					List<MobileElement> list3=unitList;
+					waitUntilElementclickable(list3.get(0));
+					for(MobileElement ele3:list3){
+						String chapter = ele3.getText();
+						ele3.click();//Chapter
+						Reporter.log("Clicked on Chapter "+chapter, true);
+						List<MobileElement> list4=chapterList;
+						Thread.sleep(2000);
+						//waitUntilElementclickable(list4.get(0));
+						for(MobileElement ele4:list4){
+							String concept = ele4.getText();
+							ele4.click();//Concept
+							Reporter.log("Clicked on Concept "+concept, true);
 
-						List<MobileElement> list5=titleLists;
-						for(MobileElement ele5:list5){
-							String title = ele5.getText();
-							String path = subject + " > " + unit + " > "  + chapter + " > "  + concept;
-							String name = title;
-							String type = "PDF";
-							String status = "";
-							ele5.click();//Title
-							/*//Reporter.log(title.getText(), true);
-						String titleText = title.getText();
-						title.click();*/
-							Reporter.log("Clicked on Pdf "+title,true);
-							boolean isPDFview = false;
-							try{
-								isPDFview = pdfView.isDisplayed();
-								Reporter.log(title+" PDF opened successfully",true);
-								status = "Found";
-								driverMob.navigate().back();
-							}catch(Exception e){
-								Reporter.log(title+" Pdf not found",true);
-								status = "Not Found";
+							List<MobileElement> list5=titleLists;
+							for(MobileElement ele5:list5){
+								String title = ele5.getText();
+								String path = subject + " > " + unit + " > "  + chapter + " > "  + concept;
+								String name = title;
+								String type = "PDF";
+								String status = "";
+								ele5.click();//Title
+								/*//Reporter.log(title.getText(), true);
+							String titleText = title.getText();
+							title.click();*/
+								Reporter.log("Clicked on Pdf "+title,true);
+								boolean isPDFview = false;
+								try{
+									isPDFview = pdfView.isDisplayed();
+									Reporter.log(title+" PDF opened successfully",true);
+									status = "Found";
+									driverMob.navigate().back();
+								}catch(Exception e){
+									Reporter.log(title+" Pdf not found",true);
+									status = "Not Found";
 //								driverMob.navigate().back();
+								}
+								resultData.put("Path", path);
+								resultData.put("Name", name);
+								resultData.put("Type", type);
+								resultData.put("Status", status);
+								results.add(resultData);
 							}
-							resultData.put("Path", path);
-							resultData.put("Name", name);
-							resultData.put("Type", type);
-							resultData.put("Status", status);
-							results.add(resultData);
-						}
-						for(int i=0;i<videotitle.size();i++){
-							String videoText = videotitle.get(i).getText();
-							String path = subject + " > " + unit + " > "  + chapter + " > "  + concept;
-							String name = videoText;
-							String type = "Video";
-							String status = "";
-							Thread.sleep(1000);
-							try{
-								videoThumbNail1.get(i).click();
-								Reporter.log("Clicked on Video "+videoText,true);
+							for(int i=0;i<videotitle.size();i++){
+								String videoText = videotitle.get(i).getText();
+								String path = subject + " > " + unit + " > "  + chapter + " > "  + concept;
+								String name = videoText;
+								String type = "Video";
+								String status = "";
+								Thread.sleep(1000);
+								try{
+									videoThumbNail1.get(i).click();
+									Reporter.log("Clicked on Video "+videoText,true);
+								}
+								catch(Exception e){
+									videoThumbNail2.get(i).click();
+									Reporter.log("Clicked on Video "+videoText,true);
+								}
+								boolean isVideoView = false; 
+								try{
+									isVideoView = videoContainer.isDisplayed();
+									Reporter.log(videoText+ " Video opened successfully",true);
+									status = "Found";
+									driverMob.navigate().back();
+								}catch(Exception e){
+									Reporter.log(videoText+ " Video not found",true);
+									status = "Not Found";
+								}
+								resultData.put("Path", path);
+								resultData.put("Name", name);
+								resultData.put("Type", type);
+								resultData.put("Status", status);
+								results.add(resultData);
 							}
-							catch(Exception e){
-								videoThumbNail2.get(i).click();
-								Reporter.log("Clicked on Video "+videoText,true);
-							}
-							boolean isVideoView = false; 
-							try{
-								isVideoView = videoContainer.isDisplayed();
-								Reporter.log(videoText+ " Video opened successfully",true);
-								status = "Found";
-								driverMob.navigate().back();
-							}catch(Exception e){
-								Reporter.log(videoText+ " Video not found",true);
-								status = "Not Found";
-							}
-							resultData.put("Path", path);
-							resultData.put("Name", name);
-							resultData.put("Type", type);
-							resultData.put("Status", status);
-							results.add(resultData);
+							driverMob.navigate().back();
 						}
 						driverMob.navigate().back();
 					}
 					driverMob.navigate().back();
 				}
-				driverMob.navigate().back();
+				driverMob.navigate().back();	
 			}
-			driverMob.navigate().back();	
-		}
+		} catch (Exception e) {}
 		EmbibeUtils.writePdfVideoResults("Sheet1", results);
 		return new HomeScreen(driverMob);
 	}
