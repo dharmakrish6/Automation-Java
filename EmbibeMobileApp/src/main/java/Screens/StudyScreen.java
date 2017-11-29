@@ -75,31 +75,31 @@ public class StudyScreen extends BasePageMob
 		int unitCount = Integer.parseInt(JavaUtils.getPropValue("unit"));
 		int chapterCount = Integer.parseInt(JavaUtils.getPropValue("chapter"));
 		int conceptCount = Integer.parseInt(JavaUtils.getPropValue("concept"));
-		int a = 0,b = 0,c = 0,d = 0;
+		int a = subjectCount,b = unitCount,c = chapterCount,d = conceptCount;
 		try {
 			List<MobileElement> list=subjectList;
-			for(a=subjectCount;a<list.size();a++){
+			for(;a<list.size();a++){
 				MobileElement ele = list.get(a);
 				String subject = ele.getText();
 				ele.click();//Subject
 				Reporter.log("Clicked on Subject "+subject, true);
 				List<MobileElement> list2=chapterList;
 				waitUntilElementclickable(list2.get(0));
-				for(b=unitCount;b<list2.size();b++){
+				for(;b<list2.size();b++){
 					MobileElement ele2 = list2.get(b);
 					String unit = ele2.getText();
 					ele2.click();//Unit
 					Reporter.log("Clicked on Unit "+unit, true);
 					List<MobileElement> list3=unitList;
 					waitUntilElementclickable(list3.get(0));
-					for(c=chapterCount;c<list3.size();c++){
+					for(;c<list3.size();c++){
 						MobileElement ele3 = list3.get(c);
 						String chapter = ele3.getText();
 						ele3.click();//Chapter
 						Reporter.log("Clicked on Chapter "+chapter, true);
 						List<MobileElement> list4=chapterList;
 						Thread.sleep(2000);
-						for(d=conceptCount;d<list4.size();d++){
+						for(;d<list4.size();d++){
 							MobileElement ele4 = list4.get(d);
 							String concept = ele4.getText();
 							ele4.click();//Concept
@@ -162,10 +162,13 @@ public class StudyScreen extends BasePageMob
 							}
 							driverMob.navigate().back();
 						}
+						d=0;
 						driverMob.navigate().back();
 					}
+					c=0;
 					driverMob.navigate().back();
 				}
+				b=0;
 				driverMob.navigate().back();	
 			}
 		} catch (Exception e) {
