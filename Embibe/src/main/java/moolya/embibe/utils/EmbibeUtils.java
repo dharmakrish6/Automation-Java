@@ -450,5 +450,11 @@ public class EmbibeUtils {
 
 		return dataMap;
 	}
+	
+	public static String getPublicIp() throws JSONException{
+		Response response = ApiUtils.getJSONResponseWithoutParameters("https://api.ipify.org?format=json");
+		JSONObject res = new JSONObject(response.asString());
+		return res.getString("ip");
+	}
 
 }

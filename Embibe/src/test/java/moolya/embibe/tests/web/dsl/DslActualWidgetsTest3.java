@@ -121,6 +121,7 @@ public class DslActualWidgetsTest3 {
 		resultData.put("Status", status[0]);
 		if(status.length>1)
 			resultData.put("Comments", status[1]);
+		resultData.put("Ip", EmbibeUtils.getPublicIp());
 		EmbibeUtils.writeDslActualData(sheetName, resultData, Integer.parseInt(row)+1);
 		System.out.println(getClass().getSimpleName()+": "+(Integer.parseInt(row)+1)+" "+status[0]);
 	}
