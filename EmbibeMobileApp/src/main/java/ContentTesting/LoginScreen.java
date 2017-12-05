@@ -1,4 +1,4 @@
-package Screens;
+package ContentTesting;
 
 import org.openqa.selenium.support.PageFactory;
 
@@ -24,13 +24,15 @@ public class LoginScreen extends BasePageMob
 	
 	@AndroidFindBy(id="buttonLogin")
 	MobileElement loginButton;
+
 	
-	public HomeScreen loginScreen() throws Exception
+	
+	public PracticeScreen loginScreen() throws Exception
 	{
 		Thread.sleep(3000);
-		loginEmailId.sendKeys("REG68118");
-		loginPassword.sendKeys("01-02-2000");
+		loginEmailId.sendKeys("test01@embibe.com");
+		loginPassword.sendKeys("embibe1234");
 		loginButton.click();
-		return new HomeScreen(driverMob);
+		return new PracticeScreen(driverMob);
 	}
 }

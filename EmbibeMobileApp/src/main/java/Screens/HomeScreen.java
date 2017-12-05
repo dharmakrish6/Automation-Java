@@ -29,7 +29,7 @@ public class HomeScreen extends BasePageMob
 	
 	public StudyScreen homescreen() throws InterruptedException, IOException
 	{
-		Thread.sleep(5000);
+		Thread.sleep(500000);
 		Reporter.log("Navigated to Home Screen",true);
 		return new StudyScreen(driverMob);
 	}

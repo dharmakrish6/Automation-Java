@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,8 +8,11 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.util.Properties;
+
+import org.testng.Reporter;
 
 public class JavaUtils {
 	
@@ -65,5 +69,14 @@ public class JavaUtils {
 			// I/O error
 		}
 	}
+	
+	public static void resetApp(String packageName) throws IOException{
+		Process p = Runtime.getRuntime().exec("adb shell pm clear "+packageName);
+		BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+		String line;
+		while((line=br.readLine()) != null)
+			Reporter.log(line, true);
+	}
+
 
 }
