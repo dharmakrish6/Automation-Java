@@ -66,6 +66,7 @@ public class EnggLoginScreen extends BasePageMob
 			waitUntilElementclickable(date_List.get(0));
 			String[] dobs = dob.split("-"); 
 			selectDate(dobs[0], dobs[1], dobs[2]);*/
+			closeKeyboard();
 			waitUntilElementAppears(medicalLoginButton);
 			medicalLoginButton.click();
 		}
