@@ -2,10 +2,10 @@ package TestCases;
 
 import org.testng.annotations.Test;
 
-import ContentTesting.BasePageMob;
-import ContentTesting.LoginScreen;
-import ContentTesting.PracticeScreen;
-import ContentTesting.Splashscreen;
+import WebAppContentTesting.BasePageMob;
+import WebAppContentTesting.LoginScreen;
+import WebAppContentTesting.PracticeScreen;
+import WebAppContentTesting.Splashscreen;
 
 public class PracticeTest extends BaseTestMob 
 {

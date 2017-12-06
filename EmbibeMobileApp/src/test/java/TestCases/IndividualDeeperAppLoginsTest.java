@@ -15,9 +15,10 @@ import DeeperApp.InstituteLoginScreen;
 import DeeperApp.Splashscreen;
 import Screens.BasePageMob;
 import utils.EmbibeUtils;
+import utils.GoogleSheetUpdateUtils;
 import utils.JavaUtils;
 
-public class DeeperAppLoginTest extends BaseTestMob 
+public class IndividualDeeperAppLoginsTest extends BaseTestMob 
 {
 	BasePageMob ss;
 	String sheetName = "Sheet1";
@@ -26,31 +27,18 @@ public class DeeperAppLoginTest extends BaseTestMob
 	@Test(dataProvider="getDeeperActualData")
 	public void loginTest(String row,String goal,String appId,String dob) throws Exception
 	{	
-		
-		boolean flag = false;
+		String status = "";
 		try {
 			basepagemob = new BasePageMob(driverMob);
 			driverMob = basepagemob.LaunchmobApp(goal);
-			Splashscreen ss=new Splashscreen(driverMob);
-			InstituteLoginScreen insLog=ss.splashScreen();
-			HomeScreen hs= insLog.instituteLoginScreen();
-			EnggLoginScreen engglog=hs.homescreen();
+			EnggLoginScreen engglog=new EnggLoginScreen(driverMob);
 			engglog.enggLoginScreen(goal,appId,dob);
-			flag = true;
+			status = "Pass";
 		} catch (Exception e) {
-			resultData = new LinkedHashMap<String, String>();
-			if(flag)
-				resultData.put("status", "Pass");
-			else{
-				resultData.put("status", "Fail");
-				resultData.put("Comments", e.getMessage());
-			}
-			EmbibeUtils.writeDeeperActualData(sheetName, resultData, Integer.parseInt(row)+1);
+				status = "Fail";
 		}
-		
-		/*HomeScreen hs=new HomeScreen(driverMob);	
-		EnggLoginScreen engglog=hs.homescreen();
-		engglog.enggLoginScreen();*/
+		//EmbibeUtils.writeDeeperActualData(sheetName, resultData, Integer.parseInt(row)+1);
+		GoogleSheetUpdateUtils.updateDeeperStudentLoginStatus(appId, status);
 	}
 	
 	@DataProvider

@@ -19,12 +19,10 @@ public AppiumDriver<MobileElement> driverMob;
 	
 	@BeforeMethod
 	public void setUp() throws IOException, InterruptedException{
-		JavaUtils.resetApp(JavaUtils.getPropValue("appPackage"));
+		//JavaUtils.resetApp(JavaUtils.getPropValue("appPackage"));
 		JavaUtils.resetApp(JavaUtils.getPropValue("deeperEnggApp"));
 		JavaUtils.resetApp(JavaUtils.getPropValue("deeperMediApp"));
-		basepagemob = new BasePageMob(driverMob);
-		driverMob = basepagemob.LaunchmobApp();
-		
+	
 }
 	
 	

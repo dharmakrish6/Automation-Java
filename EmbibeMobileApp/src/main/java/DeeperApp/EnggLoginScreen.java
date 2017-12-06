@@ -1,23 +1,12 @@
 package DeeperApp;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Reporter;
 
 import Screens.BasePageMob;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import utils.JavaUtils;
 
 public class EnggLoginScreen extends BasePageMob
 {
@@ -33,7 +22,7 @@ public class EnggLoginScreen extends BasePageMob
 	
 	@AndroidFindBy(id="com.msipl.deeper:id/buttonMedical")
 	MobileElement medicalSignIn;
-	
+						
 	@AndroidFindBy(id="com.embibe.institute.deeper.engineering:id/editLoginId")
 	MobileElement enggLoginEmailId;
 	
@@ -52,35 +41,51 @@ public class EnggLoginScreen extends BasePageMob
 	@AndroidFindBy(id="com.embibe.institute.deeper.medical:id/buttonLogin")
 	MobileElement medicalLoginButton;
 
+	@AndroidFindBy(id="com.embibe.institute.deeper.engineering:id/buttonNext")
+	MobileElement engNextBtn;
+	
+	@AndroidFindBy(id="com.embibe.institute.deeper.medical:id/buttonNext")
+	MobileElement medNextBtn;
+	
+	@AndroidFindBy(xpath="//*[contains(@resource-id,'imageHome')]")
+	MobileElement homeImage;
 	
 	
 	public void enggLoginScreen(String goal,String appId,String dob) throws Exception
 	{
 		if(goal.equalsIgnoreCase("medical")){
-			medicalSignIn.click();
+			//medicalSignIn.click();
 			waitUntilElementAppears(medicalLoginEmailId);
 			medicalLoginEmailId.sendKeys(appId);
 			Thread.sleep(2000);
 			closeKeyboard();
-			medicalLoginPassword.click();
+			medNextBtn.click();
+			waitUntilElementAppears(medicalLoginPassword);
+			medicalLoginPassword.sendKeys(dob.replaceAll("-", "/"));
+			/*medicalLoginPassword.click();
 			waitUntilElementclickable(date_List.get(0));
 			String[] dobs = dob.split("-"); 
-			selectDate(dobs[0], dobs[1], dobs[2]);
+			selectDate(dobs[0], dobs[1], dobs[2]);*/
 			waitUntilElementAppears(medicalLoginButton);
 			medicalLoginButton.click();
 		}
 		else if(goal.equalsIgnoreCase("engineering")){
-			enggSignIn.click();
+			//enggSignIn.click();
 			waitUntilElementAppears(enggLoginEmailId);
 			enggLoginEmailId.sendKeys(appId);
 			Thread.sleep(2000);
 			closeKeyboard();
-			enggLoginPassword.click();
+			engNextBtn.click();
+			waitUntilElementAppears(enggLoginPassword);
+			enggLoginPassword.sendKeys(dob.replaceAll("-", "/"));
+			closeKeyboard();
+			/*enggLoginPassword.click();
 			waitUntilElementclickable(date_List.get(0));
 			String[] dobs = dob.split("-"); 
-			selectDate(dobs[0], dobs[1], dobs[2]);
+			selectDate(dobs[0], dobs[1], dobs[2]);*/
 			waitUntilElementAppears(enggLoginButton);
 			enggLoginButton.click();
+			waitUntilElementclickable(homeImage);
 		}
 		
 		//Reporter.log("Successfully Logged In",true);

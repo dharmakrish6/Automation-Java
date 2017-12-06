@@ -30,13 +30,13 @@ public class InstituteLoginScreen extends BasePageMob
 	
 	public HomeScreen instituteLoginScreen() throws Exception
 	{
-		waitUntilElementAppears(InstLoginId);
+		/*waitUntilElementAppears(InstLoginId);
 		InstLoginId.sendKeys("REG71491");
 		closeKeyboard();
 		InstLoginPassword.sendKeys("18/08/2000");
 		closeKeyboard();
 		Thread.sleep(2000);
-		InstLoginButton.click();
+		InstLoginButton.click();*/
 		return new HomeScreen(driverMob);
 	}
 }

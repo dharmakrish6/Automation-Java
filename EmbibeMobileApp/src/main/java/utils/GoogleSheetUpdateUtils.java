@@ -121,6 +121,7 @@ public class GoogleSheetUpdateUtils {
             // Print columns A and E, which correspond to indices 0 and 4.
             try {
 				String AppId =  row.get(0).toString();
+				System.out.println(AppId);
 				if(AppId.equals(ApplicationId)){
 					List<List<Object>> inputValues = Arrays.asList(
 					        Arrays.asList(new Object[]{status})

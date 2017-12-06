@@ -1,4 +1,4 @@
-package ContentTesting;
+package WebAppContentTesting;
 
 import java.io.IOException;
 import java.util.ArrayList;

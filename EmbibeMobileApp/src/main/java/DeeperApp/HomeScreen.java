@@ -35,7 +35,7 @@ public class HomeScreen extends BasePageMob
 	
 	public EnggLoginScreen homescreen() throws InterruptedException, IOException
 	{
-		Reporter.log("Navigated to Home Screen",true);
+		/*Reporter.log("Navigated to Home Screen",true);
 		waitUntilElementclickable(sendVerification_Btn);
 		driverMob.navigate().back();
 		waitUntilElementclickable(hamburger);
@@ -45,7 +45,7 @@ public class HomeScreen extends BasePageMob
 		waitUntilElementclickable(practiceExams);
 		practiceExams.click();
 		waitUntilElementclickable(sendVerification_Btn);
-		driverMob.navigate().back();
+		driverMob.navigate().back();*/
 		return new EnggLoginScreen(driverMob);
 	}
 }

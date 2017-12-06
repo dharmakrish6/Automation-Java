@@ -1,4 +1,4 @@
-package ContentTesting;
+package WebAppContentTesting;
 
 import org.openqa.selenium.support.PageFactory;
 

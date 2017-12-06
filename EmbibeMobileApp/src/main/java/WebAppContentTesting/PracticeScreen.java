@@ -1,4 +1,4 @@
-package ContentTesting;
+package WebAppContentTesting;
 
 import java.util.List;
 

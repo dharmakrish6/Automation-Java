@@ -58,7 +58,7 @@ public class BasePageMob
 	}  
 
 	//	@Test
-	public AppiumDriver<MobileElement> LaunchmobApp() throws IOException
+	public AppiumDriver<MobileElement> LaunchmobApp(String goal) throws IOException
 	{
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -66,12 +66,17 @@ public class BasePageMob
 		capabilities.setCapability("platformVersion", JavaUtils.getPropValue("platformVersion"));
 		capabilities.setCapability("deviceName", JavaUtils.getPropValue("deviceName"));
 
-		//For engineering
-		/*capabilities.setCapability("appPackage", "com.embibe.institute.sinhal.engineering");
-        	capabilities.setCapability("appActivity", "com.embibe.institute.sinhal.engineering.activities.SplashActivity");
-		 */
-		capabilities.setCapability("appPackage", JavaUtils.getPropValue("appPackage"));
-		capabilities.setCapability("appActivity", JavaUtils.getPropValue("appActivity"));
+		if(goal.equalsIgnoreCase("medical")){
+			capabilities.setCapability("appPackage", JavaUtils.getPropValue("deeperMediApp"));
+			capabilities.setCapability("appActivity", JavaUtils.getPropValue("deeperMediAppActivity"));
+			
+		}else if(goal.equalsIgnoreCase("engineering")){
+			capabilities.setCapability("appPackage", JavaUtils.getPropValue("deeperEnggApp"));
+			capabilities.setCapability("appActivity", JavaUtils.getPropValue("deeperEnggAppActivity"));
+			
+		}
+		
+		
 		try {
 			driverMob = new AndroidDriver<MobileElement>(new URL("http://0.0.0.0:4723/wd/hub"), capabilities);
 
