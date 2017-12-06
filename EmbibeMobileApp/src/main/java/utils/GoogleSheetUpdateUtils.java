@@ -107,7 +107,8 @@ public class GoogleSheetUpdateUtils {
     @SuppressWarnings("unchecked")
     public static void updateDeeperStudentLoginStatus(String ApplicationId,String status) throws IOException {
         // Build a new authorized API client service.
-        Sheets service = getSheetsService();
+    	int rowCount = 1;
+    	Sheets service = getSheetsService();
 
         ValueRange response = service.spreadsheets().values()
             .get(spreadsheetId, srcRange)
@@ -116,22 +117,21 @@ public class GoogleSheetUpdateUtils {
         if (values == null || values.size() == 0) {
             System.out.println("No data found.");
         } else {
-          int rowCount = 1;
           for (List row : values) {
             // Print columns A and E, which correspond to indices 0 and 4.
             try {
 				String AppId =  row.get(0).toString();
-				System.out.println(AppId);
 				if(AppId.equals(ApplicationId)){
 					List<List<Object>> inputValues = Arrays.asList(
 					        Arrays.asList(new Object[]{status})
 					);
-					destRange = destRange + String.valueOf(rowCount);
+					String range = destRange;
+					range = range + String.valueOf(rowCount);
 					ValueRange body = new ValueRange()
 					        .setValues(inputValues);
 					try {
 						UpdateValuesResponse result =
-						        service.spreadsheets().values().update(spreadsheetId, destRange, body)
+						        service.spreadsheets().values().update(spreadsheetId, range, body)
 						                .setValueInputOption("USER_ENTERED")
 						                .execute();
 						System.out.println("Status updated for Application Id: "+ApplicationId);
@@ -146,6 +146,7 @@ public class GoogleSheetUpdateUtils {
             rowCount++;
           }
         }
+        
     }
 
 }
