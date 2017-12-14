@@ -55,6 +55,22 @@ public class DslPage extends W_BasePage {
 		return results;
 	}
 	
+	public LinkedHashMap<String,Object> getTestXpaths(String uniqueValue,String examCode) throws JSONException, IOException{
+		String query = uniqueValue.replaceAll(" ", "+");
+		if(!examCode.equalsIgnoreCase("na"))
+			query = query+"&exam_code="+examCode;
+		String url = "http://10.140.10.116:7777/search?query="+query+"&consumer=tech";
+		wdriver.navigate().to(url);
+		String pagesource = wdriver.getPageSource();
+		pagesource = pagesource.replace("<html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head><body>", "");
+		pagesource = pagesource.replace("</body></html>", "");
+		pagesource = pagesource.replace("<pre style=\"word-wrap: break-word; white-space: pre-wrap;\">", "");
+		pagesource = pagesource.replace("</pre>", "");
+		LinkedHashMap<String,Object> data = EmbibeUtils.getTestXpaths(pagesource);
+		JavaUtils.writeResultsToFile("jsonOutput.json", pagesource);
+		return data;
+	}
+	
 	public LinkedHashMap<String,String> searchQuery(String query,String stream) throws InterruptedException{
 		LinkedHashMap<String, String> dslData = new LinkedHashMap<String, String>();
 		waitUntilElementAppears(query_TB);

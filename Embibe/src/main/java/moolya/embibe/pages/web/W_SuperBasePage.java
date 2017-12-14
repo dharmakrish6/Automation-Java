@@ -101,6 +101,10 @@ public class W_SuperBasePage extends JavaUtils{
 				.element(element)
 				.compare();
 	}
+	
+	public String getCurrentUrl(){
+		return wdriver.getCurrentUrl();
+	}
 
 	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchWebApp(String browser) throws IOException

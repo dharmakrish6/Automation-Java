@@ -1,17 +1,17 @@
 package moolya.embibe.utils;
 
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
-import static io.restassured.path.json.JsonPath.from;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -29,8 +29,6 @@ import org.openqa.selenium.logging.LogEntry;
 import org.openqa.selenium.logging.LogType;
 import org.testng.Assert;
 
-import io.restassured.http.ContentType;
-import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
@@ -39,6 +37,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class EmbibeUtils {
 
+	@SuppressWarnings("serial")
 	public static HashMap<String, String> examsMap = new HashMap<String, String>(){{
 		put("ex15", "10th Foundation");put("ex14", "10th NTSE");put("ex16", "9th Foundation");
 		put("ex17", "8th Foundation");put("ex27", "IBPS Clerk Mains");put("ex13", "IBPS PO Prelims");
@@ -50,8 +49,10 @@ public class EmbibeUtils {
 		put("ex9", "NEET");put("ex19", "AIIMS");
 		put("gl1","10th Foundation");put("gl2","9th Foundation");put("gl9","Medical");
 		put("gl3","8th Foundation");put("gl6","Banking & Clerical");put("gl8","Engineering");
+		put("all","all");
 	}};
 
+	@SuppressWarnings("unused")
 	public static ArrayList<LinkedHashMap<String,String>> getEventLogs(WebDriver wdriver, String className){
 		String text = "";
 		ArrayList<LinkedHashMap<String, String>> events = new ArrayList<LinkedHashMap<String,String>>();
@@ -298,7 +299,7 @@ public class EmbibeUtils {
 				JSONObject result = results.getJSONObject(i);
 				String widgetType = result.getString("widget").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
 				String widgetName = result.getString("name").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
-//				String widgetIndex = result.getString("index").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
+				//				String widgetIndex = result.getString("index").replaceAll("&amp;", "&").replaceAll("&amp;amp;", "&").replaceAll("&amp;#39;", "'");
 				if(!widgetType.equalsIgnoreCase("pack-reco") && !widgetType.equalsIgnoreCase("ask-box")){
 					String widget = widgetType+"="+widgetName;
 					if(widgets.length()==0)
@@ -340,6 +341,59 @@ public class EmbibeUtils {
 		}
 		return dslData;
 	}
+
+	public static LinkedHashMap<String,Object> getTestXpaths(String response) throws JSONException, IOException{
+		LinkedHashMap<String,Object> resData = new LinkedHashMap<String, Object>();
+		Set<String> xpaths = new HashSet<String>();
+		JSONObject json = new JSONObject(response);
+		JSONObject data = json.getJSONObject("data");
+		JSONObject availableTests = json.getJSONObject("available_tests");
+		boolean status = false;
+		JSONArray allTest = null;
+			try {
+				allTest = availableTests.getJSONArray("chapterwise-test");
+			} catch (Exception e) {}
+			try {
+				allTest = availableTests.getJSONArray("part-test");
+			} catch (Exception e) {}
+				for(int j=0;j<allTest.length();j++){
+					try {
+						JSONObject test = allTest.getJSONObject(j);
+						String xpath = test.getString("xpath");
+						xpaths.add(xpath);
+					} catch (Exception e) {}
+				}
+			
+		data.put("Xpaths", xpaths);
+		if(xpaths.size()==1)
+			status = true;
+		data.put("Status", status);
+		return resData;
+	}
+	
+	@SuppressWarnings("serial")
+	public static String getLearnApiResponse(final String url){
+		final String entityCode = url.split("=")[1];
+		final String learnPath = url.substring(url.indexOf("study/")+6,url.indexOf("entity_code")-1);
+		String apiUrl = "https://preprodms.embibe.com/content_ms/v1/embibe/en/learn";
+		HashMap<String, String> params = new HashMap<String, String>(){{
+			put("learn_path",learnPath);put("entity_code",entityCode);
+		}};
+		HashMap<String, String> headers = new HashMap<String, String>(){{
+			put("Accept","application/json, text/plain, */*");put("Origin","https://preprod.embibe.com");
+			put("User-Agent","Mozilla/5.0 (Windows NT 6.1; Win64; x64)"
+					+ " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36");
+			put("embibe-token","eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpZCI6NTY5MzAyOCwiZ"
+					+ "W1haWwiOiJndWVzdF8xNTEzMjM0OTgwMzEyOTQ2QGVtYmliZS5jb20iLCJpc19ndWVzd"
+					+ "CI6dHJ1ZSwicm9sZSI6InN0dWRlbnQifQ.NO9Wwhv8yVP3uN7eaU4qqKtkS4CUd13XdV"
+					+ "hkcDk1Qgz5IG7GJOpxQVFB9ULAqXurDJocyORDRVscJavTbECI2w");
+			put("Referer",url);
+			put("Accept-Encoding","gzip, deflate, br");put("Accept-Language","en-US,en;q=0.9");
+		}};
+		Response response = given().queryParams(params).headers(headers).when().get(apiUrl);
+		return response.asString();
+	}
+
 
 	public static void printJsonObject(JSONObject json) throws JSONException {
 		Iterator<?> keys = json.keys();
@@ -450,7 +504,7 @@ public class EmbibeUtils {
 
 		return dataMap;
 	}
-	
+
 	public static String getPublicIp() throws JSONException{
 		Response response = ApiUtils.getJSONResponseWithoutParameters("https://api.ipify.org?format=json");
 		JSONObject res = new JSONObject(response.asString());

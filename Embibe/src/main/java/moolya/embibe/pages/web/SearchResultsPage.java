@@ -93,7 +93,7 @@ public class SearchResultsPage extends W_BasePage {
 	@FindBy(css="div.topic-wrapper div.topic-description")
 	private WebElement topicDescription_Lbl;
 
-	@FindBy(css="div.topic-wrapper a.linkMore")
+	@FindBy(css="a.linkMore")
 	private WebElement learMore_Link;
 
 	@FindBy(css="div.concept>div.heading")
@@ -686,6 +686,12 @@ public class SearchResultsPage extends W_BasePage {
 			}
 		}
 		return text;
+	}
+	
+	public NewLearnPage clickLearnMore(){
+		waitUntilElementclickable(learMore_Link);
+		learMore_Link.click();
+		return new NewLearnPage(wdriver);
 	}
 
 	public String getSearchResultText(){
