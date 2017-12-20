@@ -689,8 +689,13 @@ public class SearchResultsPage extends W_BasePage {
 	}
 	
 	public NewLearnPage clickLearnMore(){
-		waitUntilElementclickable(learMore_Link);
-		learMore_Link.click();
+		try {
+			waitUntilElementclickable(learMore_Link);
+			learMore_Link.click();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new NewLearnPage(wdriver);
 	}
 

@@ -17,57 +17,38 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import atu.testrecorder.exceptions.ATUTestRecorderException;
-import moolya.embibe.pages.web.LandingPage;
+import moolya.embibe.pages.web.DslPage;
 import moolya.embibe.pages.web.NewLearnPage;
-import moolya.embibe.pages.web.SearchHomepage;
-import moolya.embibe.pages.web.SearchResultsPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.utils.EmbibeUtils;
 
-public class SearchNewLearnLinkTest {
-
-	LinkedHashMap<String, String> resultData;
+public class NonRelevantExamXpathTest {
+	String uniqueValue = "physics test";
+	String examCode = "ex4";
 	private WebDriver wdriver;
 	private W_BasePage basepage;
-	private LandingPage lp;
-	private SearchHomepage shp;
-	private SearchResultsPage srp;
 	private NewLearnPage nlp;
-	String sheetName = "Units";
-
-	@Test(dataProvider="getNewUrls")
-	public void searchNewLearnLinkTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
-//		String uniqueValue = "heart";
-		String text = uniqueValue;
-		resultData = new LinkedHashMap<String,String>();
+	private String sheetName = "LearnUnit";
+	
+	@Test(dataProvider="getLearnLinks")
+	public void nonRelevantExamXpathTest(String row,String uniqueValue) throws IOException, JSONException, EncryptedDocumentException, NumberFormatException, InvalidFormatException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp("chrome");
-		lp = new LandingPage(wdriver);
-		lp.waitForLandingPageToLoad();
-		shp = lp.clickStartNow();
-		shp.enterSearchText(text);
-		try {
-			srp = new SearchResultsPage(wdriver);
-			nlp = srp.clickLearnMore();
-			boolean flag = nlp.checkForLearnPageLoad();
-			String link = nlp.getCurrentUrl();
-			if(flag)
-				resultData.put("Status", "Pass");
-			else
-				resultData.put("Status", "Fail");
-			resultData.put("Link", link);
-		} catch (Exception e) {
-			resultData.put("Status", "Error in search");
-		}
-		EmbibeUtils.writeDslActualData(sheetName, resultData, Integer.parseInt(row)+1);
+		String text = uniqueValue;
+		nlp = new NewLearnPage(wdriver);
+		nlp = nlp.openLearnLink(text);
+		LinkedHashMap<String, String> resultData = nlp.getTestXpaths();
+		EmbibeUtils.writeDslActualData(sheetName , resultData, Integer.parseInt(row)+1);
 	}
-
+	
 	@DataProvider
-	public Object[][] getNewUrls() throws EncryptedDocumentException, InvalidFormatException, IOException{
+	public Object[][] getLearnLinks() throws EncryptedDocumentException, InvalidFormatException, IOException{
 		Object[][] obj = null;
 		obj = EmbibeUtils.readDslUniqueValues(sheetName);
 		return obj;
@@ -96,11 +77,17 @@ public class SearchNewLearnLinkTest {
 			File file = new File(System.getProperty("java.io.tmpdir"));
 			FileUtils.cleanDirectory(file);
 		}catch (IOException e) {}
+		wdriver.close();
+	}
+	
+	@AfterTest
+	public void tearDown(){
 		try{
 			wdriver.quit();
 		}catch(Exception e){
 			wdriver.close();
 		}
+
 	}
-	
+
 }

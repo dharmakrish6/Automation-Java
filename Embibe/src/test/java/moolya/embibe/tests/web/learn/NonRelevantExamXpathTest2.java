@@ -1,4 +1,4 @@
-package moolya.embibe.tests.web.dsl;
+package moolya.embibe.tests.web.learn;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,59 +6,60 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedHashMap;
-import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.json.JSONException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.Reporter;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.DslPage;
+import moolya.embibe.pages.web.NewLearnPage;
 import moolya.embibe.pages.web.W_BasePage;
 import moolya.embibe.utils.EmbibeUtils;
 
-public class NonRelevantExamXpathTest {
+public class NonRelevantExamXpathTest2 {
 	String uniqueValue = "physics test";
 	String examCode = "ex4";
 	private WebDriver wdriver;
 	private W_BasePage basepage;
-	private String exam;
-	private DslPage dslp;
+	private NewLearnPage nlp;
+	private String sheetName = "LearnUnit";
 	
-
-//	@BeforeTest
-	public void setup() throws IOException{
-		basepage = new W_BasePage(wdriver);
-		wdriver = basepage.launchDsl("chrome");
-		if(examCode.equalsIgnoreCase("na"))
-			exam=examCode;
-		else
-			exam = EmbibeUtils.examsMap.get(examCode);
-	}
-
-	
-	@SuppressWarnings("unchecked")
-	@Test
-	public void nonRelevantExamXpathTest() throws IOException, JSONException{
-//		String text = uniqueValue;
-//		dslp = new DslPage(wdriver);
-//		LinkedHashMap<String, Object> data = dslp.getTestXpaths(text, examCode);
-//		System.out.println(data.get("Current Exam"));
-		String url = "https://preprod.embibe.com/study/organic-chemistry-unit?entity_code=un51";
-		String response = EmbibeUtils.getLearnApiResponse(url);
-		LinkedHashMap<String, Object> data = EmbibeUtils.getTestXpaths(response);
-		Set<String> xpaths = (Set<String>)data.get("Xpaths");
-		for(String xpath:xpaths)
-			System.out.println(xpath);
-		System.out.println(data.get("Status"));
+	@Test(dataProvider="getLearnLinks")
+	public void nonRelevantExamXpathTest(String row,String uniqueValue) throws IOException, JSONException, EncryptedDocumentException, NumberFormatException, InvalidFormatException{
+		LinkedHashMap<String, String> resultData = new LinkedHashMap<String, String>();
+		try {
+			basepage = new W_BasePage(wdriver);
+			wdriver = basepage.launchWebApp("chrome");
+			String text = uniqueValue;
+			nlp = new NewLearnPage(wdriver);
+			nlp = nlp.openLearnLink(text);
+			resultData = nlp.getTestXpaths();
+		} catch (Exception e) {
+			resultData.put("Status", "404 Page");
+		}
+		EmbibeUtils.writeDslActualData(sheetName , resultData, Integer.parseInt(row)+1);
 	}
 	
-//	@AfterMethod
+	@DataProvider
+	public Object[][] getLearnLinks() throws EncryptedDocumentException, InvalidFormatException, IOException{
+		Object[][] obj = null;
+		obj = EmbibeUtils.readDslUniqueValues(sheetName);
+		return obj;
+	}
+	
+	@AfterMethod
 	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
 	{    
 		String dir = System.getProperty("user.dir");
@@ -81,17 +82,10 @@ public class NonRelevantExamXpathTest {
 			File file = new File(System.getProperty("java.io.tmpdir"));
 			FileUtils.cleanDirectory(file);
 		}catch (IOException e) {}
-//		wdriver.navigate().to(JavaUtils.getPropValue("dslUrl"));
-	}
-	
-//	@AfterTest
-	public void tearDown(){
 		try{
 			wdriver.quit();
 		}catch(Exception e){
 			wdriver.close();
 		}
-
 	}
-
 }

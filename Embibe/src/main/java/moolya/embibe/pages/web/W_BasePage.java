@@ -1492,6 +1492,13 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on 'Privacy Policy' icon",true);
 	}
 	
+	public NewLearnPage openLearnLink(String url) throws IOException{
+		url = JavaUtils.getPropValue("testAppUrl")+url;
+		wdriver.navigate().to(url);
+		Reporter.log("Navigated to : "+wdriver.getCurrentUrl(), true);
+		return new NewLearnPage(wdriver);
+	}
+	
 	@FindBy(css="div.tos-section")
 	private WebElement assertPrivacyPolicy;
 	
