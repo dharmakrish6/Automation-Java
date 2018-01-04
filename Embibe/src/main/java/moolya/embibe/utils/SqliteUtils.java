@@ -40,6 +40,27 @@ public class SqliteUtils {
 		}
 		return conn;
 	}
+	
+	public static Connection getDbConnection(String dbName) throws IOException
+	{
+		String dir = System.getProperty("user.dir");
+		String dbPath = dir+"\\db\\"+dbName;
+		// JDBC driver name and database URL
+		dbUrl = "jdbc:sqlite:"+dbPath; //master schema db
+		Connection conn = null;
+		try{
+			//STEP 2: Register JDBC driver
+			Class.forName(JDBC_DRIVER);
+
+			//STEP 3: Open a connection
+			System.out.println("Connecting to a selected database...");
+			conn = DriverManager.getConnection(dbUrl);
+			System.out.println("Connected database successfully...");
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return conn;
+	}
 
 	public static void getEmails() throws ClassNotFoundException, IOException
 	{
@@ -148,6 +169,166 @@ public class SqliteUtils {
 		
 		return count;
 
+	}
+	
+	public static Object[][] getLearnParams() throws IOException{
+		Object[][] obj = null;
+		Connection conn = getDbConnection("ConceptsVideoData.db");
+		Statement stmt = null;
+		ArrayList<String> learnPaths = new ArrayList<String>();
+		ArrayList<String> entityCodes = new ArrayList<String>();
+		try{
+			// Execute a query
+			conn.setAutoCommit(false);
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			
+			String sql = "select `learn_path`,`entity_code` from `LearnConcept`;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+				learnPaths.add(rs.getString("learn_path"));
+				entityCodes.add(rs.getString("entity_code"));
+			}
+			obj = new Object[learnPaths.size()][2];
+			for(int i=0;i<learnPaths.size();i++){
+				obj[i][0] = learnPaths.get(i);
+				obj[i][1] = entityCodes.get(i);
+			}
+			stmt.close();
+			conn.commit();
+			return obj;
+		} //end try
+		catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+
+		finally
+		{
+			//finally block used to close resources
+			try
+			{
+				if(stmt!=null)
+					conn.close();
+			}
+			catch(SQLException se){
+			}// do nothing
+			try
+			{
+				if(conn!=null)
+					conn.close();
+			}
+			catch(SQLException se)
+			{
+				se.printStackTrace();
+			}
+			System.out.println("Goodbye!");
+		}//end finally
+		
+		return obj;
+	}
+	
+	public static Object[][] getLearnParamsForReRun() throws IOException{
+		Object[][] obj = null;
+		Connection conn = getDbConnection("ConceptsVideoData.db");
+		Statement stmt = null;
+		ArrayList<String> learnPaths = new ArrayList<String>();
+		ArrayList<String> entityCodes = new ArrayList<String>();
+		try{
+			// Execute a query
+			conn.setAutoCommit(false);
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			
+			String sql = "select `learn_path`,`entity_code`,`video_count` from `LearnConcept` where `video_count`=\"\";";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+					learnPaths.add(rs.getString("learn_path"));
+					entityCodes.add(rs.getString("entity_code"));
+			}
+			obj = new Object[learnPaths.size()][2];
+			for(int i=0;i<learnPaths.size();i++){
+				obj[i][0] = learnPaths.get(i);
+				obj[i][1] = entityCodes.get(i);
+			}
+			System.out.println(learnPaths.size());
+			stmt.close();
+			conn.commit();
+			return obj;
+		} //end try
+		catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+
+		finally
+		{
+			//finally block used to close resources
+			try
+			{
+				if(stmt!=null)
+					conn.close();
+			}
+			catch(SQLException se){
+			}// do nothing
+			try
+			{
+				if(conn!=null)
+					conn.close();
+			}
+			catch(SQLException se)
+			{
+				se.printStackTrace();
+			}
+			System.out.println("Goodbye!");
+		}//end finally
+		
+		return obj;
+	}
+	
+	public static void updateLearnVideoCount(String learn_path, String entity_code, String count) throws IOException{
+		Connection conn = getDbConnection("ConceptsVideoData.db");
+		Statement stmt = null;
+		try{
+			// Execute a query
+			conn.setAutoCommit(false);
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			
+			String sql = "update `LearnConcept` set `video_count`=\""+count+"\" where `learn_path`=\""+learn_path+"\""
+					+ " and `entity_code`=\""+entity_code+"\";";
+			stmt.executeUpdate(sql);
+			
+			stmt.close();
+			conn.commit();
+		} //end try
+		catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+
+		finally
+		{
+			//finally block used to close resources
+			try
+			{
+				if(stmt!=null)
+					conn.close();
+			}
+			catch(SQLException se){
+			}// do nothing
+			try
+			{
+				if(conn!=null)
+					conn.close();
+			}
+			catch(SQLException se)
+			{
+				se.printStackTrace();
+			}
+			System.out.println("Goodbye!");
+		}//end finally
+		
 	}
 	
 	public static ArrayList<String> storeSegmentIoResultsToDb(ArrayList<LinkedHashMap<String, String>> results) throws ClassNotFoundException, IOException
