@@ -20,7 +20,7 @@ public class Guest_SearchHomePage_Test extends W_BaseTest {
 		uniqueValue2 = "Sanity_12";
 	}
 	
-	String rearchURL="https://rearch.embibe.com";
+	String rearchURL="https://www.embibe.com";
 	
 	String jeeMain_URL=rearchURL+"/exams/jee-main/";
 	String neet_URL=rearchURL+"/exams/neet/";
@@ -74,11 +74,11 @@ public class Guest_SearchHomePage_Test extends W_BaseTest {
 		shp.clickJumpEmbibeLogo();
 		shp.clickRank();
 		shp.clickRankupEmbibeLogo();
-		/*shp.clickInstitutes();
+		shp.clickInstitutes();
 		shp.verifyInstitutePage();
 		shp.navigateBack();
 		shp.header_guestIcons();
-		shp.searchEngineSection();*/
+		shp.searchEngineSection();
 		Reporter.log("========================================Unregistered User====================================",true);
 		log_p=shp.clickLoginBtn();
 		shp=log_p.unRegisterUser("unregistered@moolya.com","moolya123456");

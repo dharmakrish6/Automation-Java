@@ -47,9 +47,20 @@ public class EnggLoginScreen extends BasePageMob
 	@AndroidFindBy(id="com.embibe.institute.deeper.medical:id/buttonNext")
 	MobileElement medNextBtn;
 	
-	@AndroidFindBy(xpath="//*[contains(@resource-id,'imageHome')]")
+	@AndroidFindBy(xpath="//*dr[contains(@resource-id,'imageHome')]")
 	MobileElement homeImage;
 	
+	@AndroidFindBy(id="com.embibe.institute.deeper.medical:id/editPassword")
+	MobileElement med_newPassword;
+	
+	@AndroidFindBy(id="com.embibe.institute.deeper.medical:id/editConfirmPassword")
+	MobileElement med_confirmPassword;
+	
+	@AndroidFindBy(id="com.embibe.institute.deeper.engineering:id/editPassword")
+	MobileElement eng_newPassword;
+	
+	@AndroidFindBy(id="com.embibe.institute.deeper.engineering:id/editConfirmPassword")
+	MobileElement eng_confirmPassword;
 	
 	public void enggLoginScreen(String goal,String appId,String dob) throws Exception
 	{
@@ -61,7 +72,10 @@ public class EnggLoginScreen extends BasePageMob
 			closeKeyboard();
 			medNextBtn.click();
 			waitUntilElementAppears(medicalLoginPassword);
-			medicalLoginPassword.sendKeys(dob.replaceAll("-", "/"));
+			med_newPassword.sendKeys("embibe1234");
+			closeKeyboard();
+			med_confirmPassword.sendKeys("embibe1234");
+			//medicalLoginPassword.sendKeys(dob.replaceAll("-", "/"));
 			/*medicalLoginPassword.click();
 			waitUntilElementclickable(date_List.get(0));
 			String[] dobs = dob.split("-"); 
@@ -69,6 +83,7 @@ public class EnggLoginScreen extends BasePageMob
 			closeKeyboard();
 			waitUntilElementAppears(medicalLoginButton);
 			medicalLoginButton.click();
+			waitUntilElementclickable(homeImage);
 		}
 		else if(goal.equalsIgnoreCase("engineering")){
 			//enggSignIn.click();
@@ -78,7 +93,10 @@ public class EnggLoginScreen extends BasePageMob
 			closeKeyboard();
 			engNextBtn.click();
 			waitUntilElementAppears(enggLoginPassword);
-			enggLoginPassword.sendKeys(dob.replaceAll("-", "/"));
+			//enggLoginPassword.sendKeys(dob.replaceAll("-", "/"));
+			eng_newPassword.sendKeys("embibe1234");
+			closeKeyboard();
+			eng_confirmPassword.sendKeys("embibe1234");
 			closeKeyboard();
 			/*enggLoginPassword.click();
 			waitUntilElementclickable(date_List.get(0));

@@ -45,13 +45,13 @@ public class Guest_ChooseMissionWindow_Test extends W_BaseTest {
 		Reporter.log("====================Mission for Medical , Exam Links====================",true);
 		cmp.selectGoal_and_Exam("Medical");
 		Reporter.log("====================Mission for Foundation-10 , Exam Links====================",true);
-		cmp.selectGoal_and_Exam("Foundation-10");
+		cmp.selectGoal_and_Exam("10th Foundation");
 		Reporter.log("====================Mission for Foundation-09 , Exam Links====================",true);
-		cmp.selectGoal_and_Exam("Foundation-09");
+		cmp.selectGoal_and_Exam("9th Foundation");
 		Reporter.log("====================Mission for Foundation-08 , Exam Links====================",true);
-		cmp.selectGoal_and_Exam("Foundation-08");
+		cmp.selectGoal_and_Exam("8th Foundation");
 		Reporter.log("====================Mission for Bank , Exam Links====================",true);
-		cmp.selectGoal_and_Exam("Bank");
+		cmp.selectGoal_and_Exam("Banking & Clerical");
 		Reporter.log("-------------------------------------------------------------------------------------------------",true);
 		shp.refreshPage();
 		Thread.sleep(5000);

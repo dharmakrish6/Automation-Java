@@ -4,27 +4,11 @@
   <test name="Test">
     <classes>
       <class name="moolya.embibe.tests.web.functional.landingPage.LandingPageTest"/>
-      
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Guest_SearchHomePage_Test"/>
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Guest_ChooseMissionWindow_Test"/>
       <class name="moolya.embibe.tests.web.functional.searchHomePage.Guest_RequestMissionWindow_Test"/>
-      <class name="moolya.embibe.tests.web.functional.searchResultsPage.Guest_SearchResultsPage_Test"/>
       
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.LoginUser_SearchHomePage_Test"/>
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.LoginUser_ChooseMissionWindow_Test"/>
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.LoginUser_RequestMissionWindow_Test"/>
-      <class name="moolya.embibe.tests.web.functional.searchResultsPage.LoginUser_SearchResultsPage_Test"/>
-       
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Home_Page"/>
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Search_Result_Page"/>
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Signup_Page"/>
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_in_Learn_Page"/>
-      <class name="moolya.embibe.tests.web.functional.jumpPage.Login_in_Jump_Page"/>
-      
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.SignupPage_Footer_Test"/>
-      <class name="moolya.embibe.tests.web.functional.askPage.AskPageTest"/>
-      <class name="moolya.embibe.tests.web.functional.searchHomePage.Login_Logout_ExamPages_test"/>
-      
+     
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

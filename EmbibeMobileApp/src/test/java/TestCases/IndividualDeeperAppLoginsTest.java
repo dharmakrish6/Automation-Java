@@ -37,8 +37,10 @@ public class IndividualDeeperAppLoginsTest extends BaseTestMob
 		} catch (Exception e) {
 				status = "Fail";
 		}
-		//EmbibeUtils.writeDeeperActualData(sheetName, resultData, Integer.parseInt(row)+1);
-		GoogleSheetUpdateUtils.updateDeeperStudentLoginStatus(appId, status);
+		resultData = new LinkedHashMap<String, String>();
+		resultData.put("status", status);
+		EmbibeUtils.writeDeeperActualData(sheetName, resultData, Integer.parseInt(row)+1);
+		//GoogleSheetUpdateUtils.updateDeeperStudentLoginStatus(appId, status);
 	}
 	
 	@DataProvider

@@ -19,7 +19,7 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 	private LandingPage lp;
 	private SearchHomepage shp;
 	
-	String rearchURL="https://rearch.embibe.com";
+	String rearchURL="https://www.embibe.com";
 	
 	String jeeMain_URL=rearchURL+"/exams/jee-main/";
 	String neet_URL=rearchURL+"/exams/neet/";
@@ -53,7 +53,7 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 	public void searchHomePage_Footer_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException, AWTException{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
-		Reporter.log("Starting Test: Functional : SearchHomePage Footers :"+ ", Browser is :" + browser, true);
+		Reporter.log("Starting Test: Functional : Search Home Page Footers :"+ ", Browser is :" + browser, true);
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		lp.assertLandingPage();
