@@ -7,7 +7,7 @@ Resource         ../Keyword/Content/HomePage.robot
 Resource         ../Keyword/Signup.robot
 
 *** Test Cases ***
-TestCase 4: Sign Up as a new user
+TestCase 04: Sign Up as a new user
     [Documentation]     This is to verify whether user is able to signup using a new e-mail ID or not
     [Tags]              Smoke
     [Setup]

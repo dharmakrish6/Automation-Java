@@ -6,7 +6,7 @@ Resource         ../Keyword/Common.robot
 Resource         ../Keyword/Search.robot
 
 *** Test Cases ***
-TestCase 2: Login and search for a movie, tv show and music video
+TestCase 02: Login and search for a movie, tv show and music video
     [Documentation]     This is to verify whether Search functionality is working or not
     [Tags]              Basic
     [Setup]

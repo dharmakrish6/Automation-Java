@@ -3,7 +3,7 @@ ${subscription_popup}       xpath=//div[@id='subsribe-modal']//div[@class='modal
 
 #Subscription Page
 ${Monthly_subsplan}         xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[1]/div[1]/a[1]
-${Quarterly_subsplan}   `   xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/div[1]/a[1]
+${Quarterly_subsplan}   `   xpath=//*[@id="app"]/div[1]/div[2]/section/div/div/div/ul/li[2]/div/a
 ${Annual_subsplan}          xpath=/html[1]/body[1]/div[2]/div[1]/div[2]/section[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/div[1]/a[1]
 
 #Payment Mode
@@ -18,10 +18,10 @@ ${MASTER}                   xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/d
 ${MAESTRO}                  xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[1]/ul[1]/li[4]/a[1]/span[1]
 ${RUPAY}                    xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[1]/div[1]/div[1]/ul[1]/li[5]/a[1]/span[1]
 
-${DC_CardNum}               xpath=//input[@id='frm_cc_num']
-${DC_CardName}              xpath=//input[@id='frm_cc_name']
+${CardNum}               xpath=//input[@id='frm_cc_num']
+${CardName}              xpath=//input[@id='frm_cc_name']
 
-${DC_Month}                 xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[1]/div[1]/button[1]
+${DC_Month}             xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[1]/div[1]/button[1]
 ${01}                   xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[2]/a[1]/span[1]
 ${02}                   xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[3]/a[1]/span[1]
 ${03}                   xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[4]/a[1]/span[1]
@@ -46,7 +46,15 @@ ${2024}                 xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1
 ${2025}                 xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[9]/a[1]/span[1]
 ${2068}                 xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[4]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[52]/a[1]/span[1]
 
-${DC_cvv}                   xpath=/html[1]/body[1]/div[2]/div[1]/div[1]/div[2]/div[1]/form[1]/div[5]/div[1]/div[1]/input[1]
-${DC_SaveCard}              xpath=//input[@id='checkbox5']
+${cvv}                  xpath=//*[@id="frm_cc_cvv"]
+${DC_SaveCard}          xpath=//input[@id='checkbox5']
 
-${DC_PayBtn}                xpath=//input[@id='frm_cc_pay_btn']
+${DC_PayBtn}            xpath=//input[@id='frm_cc_pay_btn']
+
+
+${CC_Month}              xpath=//span[@class='filter-option pull-left'][contains(text(),'Select Month')]
+${10}                    xpath=/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/div[1]/div[1]/div[1]/div[1]/ul[1]/li[11]/a[1]
+
+${CC_Year}               xpath=//span[@class='filter-option pull-left'][contains(text(),'Select Year')]
+${2019}                  xpath=/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/div[1]/form[1]/div[3]/div[1]/div[2]/div[1]/div[1]/ul[1]/li[3]/a[1]/span[1]
+

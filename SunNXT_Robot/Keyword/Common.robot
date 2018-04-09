@@ -4,6 +4,7 @@ Library          SeleniumLibrary
 Library          BuiltIn
 Resource         ../Variable/Variables.robot
 Resource         ../Locators/Authentication.robot
+Resource         ../Locators/SunNXThome.robot
 
 *** Keywords ***
 Open Browser
@@ -34,7 +35,7 @@ Click on Sign In link from dropdown
     Click Link      ${signin_link}
 
 Enter UserID
-    Input Text      ${user_name}    soumya.sunnxt@123.com
+    Input Text    ${user_name}    soumya.sunnxt@123.com
 
 Enter Password
     Input Password  ${password}   123456

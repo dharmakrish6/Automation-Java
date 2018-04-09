@@ -7,8 +7,9 @@ Resource         ../Variable/Variables.robot
 Resource         ../Keyword/Subscription.robot
 
 *** Test Cases ***
-TestCase 10: Login with a credential with no subscription and navigate till 'Enter OTP' page
-    [Documentation]     This is to verify subscription flow for Debit Card works properly or not
+TestCase 11: Login with a credential with no subscription and navigate till 'Enter OTP' page
+    #NOTE: Payment Fails as Credit Card Test Data provided is dummy one
+    [Documentation]     This is to verify subscription flow for Credit Card works properly or not
     [Tags]              Content Streaming
     [Setup]
         Open Browser
@@ -25,16 +26,15 @@ TestCase 10: Login with a credential with no subscription and navigate till 'Ent
         Click on Profile button
         Click on subscription link
         Select Monthly Plan
-        Select Debit Card as Payment Mode
-        Select Debit Card Type
-        Enter Debit Card Number
-        Enter Name on Card
-        Select Month Validity of Card
-        Select Year Validity of Card
-        Enter CVV of the Card
+        Select Credit Card as Payment Mode
+        Enter Credit Card Number
+        Enter Name on Credit Card
+        Select Month Validity of Credit Card
+        Select Year Validity of Credit Card
+        Enter CVV of Credit Card
         Uncheck 'SAVE THIS CARD FOR FASTER PAYMENTS'
         Proceed with the payment
-        Check whether navigated page is Rupay e-Pay or not
+        sleep  10s
 
     [Teardown]
         Close Browser

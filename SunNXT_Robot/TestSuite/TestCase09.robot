@@ -10,7 +10,7 @@ Resource         ../Keyword/Content/HomePage.robot
 Resource         ../Variable/Variables.robot
 
 *** Test Cases ***
-TestCase 3: Login with valid credentials and stream a Live TV channel
+TestCase 09: Login with valid credentials and stream a Live TV channel
     [Documentation]     This is to verify valid login for SunNXT web-page and logout
     [Tags]              Content Streaming
     [Setup]

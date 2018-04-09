@@ -9,7 +9,7 @@ Resource         ../Keyword/VOD-DetailsScreen.robot
 Resource         ../Variable/Variables.robot
 
 *** Test Cases ***
-TestCase 3: Login valid credentials and stream a movie
+TestCase 03: Login valid credentials and stream a movie
     [Documentation]     This is to verify valid login for SunNXT web-page and logout
     [Tags]              Content Streaming
     [Setup]

@@ -7,7 +7,7 @@ Resource         ../Locators/SunNXThome.robot
 Resource         ../Keyword/Signup.robot
 
 *** Test Cases ***
-TestCase 5: Signup using an already registered credential
+TestCase 05: Signup using an already registered credential
     [Documentation]     This is to verify whether user is restricted to signup using a already registered credential or not
     [Tags]               Smoke
     [Setup]

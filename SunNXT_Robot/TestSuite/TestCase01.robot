@@ -3,11 +3,9 @@ Documentation    SunNXT Web-portal
 Library          SeleniumLibrary
 Library          BuiltIn
 Resource         ../Keyword/Common.robot
-Resource         ../Keyword/Player.robot
-Resource         ../Locators/SunNXThome.robot
 
 *** Test Cases ***
-TestCase 1: Login valid credentials and Logout
+TestCase 01: Login valid credentials and Logout
     [Documentation]     This is to verify valid login for SunNXT web-page and logout
     [Tags]               Smoke
     [Setup]

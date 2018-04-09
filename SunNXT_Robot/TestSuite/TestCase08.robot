@@ -12,7 +12,7 @@ Resource         ../Keyword/Profile.robot
 Resource         ../Variable/Variables.robot
 
 *** Test Cases ***
-TestCase 8: Stream a content and check whether it is available in continue watching section or not
+TestCase 08: Stream a content and check whether it is available in continue watching section or not
     [Documentation]     This is to verify whether streamed content is available in continue watching section or not
     [Tags]               Sanity
     [Setup]

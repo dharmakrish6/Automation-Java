@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=C:\Users\Amy\PycharmProjects\SunNXT\venv"
+set "VIRTUAL_ENV=E:\Automation-Java\SunNXT_Robot\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

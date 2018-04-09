@@ -9,6 +9,6 @@ ${timeout}          3s
 ${movie_name}       Mass Engira Masilamani
 ${Enter_key}        \\13
 ${stream_content}   30s
-${ePay}          Welcome to Genius ePay
+${ePay}             Welcome to Genius ePay
 
 

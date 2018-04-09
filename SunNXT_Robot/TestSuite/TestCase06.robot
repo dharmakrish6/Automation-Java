@@ -9,7 +9,7 @@ Resource         ../Locators/SunNXThome.robot
 Resource         ../Keyword/Content/HomePage.robot
 Resource         ../Keyword/VOD-DetailsScreen.robot
 *** Test Cases ***
-TestCase 6: Try to stream using a credential with no active subsription
+TestCase 06: Try to stream using a credential with no active subsription
     [Documentation]     This is to verify whether user with no active subscription is restricted to stream content or not
     [Tags]               Sanity
     [Setup]
