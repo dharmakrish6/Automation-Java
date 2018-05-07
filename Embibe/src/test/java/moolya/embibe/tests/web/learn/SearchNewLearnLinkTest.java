@@ -20,7 +20,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.NewLearnPage;
 import moolya.embibe.pages.web.SearchHomepage;
@@ -40,7 +39,7 @@ public class SearchNewLearnLinkTest {
 	String sheetName = "Units";
 
 	@Test(dataProvider="getNewUrls")
-	public void searchNewLearnLinkTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
+	public void searchNewLearnLinkTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
 //		String uniqueValue = "heart";
 		String text = uniqueValue;
 		resultData = new LinkedHashMap<String,String>();
@@ -74,7 +73,7 @@ public class SearchNewLearnLinkTest {
 	}
 	
 	@AfterMethod
-	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
+	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
 		String dir = System.getProperty("user.dir");
 		if(!new File(dir+"\\screenshots").exists())

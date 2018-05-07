@@ -2,10 +2,14 @@ package moolya.embibe.utils;
 
 import static io.restassured.RestAssured.given;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,6 +24,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -467,6 +472,45 @@ public class EmbibeUtils {
 		file.close();
 		return values;
 	}
+	
+	public static String[][] readDslUniqueValues(String fileName, String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream file = new FileInputStream("./test-data/"+fileName);
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		int noOfRows = sheet.getLastRowNum(); 
+		String[][] values = new String[noOfRows][1];
+		for(int i=1;i<=noOfRows;i++) {
+			Row record = sheet.getRow(i);
+			try {
+				values[i-1][0] = record.getCell(0).toString().trim();
+			} catch (Exception e) {
+				values[i-1][0] = record.getCell(0).getStringCellValue();
+			}
+		}
+		wb.close();
+		file.close();
+		return values;
+	}
+	
+	public static String[][] readSinhalTestUniqueValues(String sheetName) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream file = new FileInputStream("./test-data/SinhalAitsCorrectAnswersSheet.xlsx");
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetName);
+		int noOfRows = sheet.getLastRowNum(); 
+		String[][] values = new String[noOfRows][1];
+		for(int i=1;i<=noOfRows;i++) {
+			Row record = sheet.getRow(i);
+			try {
+				values[i-1][0] = record.getCell(0).toString().trim();
+			} catch (Exception e) {
+				values[i-1][0] = record.getCell(0).getStringCellValue();
+			}
+		}
+		wb.close();
+		file.close();
+		return values;
+	}
+	
 
 	public static LinkedHashMap<String, String> readDslExcelData(String sheetname,int row) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		LinkedHashMap<String,String> dataMap = null;
@@ -511,4 +555,136 @@ public class EmbibeUtils {
 		return res.getString("ip");
 	}
 
+	public static void writeQuestionDescriptionEngineering(ArrayList<LinkedHashMap<String, String>> results) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+		Date date = new Date();
+		//String fileName = "\\test-data\\KTconceptsInViewSolution-"+dateFormat.format(date)+".xlsx";
+		String fileName = "\\test-data\\KTconceptsInViewSolutionEngineering.xlsx";
+		String dir = System.getProperty("user.dir");
+		fileName = dir+ fileName;
+		if (new File(fileName).exists()){
+			new File(fileName).delete();
+		}
+		Workbook wb = new XSSFWorkbook();
+		Sheet sheet = wb.createSheet("Sheet1");
+		Row headers = sheet.createRow(0);
+		int h=0;
+		for(String header:results.get(0).keySet()){
+			headers.createCell(h++).setCellValue(header);
+		}
+		int r = 1;
+		for(LinkedHashMap<String, String> resultData:results){
+			Row record = sheet.createRow(r++);
+			for(Map.Entry<String, String> m:resultData.entrySet()){
+				for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){
+							Cell cell = null;
+							try{
+								cell = record.createCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								cell.setCellValue(m.getValue().toString());
+							}catch(Exception e){}
+							break;
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+			}
+		}
+	
+		FileOutputStream fos = new FileOutputStream(fileName);
+		wb.write(fos);
+		wb.close();
+		fos.close();
+	}
+	
+	
+	public static void writeQuestionDescriptionMedical(ArrayList<LinkedHashMap<String, String>> results) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss");
+		Date date = new Date();
+		//String fileName = "\\test-data\\KTconceptsInViewSolution-"+dateFormat.format(date)+".xlsx";
+		String fileName = "\\test-data\\KTconceptsInViewSolutionMedical.xlsx";
+		String dir = System.getProperty("user.dir");
+		fileName = dir+ fileName;
+		if (new File(fileName).exists()){
+			new File(fileName).delete();
+		}
+		Workbook wb = new XSSFWorkbook();
+		Sheet sheet = wb.createSheet("Sheet1");
+		Row headers = sheet.createRow(0);
+		int h=0;
+		for(String header:results.get(0).keySet()){
+			headers.createCell(h++).setCellValue(header);
+		}
+		int r = 1;
+		for(LinkedHashMap<String, String> resultData:results){
+			Row record = sheet.createRow(r++);
+			for(Map.Entry<String, String> m:resultData.entrySet()){
+				for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){
+							Cell cell = null;
+							try{
+								cell = record.createCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								cell.setCellValue(m.getValue().toString());
+							}catch(Exception e){}
+							break;
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+			}
+		}
+	
+		FileOutputStream fos = new FileOutputStream(fileName);
+		wb.write(fos);
+		wb.close();
+		fos.close();
+	}
+
+	public static void writeDeekshaLoginStatus(String sheetName, LinkedHashMap<String, String> resultData,int row) throws EncryptedDocumentException, InvalidFormatException, IOException{
+		FileInputStream fis = new FileInputStream("./test-data/DeekshaClasses.xlsx");
+		
+		
+		Workbook wb = WorkbookFactory.create(fis);
+		Sheet sheet = wb.getSheet(sheetName);
+		Row headers = sheet.getRow(0);
+		Row record = sheet.getRow(row);
+		try {
+			for(Map.Entry<String, String> m:resultData.entrySet()){
+				for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (headers.getCell(i).toString().trim().equalsIgnoreCase(m.getKey())){
+							Cell cell = null;
+							try{
+								cell = record.getCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								cell.setCellValue(m.getValue().toString());
+							}catch(Exception e){
+								cell = record.createCell(i);
+								cell.setCellType(Cell.CELL_TYPE_STRING);
+								cell.setCellValue(m.getValue().toString());
+							}
+
+							break;
+						}
+					}catch(Exception e){
+						continue;
+					}
+				}
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		FileOutputStream fos = new FileOutputStream("./test-data/DeekshaClasses.xlsx");
+		wb.write(fos);
+		wb.close();
+		fis.close();
+		fos.close();
+	}
 }

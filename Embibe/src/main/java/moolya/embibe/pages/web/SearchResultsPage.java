@@ -1426,5 +1426,10 @@ public class SearchResultsPage extends W_BasePage {
 		return text;
 	}
 
-
+	public LearnPage gotoLearnPage(){
+		clickElement(learMore_Link);
+		return new LearnPage(wdriver);
+		
+	}
+	
 }

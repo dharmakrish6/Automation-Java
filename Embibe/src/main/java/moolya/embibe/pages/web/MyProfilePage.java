@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.Reporter;
 
 public class MyProfilePage extends W_BasePage {
@@ -34,7 +35,7 @@ public class MyProfilePage extends W_BasePage {
 	@FindBy(xpath="//*[@class='profile_label' AND contains(text(),'PREPARING FOR')]/../select")
 	private List<WebElement> preparingForList;
 	
-	@FindBy(css=".profile_display_pic")
+	@FindBy(css=".profileImage>img")
 	private WebElement profilePic;
 	
 	public void clickMyProfile(){
@@ -45,6 +46,11 @@ public class MyProfilePage extends W_BasePage {
 	
 	public void waitForMyProfilePageToLoad(){
 		waitUntilElementAppears(profilePic);
+	}
+	
+	public void assertProfilePage(){
+		Assert.assertTrue(wdriver.getCurrentUrl().toLowerCase().contains("profile"), "Not in Profile Page");
+		Reporter.log("Successfully Navigated to Profile Page", true);
 	}
 	
 	public void clickEditProfile(){

@@ -23,7 +23,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import io.restassured.response.Response;
 import moolya.embibe.pages.web.DslPage;
 import moolya.embibe.pages.web.LandingPage;
@@ -48,7 +47,7 @@ public class QueryLearnPageTest2 {
 	String sheetName = "Concepts";
 
 	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
-	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
+	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
 		String text = uniqueValue;
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp("chrome");
@@ -79,7 +78,7 @@ public class QueryLearnPageTest2 {
 	}
 
 	@AfterMethod
-	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
+	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
 		String dir = System.getProperty("user.dir");
 		if(!new File(dir+"\\screenshots").exists())

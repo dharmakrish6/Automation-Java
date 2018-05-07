@@ -10,7 +10,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.ChooseMissionPage;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.LoginPage;
@@ -35,7 +34,7 @@ public class PixelPerfectTest{
 	
 	@Test
 	@Parameters({"browser"})
-	public void dummyTest(@Optional("chrome")String browser) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException {
+	public void dummyTest(@Optional("chrome")String browser) throws IOException, NoSuchFieldException, SecurityException, InterruptedException, EncryptedDocumentException, InvalidFormatException {
 		
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);

@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Random;
@@ -36,6 +38,7 @@ import org.openqa.selenium.support.Color;
 
 public class JavaUtils {
 
+	
 	public static HashMap<String, String> readExcelData(String sheetname, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
 		HashMap<String,String> dataMap = null;
 		String key, value = null;
@@ -51,6 +54,97 @@ public class JavaUtils {
 			Row record = it.next();
 			String cellValue = record.getCell(0).toString();
 			if(cellValue.equals(uniqueValue)) {
+
+				for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
+							try{
+								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+								value = record.getCell(i).toString().trim();
+							}catch(Exception e){}
+							key = headers.getCell(i).toString().trim();
+
+						} else {
+
+							key = headers.getCell(i).toString().trim();
+							try {
+								value = record.getCell(i).toString().trim();
+							} catch (Exception e) {}
+						}
+					}catch(Exception e){
+						continue;
+					}
+
+					dataMap.put(key, value);
+				}
+
+				break;
+			}
+		}
+		return dataMap;
+	}
+	
+	public static HashMap<String, String> readExcelData(String fileName, String sheetname, String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException {
+		HashMap<String,String> dataMap = null;
+		String key, value = null;
+		FileInputStream file = new FileInputStream("./test-data/"+fileName);
+		dataMap = new HashMap<String, String>();
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetname);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellValue = record.getCell(0).toString();
+			if(cellValue.equals(uniqueValue)) {
+
+				for(int i=0;i<headers.getLastCellNum();i++){
+					try{
+						if (record.getCell(i).getCellType() == record.getCell(i).CELL_TYPE_NUMERIC) {
+							try{
+								record.getCell(i).setCellType(Cell.CELL_TYPE_STRING);
+								value = record.getCell(i).toString().trim();
+							}catch(Exception e){}
+							key = headers.getCell(i).toString().trim();
+
+						} else {
+
+							key = headers.getCell(i).toString().trim();
+							try {
+								value = record.getCell(i).toString().trim();
+							} catch (Exception e) {}
+						}
+					}catch(Exception e){
+						continue;
+					}
+
+					dataMap.put(key, value);
+				}
+
+				break;
+			}
+		}
+		return dataMap;
+	}
+	
+	public static HashMap<String, String> readExcelData(String fileName, String sheetname, String uniqueValue1, String uniqueValue2) throws EncryptedDocumentException, InvalidFormatException, IOException {
+		HashMap<String,String> dataMap = null;
+		String key, value = null;
+		FileInputStream file = new FileInputStream("./test-data/"+fileName);
+		dataMap = new HashMap<String, String>();
+		Workbook wb = WorkbookFactory.create(file);
+		Sheet sheet = wb.getSheet(sheetname);
+		Iterator<Row> it = sheet.rowIterator();
+
+		Row headers = it.next();
+		while(it.hasNext()) {
+
+			Row record = it.next();
+			String cellValue1 = record.getCell(0).toString();
+			String cellValue2 = record.getCell(1).toString();
+			if(cellValue1.contains(uniqueValue1) && cellValue2.equals(uniqueValue2)) {
 
 				for(int i=0;i<headers.getLastCellNum();i++){
 					try{
@@ -200,21 +294,55 @@ public class JavaUtils {
 		String randomNo = String.valueOf(x);
 		return randomNo;
 	}
+	
+	public static String getAnswerOption(int number){
+		String s = "";
+		switch(number){
+		case 1: s="A";
+		break;
+		case 2: s="B";
+		break;
+		case 3: s="C";
+		break;
+		case 4: s="D";
+		break;
+		default: s=null;
+		
+		}
+		return s;
+	}
+	
+	public static int[] generateUniqueRandomNumbers(int numbers){
+		int[] nos = new int[numbers]; 
+		ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=1; i<11; i++) {
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for (int i=0; i<3; i++) {
+            System.out.println(list.get(i));
+        }
+        
+        return nos;
+        
+	}
 
-	public static String[] generateNrandomNumbers(int no, int number){
+	public static ArrayList<Integer> generateNrandomNumbers(int no, int number){
 		Random ran = new Random();
-		String[] randomNos = new String[no];
+		int[] randomNos = new int[no];
 		HashSet<String> randomSet = new HashSet<String>();
 		while(randomSet.size()<no){
 			int x = ran.nextInt(number)+1;
 			randomSet.add(String.valueOf(x));
 		}
+		ArrayList<Integer> nList = new ArrayList<Integer>();
 		int i=0;
 		for(String s:randomSet){
-			randomNos[i] = s;
+			randomNos[i] = Integer.parseInt(s);
+			nList.add(randomNos[i]);
 			i++;
 		}
-		return randomNos;
+		return nList;
 	}
 
 	public static String getTodaysDDxxMMMYYYY(){
@@ -317,8 +445,8 @@ public class JavaUtils {
 		return params;
 	}
 	
-	public static void printMap(Map<String, String> m){
-		for(Map.Entry<String, String> entry:m.entrySet())
+	public static void printMap(HashMap<String, String> userData){
+		for(Map.Entry<String, String> entry:userData.entrySet())
 			System.out.println("Key: "+entry.getKey()+" Value: "+entry.getValue());
 	}
 	
@@ -411,5 +539,17 @@ public class JavaUtils {
 		
 		return status;
 	}
-
+	
+	public StringBuffer generateString(int length) {
+		StringBuffer output = new StringBuffer();
+		String characterSet = "";
+		characterSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		for (int i=0; i<length; i++) 
+ 		{
+			double index = Math.random()*characterSet.length();
+			output.append(characterSet.charAt((int)index));
+		}
+		return(output);
+	}
+	
 }

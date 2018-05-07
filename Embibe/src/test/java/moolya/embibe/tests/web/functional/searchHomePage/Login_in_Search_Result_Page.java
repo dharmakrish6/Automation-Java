@@ -16,10 +16,6 @@ public class Login_in_Search_Result_Page extends W_BaseTest {
 	private SearchHomepage shp;
 	private SearchResultsPage srp;
 
-	{
-		uniqueValue = "Sanity_9";
-	}
-	
 	@Test(dataProvider="browserData")
 	public void loginIn_SearchResultsPage_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
@@ -42,14 +38,14 @@ public class Login_in_Search_Result_Page extends W_BaseTest {
 		shp.enterFbLoginCredentials("testonetest444@gmail.com", "Testing@ccount");
 		shp.logout();
 		shp.clickEmbibeLogo();
-		srp=shp.validSearchResult(uniqueValue2);//SHP_17
+		/*srp=shp.validSearchResult(uniqueValue2);//SHP_17
 		Reporter.log("------------------------------------------Google Login------------------------------------------",true);
 		shp.loginBtn();
 		shp.clickGoogleLogin();
 		shp.enterGoogleLoginCredentials("testonetest444@gmail.com", "qwerty@1234");
 		shp.assertSearchHomepage();
 		shp.logout();
-		shp.clickEmbibeLogo();
+		shp.clickEmbibeLogo();*/
 		shp.assertSearchHomepage();
 		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);
 	}

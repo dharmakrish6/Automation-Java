@@ -22,7 +22,7 @@ public class SHP_Func_63 extends W_BaseTest {
 	private LoginPage log_p;
 
 	@Test(dataProvider="browserData")
-	public void SHP_Func_63_Test(String browser) throws IOException, EncryptedDocumentException, InvalidFormatException, InterruptedException{
+	public void SHP_Func_63_Test(String browser) throws Exception{
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);
 		Reporter.log("Starting Test: Functional : Search Home Page : SHP_Func_63 "+ ", Browser is :" + browser, true);

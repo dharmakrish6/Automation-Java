@@ -25,8 +25,6 @@ import org.testng.annotations.Parameters;
 
 import com.testautomationguru.ocular.Ocular;
 
-import atu.testrecorder.ATUTestRecorder;
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.W_BasePage;
 
 public class W_BaseTest 
@@ -37,7 +35,6 @@ public WebDriver wdriver;
 	protected W_BasePage basepage;
 	protected String uniqueValue;
 	protected String uniqueValue2;
-	ATUTestRecorder recorder;
 	
 	/*@BeforeTest
 	public void setUp() throws IOException, ATUTestRecorderException{
@@ -56,7 +53,7 @@ public WebDriver wdriver;
 	}*/
 	
 	@AfterMethod
-	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
+	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
 		String dir = System.getProperty("user.dir");
 		if(!new File(dir+"\\screenshots").exists())
@@ -88,10 +85,10 @@ public WebDriver wdriver;
 		
 	}*/
 	
-	@DataProvider(parallel=true)
+	@DataProvider
 	public Object[][] browserData(){
 		//	"chrome","ff","ieWinx32","ieWinx64","opera32","opera64"
-		String[] browsers = {"chrome"}; 
+		String[] browsers = {"chrome","ff","opera32","ieWinx32"}; 
 		Object[][] obj = new Object[browsers.length][1];
 		for(int i=0;i<browsers.length;i++)
 			obj[i][0]=browsers[i];

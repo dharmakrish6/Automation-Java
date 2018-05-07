@@ -15,7 +15,6 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.LoginPage;
 import moolya.embibe.pages.web.SearchHomepage;
@@ -40,7 +39,7 @@ public class HeadersTest{
 	
 	@Test
 	@Parameters({"browser"})
-	public void dummyTest(@Optional("chrome")String browser) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException {
+	public void dummyTest(@Optional("chrome")String browser) throws IOException, NoSuchFieldException, SecurityException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException {
 		
 		basepage = new W_BasePage(wdriver);
 		wdriver = basepage.launchWebApp(browser);

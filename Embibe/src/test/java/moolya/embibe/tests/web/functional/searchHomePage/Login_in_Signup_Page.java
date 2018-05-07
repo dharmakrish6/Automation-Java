@@ -42,13 +42,13 @@ public class Login_in_Signup_Page extends W_BaseTest {
 		shp.enterFbLoginCredentials("testonetest444@gmail.com", "Testing@ccount");
 		shp.assertSearchHomepage();
 		shp.logout();
-		//shp.clickEmbibeLogo();
+		/*//shp.clickEmbibeLogo();
 		Reporter.log("------------------------------------------Google Login------------------------------------------",true);
 		//shp.loginBtn();
 		sup.click_SignUp_Google_Login();
 		shp.enterGoogleLoginCredentials("testonetest444@gmail.com", "qwerty@1234");
 		shp.assertSearchHomepage();
-		shp.logout();
+		shp.logout();*/
 		shp.clickEmbibeLogo();
 		shp.assertSearchHomepage();
 		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);

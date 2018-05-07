@@ -110,13 +110,13 @@ public class LearnPage extends W_BasePage {
 	@FindBy(css="div.DidYouKnowWrapper div.dykEmbiums")
 	private WebElement didYouKnowEmbiums_Lbl;
 	
-	@FindBy(xpath="(//*[@class='guest_signup'])[2]")
+	@FindBy(xpath="//button[text()='Login']")
 	private WebElement learn_Login_Btn;
 	
 	public void ClickSignupBtn(){
 		waitUntilElementAppears(learn_Login_Btn);
 		clickElement(learn_Login_Btn);
-		Reporter.log("Clicked on Signup btn",true);
+		Reporter.log("Clicked on Login btn",true);
 	}
 		
 	@FindBy(xpath="(//*[contains(text(),'  Login Here')])[1]")
@@ -128,23 +128,22 @@ public class LearnPage extends W_BasePage {
 		Reporter.log("Clicked on Login Here Button",true);
 	}
 	
-	@FindBy(xpath="(//input[@id='login-email-or-mobile'])[1]")
+	@FindBy(xpath="(//input[@id='emailArea'])[2]")
 	private WebElement learnPage_login_email_field;
 	
-	@FindBy(xpath="(//*[@id='login-form']/ul/li[2]/input)[1]")
+	@FindBy(xpath="(//input[@id='passwordArea'])[2]")
 	private WebElement learnPage_login_password_field;
 	
-	@FindBy(xpath="(//*[@class='loginBTN'])[1]")
+	@FindBy(xpath="(//button[text()='Login'])[3]")
 	private WebElement learnPage_login_submit_Btn;
 	
-	@FindBy(xpath="//li[@id='global_nav_right-profilename']")
+	@FindBy(css="img.guestImage")
 	private WebElement verifyLearnPageLoginUser;
 	
 	@FindBy(css=".global-nav__left>a>img")
 	private WebElement embibeLogo_Ask;
 	
 	public void learnPageLoginWindow(String email,String password){
-		ClickLearnPageLoginHereBtn();
 		enterText(learnPage_login_email_field, email);
 		Reporter.log("Entered email ",true);
 		enterText(learnPage_login_password_field, password);
@@ -155,7 +154,7 @@ public class LearnPage extends W_BasePage {
 		Reporter.log("Login successful..!!",true);
 	}
 	
-	@FindBy(xpath="//*[@id='global_nav_right-logout']/span")
+	@FindBy(xpath="//a[text()='Logout']")
 	private WebElement learnPage_logout_btn;
 	
 	@FindBy(css="div.Signin-Signup-form")
@@ -163,17 +162,16 @@ public class LearnPage extends W_BasePage {
 	
 	public void learnPageLogout() throws InterruptedException{
 		waitUntilElementAppears(verifyLearnPageLoginUser);
-		mouseHoverOnElement(wdriver, verifyLearnPageLoginUser);
+		//mouseHoverOnElement(wdriver, verifyLearnPageLoginUser);
+		clickElement(verifyLearnPageLoginUser);
 		Reporter.log("Clicked on Profile icon ",true);
 		clickElement(learnPage_logout_btn);
 		Reporter.log("Clicked on logout button",true);
-		////Assert.assertTrue(verifyLearnPageLogout.isDisplayed(), "Logout Failed");
-		assertSearchHomepage();
+		Assert.assertTrue(verifyLearnPageLogout.isDisplayed(), "Logout Failed");
 		Reporter.log("Logout successful..!!",true);
-		
 	}
 	
-	@FindBy(css="div.fb-login.mixpanel-fb-signup")
+	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
 	private WebElement learnPageFBbtn;
 	
 	public void ClickLearnPageFBlogin(){
@@ -200,7 +198,7 @@ public class LearnPage extends W_BasePage {
 		Reporter.log("Clicked on facebook login button",true);
 	}
 	
-	@FindBy(css="div.google-login.mixpanel-google-signup")
+	@FindBy(xpath="(//button[@id='btn-google'])[2]")
 	private WebElement google_loginBtn;
 	
 	public void ClickLearnPageGooglelogin(){
@@ -209,7 +207,7 @@ public class LearnPage extends W_BasePage {
 		Reporter.log("Clicked on Google login button",true);
 	}
 	
-	@FindBy(xpath="//*[@id='headingText']/following::button[contains(text(),'embibe.com')]")
+	@FindBy(xpath="//*[@id='headingText']")
 	private WebElement assertGoogleSignInPage;
 
 	@FindBy(xpath="//*[@id='identifierId']")

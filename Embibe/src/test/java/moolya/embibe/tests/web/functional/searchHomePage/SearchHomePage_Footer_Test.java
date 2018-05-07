@@ -21,13 +21,13 @@ public class SearchHomePage_Footer_Test extends W_BaseTest {
 	
 	String rearchURL="https://www.embibe.com";
 	
-	String jeeMain_URL=rearchURL+"/exams/jee-main/";
-	String neet_URL=rearchURL+"/exams/neet/";
-	String aiims_URL=rearchURL+"/exams/aiims/";
-	String cbse_URL=rearchURL+"/exams/cbse/";
-	String jeeAdvanced_URL=rearchURL+"/exams/iit-jee-advanced/";
-	String bitsat_URL=rearchURL+"/exams/bitsat/";
-	String eamcet_URL=rearchURL+"/exams/ap-eamcet/";
+	String jeeMain_URL=rearchURL+"/exams/jee-main";
+	String neet_URL=rearchURL+"/exams/neet";
+	String aiims_URL=rearchURL+"/exams/aiims";
+	String cbse_URL=rearchURL+"/exams/cbse";
+	String jeeAdvanced_URL=rearchURL+"/exams/iit-jee-advanced";
+	String bitsat_URL=rearchURL+"/exams/bitsat";
+	String eamcet_URL=rearchURL+"/exams/ap-eamcet";
 
 	String class_8_URL=rearchURL+"/foundation-08/test";
 	String class_9_URL=rearchURL+"/foundation-09/test";

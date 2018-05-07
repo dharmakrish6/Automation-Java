@@ -29,18 +29,19 @@ public class AskPageTest extends W_BaseTest {
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
+		shp.closeIntercom();
 		shp.assertSearchHomepage();
 		ap = shp.verifyAskLink();//SHP_Func_85
 		shp = ap.clickAskEmbibeLogo();//SHP_Func_87
 		ap = shp.verifyAskLink();
 		Reporter.log("--------------------------Guest user asking question---------------------",true);
-		ap.guestAskQuestion("embibe1234");//SHP_Func_86
+		ap.guestAskQuestion("Physics Topic");//SHP_Func_86
 		Thread.sleep(2000);
 		Reporter.log("--------------------------Login user asking question---------------------",true);
-		ap.askLogin();
+		ap.askLogin_viaQues();
 		Reporter.log("------------------------------------------------------------------",true);
 		Thread.sleep(2000);
-		ap.guestAskQuestion("embibe1234");//SHP_Func_86
-		
+		ap.guestAskQuestion("Physics Topic");//SHP_Func_86
+		ap.verifyAskSuccessful();
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -22,6 +23,8 @@ import org.testng.Reporter;
 
 import com.testautomationguru.ocular.comparator.OcularResult;
 import com.testautomationguru.ocular.snapshot.Snap;
+
+import moolya.embibe.utils.EmbibeUtils;
 
 @Snap(value="SearchHomepage-#{Element}.png")
 public class SearchHomepage extends W_BasePage {
@@ -46,6 +49,9 @@ public class SearchHomepage extends W_BasePage {
 
 	@FindBy(css = "div.text-center.mission>a")
 	private WebElement chooseMission_Btn;
+	
+	@FindBy(css=".Dropdown-root")
+	private WebElement chooseCountry_DD;
 
 	@FindBy(css="div.no-result-found:nth-child(1)")
 	private WebElement noResultsView;
@@ -122,10 +128,18 @@ public class SearchHomepage extends W_BasePage {
 	private WebElement defaultGoalText;
 	
 	public ChooseMissionPage clickChooseMission(){
-		waitUntilElementclickable(chooseMission_Btn);
-		chooseMission_Btn.click();
-		Reporter.log("Clicked on 'Choose a mission'",true);
-		waitUntilElementAppears(defaultGoalText);
+		try{
+			waitUntilElementclickable(chooseMission_Btn);
+			chooseMission_Btn.click();
+			Reporter.log("Clicked on 'Choose a mission'",true);
+			waitUntilElementclickable(chooseCountry_DD,5);
+		}catch(Exception e){
+			refreshPage();
+			waitUntilElementclickable(chooseMission_Btn);
+			chooseMission_Btn.click();
+			Reporter.log("Clicked on 'Choose a mission'",true);
+			waitUntilElementclickable(chooseCountry_DD);
+		}
 		return new ChooseMissionPage(wdriver);
 	}
 
@@ -367,7 +381,8 @@ public class SearchHomepage extends W_BasePage {
 	/*@FindBy(xpath="//a[@title='Embibe Exams']")
 	private WebElement embibeExamLogo;*/
 	
-	@FindBy(css="img.global-nav__logo:nth-child(1)")
+	//@FindBy(css="img.global-nav__logo:nth-child(1)")
+	@FindBy(css="img.global-nav__logo:nth-child(2)")
 	private WebElement examPageEmbibeLogo;
 	
 
@@ -391,7 +406,7 @@ public class SearchHomepage extends W_BasePage {
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[2]/div[1]/div/div[2]/div[1]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div/div/div[4]/div[2]/div[1]/div/div[2]/div[1]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
@@ -400,7 +415,7 @@ public class SearchHomepage extends W_BasePage {
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Page Title : " + examTitle.getText(), true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		Assert.assertTrue(examTitle.isDisplayed(), "Exam page not loaded succesfully");
 		title_examPageEmbibeLogo.click();
 		Reporter.log("Clicked on Embibe logo",true);
 		assertSearchHomepage();
@@ -408,14 +423,18 @@ public class SearchHomepage extends W_BasePage {
 		wdriver.switchTo().window(winHandleBefore);
 	}
 	
-	@FindBy(css=".global-nav__left>a>img")
+	//@FindBy(css=".global-nav__left>a>img")
+	@FindBy(css=".global-nav__left>a>img:nth-child(2)")
 	private WebElement embibeLogo_Ask;
+	
+	@FindBy(css=".global-nav__left>a>img:nth-child(1)")
+	private WebElement embibeLogo_Ask1;
 	
 	public void classesLinks(int i,String examType,String className,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[2]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div/div/div[4]/div[2]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
@@ -426,9 +445,17 @@ public class SearchHomepage extends W_BasePage {
 		WebElement classNum=wdriver.findElement(By.xpath("(//*[contains(text(),'"+className+"')])[2]"));
 		
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(), true);
-		Reporter.log("Class Name : '" + classNum.getText(), true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
-		embibeLogo_Ask.click();
+		String classNam = classNum.getText();
+		Reporter.log("Class Name : " + classNam, true);
+		//Assert.assertTrue(classNum.isDisplayed(), "Test page not loaded succesfully");
+		try{
+			clickElement(embibeLogo_Ask);
+		}
+		catch(Exception e)
+		{
+			clickElement(embibeLogo_Ask1);
+		}
+		
 		Reporter.log("Clicked on Embibe Logo", true);
 		assertSearchHomepage();
 		wdriver.close();
@@ -438,18 +465,20 @@ public class SearchHomepage extends W_BasePage {
 	
 	public void examsPageLogin(int i,String examType){
 		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div/div/div[5]/div[1]/div/div[2]/div[2]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 	}
 	
-	@FindBy(xpath="//option[@value=0 AND @selected='selected']")
-	private WebElement examPage_Default_DropdownName;
+	@FindBy(xpath="(//*[contains(text(),'Select an exam and test type to get started')])[1]")
+	private WebElement testPageTitle;
+	
+	
 	
 	public void mockTestsLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[2]/div[1]/div/div[2]/div[3]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div/div/div[4]/div[2]/div[1]/div/div[2]/div[3]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		Thread.sleep(2000);
 		String winHandleBefore = wdriver.getWindowHandle();
@@ -458,24 +487,28 @@ public class SearchHomepage extends W_BasePage {
 		}
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
 		Thread.sleep(5000);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		//Assert.assertTrue(testPageTitle.isDisplayed(), "Test page not loaded succesfully");
 		clickExamPageEmbibeLogo();
 		wdriver.close();
 		wdriver.switchTo().window(winHandleBefore);
 	}
 	
+	@FindBy(xpath="//*[contains(text(),'The only score improvement guarantee program')]")
+	private WebElement rankupSignupPageTitle;
+	
+	
 	public void crackTestsLinks(int i,String examType,String expURL) throws InterruptedException{
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(2000);
 		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[2]/div[1]/div/div[2]/div[4]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div/div/div[4]/div[2]/div[1]/div/div[2]/div[4]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
 		Reporter.log("Navigated to " + wdriver.getCurrentUrl(),true);
-		Assert.assertEquals(wdriver.getCurrentUrl(),expURL);
+		Assert.assertTrue(rankupSignupPageTitle.isDisplayed(), "Rankup signup not loaded succesfully");
 		wdriver.close();
 		Reporter.log("Closed the Rankup signup window",true);
 		wdriver.switchTo().window(winHandleBefore);
@@ -485,7 +518,7 @@ public class SearchHomepage extends W_BasePage {
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		Thread.sleep(1000);
 		scrollToElementViaJavascript(scrolltoExams);
-		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div[2]/div/div[4]/div[2]/div[1]/div/div[2]/div[5]/ul/li/a)["+i+"]")));
+		clickElement(wdriver.findElement(By.xpath("(//*[@id='root']/div/div/div/div[4]/div[2]/div[1]/div/div[2]/div[5]/ul/li/a)["+i+"]")));
 		Reporter.log("Clicked on "+ examType, true);
 		String winHandleBefore = wdriver.getWindowHandle();
 		for (String winHandle : wdriver.getWindowHandles()) {
@@ -778,89 +811,54 @@ public class SearchHomepage extends W_BasePage {
 		clickElement(rankup_submitBtn);
 	}
 	
-	public LearnPage learnPage(){
-		
+	public LearnPage gotoLearnPage(){
 		return new LearnPage(wdriver);
 	}
 	
-	@FindBy(xpath="//span[text()='Practice']")
-	private WebElement practiceMenu;
+
 	
-	public void goToExamPageForPractice(int i,String examType,String expURL) throws InterruptedException{
-		Reporter.log("-------------------------------------------------------------------------------------------------",true);
+	public PracticePage goToPracticePageEngineering() throws InterruptedException{
 		Thread.sleep(2000);
-		clickElement(wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/div)["+i+"]")));
-		Reporter.log("Clicked on "+ examType, true);
-		String winHandleBefore = wdriver.getWindowHandle();
+		WebElement examName=wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/div)[1]"));
+		waitUntilElementclickable(examName);
+		clickElement(examName);
+		Reporter.log("Clicked on "+ examName.getText(), true);
 		for (String winHandle : wdriver.getWindowHandles()) {
 			wdriver.switchTo().window(winHandle);
 		}
 		Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
+		return new PracticePage(wdriver);
 	}
 	
-	public void clickPractice(){
-	waitUntilElementAppears(practiceMenu);
-	clickElement(practiceMenu);
-	}
+	String medURL="https://www.embibe.com/medical/practice/solve";
+	String engURL="https://www.embibe.com/engineering/practice/solve";
 	
-	@FindBy(xpath="(//a[@class='practice fresh' AND text()='Start Practice'])[2]")
-	private WebElement phy_startPractice;
-	
-	@FindBy(xpath="(//a[@class='practice fresh' AND text()='Start Practice'])[3]")
-	private WebElement che_startPractice;
-
-	@FindBy(xpath="(//a[@class='practice fresh' AND text()='Start Practice'])[4]")
-	private WebElement mat_startPractice;
-	
-	public void click_Phy_StartPractice(){
-		waitUntilElementAppears(phy_startPractice);
-		clickElement(phy_startPractice);
-	}
-	
-	@FindBy(css = ".difficulty-block:nth-child(3)")
-	private WebElement sel_easy;
-	
-	@FindBy(xpath = "(//span[text()='FINISH'])[2]")
-	private WebElement finishTestBtn;
-	
-	@FindBy(xpath = "(//*[@class='phoenix-question__choice ng-pristine ng-untouched ng-valid ng-scope'])[1]")
-	private WebElement option_1;
-	
-	@FindBy(css="button.view-solution-practice-btn.view-solution-practice-btn-condition")
-	private WebElement viewSolutionBtn;
-	
-	@FindBy(css="button.learn-this-practice-btn")
-	private WebElement learnThisBtn;
-	
-	public void startPractice() throws InterruptedException{
-		waitUntilElementAppears(sel_easy);
-		String winHandleBefore = wdriver.getWindowHandle();
-		for (String winHandle : wdriver.getWindowHandles()) {
-			wdriver.switchTo().window(winHandle);
+	public PracticePage goToPracticePage(String exam) throws InterruptedException{
+		Thread.sleep(2000);
+		if(exam.toString()=="Engineering")
+		{
+			wdriver.get(engURL);
 		}
-		clickElement(sel_easy);
-		waitUntilElementAppears(finishTestBtn);
-		chooseAnswer();
-		clickSubmit();
-		Boolean learnThisBtn=false;
-		if(learnThisBtn.isDisplayed()){
-			
+		else
+		{
 		}
 		
+		if(exam.toString()=="Medical"){
+			wdriver.get(medURL);
+		}
+		else
+		{
+		}
+		/*WebElement examName=wdriver.findElement(By.xpath("(//*[@class='swiper-wrapper']/div)[1]"));
+		waitUntilElementclickable(examName);
+		clickElement(examName);
+		Reporter.log("Clicked on "+ examName.getText(), true);
+		for (String winHandle : wdriver.getWindowHandles()) {
+			wdriver.switchTo().window(winHandle);
+		}*/
+		//Assert.assertTrue(examTitle.isDisplayed(), "Navigation failed");
+		return new PracticePage(wdriver);
 	}
 	
-	public void chooseAnswer() throws InterruptedException {
-		Thread.sleep(2000);
-		waitUntilElementAppears(option_1);
-		clickElement(option_1);
-	} 
 	
-	@FindBy(xpath = "//*[@class='btn submit-practice-btn']")
-	private WebElement submitBtn;
-	
-	public void clickSubmit(){
-		waitUntilElementAppears(submitBtn);
-		clickElement(submitBtn);
-	}
-
 }

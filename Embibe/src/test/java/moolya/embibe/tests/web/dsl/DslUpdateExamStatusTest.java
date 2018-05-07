@@ -26,7 +26,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.DslPage;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
@@ -49,7 +48,7 @@ public class DslUpdateExamStatusTest {
 	private String sheetName = "Sheet3";
 
 	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
-	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
+	public void dslWidgetsTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
 		data = EmbibeUtils.readDslExcelData(sheetName, Integer.parseInt(row)+1);
 		String goal = data.get("Goal");
 		String exam = data.get("Exam");

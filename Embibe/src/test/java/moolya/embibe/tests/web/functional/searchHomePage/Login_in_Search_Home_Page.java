@@ -26,6 +26,7 @@ public class Login_in_Search_Home_Page extends W_BaseTest {
 		lp = new LandingPage(wdriver);
 		lp.waitForLandingPageToLoad();
 		shp=lp.clickStartNow();
+		shp.closeIntercom();
 		shp.assertSearchHomepage();
 		Reporter.log("=====================Login-Logout in Search Home Page====================",true);
 		Reporter.log("------------------------------------------Main Login------------------------------------------",true);
@@ -39,13 +40,13 @@ public class Login_in_Search_Home_Page extends W_BaseTest {
 		shp.assertSearchHomepage();
 		shp.logout();
 		shp.clickEmbibeLogo();
-		shp.loginBtn();
+		/*shp.loginBtn();
 		Reporter.log("------------------------------------------Google Login------------------------------------------",true);
 		shp.clickGoogleLogin();
 		shp.enterGoogleLoginCredentials("testonetest444@gmail.com", "qwerty@1234");
 		shp.assertSearchHomepage();
 		shp.logout();
-		shp.clickEmbibeLogo();
+		shp.clickEmbibeLogo();*/
 		shp.assertSearchHomepage();
 		Reporter.log("------------------------------------------TEST COMPLETED------------------------------------------",true);
 	}

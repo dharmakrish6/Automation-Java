@@ -32,9 +32,9 @@ public class SHP_Func_86 extends W_BaseTest {
 		ap=shp.verifyAskLink();
 		ap.guestAskQuestion("embibe1234");
 		Thread.sleep(2000);
-		ap.askLoginWindow("yatheendra@moolya.com", "moolya123");
+		ap.askLoginWindow_via_askQues("yatheendra@moolya.com", "moolya123");
 		Thread.sleep(2000);
 		Thread.sleep(2000);
-		ap.askLogout();
+		ap.askPageLogout();
 	}
 }

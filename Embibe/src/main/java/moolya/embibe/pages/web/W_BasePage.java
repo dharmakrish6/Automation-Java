@@ -27,6 +27,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.apache.poi.util.IOUtils;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -52,6 +53,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.Reporter;
 
+import moolya.embibe.pages.web.contentadmin.QuestionsPage;
 import moolya.embibe.utils.JavaUtils;
 
 @SuppressWarnings("unused")
@@ -65,9 +67,12 @@ public class W_BasePage extends W_SuperBasePage
 
 	//	Global Navigation Elements
 
-	//@FindBy(css=".embibeLogo>a:nth-child(1)>img")
-	@FindBy(xpath=".//*[@id='root']/div/div[1]/div[2]/div[1]/a[1]/img")
+	@FindBy(css=".embibeLogo>a:nth-child(1)>img")
+	//@FindBy(xpath=".//*[@id='root']/div/div[1]/div[2]/div[1]/a[1]/img")
 	private WebElement embibeLogo;
+	
+	@FindBy(css=".embibeLogo")
+	private WebElement signUpPage_embibeLogo;
 
 	@FindBy(xpath="//li[@class='nav-item']/a[text()='Ask']")
 	private WebElement ask_Btn;
@@ -81,7 +86,7 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(xpath="//li[@class='nav-item ']/a[text()='RANKUP']")
 	private WebElement rankup_Btn;
 
-	@FindBy(xpath="//li[@class='nav-item ']/a[text()='INSTITUTES']")
+	@FindBy(xpath="//li[@class='nav-item ']/a[text()='INSTITUTE']")
 	private WebElement institutes_Btn;
 
 	@FindBy(css=".embibumImage")
@@ -108,6 +113,13 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(xpath="//div[@id='showInDesktoppasswordError']/preceding-sibling::input")
 	private WebElement passwordSignUp_TB;
 
+	@FindBy(css="div.intercom-borderless-dismiss-button")
+	protected WebElement intercomDismiss_Btn;
+
+	//@FindBy(xpath="(//*[@class='intercom-author-summary-name-from'])[1]")
+	@FindBy(css="div.intercom-block.intercom-block-paragraph:nth-child(2)")
+	protected WebElement intercomFrom_Lbl;
+
 	@FindBy(xpath="//div[@id='showInDesktoppasswordConfirmError']/preceding-sibling::input")
 	private WebElement confirmPasswordSignUp_Btn;
 
@@ -129,15 +141,15 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(css=".forgotpasswordclose")
 	private WebElement forgotPasswordClose_Btn;
 
-	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
+	@FindBy(xpath="(//*[@id='btn-facebook'])[2]")
 	private WebElement fbLogin_Btn;
-	
+
 	@FindBy(xpath=".//*[@id='btn-facebook']")
 	protected WebElement signupPage_fb_loginBtn;
-	
+
 	@FindBy(xpath=".//*[@id='btn-google']")
 	protected WebElement signupPage_google_loginBtn;
-	
+
 	@FindBy(xpath="(//button[@id='btn-facebook'])[2]")
 	private WebElement fbSignUp_Btn;
 
@@ -171,7 +183,7 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(css=".user-dropdown .user-name[href='/profile']")
 	private WebElement myProfile_Btn;
 
-	@FindBy(css=".user-dropdown>div>div>div:nth-child(2)>a")
+	@FindBy(css=".user-dropdown>div>div>div:nth-child(3)>a")
 	private WebElement logout_Btn;
 
 	@FindBy(css=".swiper-slide:nth-child(1) span")
@@ -209,7 +221,7 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(css=".close-side-options")
 	private WebElement closeHamburger_Btn;
-	
+
 	@FindBy(xpath="((//*[@class='no-underline-link']/../../../ul)[5]/li/a)[3]")
 	protected WebElement collegePredictor;
 
@@ -236,6 +248,19 @@ public class W_BasePage extends W_SuperBasePage
 	String exam_bank_clerk_prelims_URL="https://preprod.embibe.com/bank/test/bank-clerk-prelims";
 	String exam_bank_po_prelims_URL="https://preprod.embibe.com/bank/test/bank-po-prelims";
 
+	public void navigateToSinhalTestXpath(String goal, String xpath){
+		String url = wdriver.getCurrentUrl();
+		try {
+			url = url.replaceAll("aits", goal);
+		} catch (Exception e) {}
+		try {
+			url = url.replaceAll("landing", "");
+		} catch (Exception e) {}
+//		url = url+goal+"/test"+xpath+"/paper";
+		url = url+"/test"+xpath+"/paper";
+		wdriver.navigate().to(url);
+		Reporter.log(url, true);
+	}
 
 
 	public void getPixelDataSignUpGoals() throws EncryptedDocumentException, InvalidFormatException, IOException{
@@ -268,7 +293,16 @@ public class W_BasePage extends W_SuperBasePage
 		Assert.assertTrue(search_TB.isDisplayed(), "Not in Search Home page");
 		Reporter.log("Navigated to Search Home Page \n", true);
 	}
+	
+	@FindBy(css="div.score-higher.header-form")
+	private WebElement signupForm;
 
+	public void assertSignupFormAfterLoggedOut(){
+		waitUntilElementAppears(signupForm);
+		Assert.assertTrue(signupForm.isDisplayed(), "Not in Signup form page");
+		Reporter.log("Navigated to Sign up Page \n", true);
+	}
+	
 	public void clickHamburger(){
 		waitUntilElementclickable(hamburger_Btn);
 		hamburger_Btn.click();
@@ -304,6 +338,13 @@ public class W_BasePage extends W_SuperBasePage
 		SignUpLogin_Btn.click();
 		Reporter.log("Clicked on Login Here", true);
 	}
+	
+	public QuestionsPage navigateToQuestionEditPage(String questionId) throws IOException{
+		String url = JavaUtils.getPropValue("contentAdminUrl")+"admin/questions/"+questionId+"/edit";
+		wdriver.navigate().to(url);
+		Reporter.log("Navigated to "+url, true);
+		return new QuestionsPage(wdriver);
+	}
 
 	@FindBy(xpath="//*[@id='header_block']/span[contains(text(),'Log in to Facebook')]")
 	private WebElement assertFbLoginPage;
@@ -335,7 +376,7 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Clicked on facebook login button",true);
 	}
 
-	@FindBy(xpath="//*[@id='headingText']/following::button[contains(text(),'embibe.com')]")
+	@FindBy(xpath="//*[@id='headingText']")
 	private WebElement assertGoogleSignInPage;
 
 	@FindBy(xpath="//*[@id='identifierId']")
@@ -343,8 +384,8 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(xpath="//*[@id='identifierNext']")
 	private WebElement google_next_btn;
-	
-	
+
+
 	@FindBy(xpath="//*[@id='passwordNext']")
 	private WebElement google_Final_next_btn;
 
@@ -360,7 +401,7 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Google login page is opened successfully", true);
 	}
 
-	public void enterGoogleLoginCredentials(String email,String password){
+	public void enterGoogleLoginCredentials(String email,String password) throws Exception{
 		enterText(enterGoogleMail, email);
 		Reporter.log("Entered Email id",true);
 		google_next_btn.click();
@@ -384,18 +425,31 @@ public class W_BasePage extends W_SuperBasePage
 	}
 
 	public void clickEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo);
-		embibeLogo.click();
-		Reporter.log("Clicked on Embibe Logo", true);
+		try{
+			waitUntilElementclickable(EmbibeLogo2);
+			clickElement(EmbibeLogo2);
+			Reporter.log("Clicked on Embibe Logo..", true);
+			assertSearchHomepage();
+		}
+		catch(Exception e){
+			waitUntilElementclickable(EmbibeLogo1);
+			clickElement(EmbibeLogo1);
+			Reporter.log("Clicked on Embibe Logo.", true);
+			assertSearchHomepage();
+		}
 	}
 
-	public void clickAsk(){
+	@FindBy(xpath="//div[@class='ask-heading']")
+	private WebElement askPageTitle;
+	
+	public AskPage clickAsk(){
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		waitUntilElementclickable(ask_Btn);
 		ask_Btn.click();
 		Reporter.log("Clicked on Ask", true);
-		waitUntilElementAppears(embibeLogo_Ask);
+		waitUntilElementAppears(askPageTitle);
 		Reporter.log("Navigated to ASK page", true);
+		return new AskPage(wdriver);
 	}
 
 	public void clickStudy(){
@@ -404,21 +458,23 @@ public class W_BasePage extends W_SuperBasePage
 		study_Btn.click();
 		Reporter.log("Clicked on Study", true);
 	}
-	
-	
+
+	@FindBy(xpath="//button[text()='GET JUMP']")
+	private WebElement getJumpBtn;
+
 	@FindBy(xpath="//a[@href='/home']/img")
 	private WebElement embibeLogo_Jump;
-	
+
 	public void clickJumpEmbibeLogo(){
 		waitUntilElementclickable(embibeLogo_Jump);
 		embibeLogo_Jump.click();
 		Reporter.log("Clicked on Embibe Logo", true);
 		assertSearchHomepage();
 	}
-	
+
 	@FindBy(css="a.navbarbrand.logo")
 	private WebElement embibeLogo_RankUp;
-	
+
 	public void clickRankupEmbibeLogo(){
 		waitUntilElementclickable(embibeLogo_RankUp);
 		embibeLogo_RankUp.click();
@@ -431,11 +487,11 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementclickable(jump_Btn);
 		jump_Btn.click();
 		Reporter.log("Clicked on Jump", true);
-		waitUntilElementclickable(embibeLogo_Jump);
+		waitUntilElementclickable(getJumpBtn);
 		Reporter.log("Navigated to Jump page", true);
 		return new JumpPage(wdriver);
 	}
-	
+
 	public MyProfilePage goToMyProfile(){
 		clickUserDropdown();
 		waitUntilElementclickable(myProfile_Btn);
@@ -443,28 +499,33 @@ public class W_BasePage extends W_SuperBasePage
 		return new MyProfilePage(wdriver);
 	}
 
-	public void clickRank(){
+	@FindBy(xpath="(//button[text()='APPLY TO RANKUP'])[1]")
+	private WebElement applytoRankupBtn1;
+	
+	public RankupPage clickRank(){
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		waitUntilElementclickable(rankup_Btn);
 		rankup_Btn.click();
 		Reporter.log("Clicked on Rankup", true);
-		waitUntilElementclickable(embibeLogo_RankUp);
+		waitUntilElementclickable(applytoRankupBtn1);
 		Reporter.log("Navigated to Rankup page", true);
+		return new RankupPage(wdriver);
 	}
 
-	@FindBy(css="span.hd-institute")
+	@FindBy(css="#header-heading")
 	private WebElement insitituePageHeader;
-	
-	public void clickInstitutes(){
+
+	public InstitutePage clickInstitutes(){
 		Reporter.log("----------------------------------------------------------------------------------------------",true);
 		waitUntilElementclickable(institutes_Btn);
 		institutes_Btn.click();
 		Reporter.log("Clicked on Institutes", true);
 		waitUntilElementAppears(insitituePageHeader);
 		Reporter.log("Navigated to Institute page", true);
+		return new InstitutePage(wdriver);
 	}
 
-	
+
 	@FindBy(css="span>img.logo")
 	private WebElement embibeLogo_Institute;
 
@@ -473,13 +534,13 @@ public class W_BasePage extends W_SuperBasePage
 		embibeLogo_Institute.click();
 		Reporter.log("Clicked on Embibe Logo", true);
 	}
-	
+
 	public void verifyInstitutePage(){
 		waitUntilElementclickable(embibeLogo_Institute);
 		Assert.assertTrue(insitituePageHeader.isDisplayed(), "Institute Page is not loaded");
 		Reporter.log("Institute Page opened successfully", true);
 	}
-	
+
 	public void mouseHoverOnAsk() throws InterruptedException{
 		waitUntilElementAppears(ask_Btn);
 		mouseHoverOnElement(wdriver, ask_Btn, "Mouse Hovered on Ask");
@@ -510,7 +571,7 @@ public class W_BasePage extends W_SuperBasePage
 		embiumImage.click();
 		Reporter.log("Embium Image is present in the Header", true);
 	}
-	
+
 	public void loginBtn(){
 		waitUntilElementclickable(login_Btn);
 		clickElement(login_Btn);
@@ -589,7 +650,7 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementAppears(guestImage);
 		Reporter.log("Logged in Successfully",true);
 	}
-	
+
 	public void loginWithGoal(String goal){
 		String email = "";
 		switch(goal){
@@ -680,7 +741,7 @@ public class W_BasePage extends W_SuperBasePage
 		//		clickElementViaJavaScript(userDropdown);
 		userDropdown.click();
 	}
-	
+
 	public void printAllCookies(){
 		Set<Cookie> cookies = wdriver.manage().getCookies();
 		for(Cookie c:cookies){
@@ -722,13 +783,15 @@ public class W_BasePage extends W_SuperBasePage
 			url = getPropValue("testAppUrl");
 		else if(domain.equalsIgnoreCase("dev"))
 			url = getPropValue("devAppUrl");
+		url = url.replaceAll("landing", "");
 		wdriver.navigate().to(url+"signup");
 		return new SignUpPage(wdriver);
 	}
 
-	public MailinatorPage goToMailinatorPage(){
-		wdriver.navigate().to("http://www.mailinator.com/");
-		return new MailinatorPage(wdriver);
+	public MailPage goToMailinatorPage(){
+		//		wdriver.navigate().to("http://www.mailinator.com/");
+		wdriver.navigate().to("http://www.yopmail.com/en/");
+		return new MailPage(wdriver);
 	}
 
 	public DslPage goToDslPage(){
@@ -751,7 +814,7 @@ public class W_BasePage extends W_SuperBasePage
 		waitUntilElementclickable(logout_Btn);
 		logout_Btn.click();
 		Reporter.log("Clicked on logout button",true);
-		Reporter.log("Logged out succesfully",true);
+		Reporter.log("Logged out succesfully..!!",true);
 		return new SignUpPage(wdriver);
 	}
 
@@ -958,6 +1021,138 @@ public class W_BasePage extends W_SuperBasePage
 		enterText(emailPhone_TB, email);	
 		enterText(password_TB, "moolya123");
 	}
+	
+	public WebDriver launchSinhalAitsApp(String browser) throws IOException
+	{
+		String url = getPropValue("sinhalTestUrl");
+
+		if (browser.equalsIgnoreCase("chrome")) 
+		{
+			ChromeOptions chromeOptions = new ChromeOptions();
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			else if(System.getProperty("os.name").toLowerCase().contains("linux")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_linux");
+				chromeOptions.addArguments("--headless");
+			}
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
+			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(chromeOptions);
+		}
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		if(!browser.equalsIgnoreCase("ff"))
+			wdriver.manage().window().maximize();
+		if(System.getProperty("os.name").toLowerCase().contains("linux"))
+			wdriver.manage().window().setSize(new Dimension(1366, 768));
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+	
+	public WebDriver launchSandbox(String browser) throws IOException
+	{
+		String url = getPropValue("sandboxTestUrl");
+
+		if (browser.equalsIgnoreCase("chrome")) 
+		{
+			ChromeOptions chromeOptions = new ChromeOptions();
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			else if(System.getProperty("os.name").toLowerCase().contains("linux")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_linux");
+				chromeOptions.addArguments("--headless");
+			}
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
+			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(chromeOptions);
+		}
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		if(!browser.equalsIgnoreCase("ff"))
+			wdriver.manage().window().maximize();
+		if(System.getProperty("os.name").toLowerCase().contains("linux"))
+			wdriver.manage().window().setSize(new Dimension(1366, 768));
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+	
+	public WebDriver launchAtg(String browser) throws IOException
+	{
+		String url = getPropValue("atgTestUrl");
+
+		if (browser.equalsIgnoreCase("chrome")) 
+		{
+			ChromeOptions chromeOptions = new ChromeOptions();
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			else if(System.getProperty("os.name").toLowerCase().contains("linux")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_linux");
+				chromeOptions.addArguments("--headless");
+			}
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
+			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(chromeOptions);
+		}
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		if(!browser.equalsIgnoreCase("ff"))
+			wdriver.manage().window().maximize();
+		if(System.getProperty("os.name").toLowerCase().contains("linux"))
+			wdriver.manage().window().setSize(new Dimension(1366, 768));
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+	
+	public WebDriver launchContentAdminApp(String browser) throws IOException
+	{
+		String url = getPropValue("contentAdminUrl");
+
+		if (browser.equalsIgnoreCase("chrome")) 
+		{
+			ChromeOptions chromeOptions = new ChromeOptions();
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			else if(System.getProperty("os.name").toLowerCase().contains("linux")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_linux");
+				chromeOptions.addArguments("--headless");
+			}
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
+			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			wdriver = new ChromeDriver(chromeOptions);
+		}
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		if(!browser.equalsIgnoreCase("ff"))
+			wdriver.manage().window().maximize();
+		if(System.getProperty("os.name").toLowerCase().contains("linux"))
+			wdriver.manage().window().setSize(new Dimension(1366, 768));
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
 
 	@SuppressWarnings({ "unused", "static-access"})
 	public WebDriver launchDsl(String browser) throws IOException
@@ -1059,7 +1254,7 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
 		return wdriver;
 	}
-	
+
 	public HashMap<String, String> readPixelData(String sheetName,String pageName,String uniqueValue) throws EncryptedDocumentException, InvalidFormatException, IOException{
 		int width = wdriver.manage().window().getSize().width;
 		int height = wdriver.manage().window().getSize().height;
@@ -1373,13 +1568,7 @@ public class W_BasePage extends W_SuperBasePage
 	@FindBy(css=".global-nav__left>a>img")
 	protected WebElement embibeLogo_Ask;
 
-	public SearchHomepage clickAskEmbibeLogo(){
-		waitUntilElementclickable(embibeLogo_Ask);
-		embibeLogo_Ask.click();
-		Reporter.log("Clicked on Embibe Logo", true);
-		assertSearchHomepage();
-		return new SearchHomepage(wdriver);
-	}
+	
 
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[1]")
 	private WebElement aboutUs_footer;
@@ -1390,10 +1579,10 @@ public class W_BasePage extends W_SuperBasePage
 		aboutUs_footer.click();
 		Reporter.log("Clicked on 'aboutUs' icon",true);
 	}
-	
+
 	@FindBy(css="div.about-page-top")
 	private WebElement assertAboutUs;
-	
+
 	public void assertAboutUs_Page(){
 		waitUntilElementclickable(assertAboutUs);
 		Assert.assertTrue(assertAboutUs.isDisplayed(), "Not navigated to About Us Page");
@@ -1410,7 +1599,7 @@ public class W_BasePage extends W_SuperBasePage
 		press_footer.click();
 		Reporter.log("Clicked on 'press' icon",true);
 	}
-	
+
 	@FindBy(css="div.u-alignBlock div.buttonSet button.button--primary")
 	private WebElement assertPress;
 
@@ -1420,7 +1609,7 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to 'Press' Page", true);
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[3]")
 	private WebElement contactUs_footer;
 
@@ -1433,15 +1622,15 @@ public class W_BasePage extends W_SuperBasePage
 
 	@FindBy(css="body.contact-us-page")
 	private WebElement assertContactUs;
-	
+
 	public void assertContactUs_Page(){
 		waitUntilElementclickable(assertContactUs);
 		Assert.assertTrue(assertContactUs.isDisplayed(), "Not navigated to Contact us Page");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to 'Contact Us' Page", true);
 	}
-	
-	
+
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[4]")
 	private WebElement termsConditions_footer;
 
@@ -1451,17 +1640,17 @@ public class W_BasePage extends W_SuperBasePage
 		termsConditions_footer.click();
 		Reporter.log("Clicked on 'Terms  & Conditions' icon",true);
 	}
-	
+
 	@FindBy(css="div.tos-section")
 	private WebElement assertTOS;
-	
+
 	public void assertTOS_Page(){
 		waitUntilElementclickable(assertTOS);
 		Assert.assertTrue(assertTOS.isDisplayed(), "Not navigated to 'Terms of Service' Page");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to 'Terms of Service' Page", true);
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[5]")
 	private WebElement takeDownPolicy;
 
@@ -1471,17 +1660,17 @@ public class W_BasePage extends W_SuperBasePage
 		takeDownPolicy.click();
 		Reporter.log("Clicked on 'TakeDown Policy' icon",true);
 	}
-	
+
 	@FindBy(css="div.takedown-section")
 	private WebElement assertTDP;
-	
+
 	public void assertTakeDownPolicy_Page(){
 		waitUntilElementclickable(assertTDP);
 		Assert.assertTrue(assertTDP.isDisplayed(), "Not navigated to 'Take Down Policy' Page");
 		Reporter.log("URL : " + wdriver.getCurrentUrl(),true);
 		Reporter.log("Navigated to 'Take Down Policy' Page", true);
 	}
-	
+
 	@FindBy(xpath="(//*[@class='footer-div']/div[3]/ul/li/a[@class='no-underline-link'])[6]")
 	private WebElement privacyPolicy;
 
@@ -1491,17 +1680,17 @@ public class W_BasePage extends W_SuperBasePage
 		privacyPolicy.click();
 		Reporter.log("Clicked on 'Privacy Policy' icon",true);
 	}
-	
+
 	public NewLearnPage openLearnLink(String url) throws IOException{
 		url = JavaUtils.getPropValue("testAppUrl")+url;
 		wdriver.navigate().to(url);
 		Reporter.log("Navigated to : "+wdriver.getCurrentUrl(), true);
 		return new NewLearnPage(wdriver);
 	}
-	
+
 	@FindBy(css="div.tos-section")
 	private WebElement assertPrivacyPolicy;
-	
+
 	public void assertPrivacyPolicy_Page(){
 		waitUntilElementclickable(assertPrivacyPolicy);
 		Assert.assertTrue(assertPrivacyPolicy.isDisplayed(), "Not navigated to 'Privacy Policy' Page");
@@ -1509,6 +1698,99 @@ public class W_BasePage extends W_SuperBasePage
 		Reporter.log("Navigated to 'Privacy Policy' Page", true);
 	}
 
+	@FindBy(css="iframe.intercom-borderless-frame")
+	private WebElement iframeIntercom;
+
+	public void closeIntercom() throws InterruptedException{
+		try {
+			wdriver.switchTo().frame(iframeIntercom);
+		waitUntilElementAppears(intercomFrom_Lbl);
+		mouseHoverOnElement(wdriver, intercomFrom_Lbl);
+		clickElement(intercomDismiss_Btn);
+		wdriver.switchTo().defaultContent();
+		Reporter.log("Intercom closed",true);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			Reporter.log("Error occured while closing Intercom",true);
+			//e.printStackTrace();
+		}
+	}
+	
+
+	public void signupforpractice(){
+		waitUntilElementclickable(login_Btn);
+		clickElement(login_Btn, "Clicked Login");
+		clickElement(register_Btn, "Clicked Register Here");
+		emailPhone_TB.sendKeys(generateString(7) + "@gmail.com");
+		passwordSignUp_TB.sendKeys("qwertyuiop");
+		confirmPasswordSignUp_Btn.sendKeys("qwertyuiop");
+		clickElement(signUp_Btn, "Clicked SignUp");
+		/*clickElement(closeSignUp_Btn, "Clicked on Close");
+		Reporter.log("Clicked on pop up close button",true);*/
+	}
+	
+	
+	//ATG Elements
+	
+	@FindBy(css="div.footer-wrapper div.test-progress div.progress-percentage")
+	private WebElement progressPercentage;
+	
+	@FindBy(css="a.help-progress-btn")
+	private WebElement helpBtn;
+	
+	@FindBy(css="a.prev-progress-btn")
+	private WebElement previousBtn;
+	
+	@FindBy(css="a.next-progress-btn")
+	private WebElement nextBtn;
+	
+	@FindBy(css="img.global-nav__logo.global-nav__logo--main:nth-child(1)")
+	private WebElement EmbibeLogo1;
+	
+	@FindBy(css="div.embibeLogo:nth-child(1)")
+	private WebElement EmbibeLogo2;
+	
+	
+	public SearchHomepage clickAskEmbibeLogo(){
+		try{
+			waitUntilElementclickable(EmbibeLogo1);
+			clickElement(EmbibeLogo1);
+			Reporter.log("Clicked on Embibe Logo", true);
+			assertSearchHomepage();
+			
+		}
+		catch(Exception e)
+		{
+			waitUntilElementclickable(EmbibeLogo2);
+			clickElement(EmbibeLogo2);
+			Reporter.log("Clicked on Embibe Logo", true);
+			assertSearchHomepage();
+			
+		}
+		return new SearchHomepage(wdriver);
+	}
+
+	@FindBy(css="a.user-name")
+	private WebElement Logout;
+	
+	@FindBy(xpath="//a[text()='Logout']")
+	private WebElement logoutBtn;
+	
+	public AskPage logout_SHM() throws InterruptedException{
+		Thread.sleep(3000);
+		waitUntilElementclickable(Logout);
+		clickElement(Logout);
+		Reporter.log("Clicked on Profile icon ",true);
+		clickElement(logoutBtn);
+		Reporter.log("Clicked on logout button",true);
+		Reporter.log("Logout successful..!!!",true);
+		return new AskPage(wdriver);
+	}
+	
+	
+	
 }
+
+
 
 

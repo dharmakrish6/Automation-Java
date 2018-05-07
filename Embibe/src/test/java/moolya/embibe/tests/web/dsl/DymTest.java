@@ -23,7 +23,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.DslPage;
 import moolya.embibe.pages.web.LandingPage;
 import moolya.embibe.pages.web.SearchHomepage;
@@ -69,7 +68,7 @@ public class DymTest {
 	}
 
 	@Test(dataProvider="getDslActualData")//String row,String uniqueValue,String browser
-	public void dymTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, ATUTestRecorderException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
+	public void dymTest(String row,String uniqueValue) throws IOException, NoSuchFieldException, SecurityException, InterruptedException, EncryptedDocumentException, InvalidFormatException, ClassNotFoundException, JSONException {
 		String text = uniqueValue;
 		dslp = new DslPage(wdriver);
 		dslData = dslp.getSearchQueryJson(text,goalCode,examCode,20);
@@ -87,7 +86,7 @@ public class DymTest {
 	}
 
 	@AfterMethod
-	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
+	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
 		String dir = System.getProperty("user.dir");
 		if(!new File(dir+"\\screenshots").exists())

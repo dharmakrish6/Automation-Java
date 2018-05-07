@@ -30,6 +30,9 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(css=".Dropdown-root")
 	private WebElement chooseCountry_DD;
 	
+	@FindBy(css=".Select-input input")
+	private WebElement countryDD_TB;
+	
 	@FindBy(css=".Dropdown-control+div>div:nth-child(1)")
 	private WebElement countryIndia;
 	
@@ -75,7 +78,7 @@ public class ChooseMissionPage extends W_BasePage {
 	@FindBy(css=".mission-desc")
 	private WebElement specifyExamMessage_Lbl;
 	
-	@FindBy(css=".exam-list.show .exam-data")
+	@FindBy(css=".exam-list .exam-data")
 	private List<WebElement> examSearch_List;
 	
 	@FindBy(css=".exam-list.show .exam-data:nth-child(1)")
@@ -134,9 +137,9 @@ public class ChooseMissionPage extends W_BasePage {
 	
 	
 	
-	public void clickRequestMission(){
+	public void clickRequestMission() throws InterruptedException{
 		waitUntilElementclickable(requestMission_Btn);
-		requestMission_Btn.click();
+		clickElement(requestMission_Btn);
 		Reporter.log("Clicked on 'Request a Misson'");
 		Assert.assertTrue(missionSearch_TB.isDisplayed(), "Request a Mission window is not opened");
 		Reporter.log("Request a Misson window is opened",true);
@@ -227,6 +230,13 @@ public class ChooseMissionPage extends W_BasePage {
 		clickElement(missonClose);
 		Reporter.log("Clicked on 'Request a Misson' close button",true);
 		return new SearchHomepage(wdriver);
+	}
+	
+	public void selectCountry(String country) throws InterruptedException{
+		waitUntilElementclickable(chooseCountry_DD);
+		clickElement(chooseCountry_DD);
+		countryDD_TB.sendKeys(country);
+		selectItemFromList(newCountryList, country);
 	}
 	
 	public void countryDropdown(String country) throws InterruptedException{

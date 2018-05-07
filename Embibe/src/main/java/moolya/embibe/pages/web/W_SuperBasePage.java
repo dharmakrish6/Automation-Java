@@ -41,6 +41,7 @@ import org.apache.poi.util.IOUtils;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Point;
@@ -157,11 +158,124 @@ public class W_SuperBasePage extends JavaUtils{
 			wdriver = new SafariDriver();
 		}else if (browser.equalsIgnoreCase("chrome")) 
 		{
+			ChromeOptions chromeOptions = new ChromeOptions();
 			if(System.getProperty("os.name").toLowerCase().contains("windows"))
 				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
 			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
 				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			else if(System.getProperty("os.name").toLowerCase().contains("linux")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_linux");
+				chromeOptions.addArguments("--headless");
+			}
+			LoggingPreferences logPrefs = new LoggingPreferences();
+			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
+			chromeOptions.addArguments("test-type");
+			chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
+			chromeOptions.addArguments("disable-geolocation");
+			chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+			chromeOptions.addArguments("window-size=1920,1080");
+			wdriver = new ChromeDriver(chromeOptions);
+		}
+		else if(browser.contains("opera")){
+			OperaOptions operaOptions = new OperaOptions();
+			if(browser.equalsIgnoreCase("opera32")){
+				System.setProperty("webdriver.opera.driver", "./drivers/operadriver32.exe");
+				operaOptions.setBinary("C:/Program Files (x86)/Opera/launcher.exe");
+				wdriver = new OperaDriver(operaOptions);
+			}else if(browser.equalsIgnoreCase("opera64")){
+				if(System.getProperty("os.name").toLowerCase().contains("windows")){
+					System.setProperty("webdriver.opera.driver", "./drivers/operadriver64.exe");
+					operaOptions.setBinary("C:/Program Files/Opera/launcher.exe");
+					wdriver = new OperaDriver(operaOptions);
+				}
+				else if(System.getProperty("os.name").toLowerCase().contains("mac")){
+					System.setProperty("webdriver.opera.driver", "./drivers/operadriver");
+					wdriver = new OperaDriver();
+				}
+			}
+		}
+		else if (browser.equalsIgnoreCase("phantomjs")){
+			DesiredCapabilities caps = new DesiredCapabilities();
+			caps.setJavascriptEnabled(true);
+			caps.setCapability(CapabilityType.TAKES_SCREENSHOT, true);
+			caps.setCapability(CapabilityType.SUPPORTS_ALERTS, true);
+			caps.setCapability(PhantomJSDriverService.PHANTOMJS_CLI_ARGS, new String[] {
+					"--web-security=false",
+					"--ssl-protocol=any",
+					"--ignore-ssl-errors=true",
+					"--webdriver-loglevel=INFO"
+			});
+			System.setProperty(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY, "./drivers/phantomjs.exe");
+			wdriver = new PhantomJSDriver(caps);
+		}
+
+		wdriver.get(url);
+		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		if(!browser.equalsIgnoreCase("ff"))
+			wdriver.manage().window().maximize();
+		if(System.getProperty("os.name").toLowerCase().contains("linux"))
+			//wdriver.manage().window().setSize(new Dimension(1366, 768));
+			wdriver.manage().window().setSize(new Dimension(1920, 1080));
+		
+		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
+		return wdriver;
+	}
+	
+	@SuppressWarnings({ "unused"})
+	public WebDriver launchWebApp(String browser,String url) throws IOException
+	{
+		url = getPropValue(url);
+
+		if (browser.equalsIgnoreCase("ff")) 
+		{
+			System.setProperty("webdriver.gecko.driver", "./drivers/geckodriver.exe");
+			FirefoxProfile ffProfile = new FirefoxProfile();
+			ffProfile.setPreference("geo.enabled", false);
+			ffProfile.setPreference("geo.provider.use_corelocation", false);
+			ffProfile.setPreference("geo.prompt.testing", false);
+			ffProfile.setPreference("geo.prompt.testing.allow", false);
+			FirefoxOptions ffOptions = new FirefoxOptions();
+			ffOptions.setProfile(ffProfile);
+			wdriver = new FirefoxDriver(ffOptions);
+		}
+
+		//	Only for windows
+		else if(browser.equalsIgnoreCase("grid")){
+			System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			DesiredCapabilities caps = DesiredCapabilities.chrome();
+			wdriver = new RemoteWebDriver(new URL("http://172.16.100.114:4444/wd/hub"),caps);
+		}
+
+		else if(browser.contains("ie")){
+			InternetExplorerDriverService ieService = null;
+			if(browser.equalsIgnoreCase("ieWinx32"))
+			{
+				System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer32.exe"); // setting path of the IEDriver
+			}
+			//	Only for windows
+			else if(browser.equalsIgnoreCase("ieWinx64"))
+			{
+				System.setProperty("webdriver.ie.driver", "./drivers/IEDriverServer64.exe"); // setting path of the IEDriver
+			}
+			InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+			ieOptions.destructivelyEnsureCleanSession();
+			ieOptions.introduceFlakinessByIgnoringSecurityDomains();
+			wdriver = new InternetExplorerDriver(ieOptions);
+		}
+		//	Only for mac
+		else if(browser.equalsIgnoreCase("safari")){
+			wdriver = new SafariDriver();
+		}else if (browser.equalsIgnoreCase("chrome")) 
+		{
 			ChromeOptions chromeOptions = new ChromeOptions();
+			if(System.getProperty("os.name").toLowerCase().contains("windows"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver.exe");
+			else if(System.getProperty("os.name").toLowerCase().contains("mac"))
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+			else if(System.getProperty("os.name").toLowerCase().contains("linux")){
+				System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver_linux");
+				chromeOptions.addArguments("--headless");
+			}
 			LoggingPreferences logPrefs = new LoggingPreferences();
 			logPrefs.enable(LogType.PERFORMANCE, Level.ALL);
 			chromeOptions.addArguments("test-type");
@@ -207,9 +321,13 @@ public class W_SuperBasePage extends JavaUtils{
 		wdriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		if(!browser.equalsIgnoreCase("ff"))
 			wdriver.manage().window().maximize();
+		if(System.getProperty("os.name").toLowerCase().contains("linux"))
+			wdriver.manage().window().setSize(new Dimension(1366, 768));
 		Reporter.log("Launched Url: "+wdriver.getCurrentUrl(), true);
 		return wdriver;
 	}
+	
+	
 
 	@SuppressWarnings({ "static-access", "unchecked" })
 	public WebDriver launchApp(String config_file, String environment,String className) throws IOException, ParseException{
@@ -275,6 +393,7 @@ public class W_SuperBasePage extends JavaUtils{
 				chromeOptions.addArguments("enable-strict-powerful-feature-restrictions");
 				chromeOptions.addArguments("disable-geolocation");
 				chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
+				chromeOptions.addArguments("window-size=1920,1080");
 				wdriver = new ChromeDriver(chromeOptions);
 			}
 			else if(environment.contains("opera")){
@@ -504,13 +623,13 @@ public class W_SuperBasePage extends JavaUtils{
 
 	public void waitUntilElementAppears(WebElement element){
 
-		WebDriverWait wait = new WebDriverWait(wdriver, 20);
+		WebDriverWait wait = new WebDriverWait(wdriver, 30);
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
 	public void waitUntilElementclickable(WebElement element){
 
-		WebDriverWait wait = new WebDriverWait(wdriver, 20);
+		WebDriverWait wait = new WebDriverWait(wdriver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 
@@ -542,8 +661,19 @@ public class W_SuperBasePage extends JavaUtils{
 		try{
 			element.click();
 		}catch(Exception e){
+			scrollVertically("-1000");
 			scrollToElementViaJavascript(element);
-			element.click();
+			try {
+				element.click();
+			} catch (Exception e1) {
+				while(true){
+					try {
+						scrollVertically("-20");
+						element.click();
+						break;
+					} catch (Exception e2) {}
+				}
+			}
 		}
 	}
 
@@ -691,7 +821,7 @@ public class W_SuperBasePage extends JavaUtils{
 	public void refreshPage()
 	{
 		wdriver.navigate().refresh();
-		Reporter.log("Refreshing Page", true);
+		//Reporter.log("Refreshing Page", true);
 	}
 	
 	

@@ -136,8 +136,9 @@ public class SignUpPage extends W_BasePage {
 		return new SearchHomepage(wdriver);
 	}
 	
-	public void clickForgotPasswordSignUpPage(String email){
+	public void clickForgotPasswordSignUpPage(String email) throws InterruptedException{
 		waitUntilElementclickable(forgotPassword_Btn);
+		Thread.sleep(1000);
 		forgotPassword_Btn.click();
 		Reporter.log("Clicked on Forgot Password", true);
 		waitUntilElementclickable(forgotPasswordEmail_TB);

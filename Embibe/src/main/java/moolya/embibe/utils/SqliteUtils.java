@@ -23,7 +23,7 @@ public class SqliteUtils {
 	public static Connection getDbConnection() throws IOException
 	{
 		String dir = System.getProperty("user.dir");
-		String dbPath = dir+"\\db\\test-data.db";
+		String dbPath = dir+"/db/test-data.db";
 		// JDBC driver name and database URL
 		dbUrl = "jdbc:sqlite:"+dbPath; //master schema db
 		Connection conn = null;
@@ -44,7 +44,7 @@ public class SqliteUtils {
 	public static Connection getDbConnection(String dbName) throws IOException
 	{
 		String dir = System.getProperty("user.dir");
-		String dbPath = dir+"\\db\\"+dbName;
+		String dbPath = dir+"/db/"+dbName;
 		// JDBC driver name and database URL
 		dbUrl = "jdbc:sqlite:"+dbPath; //master schema db
 		Connection conn = null;
@@ -241,6 +241,64 @@ public class SqliteUtils {
 			stmt = conn.createStatement();
 			
 			String sql = "select `learn_path`,`entity_code`,`video_count` from `LearnConcept` where `video_count`=\"\";";
+			ResultSet rs = stmt.executeQuery(sql);
+			while(rs.next()){
+					learnPaths.add(rs.getString("learn_path"));
+					entityCodes.add(rs.getString("entity_code"));
+			}
+			obj = new Object[learnPaths.size()][2];
+			for(int i=0;i<learnPaths.size();i++){
+				obj[i][0] = learnPaths.get(i);
+				obj[i][1] = entityCodes.get(i);
+			}
+			System.out.println(learnPaths.size());
+			stmt.close();
+			conn.commit();
+			return obj;
+		} //end try
+		catch(SQLException se){
+			//Handle errors for JDBC
+			se.printStackTrace();
+		}
+
+		finally
+		{
+			//finally block used to close resources
+			try
+			{
+				if(stmt!=null)
+					conn.close();
+			}
+			catch(SQLException se){
+			}// do nothing
+			try
+			{
+				if(conn!=null)
+					conn.close();
+			}
+			catch(SQLException se)
+			{
+				se.printStackTrace();
+			}
+			System.out.println("Goodbye!");
+		}//end finally
+		
+		return obj;
+	}
+	
+	public static Object[][] getLearnParamsForZeroVideoCount() throws IOException{
+		Object[][] obj = null;
+		Connection conn = getDbConnection("ConceptsVideoData.db");
+		Statement stmt = null;
+		ArrayList<String> learnPaths = new ArrayList<String>();
+		ArrayList<String> entityCodes = new ArrayList<String>();
+		try{
+			// Execute a query
+			conn.setAutoCommit(false);
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			
+			String sql = "select `learn_path`,`entity_code`,`video_count` from `LearnConcept` where `video_count`=\"0\";";
 			ResultSet rs = stmt.executeQuery(sql);
 			while(rs.next()){
 					learnPaths.add(rs.getString("learn_path"));

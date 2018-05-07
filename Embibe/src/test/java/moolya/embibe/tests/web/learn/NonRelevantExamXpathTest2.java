@@ -22,7 +22,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import atu.testrecorder.exceptions.ATUTestRecorderException;
 import moolya.embibe.pages.web.DslPage;
 import moolya.embibe.pages.web.NewLearnPage;
 import moolya.embibe.pages.web.W_BasePage;
@@ -60,7 +59,7 @@ public class NonRelevantExamXpathTest2 {
 	}
 	
 	@AfterMethod
-	public void catchExceptions(ITestResult result) throws IOException, InterruptedException, ATUTestRecorderException 
+	public void catchExceptions(ITestResult result) throws IOException, InterruptedException 
 	{    
 		String dir = System.getProperty("user.dir");
 		if(!new File(dir+"\\screenshots").exists())
