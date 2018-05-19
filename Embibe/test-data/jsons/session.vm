@@ -1,6 +1,0 @@
-{
-"email":"${email}",
-"password":"${password}",
-"timestamp":"${timestamp}",
-"html":true
-}

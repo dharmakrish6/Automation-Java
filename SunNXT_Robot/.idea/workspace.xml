@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2f7c02bf-bb90-4889-b471-6a2bf099acf7" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/TestSuite/TestCase10.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/TestSuite/TestSuiteIntialisation/TestSuiteInitialisation.robot" />
-      <change beforePath="$PROJECT_DIR$/Keyword/Common.robot" afterPath="$PROJECT_DIR$/Keyword/Common.robot" />
-      <change beforePath="$PROJECT_DIR$/Keyword/Subscription.robot" afterPath="$PROJECT_DIR$/Keyword/Subscription.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/Subscription.robot" afterPath="$PROJECT_DIR$/Locators/Subscription.robot" />
-      <change beforePath="$PROJECT_DIR$/Variable/Variables.robot" afterPath="$PROJECT_DIR$/Variable/Variables.robot" />
+    <list default="true" id="303833dc-e254-4017-b7a6-656a6d4a2fe7" name="Default" comment="ADDED ANDROID AUTOMATION">
+      <change beforePath="$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/stream_vod.robot" beforeDir="false" afterPath="$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/stream_vod.robot" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/venv/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,50 +11,49 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Automation-Java" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TestCase10.robot" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TestSuite/TestCase10.robot">
+      <file leaf-file-name="stream_vod.robot" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/stream_vod.robot">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            <state relative-caret-position="264">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
               <folding>
-                <element signature="e#0#437#0" expanded="true" />
+                <element signature="e#0#343#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSuiteInitialisation.robot" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/TestSuite/TestSuiteIntialisation/TestSuiteInitialisation.robot">
+      <file leaf-file-name="Player.robot" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Player.robot">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="115" lean-forward="false" selection-start-line="2" selection-start-column="115" selection-end-line="2" selection-end-column="115" />
-              <folding>
-                <element signature="e#0#167#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="544">
+              <caret line="38" column="64" selection-start-line="32" selection-start-column="4" selection-end-line="38" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestCase01.robot" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TestSuite/TestCase01.robot">
+      <file leaf-file-name="testcase03.robot" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase03.robot">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#237#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Common.robot" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
+      <file leaf-file-name="authentication.robot" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/authentication.robot">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="102" />
-              <folding />
+            <state relative-caret-position="1020">
+              <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+              <folding>
+                <element signature="e#0#622#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,33 +69,65 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Ameet &lt;ameet.pradhan@moolya.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/TestSuite/TestCase06.robot" />
-        <option value="$PROJECT_DIR$/TestSuite/TestCase07.robot" />
-        <option value="$PROJECT_DIR$/Locators/Authentication.robot" />
-        <option value="$PROJECT_DIR$/Locators/Profile.robot" />
-        <option value="$PROJECT_DIR$/Keyword/Search.robot" />
-        <option value="$PROJECT_DIR$/Profile.robot" />
-        <option value="$PROJECT_DIR$/Locators/VOD-DetailsScreen.robot" />
-        <option value="$PROJECT_DIR$/TestSuite/TestCase08.robot" />
-        <option value="$PROJECT_DIR$/Keyword/VOD-DetailsScreen.robot" />
-        <option value="$PROJECT_DIR$/Keyword/Profile.robot" />
-        <option value="$PROJECT_DIR$/Locators/Player.robot" />
-        <option value="$PROJECT_DIR$/Locators/LiveTV-DetailsScreen.robot" />
-        <option value="$PROJECT_DIR$/Keyword/Player.robot" />
-        <option value="$PROJECT_DIR$/Locators/SunNXThome.robot" />
-        <option value="$PROJECT_DIR$/TestSuite/TestCase09.robot" />
-        <option value="$PROJECT_DIR$/Keyword/Content/HomePage.robot" />
-        <option value="$PROJECT_DIR$/Keyword/Common.robot" />
-        <option value="$PROJECT_DIR$/TestSuite/TestCase10.robot" />
-        <option value="$PROJECT_DIR$/Locators/Subscription.robot" />
-        <option value="$PROJECT_DIR$/Variable/Variables.robot" />
-        <option value="$PROJECT_DIR$/Keyword/Subscription.robot" />
-        <option value="$PROJECT_DIR$/TestSuite/TestSuiteIntialisation/TestSuiteInitialisation.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase02.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Variable/Variables.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase09.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase12..robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Keyword/Common.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/Subscription.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/Content/Movies.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Keyword/Content/HomePage.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Keyword/Subscription.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/Player.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Keyword/Player.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/Authentication.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/SunNXThome.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase07.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase06.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase03.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase08.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase11.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase10.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase12.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Keyword/Signup.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase05.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase04.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCase01.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/Android/TestCase01.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/language_selection.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/homescreen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/home_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/common.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/profile_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/signin/signup_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/authentication_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/profile_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Keyword/MobileApp/authentication.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/TestSuite/TestCases-Android/TestCase01.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/common.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/Variable/variable-android.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/authentication_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/content.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/videodetails_screen.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/player.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase01.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase02.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/variable/variable-android.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase03.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/common.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/authentication.robot" />
+        <option value="$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/stream_vod.robot" />
       </list>
     </option>
   </component>
@@ -113,52 +138,46 @@
     <option name="height" value="249" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
+      <showMembers Scratches="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="SunNXT | RobotFramework" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SunNXT" type="462c0819:PsiDirectoryNode" />
+              <item name="Automation-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Java" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SunNXT | RobotFramework" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SunNXT" type="462c0819:PsiDirectoryNode" />
-              <item name="Keyword" type="462c0819:PsiDirectoryNode" />
+              <item name="Automation-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="SunNXT_Robot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="SunNXT | RobotFramework" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SunNXT" type="462c0819:PsiDirectoryNode" />
-              <item name="TestSuite" type="462c0819:PsiDirectoryNode" />
+              <item name="Automation-Java" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Automation-Java" type="462c0819:PsiDirectoryNode" />
+              <item name="SunNXT_Robot" type="462c0819:PsiDirectoryNode" />
+              <item name="variable" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
-    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/Automation-Java" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\SunNXT\SunNXT\Keyword" />
+      <recent name="E:\Automation-Java\SunNXT_Robot\Locators\WebPortal" />
+      <recent name="E:\Automation-Java\SunNXT_Robot\Keyword\WebPortal" />
+      <recent name="E:\Automation-Java\SunNXT_Robot\TestSuite\TestCases-WebPortal" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -173,142 +192,46 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Nosetests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Twisted Trial">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="py.test">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SunNXT" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2f7c02bf-bb90-4889-b471-6a2bf099acf7" name="Default" comment="" />
-      <created>1522445975783</created>
+      <changelist id="303833dc-e254-4017-b7a6-656a6d4a2fe7" name="Default" comment="" />
+      <created>1522995328015</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1522445975783</updated>
+      <updated>1522995328015</updated>
     </task>
-    <task id="LOCAL-00001" summary="Test Case 8 added&#10;- Verifies whether Content Streamed recently is added to continue watching section or not&#10;NOTE: TEST FAILS AS TEXT CONVERSION HAS NOT BEEN DONE">
-      <created>1522755234679</created>
+    <task id="LOCAL-00001" summary="ADDED TestCase for Subscription using Credit Card&#10;&#10;NOTE: Though test-data for Credit Card is fake one, transaction fails">
+      <created>1523300354649</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1522755234679</updated>
+      <updated>1523300354649</updated>
     </task>
-    <task id="LOCAL-00002" summary="Test Case 9:&#10;- Streaming Live TV Channel&#10;NOTE: Change in Quality supported till 360p1088k&#10;&#10;Test Case 8:&#10;- 'TEST FAILS AS TEXT CONVERSION HAS NOT BEEN DONE' resolved">
-      <created>1522761271597</created>
+    <task id="LOCAL-00002" summary="Added Tags as subscription to TestCase10 &amp; TestCase11&#10;Changed keyword to enter name on debit card for TestCase10">
+      <created>1523304938751</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1522761271597</updated>
+      <updated>1523304938751</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ADDED ANDROID AUTOMATION">
+      <created>1524221164098</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1524221164098</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ADDED ANDROID AUTOMATION">
+      <created>1524221520126</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1524221520126</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -323,409 +246,408 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25074404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49702382" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34210527" sideWeight="0.53869045" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34210527" sideWeight="0.46130952" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4902439" visible="true" weight="0.2470238" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4956076" weight="0.31796503" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5043924" side_tool="true" weight="0.31796503" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4914498" weight="0.3290938" />
+      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49739778" side_tool="true" weight="0.32843137" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.5029762" side_tool="true" visible="true" weight="0.34102142" />
+      <window_info id="Favorites" order="2" sideWeight="0.5097561" side_tool="true" weight="0.24312268" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="SVN Repositories" order="7" sideWeight="0.49702382" visible="true" weight="0.34102142" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49702382" weight="0.32784185" />
     </layout>
     <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.49702382" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34210527" sideWeight="0.53869045" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34210527" sideWeight="0.46130952" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25297618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4902439" visible="true" weight="0.2470238" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49702382" weight="0.32784185" />
+      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49739778" side_tool="true" weight="0.32843137" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.5029762" side_tool="true" visible="true" weight="0.32784185" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5026022" side_tool="true" weight="0.32843137" />
+      <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4914498" weight="0.3295082" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Favorites" order="2" sideWeight="0.5097561" side_tool="true" weight="0.24312268" />
     </layout-to-restore>
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Test Case 8 added&#10;- Verifies whether Content Streamed recently is added to continue watching section or not&#10;NOTE: TEST FAILS AS TEXT CONVERSION HAS NOT BEEN DONE" />
-    <MESSAGE value="Test Case 9:&#10;- Streaming Live TV Channel&#10;NOTE: Change in Quality supported till 360p1088k&#10;&#10;Test Case 8:&#10;- 'TEST FAILS AS TEXT CONVERSION HAS NOT BEEN DONE' resolved" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test Case 9:&#10;- Streaming Live TV Channel&#10;NOTE: Change in Quality supported till 360p1088k&#10;&#10;Test Case 8:&#10;- 'TEST FAILS AS TEXT CONVERSION HAS NOT BEEN DONE' resolved" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager />
-    <watches-manager />
+    <MESSAGE value="ADDED TestCase for Subscription using Credit Card&#10;&#10;NOTE: Though test-data for Credit Card is fake one, transaction fails" />
+    <MESSAGE value="Added Tags as subscription to TestCase10 &amp; TestCase11&#10;Changed keyword to enter name on debit card for TestCase10" />
+    <MESSAGE value="ADDED ANDROID AUTOMATION" />
+    <option name="LAST_COMMIT_MESSAGE" value="ADDED ANDROID AUTOMATION" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase08.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase03.robot">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state>
+          <caret column="16" selection-start-column="16" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Profile.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase01.robot">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+        <state relative-caret-position="51">
+          <caret line="8" column="36" lean-forward="true" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Common.robot">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="680">
+          <caret line="46" column="13" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase01.robot">
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/report.html" />
+    <entry file="file://$PROJECT_DIR$/selenium-screenshot-5.png" />
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/WebPortal/Subscription.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="14" selection-start-line="4" selection-start-column="14" selection-end-line="4" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/WebPortal/Content/HomePage.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2210">
+          <caret line="130" column="28" selection-start-line="130" selection-start-column="28" selection-end-line="130" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/WebPortal/Content/Movies.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Content/HomePage.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="43" selection-start-line="43" selection-end-line="43" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Subscription.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="13" column="16" lean-forward="true" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Authentication.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/WebPortal/Player.robot">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+        <state relative-caret-position="199">
+          <caret line="45" column="6" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Variable/Variables.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase09.robot">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
+        <state relative-caret-position="50">
+          <caret line="14" column="41" lean-forward="true" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase08.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase03.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="12" column="115" selection-start-line="12" selection-start-column="115" selection-end-line="12" selection-end-column="115" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase06.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase07.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="41" selection-end-line="13" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase08.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="26" column="42" lean-forward="false" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <caret line="28" column="23" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase04.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Variable/Variables.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Authentication.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Player.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase07.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase10.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="12" column="91" lean-forward="false" selection-start-line="12" selection-start-column="91" selection-end-line="12" selection-end-column="91" />
+          <caret line="9" column="109" selection-start-line="9" selection-start-column="109" selection-end-line="9" selection-end-column="109" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="15" lean-forward="false" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Content/HomePage.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" lean-forward="true" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="10" column="27" lean-forward="true" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/SunNXT-Robot.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="9" lean-forward="true" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/SunNXT-Robot.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="9" lean-forward="false" selection-start-line="12" selection-start-column="9" selection-end-line="12" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/PycharmProjects/SunNXT/venv/Lib/site-packages/robot/libraries/BuiltIn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="2596" column="8" lean-forward="false" selection-start-line="2596" selection-start-column="8" selection-end-line="2596" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/robot/libraries/BuiltIn.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="1669" column="4" lean-forward="true" selection-start-line="1669" selection-start-column="4" selection-end-line="1669" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase03.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="25" column="30" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="39" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase08.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase11.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="24" />
+          <caret line="9" column="110" selection-start-line="9" selection-start-column="110" selection-end-line="9" selection-end-column="110" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase12.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/variable/Variables.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/WebPortal/SunNXThome.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase05.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Signup.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="56" column="35" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Common.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="34" column="34" selection-start-line="34" selection-start-column="34" selection-end-line="34" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase04.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="12" column="34" selection-start-line="12" selection-start-column="34" selection-end-line="12" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/Locators/MobileApp/signin/signup_screen.robot" />
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/Keyword/MobileApp/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/selenium-screenshot-1.png" />
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase02.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="43" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/log.html" />
-    <entry file="file://$PROJECT_DIR$/Locators/LiveTV-DetailsScreen.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/VOD-DetailsScreen.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/TestCases-WebPortal/TestCase01.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="11" />
+          <caret line="14" column="28" lean-forward="true" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Player.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase04.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase05.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase06.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/WebPortal/Authentication.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="22" />
+          <caret line="11" column="15" selection-start-line="11" selection-start-column="15" selection-end-line="11" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase07.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/VOD-DetailsScreen.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="25" column="44" lean-forward="false" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Search.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="49" lean-forward="false" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Content/HomePage.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="37" column="14" lean-forward="false" selection-start-line="37" selection-start-column="14" selection-end-line="37" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Profile.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="9" column="43" lean-forward="false" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Player.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase09.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="27" column="36" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Subscription.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/selenium-screenshot-5.png" />
-    <entry file="file://$PROJECT_DIR$/Locators/Profile.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" lean-forward="false" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/selenium-screenshot-7.png" />
-    <entry file="file://$PROJECT_DIR$/selenium-screenshot-1.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Authentication.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="42" lean-forward="false" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/Content/HomePage.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Locators/SunNXThome.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Subscription.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="46" column="13" lean-forward="false" selection-start-line="46" selection-start-column="13" selection-end-line="46" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#143#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Variable/Variables.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/language_selection.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
-          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding />
+          <caret line="9" column="29" selection-start-line="9" selection-start-column="29" selection-end-line="9" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase10.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/profile_screen.robot">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#437#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="119">
+          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestCase01.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="16" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#237#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Keyword/Common.robot">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="102" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TestSuite/TestSuiteIntialisation/TestSuiteInitialisation.robot">
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/home_screen.robot">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
-          <caret line="2" column="115" lean-forward="false" selection-start-line="2" selection-start-column="115" selection-end-line="2" selection-end-column="115" />
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/content.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Lib/site-packages/AppiumLibrary/keywords/_waiting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/videodetails_screen.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase01.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="6" column="32" selection-end-line="6" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase02.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="7" column="32" selection-end-line="7" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/player.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/common.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/locators/mobileapp/authentication_screen.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="381">
+          <caret line="25" column="15" lean-forward="true" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/common.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Python/Lib/site-packages/AppiumLibrary/keywords/_element.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="51" column="8" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/testsuite/test_cases-android/testcase03.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/authentication.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
           <folding>
-            <element signature="e#0#167#0" expanded="true" />
+            <element signature="e#0#622#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/WebPortal/Player.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="38" column="64" selection-start-line="32" selection-start-column="4" selection-end-line="38" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/variable/variable-android.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunNXT_Robot/keywords/mobile_app/stream_vod.robot">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="e#0#343#0" expanded="true" />
           </folding>
         </state>
       </provider>
