@@ -1,0 +1,2431 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.0.4 (Python 3.6.5 on win32)" generated="20180518 18:37:37.843">
+    <suite id="s1" name="Atc 04-Cast Content"
+           source="E:\Automation-Java\SunNXT_Robot\testsuite\testcases_android\atc_04-cast_content.robot">
+        <test id="s1-t1" name="MOVIE">
+            <kw name="LOGIN VIA APP" library="authentication" type="setup">
+                <arguments>
+                    <arg>${reg_id-email_subs}</arg>
+                    <arg>${reg_pass-email_subs}</arg>
+                </arguments>
+                <kw name="OPEN SUNNXT APP" library="android_common">
+                    <kw name="Open Application" library="AppiumLibrary">
+                        <doc>Opens a new application to given Appium server.</doc>
+                        <arguments>
+                            <arg>${server}</arg>
+                            <arg>platformName=${os}</arg>
+                            <arg>platformVersion=${version}</arg>
+                            <arg>deviceName=${udid}</arg>
+                            <arg>app=${app}</arg>
+                            <arg>appPackage=${app}</arg>
+                            <arg>appActivity=${activity}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:37:38.135"
+                                endtime="20180518 18:37:52.122"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:37:38.135" endtime="20180518 18:37:52.122"></status>
+                </kw>
+                <kw name="SELECT LANGUAGE AND PROCEED TO HOME-SCREEN" library="android_common">
+                    <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` appears on current page.</doc>
+                        <arguments>
+                            <arg>${next_btn}</arg>
+                            <arg>timeout=15</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:37:52.122"
+                                endtime="20180518 18:37:55.744"></status>
+                    </kw>
+                    <kw name="Click Text" library="AppiumLibrary">
+                        <doc>Click text identified by ``text``.</doc>
+                        <arguments>
+                            <arg>${tamil}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:37:55.744"
+                                endtime="20180518 18:37:56.104"></status>
+                    </kw>
+                    <kw name="Click Element" library="AppiumLibrary">
+                        <doc>Click element identified by `locator`.</doc>
+                        <arguments>
+                            <arg>${next_btn}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:37:56.104" level="INFO">Clicking element
+                            '//android.widget.Button[contains(@resource-id,'but')]'.
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:37:56.104"
+                                endtime="20180518 18:37:56.864"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:37:52.122" endtime="20180518 18:37:56.864"></status>
+                </kw>
+                <kw name="ACCEPT IMEI SHARING" library="android_common">
+                    <kw name="Click Element" library="AppiumLibrary">
+                        <doc>Click element identified by `locator`.</doc>
+                        <arguments>
+                            <arg>${alert_btn1}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:37:56.864" level="INFO">Clicking element 'id=android:id/button1'.
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:37:56.864"
+                                endtime="20180518 18:37:58.757"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:37:56.864" endtime="20180518 18:37:58.757"></status>
+                </kw>
+                <kw name="DISMISS DISPLAYED COACH MARK" library="android_common">
+                    <kw name="${index} IN RANGE [ 3 ]" type="for">
+                        <kw name="${index} = 0" type="foritem">
+                            <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                                <doc>Waits until element specified with `locator` appears on current page.</doc>
+                                <arguments>
+                                    <arg>${page_loaded}</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:37:58.761"
+                                        endtime="20180518 18:38:01.757"></status>
+                            </kw>
+                            <kw name="Run Keyword" library="BuiltIn">
+                                <doc>Executes the given keyword with the given arguments.</doc>
+                                <arguments>
+                                    <arg>COACH MARK DISMISS</arg>
+                                </arguments>
+                                <kw name="COACH MARK DISMISS" library="android_common">
+                                    <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                        <doc>Runs the given keyword with given arguments and returns the status as a
+                                            Boolean value.
+                                        </doc>
+                                        <arguments>
+                                            <arg>page should contain element</arg>
+                                            <arg>${coach_mark}</arg>
+                                        </arguments>
+                                        <assign>
+                                            <var>${status}</var>
+                                        </assign>
+                                        <kw name="Page Should Contain Element" library="AppiumLibrary">
+                                            <doc>Verifies that current page contains `locator` element.</doc>
+                                            <arguments>
+                                                <arg>${coach_mark}</arg>
+                                            </arguments>
+                                            <msg timestamp="20180518 18:38:02.566" level="INFO">Current page contains
+                                                element 'id=com.suntv.sunnxt:id/cartoon'.
+                                            </msg>
+                                            <status status="PASS" starttime="20180518 18:38:01.761"
+                                                    endtime="20180518 18:38:02.570"></status>
+                                        </kw>
+                                        <msg timestamp="20180518 18:38:02.570" level="INFO">${status} = True</msg>
+                                        <status status="PASS" starttime="20180518 18:38:01.761"
+                                                endtime="20180518 18:38:02.570"></status>
+                                    </kw>
+                                    <kw name="Run Keyword If" library="BuiltIn">
+                                        <doc>Runs the given keyword with the given arguments, if ``condition`` is
+                                            true.
+                                        </doc>
+                                        <arguments>
+                                            <arg>"${status}"=="True"</arg>
+                                            <arg>click text</arg>
+                                            <arg>${thanks_text}</arg>
+                                            <arg>ELSE</arg>
+                                            <arg>Exit For Loop</arg>
+                                        </arguments>
+                                        <kw name="Click Text" library="AppiumLibrary">
+                                            <doc>Click text identified by ``text``.</doc>
+                                            <arguments>
+                                                <arg>${thanks_text}</arg>
+                                            </arguments>
+                                            <status status="PASS" starttime="20180518 18:38:02.570"
+                                                    endtime="20180518 18:38:03.075"></status>
+                                        </kw>
+                                        <status status="PASS" starttime="20180518 18:38:02.570"
+                                                endtime="20180518 18:38:03.075"></status>
+                                    </kw>
+                                    <status status="PASS" starttime="20180518 18:38:01.761"
+                                            endtime="20180518 18:38:03.075"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:01.757"
+                                        endtime="20180518 18:38:03.075"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:37:58.761"
+                                    endtime="20180518 18:38:03.075"></status>
+                        </kw>
+                        <kw name="${index} = 1" type="foritem">
+                            <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                                <doc>Waits until element specified with `locator` appears on current page.</doc>
+                                <arguments>
+                                    <arg>${page_loaded}</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:38:03.075"
+                                        endtime="20180518 18:38:05.154"></status>
+                            </kw>
+                            <kw name="Run Keyword" library="BuiltIn">
+                                <doc>Executes the given keyword with the given arguments.</doc>
+                                <arguments>
+                                    <arg>COACH MARK DISMISS</arg>
+                                </arguments>
+                                <kw name="COACH MARK DISMISS" library="android_common">
+                                    <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                        <doc>Runs the given keyword with given arguments and returns the status as a
+                                            Boolean value.
+                                        </doc>
+                                        <arguments>
+                                            <arg>page should contain element</arg>
+                                            <arg>${coach_mark}</arg>
+                                        </arguments>
+                                        <assign>
+                                            <var>${status}</var>
+                                        </assign>
+                                        <kw name="Page Should Contain Element" library="AppiumLibrary">
+                                            <doc>Verifies that current page contains `locator` element.</doc>
+                                            <arguments>
+                                                <arg>${coach_mark}</arg>
+                                            </arguments>
+                                            <msg timestamp="20180518 18:38:07.040" level="INFO">Current page contains
+                                                element 'id=com.suntv.sunnxt:id/cartoon'.
+                                            </msg>
+                                            <status status="PASS" starttime="20180518 18:38:05.154"
+                                                    endtime="20180518 18:38:07.040"></status>
+                                        </kw>
+                                        <msg timestamp="20180518 18:38:07.040" level="INFO">${status} = True</msg>
+                                        <status status="PASS" starttime="20180518 18:38:05.154"
+                                                endtime="20180518 18:38:07.040"></status>
+                                    </kw>
+                                    <kw name="Run Keyword If" library="BuiltIn">
+                                        <doc>Runs the given keyword with the given arguments, if ``condition`` is
+                                            true.
+                                        </doc>
+                                        <arguments>
+                                            <arg>"${status}"=="True"</arg>
+                                            <arg>click text</arg>
+                                            <arg>${thanks_text}</arg>
+                                            <arg>ELSE</arg>
+                                            <arg>Exit For Loop</arg>
+                                        </arguments>
+                                        <kw name="Click Text" library="AppiumLibrary">
+                                            <doc>Click text identified by ``text``.</doc>
+                                            <arguments>
+                                                <arg>${thanks_text}</arg>
+                                            </arguments>
+                                            <status status="PASS" starttime="20180518 18:38:07.044"
+                                                    endtime="20180518 18:38:07.576"></status>
+                                        </kw>
+                                        <status status="PASS" starttime="20180518 18:38:07.044"
+                                                endtime="20180518 18:38:07.576"></status>
+                                    </kw>
+                                    <status status="PASS" starttime="20180518 18:38:05.154"
+                                            endtime="20180518 18:38:07.576"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:05.154"
+                                        endtime="20180518 18:38:07.576"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:03.075"
+                                    endtime="20180518 18:38:07.576"></status>
+                        </kw>
+                        <kw name="${index} = 2" type="foritem">
+                            <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                                <doc>Waits until element specified with `locator` appears on current page.</doc>
+                                <arguments>
+                                    <arg>${page_loaded}</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:38:07.576"
+                                        endtime="20180518 18:38:08.228"></status>
+                            </kw>
+                            <kw name="Run Keyword" library="BuiltIn">
+                                <doc>Executes the given keyword with the given arguments.</doc>
+                                <arguments>
+                                    <arg>COACH MARK DISMISS</arg>
+                                </arguments>
+                                <kw name="COACH MARK DISMISS" library="android_common">
+                                    <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                        <doc>Runs the given keyword with given arguments and returns the status as a
+                                            Boolean value.
+                                        </doc>
+                                        <arguments>
+                                            <arg>page should contain element</arg>
+                                            <arg>${coach_mark}</arg>
+                                        </arguments>
+                                        <assign>
+                                            <var>${status}</var>
+                                        </assign>
+                                        <kw name="Page Should Contain Element" library="AppiumLibrary">
+                                            <doc>Verifies that current page contains `locator` element.</doc>
+                                            <arguments>
+                                                <arg>${coach_mark}</arg>
+                                            </arguments>
+                                            <msg timestamp="20180518 18:38:08.396" level="INFO">Current page contains
+                                                element 'id=com.suntv.sunnxt:id/cartoon'.
+                                            </msg>
+                                            <status status="PASS" starttime="20180518 18:38:08.228"
+                                                    endtime="20180518 18:38:08.397"></status>
+                                        </kw>
+                                        <msg timestamp="20180518 18:38:08.397" level="INFO">${status} = True</msg>
+                                        <status status="PASS" starttime="20180518 18:38:08.228"
+                                                endtime="20180518 18:38:08.398"></status>
+                                    </kw>
+                                    <kw name="Run Keyword If" library="BuiltIn">
+                                        <doc>Runs the given keyword with the given arguments, if ``condition`` is
+                                            true.
+                                        </doc>
+                                        <arguments>
+                                            <arg>"${status}"=="True"</arg>
+                                            <arg>click text</arg>
+                                            <arg>${thanks_text}</arg>
+                                            <arg>ELSE</arg>
+                                            <arg>Exit For Loop</arg>
+                                        </arguments>
+                                        <kw name="Click Text" library="AppiumLibrary">
+                                            <doc>Click text identified by ``text``.</doc>
+                                            <arguments>
+                                                <arg>${thanks_text}</arg>
+                                            </arguments>
+                                            <status status="PASS" starttime="20180518 18:38:08.399"
+                                                    endtime="20180518 18:38:08.896"></status>
+                                        </kw>
+                                        <status status="PASS" starttime="20180518 18:38:08.398"
+                                                endtime="20180518 18:38:08.896"></status>
+                                    </kw>
+                                    <status status="PASS" starttime="20180518 18:38:08.228"
+                                            endtime="20180518 18:38:08.896"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:08.228"
+                                        endtime="20180518 18:38:08.896"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:07.576"
+                                    endtime="20180518 18:38:08.896"></status>
+                        </kw>
+                        <status status="PASS" starttime="20180518 18:37:58.761"
+                                endtime="20180518 18:38:08.896"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:37:58.757" endtime="20180518 18:38:08.897"></status>
+                </kw>
+                <kw name="TAP ON PROFILE BUTTON" library="android_authentication">
+                    <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` appears on current page.</doc>
+                        <arguments>
+                            <arg>${button_profile}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:38:08.897"
+                                endtime="20180518 18:38:09.918"></status>
+                    </kw>
+                    <kw name="Click Element" library="AppiumLibrary">
+                        <doc>Click element identified by `locator`.</doc>
+                        <arguments>
+                            <arg>${button_profile}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:38:09.918" level="INFO">Clicking element
+                            'id=com.suntv.sunnxt:id/root1'.
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:38:09.918"
+                                endtime="20180518 18:38:10.778"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:08.897" endtime="20180518 18:38:10.778"></status>
+                </kw>
+                <kw name="CLICK LOGIN TEXT" library="android_authentication">
+                    <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` appears on current page.</doc>
+                        <arguments>
+                            <arg>id=com.suntv.sunnxt:id/imageView1</arg>
+                            <arg>timeout=3</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:38:10.778"
+                                endtime="20180518 18:38:11.619"></status>
+                    </kw>
+                    <kw name="Click Text" library="AppiumLibrary">
+                        <doc>Click text identified by ``text``.</doc>
+                        <arguments>
+                            <arg>${log_in}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:38:11.619"
+                                endtime="20180518 18:38:12.291"></status>
+                    </kw>
+                    <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` appears on current page.</doc>
+                        <arguments>
+                            <arg>id=com.suntv.sunnxt:id/logo_background</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:38:12.292"
+                                endtime="20180518 18:38:13.237"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:10.778" endtime="20180518 18:38:13.237"></status>
+                </kw>
+                <kw name="ENTER USER ID" library="android_authentication">
+                    <arguments>
+                        <arg>${userid}</arg>
+                    </arguments>
+                    <kw name="Input Text" library="AppiumLibrary">
+                        <doc>Types the given `text` into text field identified by `locator`.</doc>
+                        <arguments>
+                            <arg>${username}</arg>
+                            <arg>${userid}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:38:13.237" level="INFO">Typing text 'soumya.sunnxt@123.com' into
+                            text field 'id=com.suntv.sunnxt:id/phnEditTextLoginPage'
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:38:13.237"
+                                endtime="20180518 18:38:20.324"></status>
+                    </kw>
+                    <kw name="Run Keyword And Return Status" library="BuiltIn">
+                        <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.
+                        </doc>
+                        <arguments>
+                            <arg>should match regexp</arg>
+                            <arg>${userid}</arg>
+                            <arg>${regex}</arg>
+                        </arguments>
+                        <assign>
+                            <var>${pass}</var>
+                        </assign>
+                        <kw name="Should Match Regexp" library="BuiltIn">
+                            <doc>Fails if ``string`` does not match ``pattern`` as a regular expression.</doc>
+                            <arguments>
+                                <arg>${userid}</arg>
+                                <arg>${regex}</arg>
+                            </arguments>
+                            <msg timestamp="20180518 18:38:20.328" level="FAIL">'soumya.sunnxt@123.com' does not match
+                                '[0-9]{10}'
+                            </msg>
+                            <status status="FAIL" starttime="20180518 18:38:20.328"
+                                    endtime="20180518 18:38:20.328"></status>
+                        </kw>
+                        <msg timestamp="20180518 18:38:20.328" level="INFO">${pass} = False</msg>
+                        <status status="PASS" starttime="20180518 18:38:20.324"
+                                endtime="20180518 18:38:20.328"></status>
+                    </kw>
+                    <kw name="Set Global Variable" library="BuiltIn">
+                        <doc>Makes a variable available globally in all tests and suites.</doc>
+                        <arguments>
+                            <arg>${pass}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:38:20.332" level="INFO">${pass} = False</msg>
+                        <status status="PASS" starttime="20180518 18:38:20.332"
+                                endtime="20180518 18:38:20.332"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:13.237" endtime="20180518 18:38:20.332"></status>
+                </kw>
+                <kw name="ENTER PASSWORD" library="android_authentication">
+                    <arguments>
+                        <arg>${userid}</arg>
+                        <arg>${userpass}</arg>
+                    </arguments>
+                    <kw name="Wait Until Page Does Not Contain Element" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` disappears from current page.</doc>
+                        <arguments>
+                            <arg>${sunnxt_banner}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:38:20.336"
+                                endtime="20180518 18:38:21.026"></status>
+                    </kw>
+                    <kw name="Run Keyword If" library="BuiltIn">
+                        <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                        <arguments>
+                            <arg>"${pass}"=="True"</arg>
+                            <arg>ENTER PASSWORD FOR MOBILE</arg>
+                            <arg>${userpass}</arg>
+                            <arg>ELSE</arg>
+                            <arg>ENTER PASSWORD FOR EMAIL-ID</arg>
+                            <arg>${userpass}</arg>
+                        </arguments>
+                        <kw name="ENTER PASSWORD FOR EMAIL-ID" library="android_authentication">
+                            <arguments>
+                                <arg>${userpass}</arg>
+                            </arguments>
+                            <kw name="Input Password" library="AppiumLibrary">
+                                <doc>Types the given password into text field identified by `locator`.</doc>
+                                <arguments>
+                                    <arg>${email_password}</arg>
+                                    <arg>${userpass}</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:21.034" level="INFO">Typing password into text field
+                                    'id=com.suntv.sunnxt:id/emailPasswordField'
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:21.034"
+                                        endtime="20180518 18:38:27.153"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:21.030"
+                                    endtime="20180518 18:38:27.153"></status>
+                        </kw>
+                        <status status="PASS" starttime="20180518 18:38:21.026"
+                                endtime="20180518 18:38:27.153"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:20.332" endtime="20180518 18:38:27.153"></status>
+                </kw>
+                <kw name="CLICK LOGIN BUTTON" library="android_authentication">
+                    <kw name="Click Element" library="AppiumLibrary">
+                        <doc>Click element identified by `locator`.</doc>
+                        <arguments>
+                            <arg>${btn_login}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:38:27.153" level="INFO">Clicking element
+                            'id=com.suntv.sunnxt:id/login_button'.
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:38:27.153"
+                                endtime="20180518 18:38:28.218"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:27.153" endtime="20180518 18:38:28.219"></status>
+                </kw>
+                <kw name="WAIT UNTIL NAVIGATED TO HOME-SCREEN" library="android_authentication">
+                    <kw name="Run Keyword And Return Status" library="BuiltIn">
+                        <doc>Runs the given keyword with given arguments and returns the status as a Boolean value.
+                        </doc>
+                        <arguments>
+                            <arg>ALERT MESSAGE</arg>
+                        </arguments>
+                        <assign>
+                            <var>${status}</var>
+                        </assign>
+                        <kw name="ALERT MESSAGE" library="android_authentication">
+                            <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                                <doc>Waits until element specified with `locator` appears on current page.</doc>
+                                <arguments>
+                                    <arg>${alert_btn1}</arg>
+                                    <arg>timeout=10</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <msg timestamp="20180518 18:38:38.966" level="FAIL">Element 'id=android:id/button1' did
+                                    not appear in 10 seconds
+                                </msg>
+                                <status status="FAIL" starttime="20180518 18:38:28.222"
+                                        endtime="20180518 18:38:38.966"></status>
+                            </kw>
+                            <status status="FAIL" starttime="20180518 18:38:28.221"
+                                    endtime="20180518 18:38:38.966"></status>
+                        </kw>
+                        <msg timestamp="20180518 18:38:38.966" level="INFO">${status} = False</msg>
+                        <status status="PASS" starttime="20180518 18:38:28.220"
+                                endtime="20180518 18:38:38.966"></status>
+                    </kw>
+                    <kw name="Run Keyword If" library="BuiltIn">
+                        <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                        <arguments>
+                            <arg>"${status}"=="False"</arg>
+                            <arg>SIGNIN/SIGNUP VALIDATION</arg>
+                        </arguments>
+                        <kw name="SIGNIN/SIGNUP VALIDATION" library="android_authentication">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>wait until page contains</arg>
+                                    <arg>FEATURED VIDEOS</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${home_status}</var>
+                                </assign>
+                                <kw name="Wait Until Page Contains" library="AppiumLibrary">
+                                    <doc>Waits until `text` appears on current page.</doc>
+                                    <arguments>
+                                        <arg>FEATURED VIDEOS</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:38.970"
+                                            endtime="20180518 18:38:39.370"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:39.370" level="INFO">${home_status} = True</msg>
+                                <status status="PASS" starttime="20180518 18:38:38.970"
+                                        endtime="20180518 18:38:39.370"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${home_status}"=="True"</arg>
+                                    <arg>page should contain text</arg>
+                                    <arg>FEATURED VIDEOS</arg>
+                                    <arg>ELSE</arg>
+                                    <arg>UNABLE TO LOGIN</arg>
+                                </arguments>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>FEATURED VIDEOS</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:39.698" level="INFO">Current page contains text
+                                        'FEATURED VIDEOS'.
+                                    </msg>
+                                    <status status="PASS" starttime="20180518 18:38:39.370"
+                                            endtime="20180518 18:38:39.698"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:39.370"
+                                        endtime="20180518 18:38:39.698"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:38.966"
+                                    endtime="20180518 18:38:39.698"></status>
+                        </kw>
+                        <status status="PASS" starttime="20180518 18:38:38.966"
+                                endtime="20180518 18:38:39.698"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:28.219" endtime="20180518 18:38:39.698"></status>
+                </kw>
+                <status status="PASS" starttime="20180518 18:37:38.135" endtime="20180518 18:38:39.698"></status>
+            </kw>
+            <kw name="CAST VIDEO TO CASTING DEVICE" library="cast_vod">
+                <arguments>
+                    <arg>RECENTLY ADDED MUSIC ALBUMS</arg>
+                    <arg>Kalakalapu 2</arg>
+                </arguments>
+                <kw name="NAVIGATE TO CONTENT DETAILS SCREEN" library="android_stream_vod">
+                    <arguments>
+                        <arg>${carousel_title}</arg>
+                        <arg>${content_name}</arg>
+                    </arguments>
+                    <kw name="${swiping} IN RANGE [ 1000 ]" type="for">
+                        <kw name="${swiping} = 0" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:40.074" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:39.702"
+                                            endtime="20180518 18:38:40.074"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:40.074" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:39.702"
+                                        endtime="20180518 18:38:40.074"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:40.074"
+                                            endtime="20180518 18:38:40.694"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:40.074"
+                                        endtime="20180518 18:38:40.694"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:40.698" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:40.694"
+                                        endtime="20180518 18:38:40.698"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:39.702"
+                                    endtime="20180518 18:38:40.698"></status>
+                        </kw>
+                        <kw name="${swiping} = 1" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:41.050" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:40.698"
+                                            endtime="20180518 18:38:41.050"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:41.050" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:40.698"
+                                        endtime="20180518 18:38:41.050"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:41.050"
+                                            endtime="20180518 18:38:41.737"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:41.050"
+                                        endtime="20180518 18:38:41.737"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:41.738" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:41.738"
+                                        endtime="20180518 18:38:41.738"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:40.698"
+                                    endtime="20180518 18:38:41.738"></status>
+                        </kw>
+                        <kw name="${swiping} = 2" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:42.299" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:41.739"
+                                            endtime="20180518 18:38:42.299"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:42.299" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:41.739"
+                                        endtime="20180518 18:38:42.299"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:42.299"
+                                            endtime="20180518 18:38:42.943"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:42.299"
+                                        endtime="20180518 18:38:42.943"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:42.943" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:42.943"
+                                        endtime="20180518 18:38:42.943"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:41.738"
+                                    endtime="20180518 18:38:42.943"></status>
+                        </kw>
+                        <kw name="${swiping} = 3" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:43.371" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:42.943"
+                                            endtime="20180518 18:38:43.371"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:43.371" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:42.943"
+                                        endtime="20180518 18:38:43.371"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:43.371"
+                                            endtime="20180518 18:38:43.960"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:43.371"
+                                        endtime="20180518 18:38:43.960"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:43.964" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:43.964"
+                                        endtime="20180518 18:38:43.964"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:42.943"
+                                    endtime="20180518 18:38:43.964"></status>
+                        </kw>
+                        <kw name="${swiping} = 4" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:44.444" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:43.964"
+                                            endtime="20180518 18:38:44.444"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:44.444" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:43.964"
+                                        endtime="20180518 18:38:44.444"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:44.444"
+                                            endtime="20180518 18:38:44.976"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:44.444"
+                                        endtime="20180518 18:38:44.976"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:44.976" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:44.976"
+                                        endtime="20180518 18:38:44.976"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:43.964"
+                                    endtime="20180518 18:38:44.976"></status>
+                        </kw>
+                        <kw name="${swiping} = 5" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:45.517" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:44.976"
+                                            endtime="20180518 18:38:45.517"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:45.517" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:44.976"
+                                        endtime="20180518 18:38:45.517"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:45.517"
+                                            endtime="20180518 18:38:46.070"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:45.517"
+                                        endtime="20180518 18:38:46.070"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:46.070" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:46.070"
+                                        endtime="20180518 18:38:46.070"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:44.976"
+                                    endtime="20180518 18:38:46.070"></status>
+                        </kw>
+                        <kw name="${swiping} = 6" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:46.602" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:46.070"
+                                            endtime="20180518 18:38:46.602"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:46.602" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:46.070"
+                                        endtime="20180518 18:38:46.602"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:46.602"
+                                            endtime="20180518 18:38:47.299"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:46.602"
+                                        endtime="20180518 18:38:47.299"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:47.299" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:47.299"
+                                        endtime="20180518 18:38:47.299"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:46.070"
+                                    endtime="20180518 18:38:47.299"></status>
+                        </kw>
+                        <kw name="${swiping} = 7" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:47.728" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:47.303"
+                                            endtime="20180518 18:38:47.728"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:47.728" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:47.303"
+                                        endtime="20180518 18:38:47.728"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:47.729"
+                                            endtime="20180518 18:38:48.263"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:47.729"
+                                        endtime="20180518 18:38:48.263"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:48.267" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:48.263"
+                                        endtime="20180518 18:38:48.267"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:47.299"
+                                    endtime="20180518 18:38:48.267"></status>
+                        </kw>
+                        <kw name="${swiping} = 8" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:48.637" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:48.267"
+                                            endtime="20180518 18:38:48.637"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:48.637" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:48.267"
+                                        endtime="20180518 18:38:48.637"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:48.638"
+                                            endtime="20180518 18:38:49.241"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:48.637"
+                                        endtime="20180518 18:38:49.241"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:49.242" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:49.242"
+                                        endtime="20180518 18:38:49.242"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:48.267"
+                                    endtime="20180518 18:38:49.242"></status>
+                        </kw>
+                        <kw name="${swiping} = 9" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:49.700" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:49.243"
+                                            endtime="20180518 18:38:49.700"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:49.700" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:49.243"
+                                        endtime="20180518 18:38:49.700"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:49.700"
+                                            endtime="20180518 18:38:50.301"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:49.700"
+                                        endtime="20180518 18:38:50.301"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:50.301" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:50.301"
+                                        endtime="20180518 18:38:50.301"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:49.242"
+                                    endtime="20180518 18:38:50.301"></status>
+                        </kw>
+                        <kw name="${swiping} = 10" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:50.717" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:50.301"
+                                            endtime="20180518 18:38:50.717"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:50.717" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:50.301"
+                                        endtime="20180518 18:38:50.717"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:50.721"
+                                            endtime="20180518 18:38:51.335"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:50.717"
+                                        endtime="20180518 18:38:51.335"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:51.335" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:51.335"
+                                        endtime="20180518 18:38:51.336"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:50.301"
+                                    endtime="20180518 18:38:51.336"></status>
+                        </kw>
+                        <kw name="${swiping} = 11" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:51.682" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:51.336"
+                                            endtime="20180518 18:38:51.682"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:51.682" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:51.336"
+                                        endtime="20180518 18:38:51.682"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:51.682"
+                                            endtime="20180518 18:38:52.240"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:51.682"
+                                        endtime="20180518 18:38:52.241"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:52.241" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:52.241"
+                                        endtime="20180518 18:38:52.241"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:51.336"
+                                    endtime="20180518 18:38:52.242"></status>
+                        </kw>
+                        <kw name="${swiping} = 12" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:52.698" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:52.242"
+                                            endtime="20180518 18:38:52.698"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:52.698" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:52.242"
+                                        endtime="20180518 18:38:52.698"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:52.702"
+                                            endtime="20180518 18:38:53.251"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:52.698"
+                                        endtime="20180518 18:38:53.251"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:53.251" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:53.251"
+                                        endtime="20180518 18:38:53.251"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:52.242"
+                                    endtime="20180518 18:38:53.251"></status>
+                        </kw>
+                        <kw name="${swiping} = 13" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:53.699" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:53.255"
+                                            endtime="20180518 18:38:53.699"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:53.699" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:53.251"
+                                        endtime="20180518 18:38:53.699"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:53.699"
+                                            endtime="20180518 18:38:54.295"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:53.699"
+                                        endtime="20180518 18:38:54.295"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:54.295" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:54.295"
+                                        endtime="20180518 18:38:54.295"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:53.251"
+                                    endtime="20180518 18:38:54.295"></status>
+                        </kw>
+                        <kw name="${swiping} = 14" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:54.707" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:54.299"
+                                            endtime="20180518 18:38:54.707"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:54.707" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:54.295"
+                                        endtime="20180518 18:38:54.707"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:54.707"
+                                            endtime="20180518 18:38:55.392"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:54.707"
+                                        endtime="20180518 18:38:55.396"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:55.396" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:55.396"
+                                        endtime="20180518 18:38:55.396"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:54.295"
+                                    endtime="20180518 18:38:55.396"></status>
+                        </kw>
+                        <kw name="${swiping} = 15" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:55.792" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:55.396"
+                                            endtime="20180518 18:38:55.792"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:55.792" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:55.396"
+                                        endtime="20180518 18:38:55.792"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:55.792"
+                                            endtime="20180518 18:38:56.335"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:55.792"
+                                        endtime="20180518 18:38:56.336"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:56.336" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:56.336"
+                                        endtime="20180518 18:38:56.336"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:55.396"
+                                    endtime="20180518 18:38:56.337"></status>
+                        </kw>
+                        <kw name="${swiping} = 16" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:56.769" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:56.337"
+                                            endtime="20180518 18:38:56.773"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:56.773" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:56.337"
+                                        endtime="20180518 18:38:56.773"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:56.773"
+                                            endtime="20180518 18:38:57.334"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:56.773"
+                                        endtime="20180518 18:38:57.334"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:57.335" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:57.335"
+                                        endtime="20180518 18:38:57.335"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:56.337"
+                                    endtime="20180518 18:38:57.335"></status>
+                        </kw>
+                        <kw name="${swiping} = 17" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:57.669" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:57.336"
+                                            endtime="20180518 18:38:57.669"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:57.669" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:57.336"
+                                        endtime="20180518 18:38:57.669"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:57.669"
+                                            endtime="20180518 18:38:58.269"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:57.669"
+                                        endtime="20180518 18:38:58.269"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:58.269" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:58.269"
+                                        endtime="20180518 18:38:58.269"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:57.336"
+                                    endtime="20180518 18:38:58.269"></status>
+                        </kw>
+                        <kw name="${swiping} = 18" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:58.609" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:58.273"
+                                            endtime="20180518 18:38:58.609"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:58.609" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:58.273"
+                                        endtime="20180518 18:38:58.609"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:58.609"
+                                            endtime="20180518 18:38:59.221"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:58.609"
+                                        endtime="20180518 18:38:59.221"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:38:59.221" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:38:59.221"
+                                        endtime="20180518 18:38:59.221"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:58.269"
+                                    endtime="20180518 18:38:59.221"></status>
+                        </kw>
+                        <kw name="${swiping} = 19" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:38:59.482" level="FAIL">Page should have contained text
+                                        'RECENTLY ADDED MUSIC ALBUMS' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:38:59.221"
+                                            endtime="20180518 18:38:59.482"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:38:59.482" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:38:59.221"
+                                        endtime="20180518 18:38:59.482"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:38:59.482"
+                                            endtime="20180518 18:39:00.094"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:38:59.482"
+                                        endtime="20180518 18:39:00.094"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:39:00.094" level="INFO">Continuing for loop from the next
+                                    iteration.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:39:00.094"
+                                        endtime="20180518 18:39:00.094"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:38:59.221"
+                                    endtime="20180518 18:39:00.094"></status>
+                        </kw>
+                        <kw name="${swiping} = 20" type="foritem">
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${carousel_title}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${carousel_title}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:39:00.402" level="INFO">Current page contains text
+                                        'RECENTLY ADDED MUSIC ALBUMS'.
+                                    </msg>
+                                    <status status="PASS" starttime="20180518 18:39:00.098"
+                                            endtime="20180518 18:39:00.402"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:39:00.402" level="INFO">${status} = True</msg>
+                                <status status="PASS" starttime="20180518 18:39:00.098"
+                                        endtime="20180518 18:39:00.402"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:39:00.402"
+                                        endtime="20180518 18:39:00.402"></status>
+                            </kw>
+                            <kw name="Continue For Loop If" library="BuiltIn">
+                                <doc>Skips the current for loop iteration if the ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:39:00.402"
+                                        endtime="20180518 18:39:00.402"></status>
+                            </kw>
+                            <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                    value.
+                                </doc>
+                                <arguments>
+                                    <arg>page should contain text</arg>
+                                    <arg>${content_name}</arg>
+                                </arguments>
+                                <assign>
+                                    <var>${status}</var>
+                                </assign>
+                                <kw name="Page Should Contain Text" library="AppiumLibrary">
+                                    <doc>Verifies that current page contains `text`.</doc>
+                                    <arguments>
+                                        <arg>${content_name}</arg>
+                                    </arguments>
+                                    <msg timestamp="20180518 18:39:00.737" level="FAIL">Page should have contained text
+                                        'Kalakalapu 2' but did not
+                                    </msg>
+                                    <status status="FAIL" starttime="20180518 18:39:00.406"
+                                            endtime="20180518 18:39:00.737"></status>
+                                </kw>
+                                <msg timestamp="20180518 18:39:00.737" level="INFO">${status} = False</msg>
+                                <status status="PASS" starttime="20180518 18:39:00.402"
+                                        endtime="20180518 18:39:00.737"></status>
+                            </kw>
+                            <kw name="Run Keyword If" library="BuiltIn">
+                                <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                                <arguments>
+                                    <arg>"${status}"=="False"</arg>
+                                    <arg>swipe by percent</arg>
+                                    <arg>50</arg>
+                                    <arg>40</arg>
+                                    <arg>50</arg>
+                                    <arg>10</arg>
+                                </arguments>
+                                <kw name="Swipe By Percent" library="AppiumLibrary">
+                                    <doc>Swipe from one percent of the screen to another percent, for an optional
+                                        duration.
+                                    </doc>
+                                    <arguments>
+                                        <arg>50</arg>
+                                        <arg>40</arg>
+                                        <arg>50</arg>
+                                        <arg>10</arg>
+                                    </arguments>
+                                    <status status="PASS" starttime="20180518 18:39:00.738"
+                                            endtime="20180518 18:39:01.307"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:39:00.737"
+                                        endtime="20180518 18:39:01.307"></status>
+                            </kw>
+                            <kw name="Wait Until Page Contains" library="AppiumLibrary">
+                                <doc>Waits until `text` appears on current page.</doc>
+                                <arguments>
+                                    <arg>${content_name}</arg>
+                                    <arg>timeout=10</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:39:01.307"
+                                        endtime="20180518 18:39:01.695"></status>
+                            </kw>
+                            <kw name="Click Text" library="AppiumLibrary">
+                                <doc>Click text identified by ``text``.</doc>
+                                <arguments>
+                                    <arg>${content_name}</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:39:01.699"
+                                        endtime="20180518 18:39:03.437"></status>
+                            </kw>
+                            <kw name="Exit For Loop" library="BuiltIn">
+                                <doc>Stops executing the enclosing for loop.</doc>
+                                <msg timestamp="20180518 18:39:03.437" level="INFO">Exiting for loop altogether.</msg>
+                                <status status="PASS" starttime="20180518 18:39:03.437"
+                                        endtime="20180518 18:39:03.437"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:39:00.094"
+                                    endtime="20180518 18:39:03.437"></status>
+                        </kw>
+                        <status status="PASS" starttime="20180518 18:38:39.702"
+                                endtime="20180518 18:39:03.437"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:38:39.702" endtime="20180518 18:39:03.437"></status>
+                </kw>
+                <kw name="DISMISS DISPLAYED COACH MARK" library="android_common">
+                    <kw name="${index} IN RANGE [ 3 ]" type="for">
+                        <kw name="${index} = 0" type="foritem">
+                            <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                                <doc>Waits until element specified with `locator` appears on current page.</doc>
+                                <arguments>
+                                    <arg>${page_loaded}</arg>
+                                </arguments>
+                                <status status="PASS" starttime="20180518 18:39:03.437"
+                                        endtime="20180518 18:39:06.478"></status>
+                            </kw>
+                            <kw name="Run Keyword" library="BuiltIn">
+                                <doc>Executes the given keyword with the given arguments.</doc>
+                                <arguments>
+                                    <arg>COACH MARK DISMISS</arg>
+                                </arguments>
+                                <kw name="COACH MARK DISMISS" library="android_common">
+                                    <kw name="Run Keyword And Return Status" library="BuiltIn">
+                                        <doc>Runs the given keyword with given arguments and returns the status as a
+                                            Boolean value.
+                                        </doc>
+                                        <arguments>
+                                            <arg>page should contain element</arg>
+                                            <arg>${coach_mark}</arg>
+                                        </arguments>
+                                        <assign>
+                                            <var>${status}</var>
+                                        </assign>
+                                        <kw name="Page Should Contain Element" library="AppiumLibrary">
+                                            <doc>Verifies that current page contains `locator` element.</doc>
+                                            <arguments>
+                                                <arg>${coach_mark}</arg>
+                                            </arguments>
+                                            <msg timestamp="20180518 18:39:06.899" level="FAIL">Page should have
+                                                contained element 'id=com.suntv.sunnxt:id/cartoon' but did not
+                                            </msg>
+                                            <status status="FAIL" starttime="20180518 18:39:06.482"
+                                                    endtime="20180518 18:39:06.899"></status>
+                                        </kw>
+                                        <msg timestamp="20180518 18:39:06.899" level="INFO">${status} = False</msg>
+                                        <status status="PASS" starttime="20180518 18:39:06.482"
+                                                endtime="20180518 18:39:06.899"></status>
+                                    </kw>
+                                    <kw name="Run Keyword If" library="BuiltIn">
+                                        <doc>Runs the given keyword with the given arguments, if ``condition`` is
+                                            true.
+                                        </doc>
+                                        <arguments>
+                                            <arg>"${status}"=="True"</arg>
+                                            <arg>click text</arg>
+                                            <arg>${thanks_text}</arg>
+                                            <arg>ELSE</arg>
+                                            <arg>Exit For Loop</arg>
+                                        </arguments>
+                                        <kw name="Exit For Loop" library="BuiltIn">
+                                            <doc>Stops executing the enclosing for loop.</doc>
+                                            <msg timestamp="20180518 18:39:06.903" level="INFO">Exiting for loop
+                                                altogether.
+                                            </msg>
+                                            <status status="PASS" starttime="20180518 18:39:06.899"
+                                                    endtime="20180518 18:39:06.903"></status>
+                                        </kw>
+                                        <status status="PASS" starttime="20180518 18:39:06.899"
+                                                endtime="20180518 18:39:06.903"></status>
+                                    </kw>
+                                    <status status="PASS" starttime="20180518 18:39:06.478"
+                                            endtime="20180518 18:39:06.903"></status>
+                                </kw>
+                                <status status="PASS" starttime="20180518 18:39:06.478"
+                                        endtime="20180518 18:39:06.903"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:39:03.437"
+                                    endtime="20180518 18:39:06.903"></status>
+                        </kw>
+                        <status status="PASS" starttime="20180518 18:39:03.437"
+                                endtime="20180518 18:39:06.903"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:39:03.437" endtime="20180518 18:39:06.903"></status>
+                </kw>
+                <kw name="WAIT UNTIL CONTENT IS READY TO STREAM" library="android_stream_vod">
+                    <kw name="Wait Until Page Contains Element" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` appears on current page.</doc>
+                        <arguments>
+                            <arg>${seek_bar}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:39:06.903"
+                                endtime="20180518 18:39:12.766"></status>
+                    </kw>
+                    <kw name="Wait Until Element Is Visible" library="AppiumLibrary">
+                        <doc>Waits until element specified with `locator` is visible.</doc>
+                        <arguments>
+                            <arg>${btn_play_pause}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:39:12.770"
+                                endtime="20180518 18:39:13.494"></status>
+                    </kw>
+                    <kw name="Get Text" library="AppiumLibrary">
+                        <doc>Get element text (for hybrid and mobile browser use `xpath` locator, others might cause
+                            problem)
+                        </doc>
+                        <arguments>
+                            <arg>${content_title}</arg>
+                        </arguments>
+                        <assign>
+                            <var>${content_streamed}</var>
+                        </assign>
+                        <msg timestamp="20180518 18:39:14.466" level="INFO">Element
+                            'xpath=//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.View/android.widget.TextView'
+                            text is 'Karakudi ilavarasi'
+                        </msg>
+                        <msg timestamp="20180518 18:39:14.466" level="INFO">${content_streamed} = Karakudi ilavarasi
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:39:13.494"
+                                endtime="20180518 18:39:14.466"></status>
+                    </kw>
+                    <kw name="Log Many" library="BuiltIn">
+                        <doc>Logs the given messages as separate entries using the INFO level.</doc>
+                        <arguments>
+                            <arg>${content_title}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:39:14.466" level="INFO">
+                            xpath=//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.View/android.widget.TextView
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:39:14.466"
+                                endtime="20180518 18:39:14.466"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:39:06.903" endtime="20180518 18:39:14.470"></status>
+                </kw>
+                <kw name="VERIFY IF CHROMECAST IS PRESENT" library="android_cast_vod">
+                    <kw name="CHROMECAST DEVICE DISCONNECTED" library="android_cast_vod">
+                        <kw name="Tap" library="AppiumLibrary">
+                            <doc>Tap element identified by ``locator``.</doc>
+                            <arguments>
+                                <arg>${player_frame}</arg>
+                            </arguments>
+                            <status status="PASS" starttime="20180518 18:39:14.470"
+                                    endtime="20180518 18:39:15.591"></status>
+                        </kw>
+                        <kw name="Run Keyword And Return Status" library="BuiltIn">
+                            <doc>Runs the given keyword with given arguments and returns the status as a Boolean
+                                value.
+                            </doc>
+                            <arguments>
+                                <arg>page should contain element</arg>
+                                <arg>${chromecast_disconnected}</arg>
+                            </arguments>
+                            <assign>
+                                <var>${status}</var>
+                            </assign>
+                            <kw name="Page Should Contain Element" library="AppiumLibrary">
+                                <doc>Verifies that current page contains `locator` element.</doc>
+                                <arguments>
+                                    <arg>${chromecast_disconnected}</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:39:16.395" level="INFO">Current page contains element
+                                    'xpath=//android.view.View[@content-desc='Cast button. Disconnected']'.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:39:15.591"
+                                        endtime="20180518 18:39:16.395"></status>
+                            </kw>
+                            <msg timestamp="20180518 18:39:16.395" level="INFO">${status} = True</msg>
+                            <status status="PASS" starttime="20180518 18:39:15.591"
+                                    endtime="20180518 18:39:16.395"></status>
+                        </kw>
+                        <kw name="Run Keyword If" library="BuiltIn">
+                            <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                            <arguments>
+                                <arg>"${status}"=="True"</arg>
+                                <arg>click element</arg>
+                                <arg>${chromecast_disconnected}</arg>
+                            </arguments>
+                            <kw name="Click Element" library="AppiumLibrary">
+                                <doc>Click element identified by `locator`.</doc>
+                                <arguments>
+                                    <arg>${chromecast_disconnected}</arg>
+                                </arguments>
+                                <msg timestamp="20180518 18:39:16.399" level="INFO">Clicking element
+                                    'xpath=//android.view.View[@content-desc='Cast button. Disconnected']'.
+                                </msg>
+                                <status status="PASS" starttime="20180518 18:39:16.399"
+                                        endtime="20180518 18:39:17.699"></status>
+                            </kw>
+                            <status status="PASS" starttime="20180518 18:39:16.395"
+                                    endtime="20180518 18:39:17.699"></status>
+                        </kw>
+                        <kw name="Set Global Variable" library="BuiltIn">
+                            <doc>Makes a variable available globally in all tests and suites.</doc>
+                            <arguments>
+                                <arg>${status}</arg>
+                            </arguments>
+                            <msg timestamp="20180518 18:39:17.699" level="INFO">${status} = True</msg>
+                            <status status="PASS" starttime="20180518 18:39:17.699"
+                                    endtime="20180518 18:39:17.699"></status>
+                        </kw>
+                        <status status="PASS" starttime="20180518 18:39:14.470"
+                                endtime="20180518 18:39:17.699"></status>
+                    </kw>
+                    <kw name="Run Keyword If" library="BuiltIn">
+                        <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                        <arguments>
+                            <arg>"${status}"=="False"</arg>
+                            <arg>CHROMECAST DEVICE CONNECTED</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:39:17.699"
+                                endtime="20180518 18:39:17.699"></status>
+                    </kw>
+                    <kw name="Run Keyword If" library="BuiltIn">
+                        <doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+                        <arguments>
+                            <arg>"${status}"=="False"</arg>
+                            <arg>log 'Chromecast icon is not present'</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:39:17.699"
+                                endtime="20180518 18:39:17.699"></status>
+                    </kw>
+                    <status status="PASS" starttime="20180518 18:39:14.470" endtime="20180518 18:39:17.699"></status>
+                </kw>
+                <kw name="CAST TO DEVICE" library="android_cast_vod">
+                    <kw name="Click Text" library="AppiumLibrary">
+                        <doc>Click text identified by ``text``.</doc>
+                        <arguments>
+                            <arg>${casting_device}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:39:17.699"
+                                endtime="20180518 18:39:19.129"></status>
+                    </kw>
+                    <kw name="Wait Until Page Contains" library="AppiumLibrary">
+                        <doc>Waits until `text` appears on current page.</doc>
+                        <arguments>
+                            <arg>${cast_dialog}</arg>
+                        </arguments>
+                        <status status="PASS" starttime="20180518 18:39:19.129"
+                                endtime="20180518 18:39:20.294"></status>
+                    </kw>
+                    <kw name="Click Element" library="AppiumLibrary">
+                        <doc>Click element identified by `locator`.</doc>
+                        <arguments>
+                            <arg>${cast_to_device}</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:39:20.294" level="INFO">Clicking element
+                            'xpath=//android.widget.Button[@text='Cast']'.
+                        </msg>
+                        <status status="PASS" starttime="20180518 18:39:20.294"
+                                endtime="20180518 18:39:21.403"></status>
+                    </kw>
+                    <kw name="Wait Until Page Contains" library="AppiumLibrary">
+                        <doc>Waits until `text` appears on current page.</doc>
+                        <arguments>
+                            <arg>${play_pause_btn}</arg>
+                            <arg>timeout=10</arg>
+                        </arguments>
+                        <msg timestamp="20180518 18:39:31.763" level="INFO">&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;hierarchy
+                            rotation="0"&gt;&lt;android.widget.FrameLayout index="0" text=""
+                            class="android.widget.FrameLayout" package="com.suntv.sunnxt" content-desc=""
+                            checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                            focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                            bounds="[0,0][720,1280]" resource-id="" instance="0"&gt;&lt;android.widget.LinearLayout
+                            index="0" text="" class="android.widget.LinearLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][720,1280]" resource-id="" instance="0"&gt;&lt;android.widget.FrameLayout
+                            index="0" text="" class="android.widget.FrameLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][720,1280]" resource-id="" instance="1"&gt;&lt;android.widget.LinearLayout
+                            index="0" text="" class="android.widget.LinearLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][720,1280]" resource-id="com.suntv.sunnxt:id/action_bar_root"
+                            instance="1"&gt;&lt;android.widget.FrameLayout index="0" text=""
+                            class="android.widget.FrameLayout" package="com.suntv.sunnxt" content-desc=""
+                            checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                            focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                            bounds="[0,0][720,1280]" resource-id="android:id/content" instance="2"&gt;&lt;android.widget.RelativeLayout
+                            index="0" text="" class="android.widget.RelativeLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][720,1280]" resource-id="" instance="0"&gt;&lt;android.widget.RelativeLayout
+                            index="0" text="" class="android.widget.RelativeLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][720,1280]" resource-id="" instance="1"&gt;&lt;android.widget.TextView
+                            index="0" text="" class="android.widget.TextView" package="com.suntv.sunnxt" content-desc=""
+                            checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                            focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                            bounds="[0,852][720,911]" resource-id="com.suntv.sunnxt:id/textview1" instance="0"/&gt;&lt;android.widget.TextView
+                            index="1" text="Loading…" class="android.widget.TextView" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,911][720,965]" resource-id="com.suntv.sunnxt:id/textview2"
+                            instance="1"/&gt;&lt;android.widget.RelativeLayout index="2" text=""
+                            class="android.widget.RelativeLayout" package="com.suntv.sunnxt" content-desc=""
+                            checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                            focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                            bounds="[0,1005][720,1261]" resource-id="com.suntv.sunnxt:id/controllers" instance="2"&gt;&lt;android.widget.RelativeLayout
+                            index="0" text="" class="android.widget.RelativeLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,1005][720,1101]"
+                            resource-id="com.suntv.sunnxt:id/progressbar_controls" instance="3"&gt;&lt;android.widget.TextView
+                            index="0" text="00:00" class="android.widget.TextView" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[32,1005][103,1101]" resource-id="com.suntv.sunnxt:id/start_text"
+                            instance="2"/&gt;&lt;android.widget.SeekBar index="1" text="" class="android.widget.SeekBar"
+                            package="com.suntv.sunnxt" content-desc="" checkable="false" checked="false"
+                            clickable="false" enabled="true" focusable="true" focused="false" scrollable="false"
+                            long-clickable="false" password="false" selected="false" bounds="[143,1021][593,1085]"
+                            resource-id="com.suntv.sunnxt:id/seekbar" instance="0"/&gt;&lt;android.widget.TextView
+                            index="2" text="0:00" class="android.widget.TextView" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[633,1005][688,1101]" resource-id="com.suntv.sunnxt:id/end_text"
+                            instance="3"/&gt;&lt;/android.widget.RelativeLayout&gt;&lt;/android.widget.RelativeLayout&gt;&lt;/android.widget.RelativeLayout&gt;&lt;android.widget.ImageView
+                            index="1" text="" class="android.widget.ImageView" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][720,1280]" resource-id="com.suntv.sunnxt:id/pageview"
+                            instance="0"/&gt;&lt;android.view.View index="2" text="" class="android.view.View"
+                            package="com.suntv.sunnxt" content-desc="" checkable="false" checked="false"
+                            clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
+                            long-clickable="false" password="false" selected="false" bounds="[0,0][720,112]"
+                            resource-id="com.suntv.sunnxt:id/toolbar" instance="0"&gt;&lt;android.widget.ImageButton
+                            index="0" text="" class="android.widget.ImageButton" package="com.suntv.sunnxt"
+                            content-desc="Navigate up" checkable="false" checked="false" clickable="true" enabled="true"
+                            focusable="true" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,0][112,112]" resource-id="" instance="0"/&gt;&lt;android.widget.TextView
+                            index="1" text="Karakudi ilavarasi" class="android.widget.TextView"
+                            package="com.suntv.sunnxt" content-desc="" checkable="false" checked="false"
+                            clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
+                            long-clickable="false" password="false" selected="false" bounds="[144,29][462,83]"
+                            resource-id="" instance="4"/&gt;&lt;android.support.v7.widget.LinearLayoutCompat index="2"
+                            text="" class="android.support.v7.widget.LinearLayoutCompat" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[624,0][720,112]" resource-id="" instance="0"&gt;&lt;android.view.View
+                            index="0" text="" class="android.view.View" package="com.suntv.sunnxt" content-desc="Cast
+                            button. Connected" checkable="false" checked="false" clickable="true" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="true" password="false"
+                            selected="false" bounds="[624,0][720,112]" resource-id="" instance="1"/&gt;&lt;/android.support.v7.widget.LinearLayoutCompat&gt;&lt;/android.view.View&gt;&lt;android.widget.ProgressBar
+                            index="3" text="" class="android.widget.ProgressBar" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[284,564][436,716]" resource-id="com.suntv.sunnxt:id/progressbar1"
+                            instance="0"/&gt;&lt;android.widget.RelativeLayout index="4" text=""
+                            class="android.widget.RelativeLayout" package="com.suntv.sunnxt" content-desc=""
+                            checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+                            focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+                            bounds="[0,1270][720,1280]" resource-id="com.suntv.sunnxt:id/miniController1" instance="4"&gt;&lt;android.widget.LinearLayout
+                            index="0" text="" class="android.widget.LinearLayout" package="com.suntv.sunnxt"
+                            content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+                            focusable="false" focused="false" scrollable="false" long-clickable="false" password="false"
+                            selected="false" bounds="[0,1270][720,1280]" resource-id="com.suntv.sunnxt:id/container_all"
+                            instance="2"&gt;&lt;android.view.View index="0" text="" class="android.view.View"
+                            package="com.suntv.sunnxt" content-desc="" checkable="false" checked="false"
+                            clickable="false" enabled="true" focusable="false" focused="false" scrollable="false"
+                            long-clickable="false" password="false" selected="false" bounds="[0,1270][720,1280]"
+                            resource-id="" instance="2"/&gt;&lt;/android.widget.LinearLayout&gt;&lt;/android.widget.RelativeLayout&gt;&lt;/android.widget.RelativeLayout&gt;&lt;/android.widget.FrameLayout&gt;&lt;/android.widget.LinearLayout&gt;&lt;/android.widget.FrameLayout&gt;&lt;/android.widget.LinearLayout&gt;&lt;/android.widget.FrameLayout&gt;&lt;/hierarchy&gt;
+                        </msg>
+                        <msg timestamp="20180518 18:39:31.764" level="FAIL">Text
+                            'id=com.suntv.sunnxt:id/play_pause_toggle' did not appear in 10 seconds
+                        </msg>
+                        <status status="FAIL" starttime="20180518 18:39:21.407"
+                                endtime="20180518 18:39:31.764"></status>
+                    </kw>
+                    <status status="FAIL" starttime="20180518 18:39:17.699" endtime="20180518 18:39:31.765"></status>
+                </kw>
+                <status status="FAIL" starttime="20180518 18:38:39.698" endtime="20180518 18:39:31.765"></status>
+            </kw>
+            <kw name="Quit Application" library="AppiumLibrary" type="teardown">
+                <doc>Quit application. Application can be quit while Appium session is kept alive.</doc>
+                <status status="PASS" starttime="20180518 18:39:31.765" endtime="20180518 18:39:32.738"></status>
+            </kw>
+            <status status="FAIL" starttime="20180518 18:37:38.131" endtime="20180518 18:39:32.738" critical="yes">Text
+                'id=com.suntv.sunnxt:id/play_pause_toggle' did not appear in 10 seconds
+            </status>
+        </test>
+        <doc>Suite description</doc>
+        <status status="FAIL" starttime="20180518 18:37:37.847" endtime="20180518 18:39:32.742"></status>
+    </suite>
+    <statistics>
+        <total>
+            <stat pass="0" fail="1">Critical Tests</stat>
+            <stat pass="0" fail="1">All Tests</stat>
+        </total>
+        <tag>
+        </tag>
+        <suite>
+            <stat pass="0" fail="1" id="s1" name="Atc 04-Cast Content">Atc 04-Cast Content</stat>
+        </suite>
+    </statistics>
+    <errors>
+    </errors>
+</robot>
