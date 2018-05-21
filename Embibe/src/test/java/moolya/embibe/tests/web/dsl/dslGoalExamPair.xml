@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test name="Test">
+		<classes>
+			<class name="moolya.embibe.tests.web.dsl.DslActualWidgetsTest" />
+			<class name="moolya.embibe.tests.web.dsl.DslActualWidgetsTest2" />
+			<class name="moolya.embibe.tests.web.dsl.DslActualWidgetsTest3" />
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
