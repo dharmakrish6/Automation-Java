@@ -4,8 +4,8 @@ Library               String
 Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/profile.robot
 
 *** Keywords ***
-Record Latest content in continue watching
-    ${latest_streamed}  Get Text  ${recently_streamed}
+Record Latest Content In Continue Watching
+    ${latest_streamed}  get text  ${recently_streamed}
     convert to string  ${latest_streamed}
     ${latest_streamed}  convert to lowercase  ${latest_streamed}
     set global variable  ${latest_streamed}

@@ -8,7 +8,7 @@ Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/homepag
 Resource              E:/Automation-Java/SunNXT_Robot/test_data/web_portal/assertions.robot
 
 *** Keywords ***
-OPEN CHROME BROWSER
+Open Chrome Browser
     create webdriver  Chrome  executable_path=E:/automationrequisite/selenium-webdriver/chromedriver.exe
     set selenium speed  ${selenium_speed}
     set selenium implicit wait  10
@@ -16,59 +16,77 @@ OPEN CHROME BROWSER
     go to  ${url}
     log many  NAVIGATED TO WEB-PAGE
 
-CLOSE CHROME BROWSER
+Close Chrome Browser
     close browser
 
-VERIFY HOMEPAGE TITLE
+Verify Homepage Title
     title should be  ${title}
     log many   HOMEPAGE TITLE VERIFIED
 
-CLICK ON PROFILE AUTHENTICATION ICON
+Click On Profile Authentication Icon
     wait until element is visible  ${profile_auth}
     click element   ${profile_auth}
 
-CLICK ON PROFILE ICON
+Click On Profile Icon
     wait until element is visible  ${profile_icon}
     click element   ${profile_icon}
 
-CLICK ON PROFILE LINK
+Click On Profile Link
     click element   ${profile_profile}
 
-CLICK ON SUBSCRIPTION LINK
+Click On Subscription Link
     click element   ${profile_subscription}
 
-CLICK ON SIGN IN LINK
+Click On Sign In Link
     click link      ${signin_link}
 
-ENTER REGISTERED CREDENTIAL
+Enter Registered Credential
     [Arguments]  ${userid}
     wait until element is visible  ${user_name}
     input text    ${user_name}    ${userid}
 
-ENTER PASSWORD
+Enter Password
     [Arguments]  ${userpass}
     sleep  5s
       input text  ${password}   ${userpass}
 
-CLICK ON LOGIN BUTTON
+Click On Login Button
     sleep  5s
     click element   ${login_button}
 
-CLICK ON LOGOUT LINK
-    click element   ${profile_logout}
+Click On Logout Link
+    click element   ${profile-logout}
 
-CHECK IF POP-UP IS DISMISSED
-    wait until page does not contain element  ${popup}  timeout=30s
-    page should not contain element  ${popup}  message=pop-up is not dismissed
+Check If Pop-Up Is Dismissed
+    element should not be visible  ${popup}  message=pop-up is not dismissed
     title should be  ${title}
 
-CHECK IF ERROR MESSAGE IS DISPLAYED
+Check If Error Message Is Displayed
     wait until page contains element  ${signin_error}  timeout=15s
     ${error_message} =  get text  ${signin_error}
     set global variable  ${error_message}
 
-VALIDATE SIGN-IN
-    ${status#1} =  run keyword and return status  CHECK IF ERROR MESSAGE IS DISPLAYED
-     run keyword if   "${status#1}"=="true"  log many  ${error_message}
-    ${status#2} =  run keyword and return status  check if pop-up is dismissed
-    run keyword if   "${status#2}"=="true"  log many  SIGN-IN IS SUCCESSFUL
+Validate Sign-In
+    ${status#1} =  run keyword and return status  CHECK IF POP-UP IS DISMISSED
+     run keyword if   "${status#1}"=="True"  log many  SUCCESSFULLY LOGGED IN TO SUNNXT
+    ${status#2} =  run keyword and return status  CHECK IF ERROR MESSAGE IS DISPLAYED
+    run keyword if   "${status#2}"=="True"  log many  ${error_message}
+
+Select Language
+    [Arguments]  ${content_language}
+    click element  ${language_selector}
+    run keyword if  "${content_language}"=="TAMIL"  click link  ${language_tamil}
+    run keyword if  "${content_language}"=="TELUGU"  click link  ${language_telugu}
+    run keyword if  "${content_language}"=="KANNADA"  click link  ${language_kannada}
+    run keyword if  "${content_language}"=="MALAYALAM"  click link  ${language_malayalam}
+    wait until element contains  css=span.filter-option.pull-left  ${content_language}  timeout=10s
+    sleep  5s
+    wait until page contains element  ${language_selector}  timeout=10s
+
+Select Source Page
+    [Arguments]  ${content_source}
+    run keyword if  "${contentsource}"=="HOME"  click element  ${home}
+    run keyword if  "${contentsource}"=="MOVIE"  click link  ${movies}
+    run keyword if  "${contentsource}"=="TV SHOW"  click link  ${tvshows}
+    run keyword if  "${contentsource}"=="LIVE TV"  click link  ${livetv}
+    run keyword if  "${contentsource}"=="MUSIC VIDEO"  click link  ${livetv}

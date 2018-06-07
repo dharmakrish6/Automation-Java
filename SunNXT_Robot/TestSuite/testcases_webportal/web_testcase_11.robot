@@ -12,6 +12,7 @@ TestCase 11: Login with a credential with no subscription and navigate till 'Ent
     [Documentation]     This is to verify subscription flow for Credit Card works properly or not
     [Tags]              Subscription
     [Setup]
+    [Template]
         Open Browser
         Navigate to SunNXT web-portal
         Verify the homepage title

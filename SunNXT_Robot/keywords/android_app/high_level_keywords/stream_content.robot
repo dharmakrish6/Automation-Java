@@ -3,21 +3,22 @@ Documentation       Suite description
 Resource            E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_stream_vod.robot
 
 *** Keywords ***
-STREAM A VOD
-    [Arguments]  ${carousel_title}  ${content_name}
-    NAVIGATE TO CONTENT DETAILS SCREEN  ${carousel_title}  ${content_name}
-    STREAM CONTENT AND CHECK PLAYBACK CONTROLS
-    GO BACK
-    sleep  10
+Stream A Vod
+    [Arguments]  ${content_language}  ${content_header}  ${carousel_title}  ${content_name}
+    Select Content Language  ${content_language}
+    Select Content Tab  ${content_header}
+    Navigate To Content Details Screen  ${carousel_title}  ${content_name}
+    Stream Content And Check Playback Controls
+    Go Back
 
-STREAM CONTENT AND CHECK PLAYBACK CONTROLS
-    DISMISS DISPLAYED COACH MARK
-    WAIT UNTIL CONTENT IS READY TO STREAM
-    WAIT UNTIL AD STREAMS
-    DISMISS DISPLAYED COACH MARK
-    FORWARD CONTENT TO 30 SECS
-    ENABLE/DISABLE SUBTITLE
-    SWITCH TO FULL SCREEN
-    REWIND CONTENT TO 30 SECS
-    ENABLE/DISABLE SUBTITLE
-    CHANGE VOD QUALITY
+Stream Content And Check Playback Controls
+    Dismiss Displayed Coach Mark
+    Wait Until Content Is Ready To Stream
+    Wait Until Ad Streams
+    Dismiss Displayed Coach Mark
+    Forward Content To 30 Secs
+    Enable/Disable Subtitle
+    Switch To Full Screen
+    Rewind Content To 30 Secs
+    Enable/Disable Subtitle
+    Change Vod Quality

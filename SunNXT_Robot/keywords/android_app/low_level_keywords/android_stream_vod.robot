@@ -8,40 +8,41 @@ Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/videodetai
 Resource         E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot
 
 *** Keywords ***
-GEAR
+Gear
     wait until page contains element  ${btn_gear}
     click element  ${btn_gear}
 
-WAIT UNTIL AD STREAMS
+Wait Until Ad Streams
     ${status}=  run keyword and return status  page should contain text  ${btn_visitAdvertiser}
     run keyword if  "${status}"=="True"  sleep  30s
 
-WAIT UNTIL CONTENT IS READY TO STREAM
+Wait Until Content Is Ready To Stream
+    ${status}=  run keyword and return status  page should contain element  ${btn_play}
+    run keyword if  "${status}"=="True"  click element  ${btn_play}
     wait until page contains element  ${seek_bar}
-#    click element  ${btn_play}
-#    wait until page contains element  ${btn_play_pause}  timeout=10
+    tap  ${player_frame}
     wait until element is visible  ${btn_play_pause}
     ${content_streamed}=  get text  ${content_title}
-    log many  ${content_title}
+    set global variable  ${content_streamed}
 
 
-REWIND CONTENT TO 30 SECS
+Rewind Content To 30 Secs
      :FOR    ${index}    IN RANGE    3
      \  run keyword  WAIT UNTIL AD STREAMS
      \  tap  ${player_frame}
      \  click element  ${btn_seek_left}
 
-FORWARD CONTENT TO 30 SECS
+Forward Content To 30 Secs
         :FOR    ${index}    IN RANGE    3
      \  run keyword  WAIT UNTIL AD STREAMS
      \  tap  ${player_frame}
      \  click element  ${btn_seek_right}
 
-ENABLE/DISABLE SUBTITLE
+Enable/Disable Subtitle
    ${present} =  Run Keyword And Return Status  page should contain element  ${btn_subtitle}
    run keyword if  "${present}"=="True"  click element  ${btn_subtitle}
 
-CHANGE VOD QUALITY
+Change VOD Quality
     :FOR  ${index}  IN RANGE  4
     \  click element  id=com.suntv.sunnxt:id/fragment_carousel_view_all
     \  run keyword  WAIT UNTIL AD STREAMS
@@ -53,10 +54,10 @@ CHANGE VOD QUALITY
     \  run keyword if  ${index}==3  click text  ${low}
     \  sleep  10s
 
-SWITCH TO FULL SCREEN
+Switch To Full Screen
     click element  ${btn_fullscreen}
 
-NAVIGATE TO CONTENT DETAILS SCREEN
+Navigate To Content Details Screen
     [Arguments]  ${carousel_title}  ${content_name}
     :for  ${swiping}  in range  1000
     \  ${status}=  run keyword and return status  page should contain text  ${carousel_title}

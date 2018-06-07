@@ -7,54 +7,54 @@ Resource              E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_lev
 Resource              E:/Automation-Java/SunNXT_Robot/variable/credentials.robot
 
 *** Keywords ***
-CLICK ON SIGN UP LINK
+Click On Sign Up Link
     wait until element is visible  ${signup_link}
     click element  ${signup_link}
 
-INPUT USERID
+Input Userid
     [Arguments]  ${userid}
     input text  ${signup_user}   ${userid}
 
-INPUT PASSWORD
+Input Password
     [Arguments]  ${userpass}
     input text  ${signup_password}   ${userpass}
 
-ENTER NAME OF THE USER
+Enter Name Of The User
     input text  ${signup_name}  ${user_full_name}
 
-SELECT AGE OF THE PERSON
+Select Age Of The Person
     click element  ${signup_age}
     click link  ${user_age}
 
-SELECT GENDER AS MALE
+Select Gender As Male
     click element  ${signup_male}
 
-SELECT RESIDING COUNTRY OF THE USER
+Select Residing Country Of The User
     click element  ${signup_country}
     click link  ${user_country}
 
-SELECT RESIDING STATE OF THE USER
+Select Residing State Of The User
     click element  ${signup_state}
     click link  ${user_state}
 
-CLICK 'AGREE TERMS' CHECKBOX
+Click 'Agree Terms' Checkbox
     click element at coordinates  ${agree_checkbox}  -140   0
 
-CLICK ON SUBMIT BUTTON
+Click On Submit Button
     wait until element is visible  ${submit}  timeout=15s
     click button  ${submit}
 
-CHECK FOR SIGNUP ERROR MESSAGE
+Check For Signup Error Message
     wait until element is visible  ${signup_error}  timeout=15s
     ${signup_error_message} =  get text  ${signup_error}
     set global variable  ${signup_error_message}
 
-CHECK FOR CREDENTIAL ERROR MESSAGE
+Check For Credential Error Message
     wait until element is visible  ${credential_error}  timeout=15s
     ${credential_error_message} =  get text  ${credential_error}
     set global variable  ${credential_error_message}
 
-VALIDATE SIGN-UP
+Validate Sign-Up
     ${status#1} =  run keyword and return status  CHECK FOR SIGNUP ERROR MESSAGE
     run keyword if   "${status#1}"=="True"  log many  ${signup_error_message}
     ${status#2} =  run keyword and return status  CHECK FOR CREDENTIAL ERROR MESSAGE
@@ -62,7 +62,7 @@ VALIDATE SIGN-UP
     run keyword if  "${status#1}"=="False"  AND  "${status#2}"=="False"  CHECK IF POP-UP IS DISMISSED
 
 
-CHECK WHETHER USER IS NAVIGATED TO HOMEPAGE OR NOT
+Check Whether User Is Navigated To Homepage Or Not
     sleep  5s
     wait until element is visible  ${sunnxt_logo}
     log location

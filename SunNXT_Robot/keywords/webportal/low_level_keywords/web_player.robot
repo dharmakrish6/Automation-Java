@@ -6,39 +6,37 @@ Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/player.
 Resource              E:/Automation-Java/SunNXT_Robot/test_data/web_portal/timeout.robot
 
 *** Keywords ***
-CLICK ON PLAY BUTTON
-    click element  ${vod_playbtn}
+Click On Play Button
+    click element  ${playbtn}
     sleep   ${stream_content}
 
-CLICK ON PLAY BUTTON FOR LIVE TV
-    click element  ${live_playbtn}
+Stream In Full-Screen Mode
+    click element  ${fullscreen}
 
-STREAM IN FULL-SCREEN MODE
-    click element  ${vod_fullscreen}
-
-CLICK ON FORWARD & REWIND BUTTON
-   run keyword if  "${title}"=="SUNNXT::LIVE"  FORWARD VOD TO 30 SECONDS USING FORWARD BUTON
+Click On Forward & Rewind Button
+   ${title}=  get title
+   run keyword if  "${title}"!="SUNNXT::LIVE"  Forward Vod To 30 Seconds Using Forward Buton
    sleep  ${stream_content}
-   run keyword if  "${title}"=="SUNNXT::LIVE"  REWIND VOD TO 30 SECONDS USING REWIND BUTTON
+   run keyword if  "${title}"!="SUNNXT::LIVE"  Rewind Vod To 30 Seconds Using Rewind Button
 
-FORWARD VOD TO 30 SECONDS USING FORWARD BUTON
+Forward Vod To 30 Seconds Using Forward Button
     :for    ${index}    in range    3
      \   click element  ${forward_icon}
 
-REWIND VOD TO 30 SECONDS USING REWIND BUTTON
+Rewind Vod To 30 Seconds Using Rewind Button
     :for    ${index}    in range    3
      \   click element  ${rewind_icon}
 
-CHANGE AUDIO STATUS (MUTE/UNMUTE)
+Change Audio Status (Mute/Unmute)
     click element  ${volume_icon}
 
-CHANGE QUALITY OF PLAYER
+Change Quality Of Player
     ${title}=  get title
-    run keyword if  "${title}"=="SUNNXT::LIVE"  CHANGE QUALITY OF LIVE TV PLAYER
-    ...  ELSE  CHANGE QUALITY OF VOD PLAYER
+    run keyword if  "${title}"=="SUNNXT::LIVE"  Change Quality Of Live Tv Player
+    ...  Else  Change Quality Of Vod Player
 
-CHANGE QUALITY OF VOD PLAYER
-    wait until page contains element  ${vquality_option}
+Change Quality Of Vod Player
+    wait until page contains element  ${quality_option}
     :for    ${index}    in range    4
      \  sleep  ${stream_content}
      \  click element  ${quality_option}
@@ -47,7 +45,7 @@ CHANGE QUALITY OF VOD PLAYER
      \   run keyword if  ${index}==2  click link  ${vquality_low}
      \   run keyword if  ${index}==3  click link  ${vquality_hd}
 
-CHANGE QUALITY OF LIVE TV PLAYER
+Change Quality Of Live Tv Player
     wait until page contains element  ${quality_option}
     :for    ${index}    in range    7
      \  sleep  ${stream_content}
@@ -60,22 +58,22 @@ CHANGE QUALITY OF LIVE TV PLAYER
      \   run keyword if  ${index}==5  click link  ${lquality_270p544k}
      \   run keyword if  ${index}==6  click link  ${lquality_270p800k}
 
-TURN SUBTITLE ON/OFF
+Turn Subtitle On/Off
     ${status}=  wait until page contains element  ${subtitle_option}
     log  ${status}
     run keyword if  "${status}"=="True"  TURN SUBTITLE OFF
     sleep  ${stream_content}
     run keyword if  "${status}"=="True"  TURN SUBTITLE ON
 
-TURN SUBTITLE ON
+Turn Subtitle On
     click element  ${subtitle_option}
     click element  ${subs_off}
 
-TURN SUBTITLE OFF
+Turn Subtitle Off
     click element  ${subtitle_option}
     click element  ${subs_on}
 
-#CHANGE SPEED OF VOD PLAYER
+#Change Speed Of Vod Player
 #    :for    ${index}    in range    5
 #    \  sleep  ${stream}
 #    \   click element  ${vgear_icon}
@@ -86,5 +84,5 @@ TURN SUBTITLE OFF
 #    \   run keywords if  ${index}==3  click element  ${vspeed_faster}
 #    \   run keywords if  ${index}==4  click element  ${vspeed_normal}
 
-WAIT FOR CONTENT TO START STREAMING
-   wait until page contains element  ${live_seekbar}
+Wait For Content To Start Streaming
+   wait until page contains element  ${seekbar}

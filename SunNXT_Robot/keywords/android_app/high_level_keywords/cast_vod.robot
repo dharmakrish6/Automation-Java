@@ -5,13 +5,14 @@ Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low
 Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot
 
 *** Keywords ***
-CAST VIDEO TO CASTING DEVICE
-    [Arguments]  ${carousel_title}  ${content_name}
-    NAVIGATE TO CONTENT DETAILS SCREEN  ${carousel_title}  ${content_name}
-    DISMISS DISPLAYED COACH MARK
-    WAIT UNTIL CONTENT IS READY TO STREAM
-#    WAIT UNTIL AD STREAMS
-#    DISMISS DISPLAYED COACH MARK
-    VERIFY IF CHROMECAST IS PRESENT
-    CAST TO DEVICE
-    sleep  20
+Cast Video To Casting Device
+    [Arguments]  ${content_header}  ${carousel_title}  ${content_name}
+    Select Content Tab  ${content_header}
+    Navigate To Content Details Screen  ${carousel_title}  ${content_name}
+    Dismiss Displayed Coach Mark
+    Wait Until Content Is Ready To Stream
+#    Wait Until Ad Streams
+#    Dismiss Displayed Coach Mark
+    Verify If Chromecast Is Present
+    Cast To Device
+    Sleep  20

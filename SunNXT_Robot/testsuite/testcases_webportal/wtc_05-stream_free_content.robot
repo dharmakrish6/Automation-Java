@@ -9,7 +9,7 @@ Suite Teardown      CLOSE CHROME BROWSER
 Test Template       STREAM CONTENT
 Force Tags          Smoke
 
-*** Test Cases ***                  contentsource         sourcelanguage                content
+*** Test Cases ***                  contentsource         contentlanguage                content
 STREAM FREE-TAG LIVE TV               home                     TAMIL              ${hbr#2_content#3}
 STREAM FREE_TAG TRAILER(TELUGU)       home                    TELUGU              ${hbr#10_content#1}
 #STREAM FREE_TAG TRAILER(MALAYALAM)    home                   MALAYALAM            ${hbr#8_content#1}

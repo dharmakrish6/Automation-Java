@@ -10,4 +10,3 @@ Test Template       STREAM CONTENT
 Force Tags          Smoke
 
 *** Test Cases ***      contentsource       sourcelanguage               content
-LATEST EPISODE            tv show               TELUGU             ${tbr#1_content#1}

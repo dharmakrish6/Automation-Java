@@ -4,9 +4,10 @@ Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/high_
 Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_search.robot
 
 *** Keywords ***
-SEARCH FOR A MOVIE, TV SHOW AND MUSIC VIDEO
-    [Arguments]  ${content_name}
-    CLICK ON SEARCH ICON
-    CLICK ON SEARCH BOX
-    ENTER SEARCH QUERY  ${content_name}
-    SEARCH VALIDATION  ${content_name}
+Search For A Movie, Tv Show And Music Video
+    [Arguments]  ${content_language}  ${content_name}
+    Select Language  ${content_language}
+    Click On Search Icon
+    Click On Search Box
+    Enter Search Query  ${content_name}
+    Search Validation  ${content_name}

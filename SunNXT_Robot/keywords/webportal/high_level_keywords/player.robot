@@ -2,23 +2,23 @@
 Documentation    Suite description
 Library            SeleniumLibrary
 Resource           E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_player.robot
-Resource           E:/Automation-Java/SunNXT_Robot/keywords/webportal/high_level_keywords/common.robot
+Resource           E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_common.robot
 Resource           E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/content/web_homepage.robot
 Resource           E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot
 
 *** Keywords ***
-STREAM CONTENT
-    [Arguments]  ${contentsource}  ${sourcelanguage}  ${content}
-    SELECT SOURCE PAGE  ${contentsource}
-    SELECT LANGUAGE  ${sourcelanguage}
-    CLICK ON CONTENT CAROUSEL  ${content}
-    CLICK ON PLAY BUTTON RED
-    WAIT FOR CONTENT TO START STREAMING
-    STREAM IN FULL-SCREEN MODE
-    CHANGE AUDIO STATUS (MUTE/UNMUTE)
-    CHANGE QUALITY OF PLAYER
-    CLICK ON FORWARD & REWIND BUTTON
-    CHANGE AUDIO STATUS (MUTE/UNMUTE)
-    STREAM IN FULL-SCREEN MODE
-    TURN SUBTITLE ON/OFF
-    GO BACK
+Stream Content
+    [Arguments]  ${content_source}  ${content_language}  ${content}
+    Select Source Page  ${content_source}
+    Select Language  ${content_language}
+    Click On Content Carousel  ${content}
+    Click On Play Button Red
+    Wait For Content To Start Streaming
+    Stream In Full-Screen Mode
+    Change Audio Status (Mute/Unmute)
+    Change Quality Of Player
+    Click On Forward & Rewind Button
+    Change Audio Status (Mute/Unmute)
+    Stream In Full-Screen Mode
+    Turn Subtitle On/Off
+    Go Back

@@ -6,84 +6,84 @@ Resource            E:/Automation-Java/SunNXT_Robot/variable/card_details.robot
 Resource            E:/Automation-Java/SunNXT_Robot/variable/webportal/assertions.robot
 
 *** Keywords ***
-CHECK WHETHER SUBSCRIPTION POP-UP IS DISPLAYED OR NOT
+Check Whether Subscription Pop-Up Is Displayed Or Not
     wait until element is visible  ${subscription_popup}
     log many    authentication pop-up is displayed
 
-CLICK ON OK BUTTON OF SUN DIRECT MESSAGE
+Click On Ok Button Of Sun Direct Message
     click element  ${sundirect_message}
 
-CLICK ON ANNUAL SUBSCRIPTION PLAN IN POP-UP
+Click On Annual Subscription Plan In Pop-Up
     wait until page contains element  ${popup_annual}
     click element  ${popup_annual}
 
-SELECT MONTHLY PLAN
+Select Monthly Plan
     click element  ${monthly_subsplan}
 
-SELECT QUARTERLY PLAN
+Select Quarterly Plan
     click element  ${quarterly_subsplan}
 
-SELECT ANNUAL PLAN
+Select Annual Plan
     click element  ${annual_subsplan}
 
 #DEBIT CARD
-SELECT DEBIT CARD AS PAYMENT MODE
+Select Debit Card As Payment Mode
     click element  ${debitcard}
 
-SELECT DEBIT CARD TYPE
+Select Debit Card Type
     click element  ${dc_cardtype}
     click element  ${rupay}
 
-ENTER DEBIT CARD NUMBER
+Enter Debit Card Number
     input text  ${cardnum}  ${dc-card_number}
 
-ENTER NAME ON DEBIT CARD
+Enter Name On Debit Card
     input text  ${cardname}  ${dc-name_on_card}
 
-SELECT MONTH VALIDITY OF CARD
+Select Month Validity Of Card
     click element  ${dc_month}
     click link  ${dc-valid_upto_month}
 
-SELECT YEAR VALIDITY OF CARD
+Select Year Validity Of Card
     click element  ${dc_year}
     click link  ${dc-valid_upto_year}
 
-ENTER CVV OF THE CARD
+Enter Cvv Of The Card
     input text  ${cvv}  ${dc-cvv}
 
-UNCHECK 'SAVE THIS CARD FOR FASTER PAYMENTS'
+Uncheck 'Save This Card For Faster Payments'
     click element  ${dc_savecard}
 
-PROCEED WITH THE PAYMENT
+Proceed With The Payment
     click element  ${dc_paybtn}
 
-CHECK WHETHER NAVIGATED PAGE IS RUPAY E-PAY OR NOT
+Check Whether Navigated Page Is Rupay E-Pay Or Not
     sleep  3s
     title should be  ${epay}
 
 
 #CREDIT CARD
-SELECT CREDIT CARD AS PAYMENT MODE
+Select Credit Card As Payment Mode
     click element  ${creditcard}
 
-ENTER CREDIT CARD NUMBER
+Enter Credit Card Number
     input text  ${cardnum}  ${cc-card_number}
 
-ENTER NAME ON CREDIT CARD
+Enter Name On Credit Card
     input text  ${cardname}  ${cc-name_on_card}
 
-SELECT MONTH VALIDITY OF CREDIT CARD
+Select Month Validity Of Credit Card
     sleep  1s
     click element  ${cc_month}
     click link  ${cc-valid_upto_month}
 
-SELECT YEAR VALIDITY OF CREDIT CARD
+Select Year Validity Of Credit Card
     click element  ${cc_year}
     click link  ${cc-valid_upto_year}
 
-ENTER CVV OF CREDIT CARD
+Enter Cvv Of Credit Card
     input text  ${cvv}  ${cc-cvv}
 
-CHECK WHETHER SUBSCRIPTION IS AVAILABLE OR NOT
+Check Whether Subscription Is Available Or Not
     ${a_subs}  get text  ${a_no_subscription}
     convert to string  ${a_subs}

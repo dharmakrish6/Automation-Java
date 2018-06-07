@@ -4,7 +4,7 @@
 ${reg_id-email_subs}                soumya.sunnxt@123.com
 ${reg_pass-email_subs}              123456
 
-${reg_id-email_exp}                 amy@yahoo.com
+${reg_id-email_exp}                 amy.gamered@gmail.com
 ${reg_pass-email_exp}               123456
 
 ${reg_id-sd_subs}                   9413528121
@@ -37,8 +37,11 @@ ${iv_id-email_.xxxx@xxxx.xxx}       .pytest@pytest.org
 ${iv_id-email_xxxx()*.xxx}          pytest()*@gmail.com
 ${iv_id-email_xxxx..1234@xxxx.xxx}  pytest..1234@yahoo.com
 ${iv_id-email_xxxx 1234@xxxx.xxx}   pytest 1234@yahoo.com
+${iv_id-mobile_xxxxxxxxx}           999900001
+${iv_id-mobile_xxxxxxxxxxx}         99999000001
 
 ${v_pass-xxxx}                      1234
 ${v_pass-@xx123}                    @mool143
+
 ${iv_pass-xx xx}                    12 34
 ${iv_pass-xxx}                      123

@@ -1,6 +1,6 @@
 *** Variables ***
 
-${server}           http://127.0.0.1:8080/wd/hub
+${server}           http://127.0.0.1:8000/wd/hub
 ${os}               Android
 ${version}          5.1.1
 ${udid}             32048b1852e8a165
