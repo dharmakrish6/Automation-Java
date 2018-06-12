@@ -22,7 +22,7 @@ ${language_malayalam}       Malayalam
 ${movies}                 /movie/
 ${tvshows}                /tv/
 ${livetv}                 /live/
-${home}                   css: .header:nth-of-type(1) [href="\/"]
+${home}                   css:
 ${music videos}           /music/
 ${comedy}                 /comedy/
 ${news}                   /news/

@@ -1,59 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9de2c063-dd76-44f0-a24b-372196e18d33" name="Default" comment="restoring deleted files">
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/test.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_06.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_07.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_08.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_09.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_10.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_11.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/deprecated_tests/web_testcase_12.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/download_vod.robot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/authentication.robot" />
+    <list default="true" id="9de2c063-dd76-44f0-a24b-372196e18d33" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/TestSuite/testcases_android/atc_06=deactivate_device.robot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/TestSuite/testcases_android/atc_06_deactivate_device.robot" />
       <change beforePath="$PROJECT_DIR$/../.idea/Automation-Java.iml" afterPath="$PROJECT_DIR$/../.idea/Automation-Java.iml" />
       <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" afterPath="$PROJECT_DIR$/../.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/content/content_home.robot" afterPath="$PROJECT_DIR$/Locators/webportal/content/content_home.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/vod_details_screen.robot" afterPath="$PROJECT_DIR$/Locators/webportal/vod_details_screen.robot" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/test.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_06.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_07.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_08.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_09.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_10.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_11.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/web_testcase_12.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/authentication.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/authentication.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/cast_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/cast_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/signup.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/stream_content.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/stream_content.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_authentication.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_authentication.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_cast_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_cast_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_common.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_common.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_profile.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_profile.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_stream_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_stream_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_videodetailsscreen.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_videodetailsscreen.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/common.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/player.robot" afterPath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/player.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/search.robot" afterPath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/search.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/signup.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/content/web_homepage.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/content/web_homepage.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_common.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_common.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_player.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_player.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_profile.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_profile.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_search.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_search.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_signup.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_signup.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_subscription.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_subscription.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot" />
-      <change beforePath="$PROJECT_DIR$/test_data/web_portal/keystrokes.robot" afterPath="$PROJECT_DIR$/test_data/web_portal/keystrokes.robot" />
-      <change beforePath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_01-sign_in.robot" afterPath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_01-sign_in.robot" />
-      <change beforePath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_04-stream_home.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../log.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../output.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../report.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/Locators/webportal/homepage.robot" afterPath="$PROJECT_DIR$/Locators/webportal/homepage.robot" />
       <change beforePath="$PROJECT_DIR$/../venv/Include/Python-ast.h" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Include/Python.h" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Include/abstract.h" afterPath="" />
@@ -724,7 +679,6 @@
       <change beforePath="$PROJECT_DIR$/../venv/Scripts/python.exe" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Scripts/pythonw.exe" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Scripts/wheel.exe" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../venv/pip-selfcheck.json" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/tcl/tcl8.5/auto.tcl" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/tcl/tcl8.5/clock.tcl" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/tcl/tcl8.5/encoding/ascii.enc" afterPath="" />
@@ -2041,7 +1995,21 @@
       <option name="project" value="LOCAL" />
       <updated>1528381645545</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="restoring deleted files">
+      <created>1528781334469</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1528781334469</updated>
+    </task>
+    <task id="LOCAL-00009" summary="- Previously created test-cases are moved to deprecated_tests&#10;- Casing of keywords changed to Title Case for better readability">
+      <created>1528781820220</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1528781820220</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -2061,14 +2029,14 @@
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20089285" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20089285" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28395063" sideWeight="0.5662202" order="14" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32561728" sideWeight="0.46354166" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32401314" sideWeight="0.46354166" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.45535713" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34046054" sideWeight="0.49702382" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3026316" sideWeight="0.43377978" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3026316" sideWeight="0.43377978" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2144,9 +2112,10 @@
     </ignored-roots>
     <MESSAGE value="- Added Data Driven Test-Cases&#10;- Added tests for Android device&#10;- Same test-data an be used irrespective of test environment" />
     <MESSAGE value="- Added Data Driven Test-Cases&#10;- Added tests for Android device&#10;- Same test-data can be used irrespective of test environment" />
-    <MESSAGE value="restoring deleted files" />
     <MESSAGE value="Following are a list of changes made in this commit:&#10;- Keywords changed into 'Capitalize Each Word' case&#10;- Added more Data Driven Test Cases" />
-    <option name="LAST_COMMIT_MESSAGE" value="Following are a list of changes made in this commit:&#10;- Keywords changed into 'Capitalize Each Word' case&#10;- Added more Data Driven Test Cases" />
+    <MESSAGE value="restoring deleted files" />
+    <MESSAGE value="- Previously created test-cases are moved to deprecated_tests&#10;- Casing of keywords changed to Title Case for better readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="- Previously created test-cases are moved to deprecated_tests&#10;- Casing of keywords changed to Title Case for better readability" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -2402,7 +2371,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#784#0" expanded="true" />
+            <element signature="e#0#784#0" expanded="false" />
           </folding>
         </state>
       </provider>
