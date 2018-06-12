@@ -7,38 +7,20 @@ Resource         E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.rob
 
 *** Keywords ***
 Click On 1st Carousel Indicator
-    wait until page contains element  ${carousel_one}
-    double click element  ${cindicator_one}
+    wait until page contains element  ${sc_indicator#1}
+    double click element  ${sc_indicator#1}
 
 Click On 1st Carousel Content
-    wait until page contains element  ${carousel_one}
-    click element  ${carousel_one}
+    wait until page contains element  ${sc_content#1}
+    click element  ${sc_content#1}
 
 Click On 4th Carousel Indicator
-    wait until page contains element  ${carousel_four}
-    double click element  ${cindicator_four}
+    wait until page contains element  ${sc_indicator#4}
+    double click element  ${sc_indicator#4}
 
 Click On 4th Carousel Content
-    wait until page contains element  ${carousel_four}
-    click element  ${carousel_four}
-
-Click On Free-Tag Content
-    wait until page contains element  ${#0_content3}
-    click element  ${#0_content3}
-
-Click On Content-Carousel In Row 1
-    wait until page contains element  ${#0_content2}
-    click element  ${#0_content2}
-
-Click On Content-Carousel In Row 7
-    wait until page contains element  ${#7_content4}
-    click element  ${#7_content4}
-
-Click On Live Tv Header Link
-    click link  ${header_livetv}
-
-Click On Movie Header Link
-    click link  ${header_movies}
+    wait until page contains element  ${sc_content#4}
+    click element  ${sc_content#4}
 
 Click On Play Now Button In Movies
     wait until page contains element  ${play_watchnow}
@@ -46,7 +28,8 @@ Click On Play Now Button In Movies
 
 Click On Content Carousel
     [Arguments]  ${content}
-    wait until page contains element  ${content}  timeout=60s
+
+    wait until page contains element  ${content}  timeout=300
     ${content_name}=  get text  ${content}
     log many  STREAMING NOW: ${content_name}
     click element  ${content}

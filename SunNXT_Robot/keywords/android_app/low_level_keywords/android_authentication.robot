@@ -1,12 +1,11 @@
 *** Settings ***
-Documentation    Suite description
-Library          AppiumLibrary  30  run_on_failure=Capture Page Screenshot
-Library          String
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/authentication_screen.robot
-Resource         E:/Automation-Java/SunNXT_Robot/test_data/android_app/swipe_variables.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/profile_screen.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/authentication_screen.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
+Documentation           Contains keywords for operations related to Sign-In & Sign-Up at lower level
+Library                 AppiumLibrary
+Library                 String
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/authentication_screen.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/android_app/swipe_variables.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/authentication_screen.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
 
 *** Keywords ***
 Enter User Id
@@ -61,7 +60,7 @@ Create New User Id
 #     log many  ${e}
 
      #navigate to signup screen
-Click On Signup Link
+Click On Signup/Signin Link
      click element  ${l_signup_in}
 
 Input User-Id

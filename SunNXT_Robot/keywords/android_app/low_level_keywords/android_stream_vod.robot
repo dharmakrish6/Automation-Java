@@ -1,11 +1,11 @@
 *** Settings ***
-Documentation    Suite description
-Library          AppiumLibrary  30  run_on_failure=Capture Page Screenshot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/player.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/content.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/videodetails_screen.robot
-Resource         E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot
+Documentation           Contains keywords related to streaming of content
+Library                 AppiumLibrary
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/player.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/content.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/videodetails_screen.robot
+Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot
 
 *** Keywords ***
 Gear
@@ -68,3 +68,15 @@ Navigate To Content Details Screen
     \  wait until page contains  ${content_name}  timeout=10
     \  click text  ${content_name}
     \  exit for loop
+
+Stream Content And Check Playback Controls
+    Dismiss Displayed Coach Mark
+    Wait Until Content Is Ready To Stream
+    Wait Until Ad Streams
+    Dismiss Displayed Coach Mark
+    Forward Content To 30 Secs
+    Enable/Disable Subtitle
+    Switch To Full Screen
+    Rewind Content To 30 Secs
+    Enable/Disable Subtitle
+    Change Vod Quality

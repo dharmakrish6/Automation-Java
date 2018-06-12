@@ -1,10 +1,11 @@
 *** Settings ***
-Library          AppiumLibrary  30
-Library          String
-Resource         E:/Automation-Java/SunNXT_Robot/test_data/android_app/test_environment.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/language_selection.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
-Resource         E:/Automation-Java/SunNXT_Robot/test_data/android_app/swipe_variables.robot
+Documentation           Contains keywords for elements available either at max number of screens or used commonly in Work-flow
+Library                 AppiumLibrary
+Library                 String
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/android_app/test_environment.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/language_selection.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/android_app/swipe_variables.robot
 
 *** Keywords ***
 Open Sunnxt App

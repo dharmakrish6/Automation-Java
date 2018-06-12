@@ -1,8 +1,10 @@
 *** Settings ***
-Resource            E:/Automation-Java/SunNXT_Robot/locators/android_app/profile/devices.robot
-Resource            E:/Automation-Java/SunNXT_Robot/locators/android_app/profile/downloads.robot
-Resource            E:/Automation-Java/SunNXT_Robot/locators/android_app/profile_screen.robot
-Resource            E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
+Documentation           Contains keywords related to operations performed in profile screen
+Library                 AppiumLibrary
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/profile/devices.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/profile/downloads.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/profile_screen.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
 
 *** Keywords ***
 #download

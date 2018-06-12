@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation
+Documentation           Flow to cast any content to attached casting device from android smartphone
 Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_cast_vod.robot
 Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_stream_vod.robot
 Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot

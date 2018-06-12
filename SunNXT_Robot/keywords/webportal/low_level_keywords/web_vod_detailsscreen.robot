@@ -1,9 +1,9 @@
 *** Settings ***
-Documentation       Contains actions to be performed on video-details screen of content
-Library               SeleniumLibrary
-Library               BuiltIn
-Library               String
-Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/vod_details_screen.robot
+Documentation           Contains keywords related to video-details screen of content
+Library                 SeleniumLibrary
+Library                 BuiltIn
+Library                 String
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/vod_details_screen.robot
 
 *** Keywords ***
 Check If Streamed Content Is Added In Continue Watching Section Or Not
@@ -22,4 +22,5 @@ Record Streamed Content
 
 Click On Play Button Red
     ${title}=  get title
-    run keyword if  "${title}"!="SUNNXT::LIVE"  click element  ${play_redbutton}
+    wait until element is visible  xpath=/html[1]/body[1]/div[2]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/div[4]/button[1]
+    run keyword if  "${title}"!="SUNNXT::LIVE"  click element  xpath=/html[1]/body[1]/div[2]/div[1]/section[1]/div[2]/div[2]/div[1]/div[1]/div[4]/button[1]

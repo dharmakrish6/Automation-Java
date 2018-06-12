@@ -1,11 +1,11 @@
 *** Settings ***
-Documentation       Contains actions related to search operation
-Library               SeleniumLibrary
-Library               BuiltIn
-Library               Screenshot
-Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.robot
-Resource              E:/Automation-Java/SunNXT_Robot/test_data/web_portal/keystrokes.robot
-Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/search.robot
+Documentation           Contains keywords related to operations perfomed on search
+Library                 SeleniumLibrary
+Library                 BuiltIn
+Library                 Screenshot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/keystrokes.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/search.robot
 
 *** Keywords ***
 Click On Search Icon

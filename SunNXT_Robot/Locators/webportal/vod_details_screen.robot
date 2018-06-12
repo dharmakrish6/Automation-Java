@@ -1,6 +1,6 @@
 *** Variables ***
 
-${play_redbutton}          xpath=//button[@type='button'][contains(text(),'Play')]
+${play_redbutton}          .movie_details-btn-div [type]
 ${share_button}            xpath=//div[@class='share-text'][contains(text(),'Share')]
 ${favourite_button}        xpath=//div[@class='share-text'][contains(text(),'Favourite')]
 ${pause_redbutton}         xpath=//*[@id="app"]/div[1]/section[1]/div[2]/div[2]/div/div/div[4]/button

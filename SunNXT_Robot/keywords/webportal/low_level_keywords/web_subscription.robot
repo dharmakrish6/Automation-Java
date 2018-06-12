@@ -1,9 +1,9 @@
 *** Settings ***
-Documentation     Contains actions on different elements related to subscription flow
-Library             SeleniumLibrary
-Resource            E:/Automation-Java/SunNXT_Robot/locators/webportal/subscription.robot
-Resource            E:/Automation-Java/SunNXT_Robot/variable/card_details.robot
-Resource            E:/Automation-Java/SunNXT_Robot/variable/webportal/assertions.robot
+Documentation           Contains keywords related to subscription flow for Credit Card & Debit Card
+Library                 SeleniumLibrary
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/subscription.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/card_details.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/assertions.robot
 
 *** Keywords ***
 Check Whether Subscription Pop-Up Is Displayed Or Not

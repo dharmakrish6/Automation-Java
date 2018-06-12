@@ -1,9 +1,9 @@
 *** Settings ***
-Documentation       Contains actions performed on flowplayer for livetv and vod's
-Library               SeleniumLibrary
-Library               BuiltIn
-Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/player.robot
-Resource              E:/Automation-Java/SunNXT_Robot/test_data/web_portal/timeout.robot
+Documentation           Contains keywords for operations performed on Live TV and VOD Player
+Library                 SeleniumLibrary
+Library                 BuiltIn
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/player.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/timeout.robot
 
 *** Keywords ***
 Click On Play Button
@@ -11,6 +11,7 @@ Click On Play Button
     sleep   ${stream_content}
 
 Stream In Full-Screen Mode
+    wait until page contains element  ${fullscreen}  timeout=20
     click element  ${fullscreen}
 
 Click On Forward & Rewind Button
@@ -33,7 +34,7 @@ Change Audio Status (Mute/Unmute)
 Change Quality Of Player
     ${title}=  get title
     run keyword if  "${title}"=="SUNNXT::LIVE"  Change Quality Of Live Tv Player
-    ...  Else  Change Quality Of Vod Player
+    run keyword if  "${title}"!="SUNNXT::LIVE"  Change Quality Of Vod Player
 
 Change Quality Of Vod Player
     wait until page contains element  ${quality_option}

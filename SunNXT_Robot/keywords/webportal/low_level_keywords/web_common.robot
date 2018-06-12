@@ -1,22 +1,26 @@
 *** Settings ***
-Documentation       Contains common actions performed in all scenarios
-Library               SeleniumLibrary
-Library               BuiltIn
-Resource              E:/Automation-Java/SunNXT_Robot/test_data/web_portal/test_environment.robot
-Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/authentication.robot
-Resource              E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.robot
-Resource              E:/Automation-Java/SunNXT_Robot/test_data/web_portal/assertions.robot
+Documentation           Contains keywords for elements available either at max number of screens or used commonly in Work-flow
+Library                 SeleniumLibrary
+Library                 BuiltIn
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/test_environment.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/authentication.robot
+Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/assertions.robot
+Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/keystrokes.robot
 
 *** Keywords ***
 Open Chrome Browser
-    create webdriver  Chrome  executable_path=E:/automationrequisite/selenium-webdriver/chromedriver.exe
+#    create webdriver  Chrome  executable_path=E:/automationrequisite/selenium-webdriver/chromedriver.exe
+    create webdriver  Firefox  executable_path=E:/automationrequisite/selenium-webdriver/geckodriver.exe
     set selenium speed  ${selenium_speed}
     set selenium implicit wait  10
     maximize browser window
     go to  ${url}
+#    press key  tag:body  ${f11_key}
     log many  NAVIGATED TO WEB-PAGE
 
 Close Chrome Browser
+    capture page screenshot
     close browser
 
 Verify Homepage Title
@@ -72,7 +76,7 @@ Validate Sign-In
     ${status#2} =  run keyword and return status  CHECK IF ERROR MESSAGE IS DISPLAYED
     run keyword if   "${status#2}"=="True"  log many  ${error_message}
 
-Select Language
+Select Content Language
     [Arguments]  ${content_language}
     click element  ${language_selector}
     run keyword if  "${content_language}"=="TAMIL"  click link  ${language_tamil}
@@ -86,7 +90,7 @@ Select Language
 Select Source Page
     [Arguments]  ${content_source}
     run keyword if  "${contentsource}"=="HOME"  click element  ${home}
-    run keyword if  "${contentsource}"=="MOVIE"  click link  ${movies}
+    run keyword if  "${contentsource}"=="MOVIE"  click2 link  ${movies}
     run keyword if  "${contentsource}"=="TV SHOW"  click link  ${tvshows}
     run keyword if  "${contentsource}"=="LIVE TV"  click link  ${livetv}
     run keyword if  "${contentsource}"=="MUSIC VIDEO"  click link  ${livetv}
