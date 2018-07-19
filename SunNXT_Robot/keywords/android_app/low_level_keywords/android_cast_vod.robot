@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation           Contains keyword operations related to casting VOD's at lower level
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/content_cast.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/player.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/android_app/test_environment.robot
+Resource                ../locators/android_app/content_cast.robot
+Resource                ../locators/android_app/player.robot
+Resource                ../test_data/android_app/test_environment.robot
 
 *** Keywords ***
 Verify If Chromecast Is Present

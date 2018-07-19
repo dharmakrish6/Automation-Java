@@ -24,10 +24,10 @@ ${user_country}                     India
 ${user_state}                       Andhra Pradesh
 
 # sign-up validation credentials
-${v_ide-verify}                     pymakes@you,com
-${v_id-email_xxx@xxxx.xxx}          pytest03@gmail.com
-${v_id-email_xx.xxx@xxxx.xxx}       py.test01@testmool.org
-${v_id-email_xx.xxx@xxxx.xx.xxx}    py.test01@you.me.net
+${v_ide-verify}                     pymake2@you,com
+${v_id-email_xxx@xxxx.xxx}          pytest06@gmail.com
+${v_id-email_xx.xxx@xxxx.xxx}       py.test04@testmool.org
+${v_id-email_xx.xxx@xxxx.xx.xxx}    py.test04@you.me.net
 ${iv_id-email_xx.xxxx.xxx}          py.test.com
 ${iv_id-email_xxxx@.xxx.xx}         pytest@.com.py
 ${iv_id-email_@xxx.xx.xxx}          @pyt.me.net

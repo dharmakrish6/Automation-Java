@@ -2,8 +2,8 @@
 Documentation           Contains keywords for operations performed on Live TV and VOD Player
 Library                 SeleniumLibrary
 Library                 BuiltIn
-Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/player.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/timeout.robot
+Resource                ../locators/webportal/player.robot
+Resource                ../test_data/web_portal/timeout.robot
 
 *** Keywords ***
 Click On Play Button
@@ -86,4 +86,6 @@ Turn Subtitle Off
 #    \   run keywords if  ${index}==4  click element  ${vspeed_normal}
 
 Wait For Content To Start Streaming
+   ${status}=  run keyword and return status  page should contain element  ${ad_msg}
+   run keyword if  "${status}"=="True"  sleep  4
    wait until page contains element  ${seekbar}

@@ -3,6 +3,7 @@
 #player frame
 ${player_frame}                 id=com.suntv.sunnxt:id/cardmediasubitemvideo_exovideopreview
 ${content_title}                xpath=//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.FrameLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.View/android.widget.TextView
+${loading_animation}            id=com.suntv.sunnxt:id/cardmediasubitemvideo_progressbar
 
 #playback controls
 ${btn_back}                     class=android.widget.ImageButton

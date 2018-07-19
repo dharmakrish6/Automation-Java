@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation           Flow for navigating to a content based on language choosen, streaming the content and testing playback controls
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_player.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_common.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/content/web_homepage.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot
+Resource                ../keywords/webportal/low_level_keywords/web_player.robot
+Resource                ../keywords/webportal/low_level_keywords/web_common.robot
+Resource                ../keywords/webportal/low_level_keywords/content/web_homepage.robot
+Resource                ../keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot
 
 *** Keywords ***
 Stream Content

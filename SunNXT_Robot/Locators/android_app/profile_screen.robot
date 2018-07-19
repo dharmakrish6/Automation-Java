@@ -7,8 +7,9 @@ ${log_in}                   Log In
 
 #Only for signed-in users
 ${edit_profile}             Edit Profile
+${switch_profile}           id=com.suntv.sunnxt:id/redIconRL
 ${downloads}                Downloads
-${watchlist}                xpath=//android.widget.TextView[@text='Watch List']
+${watchlist}                Watch List
 ${favourite_actors}         Favourite Actors
 ${subscriptions}            Subscriptions
 ${enter_coupon_code}        Enter Coupon Code

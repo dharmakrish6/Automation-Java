@@ -1,9 +1,9 @@
 *** Settings ***
 Library          SeleniumLibrary
 Library          BuiltIn
-Resource         E:/Automation-Java/SunNXT_Robot/locators/webportal/content/content_home.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/webportal/content/content_movies.robot
-Resource         E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.robot
+Resource         ../locators/webportal/content/content_home.robot
+Resource         ../locators/webportal/content/content_movies.robot
+Resource         ../locators/webportal/homepage.robot
 
 *** Keywords ***
 Click On 1st Carousel Indicator
@@ -28,8 +28,9 @@ Click On Play Now Button In Movies
 
 Click On Content Carousel
     [Arguments]  ${content}
-
-    wait until page contains element  ${content}  timeout=300
-    ${content_name}=  get text  ${content}
+    ${content_locator}=  Catenate  SEPARATOR=  //h2[contains(text(),'  ${content}  ')]
+    wait until page contains element  xpath:${content_locator}  timeout=300
+    ${content_name}=  get text  xpath:${content_locator}
+    set focus to element  ${content_locator}
     log many  STREAMING NOW: ${content_name}
-    click element  ${content}
+    click element  xpath:${content_locator}

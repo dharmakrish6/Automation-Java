@@ -1,11 +1,11 @@
 *** Settings ***
 Documentation           Contains keywords related to streaming of content
-Library                 AppiumLibrary
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/player.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/content.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/videodetails_screen.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot
+Library                 AppiumLibrary  run_on_failure=Capture Page Screenshot
+Resource                ../locators/android_app/player.robot
+Resource                ../locators/android_app/common.robot
+Resource                ../locators/android_app/content.robot
+Resource                ../locators/android_app/videodetails_screen.robot
+Resource                ../keywords/android_app/low_level_keywords/android_common.robot
 
 *** Keywords ***
 Gear
@@ -13,13 +13,16 @@ Gear
     click element  ${btn_gear}
 
 Wait Until Ad Streams
-    ${status}=  run keyword and return status  page should contain text  ${btn_visitAdvertiser}
+#    wait until page does not contain element  ${loading_animation}  timeout=15
+    ${status}=  run keyword and return status  wait until page contains  ${btn_visitAdvertiser}
     run keyword if  "${status}"=="True"  sleep  30s
 
-Wait Until Content Is Ready To Stream
+Start Streaming
     ${status}=  run keyword and return status  page should contain element  ${btn_play}
     run keyword if  "${status}"=="True"  click element  ${btn_play}
-    wait until page contains element  ${seek_bar}
+
+Wait Until Content Is Ready To Stream
+    wait until page contains element  ${seek_bar}  timeout=15s
     tap  ${player_frame}
     wait until element is visible  ${btn_play_pause}
     ${content_streamed}=  get text  ${content_title}
@@ -56,18 +59,6 @@ Change VOD Quality
 
 Switch To Full Screen
     click element  ${btn_fullscreen}
-
-Navigate To Content Details Screen
-    [Arguments]  ${carousel_title}  ${content_name}
-    :for  ${swiping}  in range  1000
-    \  ${status}=  run keyword and return status  page should contain text  ${carousel_title}
-    \  run keyword if  "${status}"=="False"  swipe by percent  50  40  50  10
-    \  continue for loop if  "${status}"=="False"
-    \  ${status}=  run keyword and return status  page should contain text  ${content_name}
-    \  run keyword if  "${status}"=="False"  swipe by percent  50  40  50  10
-    \  wait until page contains  ${content_name}  timeout=10
-    \  click text  ${content_name}
-    \  exit for loop
 
 Stream Content And Check Playback Controls
     Dismiss Displayed Coach Mark

@@ -1,5 +1,8 @@
 *** Variable ***
 #*********************************  VOD player ******************************************
+#AD assert
+${ad_msg}               css: div.fp-message.fp-title
+
 #FlowPlayer UI - VOD
 ${rewind_icon}          css: #rewind
 ${forward_icon}         css: #fastFwd
@@ -44,3 +47,4 @@ ${total_time}           css: .fp-duration
 ${remaining_time}       css: .fp-remaining
 ${seekbar}              css: .fp-progress
 ${fullscreen}           css: .fp-fullscreen
+${chromecast_icon}

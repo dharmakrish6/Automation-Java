@@ -1,13 +1,13 @@
 *** Settings ***
 Documentation       Check validation for sign-up flow (email-id)
-Resource              E:/Automation-Java/SunNXT_Robot/keywords/webportal/high_level_keywords/signup.robot
-Resource              E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_common.robot
-Resource              E:/Automation-Java/SunNXT_Robot/test_data/credentials.robot
-Test Setup           OPEN CHROME BROWSER
-Test Teardown        CLOSE CHROME BROWSER
+Resource              ../keywords/webportal/high_level_keywords/signup.robot
+Resource              ../keywords/webportal/low_level_keywords/web_common.robot
+Resource              ../test_data/credentials.robot
+Test Setup           Open Browser And Navigate To SunNXT Website
 Test Template        SIGNUP USING CREDENTIAL
+Test Teardown        Close Opened Browser
 
-*** Test Cases ***                                     userid                               userpass
+*** Test Cases ***                                                  userid                               userpass
 TEST-SCENARIO 08: REGISTERED CREDENTIAL                          ${reg_id-email_subs}                 ${reg_pass-email_subs}
 TEST-SCENARIO 09: UNREGISTERED CREDENTIAL xxx@xxxx.xxx           ${v_id-email_xxx@xxxx.xxx}           ${v_pass-@xx123}
 TEST-SCENARIO 10: VALID EMAIL FORMAT xx.xxx@xxxx.xxx             ${v_id-email_xx.xxx@xxxx.xxx}        ${v_pass-@xx123}

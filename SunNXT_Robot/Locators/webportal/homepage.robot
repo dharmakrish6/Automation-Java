@@ -11,6 +11,7 @@ ${hb_indicator_current}     css: .home_banner li.dot.is-selected
 
 #change content-language
 ${language_selector}        css: span.bs-caret
+${lang2}                    css: span.filter-option.pull-left
 
 #available content-language
 ${language_tamil}           Tamil
@@ -22,13 +23,16 @@ ${language_malayalam}       Malayalam
 ${movies}                 /movie/
 ${tvshows}                /tv/
 ${livetv}                 /live/
-${home}                   css:
+${home}                   css:img.desk_on
 ${music videos}           /music/
 ${comedy}                 /comedy/
 ${news}                   /news/
 
+#continue watching
+${title_continue_watching}      xpath: //div[@id='app']//section[@class='container_wrap']/section[@action='portalContinueWatching']//h2[@class='title']
+
 #profile dropdown
-${profile_icon}           css: #showuser_profile .icon-icn_profile
+${profile_icon}           css: #showuser_profile
 ${profile-profile}        Profile
 ${profile-my_account}     My Account
 ${profile-switchprofile}  Switch Profile
@@ -40,8 +44,8 @@ ${profile-applycoupon}    Apply Coupon
 ${profile-logout}         Logout
 
 #search content
-${search_icon}            css= a.call_search_update
-${search_field}           css= #mainSearch
+${search_icon}            css: a.call_search_update
+${search_field}           css: #mainSearch
 
 #links in footer (links having common text has css selector)
 ${footer_home}            home

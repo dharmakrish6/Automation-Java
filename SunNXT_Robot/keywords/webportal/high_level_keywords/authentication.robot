@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation           Flow for Sign-in & Sign-up operation in Web-portal (to be used as Suite/Test Setup)
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_common.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_signup.robot
+Resource                ../keywords/webportal/low_level_keywords/web_common.robot
+Resource                ../keywords/webportal/low_level_keywords/web_signup.robot
 
 *** Keywords ***
 Authenticate Web Portal
@@ -15,7 +15,7 @@ Authenticate Web Portal
 
 Login Into Web Portal
     [Arguments]  ${userid}  ${userpass}
-    Open Chrome Browser
+#    Open Browser And Navigate To SunNXT Website
     Click On Profile Authentication Icon
     Click On Sign In Link
     Enter Registered Credential  ${userid}
@@ -39,3 +39,8 @@ Signup Using Credential
   Click 'Agree Terms' Checkbox
   Click On Submit Button
   Validate Sign-Up
+
+Logout From Web Portal
+    Click On Profile Icon
+    Click On Logout Link
+    delete all cookies

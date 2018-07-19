@@ -1,11 +1,12 @@
 *** Settings ***
 Documentation           Contains keywords for operations related to Sign-In & Sign-Up at lower level
-Library                 AppiumLibrary
+Library                 AppiumLibrary  run_on_failure=Capture Page Screenshot
 Library                 String
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/authentication_screen.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/android_app/swipe_variables.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/authentication_screen.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/android_app/common.robot
+Resource                ../locators/android_app/authentication_screen.robot
+Resource                ../test_data/android_app/swipe_variables.robot
+Resource                ../locators/android_app/authentication_screen.robot
+Resource                ../locators/android_app/common.robot
+Resource                ../test_data/credentials.robot
 
 *** Keywords ***
 Enter User Id
@@ -15,7 +16,7 @@ Enter User Id
      set global variable  ${pass}
 
 Enter Password
-    [Arguments]  ${userid}  ${userpass}
+    [Arguments]  ${userpass}
     wait until page does not contain element  ${sunnxt_banner}
     run keyword if  "${pass}"=="True"  ENTER PASSWORD FOR MOBILE  ${userpass}
     ...  ELSE  ENTER PASSWORD FOR EMAIL-ID  ${userpass}
@@ -32,11 +33,18 @@ Click Login Button
      click element  ${btn_login}
 
 Wait Until Navigated To Home-Screen
+    [Arguments]  ${userid}
+    run keyword if  "${userid}"=="${reg_id-sd_exp}" or "${reg_id-sd_subs}"  Sun Direct Message
      ${status}=  run keyword and return status  ALERT MESSAGE
 #     run keyword if  "${status}"=="True"
      run keyword if  "${status}"=="False"  SIGNIN/SIGNUP VALIDATION
 
-Alert Message
+Sun Direct Message
+    ${status}=  run keyword and return status  wait until page contains element  ${alert_btn1}
+    run keyword if  "${status}"=="True"  click element  ${alert_btn1}
+    wait until page contains  FEATURED VIDEOS
+
+Accept Alert Message
     ${status}=  wait until page contains element  ${alert_btn1}  timeout=10
     run keyword if  "${status}"=="True"  OK ALERT
 
@@ -47,7 +55,7 @@ Ok Alert
 Signin/Signup Validation
     ${home_status}=  run keyword and return status  wait until page contains  FEATURED VIDEOS
     run keyword if  "${home_status}"=="True"  page should contain text  FEATURED VIDEOS
-    ...  Else  Unable To Login
+    ...  ELSE  Unable To Login
 
 Unable To Login
     ${status}=  run keyword and return status  wait until page contains element  ${ii_alert}
@@ -78,6 +86,7 @@ Select Age Of User
      click element  ${s_age}
      text should be visible  ${s_age_18}
      click text     ${s_age_18}
+     wait until page contains element  ${s_age}
      wait until page contains element  ${s_age}
 
 Select Gender Of User

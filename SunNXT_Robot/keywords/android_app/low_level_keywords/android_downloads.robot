@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Resource            E:/Automation-Java/SunNXT_Robot/locators/android_app/videodetails_screen.robot
+Resource            ../locators/android_app/videodetails_screen.robot
 
 *** Keywords ***
 Select Download Quality

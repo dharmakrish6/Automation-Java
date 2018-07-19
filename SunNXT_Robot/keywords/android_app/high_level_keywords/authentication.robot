@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation           Flow for Sign-in & Sign-up operation in Android Smartphone (to be used as Suite/Test Setup)
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_common.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_authentication.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_profile.robot
+Resource                ../keywords/android_app/low_level_keywords/android_common.robot
+Resource                ../keywords/android_app/low_level_keywords/android_authentication.robot
+Resource                ../keywords/android_app/low_level_keywords/android_profile.robot
 
 *** Keywords ***
 Authenticate App
@@ -13,9 +13,9 @@ Authenticate App
     Tap On Profile Button
     Click Login Text
     Enter User Id  ${userid}
-    Enter Password  ${userid}  ${userpass}
+    Enter Password  ${userpass}
     Click Login Button
-    Wait Until Navigated To Home-Screen
+    Wait Until Navigated To Home-Screen  ${userid}
 
 Login Via App
     [Arguments]  ${userid}  ${userpass}
@@ -26,9 +26,9 @@ Login Via App
     Tap On Profile Button
     Click Login Text
     Enter User Id  ${userid}
-    Enter Password  ${userid}  ${userpass}
+    Enter Password  ${userpass}
     Click Login Button
-    Wait Until Navigated To Home-Screen
+    Wait Until Navigated To Home-Screen  ${userid}
 
 Sign-up
     [Arguments]  ${userid}  ${userpass}
@@ -46,4 +46,4 @@ Sign-up
     Select Residing Country Of User
     Select Residing State Of User
     Click On Submit
-    Wait Until Navigated To Home-Screen
+    Wait Until Navigated To Home-Screen  ${userid}

@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation       Flow to stream a content whose title is provided in test-case (to be used in Suite/Test Setup)
-Resource            E:/Automation-Java/SunNXT_Robot/keywords/android_app/low_level_keywords/android_stream_vod.robot
+Resource            ../keywords/android_app/low_level_keywords/android_stream_vod.robot
 
 *** Keywords ***
 Navigate To And Stream Any Content

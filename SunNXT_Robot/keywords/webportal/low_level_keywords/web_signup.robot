@@ -1,10 +1,10 @@
 *** Settings ***
 Documentation           Contains keywords for signup operation at lower-level
 Library                 SeleniumLibrary
-Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/authentication.robot
-Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/homepage.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_common.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/credentials.robot
+Resource                ../locators/webportal/authentication.robot
+Resource                ../locators/webportal/homepage.robot
+Resource                ../keywords/webportal/low_level_keywords/web_common.robot
+Resource                ../test_data/credentials.robot
 
 *** Keywords ***
 Click On Sign Up Link

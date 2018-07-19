@@ -1,89 +1,69 @@
 *** Settings ***
 Documentation           Contains keywords related to subscription flow for Credit Card & Debit Card
 Library                 SeleniumLibrary
-Resource                E:/Automation-Java/SunNXT_Robot/locators/webportal/subscription.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/card_details.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/web_portal/assertions.robot
+Resource                ../locators/webportal/subscription.robot
+Resource                ../test_data/web_portal/assertions.robot
 
 *** Keywords ***
-Check Whether Subscription Pop-Up Is Displayed Or Not
+Dismiss Sun Direct Expiry Pop-up
+    ${status}=  run keyword and return status  page should contain element  ${sundirect_message}  timeout=10
+    run keyword if  "${status}"=="True"  click element  ${popup_ok}
+#    wait until element is not visible  ${sundirect_message}  timeout=10
+    alert should be present
+
+Select Subscription Plan From Subscription Pop-Up
+    [Arguments]  ${subscription_plan}
     wait until element is visible  ${subscription_popup}
-    log many    authentication pop-up is displayed
+    run keyword if  "${subscription_plan}"=="Monthly"  click element  ${popup_monthly}
+    run keyword if  "${subscription_plan}"=="Quarterly"  click element  ${popup_quarterly}
+    run keyword if  "${subscription_plan}"=="Annual"  click element  ${popup_annual}
 
-Click On Ok Button Of Sun Direct Message
-    click element  ${sundirect_message}
+Select Payment Mode
+    [Arguments]  ${payment_mode}
+    wait until element is visible  ${available payment_modes}
+    run keyword if  "${payment_mode}"=="Credit Card"  click element  ${credit_card}
+    run keyword if  "${payment_mode}"=="Debit Card"  click element  ${debit_card}
+    run keyword if  "${payment_mode}"=="PayTM"  click element  ${paytm}
 
-Click On Annual Subscription Plan In Pop-Up
-    wait until page contains element  ${popup_annual}
-    click element  ${popup_annual}
+Select Card Type
+    [Arguments]  ${card_type}
+    ${status}=  run keyword and return status  page should contain element  ${dc_cardtype}
+    run keyword if  "${status}"=="True"  click element  ${dc_cardtype}
+    run keyword if  "${status}"=="True"  click link  ${card_type}
 
-Select Monthly Plan
-    click element  ${monthly_subsplan}
+Enter Card Number
+    [Arguments]  ${card_number}
+    Input Text  ${card_num}  ${card_number}
 
-Select Quarterly Plan
-    click element  ${quarterly_subsplan}
+Enter Card Name
+    [Arguments]  ${name_on_card}
+    Input Text  ${card_name}  ${name_on_card}
 
-Select Annual Plan
-    click element  ${annual_subsplan}
+Select Card Expiry Month
+    [Arguments]  ${expiry_month}
+    wait until element is visible  ${month}  timeout=10
+    click element  ${month}
+    click link  ${expiry_month}
 
-#DEBIT CARD
-Select Debit Card As Payment Mode
-    click element  ${debitcard}
+Select Card Expiry Year
+    [Arguments]  ${expiry_year}
+    click element  ${year}
+    click link  ${expiry_year}
 
-Select Debit Card Type
-    click element  ${dc_cardtype}
-    click element  ${rupay}
+Enter CVV Of Card
+    [Arguments]  ${card_cvv}
+    Input Text  ${cvv}  ${card_cvv}
 
-Enter Debit Card Number
-    input text  ${cardnum}  ${dc-card_number}
+De-Authorize Auto-Renewal
+    [Arguments]  ${auto_renewal}
+    run keyword if  "${auto_renewal}"=="No"  click element  ${checkbox}
 
-Enter Name On Debit Card
-    input text  ${cardname}  ${dc-name_on_card}
+Proceed With Subcription
+    click element  ${cc_pay}
 
-Select Month Validity Of Card
-    click element  ${dc_month}
-    click link  ${dc-valid_upto_month}
-
-Select Year Validity Of Card
-    click element  ${dc_year}
-    click link  ${dc-valid_upto_year}
-
-Enter Cvv Of The Card
-    input text  ${cvv}  ${dc-cvv}
-
-Uncheck 'Save This Card For Faster Payments'
-    click element  ${dc_savecard}
-
-Proceed With The Payment
-    click element  ${dc_paybtn}
-
-Check Whether Navigated Page Is Rupay E-Pay Or Not
-    sleep  3s
+Check If Navigated To OTP Screen Or Not
     title should be  ${epay}
 
 
-#CREDIT CARD
-Select Credit Card As Payment Mode
-    click element  ${creditcard}
 
-Enter Credit Card Number
-    input text  ${cardnum}  ${cc-card_number}
-
-Enter Name On Credit Card
-    input text  ${cardname}  ${cc-name_on_card}
-
-Select Month Validity Of Credit Card
-    sleep  1s
-    click element  ${cc_month}
-    click link  ${cc-valid_upto_month}
-
-Select Year Validity Of Credit Card
-    click element  ${cc_year}
-    click link  ${cc-valid_upto_year}
-
-Enter Cvv Of Credit Card
-    input text  ${cvv}  ${cc-cvv}
-
-Check Whether Subscription Is Available Or Not
-    ${a_subs}  get text  ${a_no_subscription}
-    convert to string  ${a_subs}
+    select from list by value

@@ -1,4 +1,10 @@
 *** Variables ***
+#loading animation
+${login_loading_animation}      `
+${login_loading_popup}          id=	android:id/body
+${login_loading_text}           id=android:id/message
+#Loading...
+
 
 #login page
 ${username}           id=com.suntv.sunnxt:id/phnEditTextLoginPage

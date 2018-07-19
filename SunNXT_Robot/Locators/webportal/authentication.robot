@@ -1,7 +1,7 @@
 *** Variables ***
 ${profile_auth}           css: #show_sign [href="\#"]
 ${signin_link}            Sign In
-${popup}                  css: .popup_footer
+${popup}                  css: [role="document"] .modal-content
 
 #signin popup
 ${user_name}              id: email-up

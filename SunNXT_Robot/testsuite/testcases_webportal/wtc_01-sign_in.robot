@@ -1,13 +1,12 @@
 *** Settings ***
 Documentation           Check sign-in validity for different credentials
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/high_level_keywords/authentication.robot
-Resource                E:/Automation-Java/SunNXT_Robot/keywords/webportal/low_level_keywords/web_common.robot
-Resource                E:/Automation-Java/SunNXT_Robot/test_data/credentials.robot
-Test Setup              OPEN CHROME BROWSER
-Test Teardown           CLOSE CHROME BROWSER
+Resource                ../keywords/webportal/high_level_keywords/authentication.robot
+Resource                ../keywords/webportal/low_level_keywords/web_common.robot
+Resource                ../test_data/credentials.robot
+Test Setup              Open Browser And Navigate To SunNXT Website
+Test Teardown           Close Opened Browser
 Test Template           AUTHENTICATE WEB PORTAL
 Default Tags            Quick
-
 
 *** Test Cases ***                                                   userid                   userpass
 TEST-SCENARIO 01: REGISTERED CREDENTIAL WITH SUBSCRIPTION        ${reg_id-email_subs}         ${reg_pass-email_subs}
