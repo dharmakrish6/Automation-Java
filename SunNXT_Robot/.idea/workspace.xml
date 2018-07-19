@@ -1,78 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b410ca30-5bef-4f17-bef5-b9ae1212e0e1" name="Default" comment="- New Test Scenario's for both Web-portal &amp; Android&#10;- Script now runs on all versions of Android (previously the test-scripts were not supported on Android v6 &amp; above)&#10;- Android test-scripts now runs on any connected device, no need of manually entering the device details&#10;NOTE: DO NOT PLUG-IN MORE THAN ONE DEVICE TO THE SYSTEM&#10;- Code added to gather crash-logs upon each test-execution&#10;- Replaced all absolute paths with relative paths">
+    <list default="true" id="b410ca30-5bef-4f17-bef5-b9ae1212e0e1" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/en.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/eo.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/es.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/fa.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/fi.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/fr.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/gl.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/he.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/it.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/ja.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/lt.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/lv.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/nl.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/pl.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/pt_br.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/ru.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/sk.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/sv.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/zh_cn.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/languages/zh_tw.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/roles.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/states.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/parsers/rst/tableparser.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/readers/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/readers/doctree.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/readers/pep.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/readers/standalone.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/statemachine.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/components.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/frontmatter.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/misc.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/parts.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/peps.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/references.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/universal.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/transforms/writer_aux.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/code_analyzer.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/error_reporting.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/math/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/math/latex2mathml.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/math/math2html.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/math/tex2mathml_extern.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/math/tex2unichar.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/math/unichar2tex.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/punctuation_chars.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/roman.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/smartquotes.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/utils/urischemes.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/_html_base.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/docutils_xml.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html4css1/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html4css1/html4css1.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html4css1/template.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html5_polyglot/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html5_polyglot/math.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html5_polyglot/minimal.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html5_polyglot/plain.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/html5_polyglot/template.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/latex2e/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/latex2e/default.tex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/latex2e/titlepage.tex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/latex2e/xelatex.tex" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/manpage.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/null.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/odf_odt/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/odf_odt/pygmentsformatter.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/odf_odt/styles.odt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/pep_html/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/pep_html/pep.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/pep_html/template.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/pseudoxml.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/README.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/big-black/__base__" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/big-black/framing.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/big-black/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/big-white/framing.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/big-white/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/blank.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/framing.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/iepngfix.htc" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/opera.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/outline.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/print.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/s5-core.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/slides.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/default/slides.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/medium-black/__base__" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/medium-black/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/medium-white/framing.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/medium-white/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/small-black/__base__" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/small-black/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/small-white/framing.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/s5_html/themes/small-white/pretty.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/docutils/writers/xetex/__init__.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/easy_install.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/venv/Lib/site-packages/kitchen-1.2.5-py3.7.egg-info/PKG-INFO" />
       <change beforePath="$PROJECT_DIR$/../.idea/Automation-Java.iml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/Automation-Java.iml" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/authentication_screen.robot" afterPath="$PROJECT_DIR$/Locators/android_app/authentication_screen.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/common.robot" afterPath="$PROJECT_DIR$/Locators/android_app/common.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/language_selection.robot" afterPath="$PROJECT_DIR$/Locators/android_app/language_selection.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/player.robot" afterPath="$PROJECT_DIR$/Locators/android_app/player.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/profile/devices.robot" afterPath="$PROJECT_DIR$/Locators/android_app/profile/devices.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/profile/downloads.robot" afterPath="$PROJECT_DIR$/Locators/android_app/profile/downloads.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/profile_screen.robot" afterPath="$PROJECT_DIR$/Locators/android_app/profile_screen.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/android_app/videodetails_screen.robot" afterPath="$PROJECT_DIR$/Locators/android_app/videodetails_screen.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/authentication.robot" afterPath="$PROJECT_DIR$/Locators/webportal/authentication.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/homepage.robot" afterPath="$PROJECT_DIR$/Locators/webportal/homepage.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/player.robot" afterPath="$PROJECT_DIR$/Locators/webportal/player.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/profile.robot" afterPath="$PROJECT_DIR$/Locators/webportal/profile.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/subscription.robot" afterPath="$PROJECT_DIR$/Locators/webportal/subscription.robot" />
-      <change beforePath="$PROJECT_DIR$/Locators/webportal/vod_details_screen.robot" afterPath="$PROJECT_DIR$/Locators/webportal/vod_details_screen.robot" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_01-sign_in.robot" afterPath="$PROJECT_DIR$/TestSuite/testcases_android/atc_01-sign_in.robot" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_02-sign_up.robot" afterPath="$PROJECT_DIR$/TestSuite/testcases_android/atc_02-sign_up.robot" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_03-stream_content.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_04-cast_content.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_05-download_vod.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_06=deactivate_device.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_06_deactivate_device.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_android/atc_07-test.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/TestSuite/testcases_webportal/wtc_06-stream_tvshow.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/test.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_06.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_07.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_08.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_09.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_10.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_11.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/deprecated_tests/web_testcase_12.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/authentication.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/authentication.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/cast_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/cast_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/download_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/download_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/stream_content.robot" afterPath="$PROJECT_DIR$/keywords/android_app/high_level_keywords/stream_content.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_authentication.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_authentication.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_cast_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_cast_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_common.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_common.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_downloads.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_downloads.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_profile.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_profile.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_stream_vod.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_stream_vod.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_videodetailsscreen.robot" afterPath="$PROJECT_DIR$/keywords/android_app/low_level_keywords/android_videodetailsscreen.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/authentication.robot" afterPath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/authentication.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/player.robot" afterPath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/player.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/search.robot" afterPath="$PROJECT_DIR$/keywords/webportal/high_level_keywords/search.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/content/web_homepage.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/content/web_homepage.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_common.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_common.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_player.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_player.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_profile.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_profile.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_search.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_search.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_signup.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_signup.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_subscription.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_subscription.robot" />
-      <change beforePath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot" afterPath="$PROJECT_DIR$/keywords/webportal/low_level_keywords/web_vod_detailsscreen.robot" />
-      <change beforePath="$PROJECT_DIR$/test_data/android_app/test_environment.robot" afterPath="$PROJECT_DIR$/test_data/android_app/test_environment.robot" />
-      <change beforePath="$PROJECT_DIR$/test_data/card_details.robot" afterPath="$PROJECT_DIR$/test_data/card_details.robot" />
-      <change beforePath="$PROJECT_DIR$/test_data/credentials.robot" afterPath="$PROJECT_DIR$/test_data/credentials.robot" />
-      <change beforePath="$PROJECT_DIR$/test_data/web_portal/timeout.robot" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_01-sign_in.robot" afterPath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_01-sign_in.robot" />
-      <change beforePath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_02_sign_up.robot" afterPath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_02_sign_up.robot" />
-      <change beforePath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_03-search.robot" afterPath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_03-search.robot" />
-      <change beforePath="$PROJECT_DIR$/testsuite/testcases_webportal/wtc_05-stream_free_content.robot" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Include/Python-ast.h" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Include/Python.h" afterPath="" />
       <change beforePath="$PROJECT_DIR$/../venv/Include/abstract.h" afterPath="" />
@@ -1986,6 +2023,21 @@
       <option name="presentableId" value="Default" />
       <updated>1529746259332</updated>
     </task>
+    <task id="LOCAL-00001" summary="- New Test Scenario's for both Web-portal &amp; Android&#10;- Script now runs on all versions of Android (previously the test-scripts were not supported on Android v6 &amp; above)&#10;- Android test-scripts now runs on any connected device, no need of manually entering the device details&#10;NOTE: DO NOT PLUG-IN MORE THAN ONE DEVICE TO THE SYSTEM&#10;- Code added to gather crash-logs upon each test-execution&#10;- Replaced all absolute paths with relative paths">
+      <created>1532001022780</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1532001022780</updated>
+    </task>
+    <task id="LOCAL-00002" summary="- New Test Scenario's for both Web-portal &amp; Android&#10;- Script now runs on all versions of Android (previously the test-scripts were not supported on Android v6 &amp; above)&#10;- Android test-scripts now runs on any connected device, no need of manually entering the device details&#10;NOTE: DO NOT PLUG-IN MORE THAN ONE DEVICE TO THE SYSTEM&#10;- Code added to gather crash-logs upon each test-execution&#10;- Replaced all absolute paths with relative paths">
+      <created>1532012375250</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1532012375250</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2045,6 +2097,7 @@
     <MESSAGE value="Contains script to run tests on any connected android device&#10;Absolute paths for Resource replaced with Relative paths" />
     <MESSAGE value="- New Test Scenario's for both Web-portal &amp; Android&#10;- Script now runs on all versions of Android (previously the test-scripts were not supported on Android v6 &amp; above)&#10;- Android test-scripts now runs on any connected device, no need of manually entering the device details&#10;NOTE: DO NOT PLUG-IN MORE THAN ONE DEVICE TO THE SYSTEM&#10;- Code added to gather crash-logs upon each test-execution&#10;- Replaced all absolute paths with relative paths" />
     <option name="LAST_COMMIT_MESSAGE" value="- New Test Scenario's for both Web-portal &amp; Android&#10;- Script now runs on all versions of Android (previously the test-scripts were not supported on Android v6 &amp; above)&#10;- Android test-scripts now runs on any connected device, no need of manually entering the device details&#10;NOTE: DO NOT PLUG-IN MORE THAN ONE DEVICE TO THE SYSTEM&#10;- Code added to gather crash-logs upon each test-execution&#10;- Replaced all absolute paths with relative paths" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
