@@ -1,0 +1,367 @@
+--------- beginning of main
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31150 Rx=113241
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31151 Rx=113252
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-42 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31151 Rx=113254
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31154 Rx=113268
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31156 Rx=113272
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-42 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31159 Rx=113274
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31160 Rx=113279
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31160 Rx=113291
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-42 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31162 Rx=113303
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31162 Rx=113306
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31162 Rx=113319
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-42 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31162 Rx=113325
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31166 Rx=113336
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=2.96 rxSuccessRate=23.89 targetRoamBSSID=any RSSI=-42
+E/WifiStateMachine(  827): startDelayedScan send -> 1006 milli 20000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN with age=308551 interval=341718 maxinterval=300000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN prevent full band scan due to pkt rate
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN full=false
+E/WifiConfigStore(  827): makeChannelList age=3600000 for "MoolyaG"WPA_PSK max=6 bssids=5
+E/WifiConfigStore(  827): has 44:d9:e7:91:5b:d3 freq=2437 age=19350 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:5c:9a freq=2462 age=19351 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:5b:72 freq=2437 age=19351 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:68:d1 freq=2412 age=2062 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:5c:37 freq=2412 age=19350 ?=true
+E/WifiStateMachine(  827): WifiStateMachine starting scan for "MoolyaG"WPA_PSK with 2412,2462,2437
+E/WifiStateMachine(  827): [1,531,484,491,926 ms] noteScanstart no scan source uid -2
+E/WifiMonitor(  827): handleEvent unknown: 15  CTRL-EVENT-SCAN-STARTED 
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31168 Rx=113338
+E/WifiStateMachine(  827): [1,531,484,492,597 ms] noteScanEnd no scan source onTime=0
+E/WifiStateMachine(  827): wifi setScanResults statecom.android.server.wifi.WifiStateMachine$ConnectedState@218ab7ac sup_state=COMPLETED debouncing=false mConnectionRequests=1 selection=<none>
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:68:d1 key : "MoolyaG"WPA_PSK num: 5 rssi=-37 freq=2412
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5b:72 key : "MoolyaG"WPA_PSK num: 5 rssi=-70 freq=2437
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5c:9a key : "MoolyaG"WPA_PSK num: 5 rssi=-69 freq=2462
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5b:d3 key : "MoolyaG"WPA_PSK num: 5 rssi=-64 freq=2437
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5c:37 key : "MoolyaG"WPA_PSK num: 5 rssi=-76 freq=2412
+E/WifiConfigStore(  827):  writeKnownNetworkHistory() num networks:1 needWrite=false
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-39 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31170 Rx=113345
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31170 Rx=113345
+E/WifiTrafficPoller(  827): notifying of data activity 0
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31170 Rx=113346
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-41 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31174 Rx=113352
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31174 Rx=113354
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31174 Rx=113355
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-42 "MoolyaG"WPA_PSK
+--------- beginning of system
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31178 Rx=113361
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31178 Rx=113367
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31178 Rx=113371
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-43 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31180 Rx=113374
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31181 Rx=113380
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31181 Rx=113381
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-44 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31183 Rx=113383
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31183 Rx=113383
+E/WifiTrafficPoller(  827): notifying of data activity 0
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31185 Rx=113391
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-43 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31185 Rx=113391
+E/WifiTrafficPoller(  827): notifying of data activity 0
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31185 Rx=113407
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31185 Rx=113412
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-43 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31187 Rx=113416
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=1.74 rxSuccessRate=15.70 targetRoamBSSID=any RSSI=-43
+E/WifiStateMachine(  827): startDelayedScan send -> 1007 milli 20000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN with age=328553 interval=341718 maxinterval=300000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN full=false
+E/WifiConfigStore(  827): makeChannelList age=3600000 for "MoolyaG"WPA_PSK max=6 bssids=5
+E/WifiConfigStore(  827): has 44:d9:e7:91:5b:d3 freq=2437 age=19308 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:5c:9a freq=2462 age=19308 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:5b:72 freq=2437 age=19308 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:68:d1 freq=2412 age=952 ?=true
+E/WifiConfigStore(  827): has 44:d9:e7:91:5c:37 freq=2412 age=19292 ?=true
+E/WifiStateMachine(  827): WifiStateMachine starting scan for "MoolyaG"WPA_PSK with 2412,2462,2437
+E/WifiMonitor(  827): handleEvent unknown: 15  CTRL-EVENT-SCAN-STARTED 
+E/WifiStateMachine(  827): [1,531,484,511,929 ms] noteScanstart no scan source uid -2
+E/WifiStateMachine(  827): [1,531,484,512,630 ms] noteScanEnd no scan source onTime=0
+E/WifiStateMachine(  827): wifi setScanResults statecom.android.server.wifi.WifiStateMachine$ConnectedState@218ab7ac sup_state=COMPLETED debouncing=false mConnectionRequests=1 selection=<none>
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:68:d1 key : "MoolyaG"WPA_PSK num: 5 rssi=-37 freq=2412
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5b:72 key : "MoolyaG"WPA_PSK num: 5 rssi=-66 freq=2437
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5c:9a key : "MoolyaG"WPA_PSK num: 5 rssi=-70 freq=2462
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5b:d3 key : "MoolyaG"WPA_PSK num: 5 rssi=-65 freq=2437
+E/WifiConfigStore(  827): updateSavedNetworkHistory(): try "MoolyaG"WPA_PSK SSID="MoolyaG" MoolyaG [WPA2-PSK-CCMP][ESS] ajst=0
+E/WifiConfigStore(  827):         got known scan result 44:d9:e7:91:5c:37 key : "MoolyaG"WPA_PSK num: 5 rssi=-75 freq=2412
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31189 Rx=113421
+E/WifiConfigStore(  827):  writeKnownNetworkHistory() num networks:1 needWrite=false
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31191 Rx=113428
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-39 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31191 Rx=113437
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31191 Rx=113443
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31195 Rx=113456
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-40 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31195 Rx=113456
+E/WifiTrafficPoller(  827): notifying of data activity 0
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31197 Rx=113460
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31197 Rx=113465
+E/WifiTrafficPoller(  827): notifying of data activity 1
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-43 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31197 Rx=113476
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31197 Rx=113479
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31199 Rx=113481
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-44 "MoolyaG"WPA_PSK
+E/NativeCrypto(22079): ssl=0x7fa8054980 cert_verify_callback x509_store_ctx=0x7fa29beb68 arg=0x0
+E/NativeCrypto(22079): ssl=0x7fa8054980 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_ECDSA
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31211 Rx=113495
+E/NativeCrypto(22079): ssl=0x7fa8055e80 cert_verify_callback x509_store_ctx=0x7f95ac8a58 arg=0x0
+E/NativeCrypto(22079): ssl=0x7fa8055e80 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31223 Rx=113513
+E/MPlugin (22079): Unsupported class: com.mediatek.common.telephony.IOnlyOwnerSimSupport
+E/Sensors (  827): handleToDriver handle(0)
+E/Sensors (  827): handleToDriver handle(0)
+E/Sensors (  827): new setDelay handle(0),ns(200000000)m, error(0), index(2)
+E/GED     (22079): Failed to get GED Log Buf, err(0)
+E/libPowerStretch(22079): LUCID_1 (1531484525389) PowerXtend Common Architecture Integration Call - libinput.so
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31231 Rx=113520
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-51 "MoolyaG"WPA_PSK
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/NativeCrypto(22079): ssl=0x7fa8058c00 cert_verify_callback x509_store_ctx=0x7f8ef45bc8 arg=0x0
+E/NativeCrypto(22079): ssl=0x7fa8058c00 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/MPlugin (22079): Unsupported class: com.mediatek.common.telephony.IOnlyOwnerSimSupport
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31250 Rx=113536
+E/libGameXtend(22079): LUCID_1 (1531484527223) PowerXtend identified application start. Package name: com.suntv.sunnxt. Application is handled by GameXtend
+E/libGameXtend(22079): LUCID_1 (1531484527265) GameXtend is currently running in Manual mode
+E/libGameXtend(22079): LUCID_1 (1531484527265) GameXtend is currently running in no_save Save power state
+E/libGameXtend(22079): LUCID_1 (1531484527265) com.suntv.sunnxt is currently running with GameXtend, with PS parameter = 1
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31269 Rx=113571
+E/Sensors (  827): handleToDriver handle(0)
+E/Sensors (  827): handleToDriver handle(0)
+E/Sensors (  827): handleToDriver handle(0)
+E/Sensors (  827): new setDelay handle(0),ns(200000000)m, error(0), index(2)
+E/NativeCrypto(22079): ssl=0x7f953a9c80 cert_verify_callback x509_store_ctx=0x7f8e3fea68 arg=0x0
+E/NativeCrypto(22079): ssl=0x7f953a9c80 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/NativeCrypto(22079): ssl=0x7fa805b280 cert_verify_callback x509_store_ctx=0x7f8e2faa68 arg=0x0
+E/NativeCrypto(22079): ssl=0x7fa805b280 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31392 Rx=113737
+E/Launcher( 1557): onReceive, action=android.intent.action.CLOSE_SYSTEM_DIALOGS, reason=homekey
+E/Sensors (  827): handleToDriver handle(0)
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-54 "MoolyaG"WPA_PSK
+E/TabPagerIndicator(22079): 5
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/VolumeManager(  275): Failed to find mounted volume for /storage/sdcard1/Android/data/com.suntv.sunnxt/cache/
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31418 Rx=113775
+E/MPlugin (22079): Unsupported class: com.mediatek.common.telephony.IOnlyOwnerSimSupport
+E/NativeCrypto(22079): ssl=0x7fa8056900 cert_verify_callback x509_store_ctx=0x7f95ac8bc8 arg=0x0
+E/NativeCrypto(22079): ssl=0x7fa8056900 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31441 Rx=113794
+E/NativeCrypto(22079): ssl=0x7f953aca00 cert_verify_callback x509_store_ctx=0x7f958c0a68 arg=0x0
+E/NativeCrypto(22079): ssl=0x7f953aca00 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/MPlugin (18609): Unsupported class: com.mediatek.settings.b.f
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31482 Rx=113830
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN source -2 txSuccessRate=89.55 rxSuccessRate=125.22 targetRoamBSSID=any RSSI=-57
+E/WifiStateMachine(  827): startDelayedScan send -> 1008 milli 20000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN with age=348556 interval=341718 maxinterval=300000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN try full band scan age=348556 interval=341718 maxinterval=300000
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN prevent full band scan due to pkt rate
+E/WifiStateMachine(  827): WifiStateMachine CMD_START_SCAN source -2 ...and ignore scans tx=89.55 rx=125.22
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-58 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31485 Rx=113835
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31493 Rx=113847
+E/NativeCrypto(22079): ssl=0x7f953ad100 cert_verify_callback x509_store_ctx=0x7f95fdc9c8 arg=0x0
+E/NativeCrypto(22079): ssl=0x7f953ad100 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31518 Rx=113866
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-59 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31520 Rx=113868
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31520 Rx=113868
+E/WifiTrafficPoller(  827): notifying of data activity 0
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31521 Rx=113869
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-60 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31523 Rx=113870
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31527 Rx=113878
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31529 Rx=113884
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-60 "MoolyaG"WPA_PSK
+E/MPlugin (22258): Unsupported class: com.mediatek.common.telephony.IOnlyOwnerSimSupport
+E/Launcher( 1557): onReceive, action=android.intent.action.CLOSE_SYSTEM_DIALOGS, reason=recentapps
+E/ActivityThread( 1143): Failed to find provider info for com.yulong.android.launcherL.IconProvider
+E/ActivityThread( 1143): Failed to find provider info for com.yulong.android.launcherL.IconProvider
+E/ActivityThread( 1143): Failed to find provider info for com.yulong.android.launcherL.IconProvider
+E/ActivityThread( 1143): Failed to find provider info for com.yulong.android.launcherL.IconProvider
+E/STATUS_BAR( 1143): Notification  mBgTint:0 mShowingLegacyBackground:false mLegacyColor:ff1a1a1a mIsBelowSpeedBump:true mLowPriorityColor:fffafafa mNormalColor:fffafafa
+E/STATUS_BAR( 1143): Notification  mDimmed:false mBackgroundDimmed setTint color:0 rippleColor:30000000
+E/STATUS_BAR( 1143): Notification  mBgTint:0 mShowingLegacyBackground:false mLegacyColor:ff1a1a1a mIsBelowSpeedBump:true mLowPriorityColor:fffafafa mNormalColor:fffafafa
+E/STATUS_BAR( 1143): Notification  mDimmed:false mBackgroundDimmed setTint color:0 rippleColor:30000000
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31529 Rx=113884
+E/WifiTrafficPoller(  827): notifying of data activity 0
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31535 Rx=113884
+E/WifiTrafficPoller(  827): notifying of data activity 2
+E/FragmentManager(22079): No view found for id 0x7f100268 (com.suntv.sunnxt:id/drag_view) for fragment FragmentCardDetailsPlayer{3fe48c72 #5 id=0x7f100268}
+E/FragmentManager(22079): Activity state:
+E/AndroidRuntime(22079): FATAL EXCEPTION: main
+E/AndroidRuntime(22079): Process: com.suntv.sunnxt, PID: 22079
+E/AndroidRuntime(22079): java.lang.RuntimeException: Unable to start activity ComponentInfo{com.suntv.sunnxt/com.android.myplex.ui.sun.activities.MainActivity}: java.lang.IllegalArgumentException: No view found for id 0x7f100268 (com.suntv.sunnxt:id/drag_view) for fragment FragmentCardDetailsPlayer{3fe48c72 #5 id=0x7f100268}
+E/AndroidRuntime(22079): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2555)
+E/AndroidRuntime(22079): 	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2629)
+E/AndroidRuntime(22079): 	at android.app.ActivityThread.handleRelaunchActivity(ActivityThread.java:4254)
+E/AndroidRuntime(22079): 	at android.app.ActivityThread.access$900(ActivityThread.java:182)
+E/AndroidRuntime(22079): 	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1480)
+E/AndroidRuntime(22079): 	at android.os.Handler.dispatchMessage(Handler.java:111)
+E/AndroidRuntime(22079): 	at android.os.Looper.loop(Looper.java:194)
+E/AndroidRuntime(22079): 	at android.app.ActivityThread.main(ActivityThread.java:5706)
+E/AndroidRuntime(22079): 	at java.lang.reflect.Method.invoke(Native Method)
+E/AndroidRuntime(22079): 	at java.lang.reflect.Method.invoke(Method.java:372)
+E/AndroidRuntime(22079): 	at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:1033)
+E/AndroidRuntime(22079): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:828)
+E/AndroidRuntime(22079): Caused by: java.lang.IllegalArgumentException: No view found for id 0x7f100268 (com.suntv.sunnxt:id/drag_view) for fragment FragmentCardDetailsPlayer{3fe48c72 #5 id=0x7f100268}
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentManagerImpl.moveToState(FragmentManager.java:1413)
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentManagerImpl.moveFragmentToExpectedState(FragmentManager.java:1750)
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentManagerImpl.moveToState(FragmentManager.java:1819)
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentManagerImpl.dispatchStateChange(FragmentManager.java:3227)
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentManagerImpl.dispatchActivityCreated(FragmentManager.java:3181)
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentController.dispatchActivityCreated(FragmentController.java:192)
+E/AndroidRuntime(22079): 	at android.support.v4.app.FragmentActivity.onStart(FragmentActivity.java:572)
+E/AndroidRuntime(22079): 	at android.support.v7.app.AppCompatActivity.onStart(AppCompatActivity.java:177)
+E/AndroidRuntime(22079): 	at com.android.myplex.ui.activities.BaseActivity.onStart(BaseActivity.java:236)
+E/AndroidRuntime(22079): 	at android.app.Instrumentation.callActivityOnStart(Instrumentation.java:1244)
+E/AndroidRuntime(22079): 	at android.app.Activity.performStart(Activity.java:6108)
+E/AndroidRuntime(22079): 	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2512)
+E/AndroidRuntime(22079): 	... 11 more
+E/GED     (  827): Failed to get GED Log Buf, err(0)
+E/NativeCrypto(22079): ssl=0x7fa805b280 cert_verify_callback x509_store_ctx=0x7f8d9fea68 arg=0x0
+E/NativeCrypto(22079): ssl=0x7fa805b280 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31587 Rx=113934
+E/WifiTrafficPoller(  827): notifying of data activity 3
+E/NativeCrypto(22079): ssl=0x7f94df2000 cert_verify_callback x509_store_ctx=0x7f95ed88a8 arg=0x0
+E/NativeCrypto(22079): ssl=0x7f94df2000 cert_verify_callback calling verifyCertificateChain authMethod=ECDHE_RSA
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-58 "MoolyaG"WPA_PSK
+E/MPlugin (22303): Unsupported class: com.mediatek.common.telephony.IOnlyOwnerSimSupport
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31684 Rx=114022
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31716 Rx=114061
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31722 Rx=114089
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-58 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31743 Rx=114109
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31752 Rx=114120
+E/ConnectivityService(  827): RemoteException caught trying to send a callback msg for NetworkRequest [ id=43, legacyType=-1, [ Capabilities: INTERNET&NOT_RESTRICTED&TRUSTED] ]
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31778 Rx=114150
+E/WifiConfigStore(  827): updateConfiguration freq=2412 BSSID=44:d9:e7:91:68:d1 RSSI=-51 "MoolyaG"WPA_PSK
+E/WifiTrafficPoller(  827): TRAFFIC_STATS_POLL true Token 280 num clients 10
+E/WifiTrafficPoller(  827):  packet count Tx=31785 Rx=114163
