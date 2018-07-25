@@ -19,7 +19,7 @@ Enter Password
     [Arguments]  ${userpass}
     wait until page does not contain element  ${sunnxt_banner}
     run keyword if  "${pass}"=="True"  ENTER PASSWORD FOR MOBILE  ${userpass}
-    ...  ELSE  ENTER PASSWORD FOR EMAIL-ID  ${userpass}
+    ...  ELSE  ENTER PASSWORD FOR EMAIL-ID  ${userpass}x
 
 Enter Password For Email-Id
     [Arguments]  ${userpass}

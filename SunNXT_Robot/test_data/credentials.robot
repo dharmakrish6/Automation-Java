@@ -38,7 +38,7 @@ ${iv_id-email_xxxx()*.xxx}          pytest()*@gmail.com
 ${iv_id-email_xxxx..1234@xxxx.xxx}  pytest..1234@yahoo.com
 ${iv_id-email_xxxx 1234@xxxx.xxx}   pytest 1234@yahoo.com
 ${iv_id-mobile_xxxxxxxxx}           999900001
-${iv_id-mobile_xxxxxxxxxxx}         99999000001
+${iv_id-mob ile_xxxxxxxxxxx}         99999000001
 
 ${v_pass-xxxx}                      1234
 ${v_pass-@xx123}                    @mool143

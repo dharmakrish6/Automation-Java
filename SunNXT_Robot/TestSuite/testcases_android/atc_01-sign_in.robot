@@ -7,6 +7,7 @@ Resource            ../test_data/credentials.robot
 Test Setup          Open Sunnxt App
 Test Teardown       Close App
 Test Template       Authenticate App
+Force Tags          Functional
 
 *** Test Cases ***                                                userid                   userpass
 TEST-SCENARIO 01: REGISTERED CREDENTIAL WITH SUBSCRIPTION        ${reg_id-email_subs}      ${reg_pass-email_subs}

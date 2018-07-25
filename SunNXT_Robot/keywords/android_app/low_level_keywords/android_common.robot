@@ -35,12 +35,13 @@ Open Sunnxt App
     Check Whether SunNXT App Is Installed Or Not
     terminate all processes
     Verify UiAutomator To Be Used
-    start process  adb  logcat  *:E  FINDSTR  com.suntv.sunnxt  alias=crashlog  stdout=crash.txt
+    ${log_grabber}=  start process  adb  logcat  *:E  FINDSTR  com.suntv.sunnxt  alias=crashlog  stdout=crash.txt
+    set suite variable  ${log_grabber}
     open application   ${server}  platformName=${os}   platformVersion=${deviceVersion}  deviceName=${deviceID}  automationName=${automationName}  appPackage=${app}  appActivity=${activity}
 #    Restart ADB Server
 
 Install Sunnxt App
-     run process  adb  install  ${install_path}  alias=appInstall  stderr=install_log.txt
+     run process  adb  install  env_setup/Sun_NXT.apk  alias=appInstall  stderr=install_log.txt
      wait for process  handle=appInstall  timeout=30  on_timeout=kill
      run process  adb  shell  pm  list  packages  com.suntv.sunnxt  stdout=appAvailability.txt
      ${appAvailability}=  get file  appAvailability.txt

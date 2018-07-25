@@ -14,7 +14,9 @@ Open Browser And Navigate To SunNXT Website
 #    create webdriver  Firefox  executable_path=env_setup/geckodriver.exe
 #    create webdriver  Opera  executable_path=env_setup/operadriver.exe
     maximize browser window
-    go to  ${url}
+    ${env}=  get value from user  ENTER ENVIRONMENT IN WHICH THE TEST SHOULD RUN
+    run keyword if  "${env}"=="Production"  go to  https://www.sunnxt.com
+    ...  ELSE  run keyword  go to  https://presunportal:f@Furious.@www.sunnxt.in
 #    press key  tag:body  ${f11_key}
     log many  NAVIGATED TO WEB-PAGE
 

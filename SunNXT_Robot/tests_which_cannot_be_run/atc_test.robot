@@ -1,14 +1,19 @@
 *** Settings ***
-Documentation    Suite description
-Resource         ../keywords/android_app/high_level_keywords/authentication.robot
-Resource         ../keywords/android_app/low_level_keywords/android_common.robot
-Resource         ../test_data/credentials.robot
-Test Setup       LOGIN VIA APP  ${reg_id-email_subs}  ${reg_pass-email_subs}
-Test Teardown    Close App
+Documentation           Check sign-in validity for different credentials
+Resource                ../keywords/webportal/low_level_keywords/web_common.robot
+Resource                ../test_data/credentials.robot
+Default Tags            Quick
+Library                 SeleniumLibrary
+Library                 Dialogs
 
 *** Test Cases ***
-TEST-SCENARIO XX: Test The Crash F
-    wait until page contains  SOME TEST WAIT  timeout=120
-
-*** Variables ***
-${device}    7.0
+Testing Pre-Prod Web-site
+    create webdriver  Chrome  executable_path=env_setup/chromedriver.exe
+    set selenium timeout  1 seconds
+#    create webdriver  Firefox  executable_path=env_setup/geckodriver.exe
+#    create webdriver  Opera  executable_path=env_setup/operadriver.exe
+    maximize browser window
+    ${env}=  get value from user  ENTER ENVIRONMENT IN WHICH THE TEST SHOULD RUN
+    run keyword if  "${env}"=="Production"  go to  https://www.sunnxt.com
+    ...  ELSE  run keyword  go to  https://presunportal:f@Furious.@www.sunnxt.in
+    Click On Profile Authentication Icon

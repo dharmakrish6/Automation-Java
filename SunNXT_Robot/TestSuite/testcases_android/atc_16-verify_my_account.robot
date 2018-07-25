@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Suite description
+Documentation           Suite description
 Resource                ../keywords/android_app/low_level_keywords/android_common.robot
 Resource                ../keywords/android_app/low_level_keywords/android_edit_profile.robot
 Resource                ../keywords/android_app/low_level_keywords/android_profile.robot

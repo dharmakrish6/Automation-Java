@@ -5,4 +5,4 @@ ${os}                           Android
 ${app}                          com.suntv.sunnxt
 ${activity}                     com.android.myplex.ui.sun.activities.SplashActivity
 ${casting_device}
-${install_path}                 env_setup/com.suntv.sunnxt_157.apk
+${install_path}                 env_setup/Sun_NXT.apk

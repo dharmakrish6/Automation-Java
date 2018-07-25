@@ -1,4 +1,4 @@
-#!D:\Automation-Moolya\SunNXT_Robot\venv\Scripts\python.exe
+#!D:\Automation-Java\SunNXT_Robot\venv\Scripts\python.exe
 
 # Author: 
 # Contact: grubert@users.sf.net

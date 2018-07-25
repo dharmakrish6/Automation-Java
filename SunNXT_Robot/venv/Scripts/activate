@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="D:\Automation-Moolya\SunNXT_Robot\venv"
+VIRTUAL_ENV="D:\Automation-Java\SunNXT_Robot\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
