@@ -2,8 +2,8 @@
 Documentation    Suite description
 Library             AppiumLibrary  run_on_failure=Capture Page Screenshot
 Library             Dialogs
-Resource            ../locators/android_app/profile/switch_profile.robot
-Resource            ../locators/android_app/common.robot
+Resource            locators/android_app/profile/switch_profile.robot
+Resource            locators/android_app/common.robot
 
 *** Keywords ***
 Switch To Primary Profile
@@ -19,7 +19,7 @@ Switch To Third Secondary Profile
     click element  ${secondary_profile2}
 
 Verify If Selected Profile is Primary Profile
-    ${status}=  run keyword and return status  element should be enabled  ${selected-primary_profile}
+    ${status}=  run keyword and return status  page should contain element  ${selected-primary_profile}
     run keyword if  "S{status}"=="True"  Set Value For Primary Profile
     log many  PRIMARY PROFILE IS SELECTED
 
@@ -27,7 +27,7 @@ Set Value For Primary Profile
     set global variable  ${selected_profile}=  Primary
 
 Verify If Selected Profile is First Secondary Profile
-    ${status}=  run keyword and return status  element should be enabled  ${selected-secondary_profile0}
+    ${status}=  run keyword and return status  page should contain element  ${selected-secondary_profile0}
     run keyword if  "S{status}"=="True"  Set Value For First Secondary Profile
     log many  FIRST SECONDARY PROFILE IS SELECTED
 
@@ -35,7 +35,7 @@ Set Value For First Secondary Profile
     set global variable  ${selected_profile}=  First Secondary
 
 Verify If Selected Profile is Second Secondary Profile
-    ${status}=  run keyword and return status  element should be enabled  ${selected-secondary_profile1}
+    ${status}=  run keyword and return status  page should contain element  ${selected-secondary_profile1}
     run keyword if  "S{status}"=="True"  Set Value For Second Secondary Profile
     log many  SECOND SECONDARY IS SELECTED
 
@@ -44,7 +44,7 @@ Set Value For Second Secondary Profile
     set global variable  ${selected_profile}
 
 Verify If Selected Profile is Third Secondary Profile
-    ${status}=  run keyword and return status  element should be enabled  ${selected-secondary_profile2}
+    ${status}=  run keyword and return status  page should contain element  ${selected-secondary_profile2}
     run keyword if  "S{status}"=="True"  Set Value For Third Secondary Profile
     log many  THIRD SECONDARY PROFILE IS SELECTED
 

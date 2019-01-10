@@ -1,9 +1,10 @@
 *** Variables ***
 
-${play_redbutton}          .movie_details-btn-div [type]
+${play_redbutton}          xpath=//button[contains(text(),'Play')]
 ${share_button}            xpath=//div[@class='share-text'][contains(text(),'Share')]
 ${favourite_button}        xpath=//div[@class='share-text'][contains(text(),'Favourite')]
 ${pause_redbutton}         xpath=//*[@id="app"]/div[1]/section[1]/div[2]/div[2]/div/div/div[4]/button
+${content_streamed}        css: #banner-player-title
 
 #video details locators
 ${vod_name}                css: .container-fluid [itemprop="name"]

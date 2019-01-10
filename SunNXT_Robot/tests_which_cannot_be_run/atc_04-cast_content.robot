@@ -1,8 +1,8 @@
 *** Settings ***
 Documentation       Suite description
-Resource            ../keywords/android_app/high_level_keywords/cast_vod.robot
-Resource            ../keywords/android_app/high_level_keywords/authentication.robot
-Resource            ../test_data/credentials.robot
+Resource            keywords/android_app/high_level_keywords/cast_vod.robot
+Resource            keywords/android_app/high_level_keywords/authentication.robot
+Resource            test_data/credentials.robot
 Test Setup          Login Via App  ${reg_id-email_subs}  ${reg_pass-email_subs}
 Test Teardown       Close App
 Test Template       Cast Video To Casting Device

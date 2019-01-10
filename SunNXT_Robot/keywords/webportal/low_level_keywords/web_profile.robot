@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation           Contains keywords related to operations perfomed in profile page
-Library                 String
-Resource                ../locators/webportal/profile.robot
+Library             venv/Lib/site-packages/robot/libraries/String.py
+Resource                locators/webportal/profile.robot
 
 *** Keywords ***
 Record Latest Content In Continue Watching

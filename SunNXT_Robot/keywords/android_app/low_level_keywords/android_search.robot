@@ -1,5 +1,6 @@
 *** Settings ***
-Resource            ../locators/android_app/search.robot
+Resource            locators/android_app/search.robot
+
 *** Keywords ***
 Enter Search Query
     [Arguments]  ${content_name}
@@ -18,5 +19,5 @@ Choose Search Content Type
 Validate Search
     [Arguments]  ${content_name}  ${content_type}
     page should contain element  xpath=//android.widget.TextView[@text='${content_name}']
-    page should contain element   xpath=//android.widget.TextView@text='${content_type}']
+    page should contain element   xpath=//android.widget.TextView[@text='${content_type}']
 

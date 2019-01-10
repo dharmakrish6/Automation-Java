@@ -2,107 +2,68 @@
 Documentation           Contains keywords for elements available either at max number of screens or used commonly in Work-flow
 Library                 AppiumLibrary  run_on_failure=Capture Page Screenshot
 Library                 OperatingSystem
-Library                 ../venv/Lib/site-packages/robot/libraries/DateTime.py
-Library                 ../venv/Lib/site-packages/robot/libraries/Process.py
-Library                 String
-Resource                ../test_data/android_app/test_environment.robot
-Resource                ../locators/android_app/language_selection.robot
-Resource                ../locators/android_app/common.robot
-Resource                ../test_data/android_app/swipe_variables.robot
+Library                 venv/Lib/site-packages/robot/libraries/DateTime.py
+Library                 venv/Lib/site-packages/robot/libraries/Process.py
+Library                 venv/Lib/site-packages/robot/libraries/String.py
+Library                 ExcelReader
+Resource                locators/android_app/language_selection.robot
+Resource                locators/android_app/common.robot
+Resource                test_data/android_app/swipe_variables.robot
 
 *** Keywords ***
-Restart ADB Server
-    run process  adb  kill-server
-    run process  adb  start-server
 
-Gather Device Information
-    run process  adb  shell  getprop  ro.build.version.release  alias=version  stdout=deviceVersion.txt
-    run process  adb  shell  getprop  ro.serialno  alias=deviceID  stdout=deviceID.txt
-    run process  adb  shell  pm  list  packages  com.suntv.sunnxt  stdout=appAvailability.txt
-    ${deviceID}=  get file  deviceID.txt
-    set suite variable  ${deviceID}
-    ${deviceVersion}=  get file  deviceVersion.txt
-    set suite variable  ${deviceVersion}
+#keywords to begin setup to automate android device
 
-Check Whether SunNXT App Is Installed Or Not
-    ${appAvailability}=  get file  appAvailability.txt
-    ${appAvailability}=  strip string  ${appAvailability}  mode=right
-    run keyword if  "${appAvailability}"!="package:com.suntv.sunnxt"  Install Sunnxt App
-
-Open Sunnxt App
-    Restart ADB Server
-    Gather Device Information
-    Check Whether SunNXT App Is Installed Or Not
-    terminate all processes
-    Verify UiAutomator To Be Used
-    ${log_grabber}=  start process  adb  logcat  *:E  FINDSTR  com.suntv.sunnxt  alias=crashlog  stdout=crash.txt
-    set suite variable  ${log_grabber}
-    open application   ${server}  platformName=${os}   platformVersion=${deviceVersion}  deviceName=${deviceID}  automationName=${automationName}  appPackage=${app}  appActivity=${activity}
-#    Restart ADB Server
-
-Install Sunnxt App
-     run process  adb  install  env_setup/Sun_NXT.apk  alias=appInstall  stderr=install_log.txt
-     wait for process  handle=appInstall  timeout=30  on_timeout=kill
-     run process  adb  shell  pm  list  packages  com.suntv.sunnxt  stdout=appAvailability.txt
-     ${appAvailability}=  get file  appAvailability.txt
-     ${appAvailability}=  strip string  ${appAvailability}  mode=right
-     should be true  "${appAvailability}"=="package:com.suntv.sunnxt"
-
-Verify UiAutomator To Be Used
-    ${deviceVersion}=  fetch from left  ${deviceVersion}  .
-    ${check_deviceVersion}=  convert to integer  ${deviceVersion}
-    run keyword if  ${check_deviceVersion}>=6  Set UiAutomator Type For Android v6 And Above
-    ...  ELSE  Set UiAutomator Type For Below Android v6
-
-
-Set UiAutomator Type For Android v6 And Above
-    ${automationName}=  set variable  UiAutomator2
-    set suite variable  ${automationName}
-
-Set UiAutomator Type For Below Android v6
-    ${automationName}=  set variable  Appium
-    set suite variable  ${automationName}
+Launch App
+    ${activity}=  get activity
+    run keyword if  "${activity}"!="${lang_activity}"  launch application
+    wait activity  ${lang_activity}  timeout=10
+#    ${activity}=  run keyword and return status  should not contain  ${activity}  com.suntv.sunnxt
+#    run keyword if  "${activity}"=="True"  launch application
 
 Close App
-#    Check If App Crashed
-    capture page screenshot
+    run keyword and ignore error  capture page screenshot
     quit application
-    terminate process  handle=crashlog
+#    terminate process  handle=crashlog
 
-Change Content Language
-    [Arguments]  ${content_language}
+#operations for app
+Navigate To Change Content Language
     tap on action overflow icon
-    navigate to change content language
+    Tap On Change Content Language
 
 Select Content Language
     [Arguments]  ${content_language}
-    click element  ${action_overflow}
-    click text  ${change_content_language}
+    wait until page contains  ${cl_tamil}  timeout=10
     click text  ${cl_tamil}
-    run keyword if  "${content_language}"=="TAMIL"  click text  ${cl_tamil}
-    run keyword if  "${content_language}"=="TELUGU"  click text  ${cl_telugu}
-    run keyword if  "${content_language}"=="KANNADA"  click text  ${cl_kannada}
-    run keyword if  "${content_language}"=="MALAYALAM"  click text  ${cl_malayalam}
+    run keyword if  "${content_language}"=="Tamil"  click text  ${cl_tamil}
+    run keyword if  "${content_language}"=="Telugu"  click text  ${cl_telugu}
+    run keyword if  "${content_language}"=="Kannada"  click text  ${cl_kannada}
+    run keyword if  "${content_language}"=="Malayalam"  click text  ${cl_malayalam}
     click element  ${btn_save}
     wait until page contains element  ${page_loaded}  timeout=15s
 
 
 Tap On Action Overflow Icon
     click element  ${action_overflow}
+    wait until page contains element  xpath=//android.widget.FrameLayout[@index='0']  timeout=10
 
-Navigate To Change Content Language
+Tap On Change Content Language
     click text  ${change_content_language}
+
+Tap On Settings Option
+    click element  ${settings}
 
 Tap On My Account
     click text  ${my_account}
 
 Select Content Tab
-    [Arguments]  ${content_tab}
-    run keyword if  "${content_tab}"=="HOME"  Navigate To Home
-    run keyword if  "${content_tab}"=="MOVIES"  Navigate To Movies
-    run keyword if  "${content_tab}"=="TV SHOWS"  Navigate To Tv-Shows
-    run keyword if  "${content_tab}"=="MUSIC VIDEOS"  Navigate To Music Videos
-    run keyword if  "${content_tab}"=="COMEDY"  Navigate To Comedy
+    [Arguments]  ${content_header}
+    wait until page contains  FEATURED VIDEOS  timeout=10
+    run keyword if  "${content_header}"=="home"  Navigate To Home
+    run keyword if  "${content_header}"=="movies"  Navigate To Movies
+    run keyword if  "${content_header}"=="tv shows"  Navigate To Tv-Shows
+    run keyword if  "${content_header}"=="music videos"  Navigate To Music Videos
+    run keyword if  "${content_header}"=="comedy"  Navigate To Comedy
 
 Navigate To Home
     click text  ${home}
@@ -136,10 +97,12 @@ Tap On Profile Button
 
 Dismiss Displayed Coach Mark
     :FOR    ${index}    IN RANGE    3
-    \  wait until page contains element  ${page_loaded}
+    \  wait until page contains element  ${page_loaded}  timeout=10
     \  run keyword  Coach Mark Dismiss
 
 Coach Mark Dismiss
+#    [Timeout]  10
+    run keyword and ignore error  wait until page contains element  xpath=//android.widget.RelativeLayout[@index='0']  timeout=30
     ${status}=  run keyword and return status  page should contain element  ${coach_mark}
     run keyword if  "${status}"=="True"  click text  ${thanks_text}
     ...  ELSE  Exit For Loop
@@ -151,6 +114,7 @@ Check For Current Activity
 Accept Imei Sharing
     wait until page does not contain element  id=com.suntv.sunnxt:id/languageText  timeout=10
     click element  ${alert_btn1}
+    wait until page contains  FEATURED VIDEOS  timeout=10
 
 Deny Imei Sharing
     click element  ${alert_btn2}
@@ -164,20 +128,26 @@ Swipe Up Dropdown
     ${height}=  get window height
     ${width}=  get window width
     ${x}=  evaluate  ${width}/2
+    ${x}=  convert to integer  ${x}
     set global variable  ${x}
 
-    ${y}=  evaluate  ${height}/4
+    ${y}=  evaluate  ${height}/3
+    ${y}=  convert to integer  ${y}
     set global variable  ${y}
+
     ${y2}=  evaluate  ${height}/1.4
+    ${y2}=  convert to integer  ${y2}
     set global variable  ${y2}
+
+    swipe  ${x}  ${y2}  ${x}  ${y}
 
 Swipe Down
     swipe by percent  ${sd-x_starts}  ${sd-y_starts}  ${sd-x_ends}  ${sd-y_ends}
 
 Collect Header Co-Ordinate
     ${home_coordinate}=  Get Element Location  xpath=//android.widget.TextView[@text='HOME']
-    ${y}=  convert to string  ${home_coordinate}0
-    ${y}=  convert to string  ${home_coordinate}0
+    ${y}=  convert to string  ${home_coordinate}
+    ${y}=  convert to string  ${home_coordinate}
     ${y}=  fetch from right  ${y}  ,
     ${y}=  remove string using regexp  ${y}  ('y':)|}
     set global variable  ${y}
@@ -211,22 +181,38 @@ Switch To Comedy
     \  exit for loop if  "${status}"=="True"
 
 Navigate To Content Details Screen
-    [Arguments]  ${carousel_title}  ${content_name}
+    [Arguments]  ${content_language}  ${content_header}
+    ${carousel_title}=  get value from corresponding row  ${content_header}  Language  ${content_language}  Carousel Title
+    ${content_name}=  get value from corresponding row  ${content_header}  Language  ${content_language}  Content Name
+    set suite variable  ${content_name}
+    ${content#1}=  catenate  SEPARATOR=  //android.widget.TextView[contains(@resource-id,'name') and @text='  ${content_name}  ']
+    Convert Content Name
+    ${content#2}=  catenate  SEPARATOR=  //android.widget.TextView[contains(@resource-id,'movie_title_big_item') and @text='  ${caps_content}  ']
+    set suite variable  ${content#1}
+    set suite variable  ${content#2}
     :for  ${swiping}  in range  1000
     \  ${status}=  run keyword and return status  page should contain text  ${carousel_title}
     \  run keyword if  "${status}"=="False"  swipe by percent  50  40  50  10
     \  continue for loop if  "${status}"=="False"
-    \  ${status}=  run keyword and return status  page should contain text  ${content_name}
-    \  run keyword if  "${status}"=="False"  swipe by percent  50  40  50  10
-    \  wait until page contains  ${content_name}  timeout=10
-    \  click text  ${content_name}
+    \  ${status#1}=  run keyword and return status  page should contain element  xpath=${content#1}
+    \  ${status#2}=  run keyword and return status  page should contain element  xpath=${content#2}
+    \  run keyword if  "${status#1}"=="False" and "${status#2}"=="False"  swipe by percent  50  40  50  10
+    \  ${status#1}=  run keyword and return status  page should contain element  xpath=${content#1}
+    \  ${status#2}=  run keyword and return status  page should contain element  xpath=${content#2}
+    \  run keyword if  "${status#1}"=="True"  click element  xpath=${content#1}
+    \  run keyword if  "${status#2}"=="True"  click element  xpath=${content#2}
     \  exit for loop
 
-Accept Alert Message
-    click text  ${alert_ok}
+Convert Content Name
+    ${caps_content}=  convert to uppercase  ${content_name}
+    set suite variable  ${caps_content}
+
+Accept Alert
+    wait until page contains element  ${popup_list}  timeout=15
+    click element  ${alert_btn1}
 
 Check Whether App Has Navigated To Home Screen Or Not
-    wait until page contains  FEATURED VIDEOS
+    wait until page contains  FEATURED VIDEOS  timeout=10
 
 Check If App Crashed
 #    ${crash_msg#1}=  run keyword and return status  page should contain element  ${crash_pop_up#1}

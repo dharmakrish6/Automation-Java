@@ -1,16 +1,12 @@
 *** Settings ***
-Documentation    Suite description
-Library
-Resource         ../keywords/webportal/low_level_keywords/web_common.robot
-Resource         ../keywords/webportal/high_level_keywords/authentication.robot
-Resource         ../keywords/webportal/low_level_keywords/web_devices.robot
-Resource         ../test_data/credentials.robot
-Test Setup       Login Into Web Portal  ${reg_id-email_subs}  ${reg_pass-email_subs}
-Test Teardown    Close Opened Browser
+Documentation       Suite description
+Resource         keywords/webportal/low_level_keywords/web_common.robot
+Resource         keywords/webportal/high_level_keywords/devices.robot
+Test Setup          Open Browser And Navigate To SunNXT Website
+Test Teardown       Close Opened Browser
+Test Template       Activate Devices
 
-*** Test Cases ***
-TEST-SCENARIO 61: ACTIVATE A DEVICE USING AUTHENTICATION CODE DISPLAYED
-    Click On Profile Icon
-    Click On Devices Link
-    Input Code To Enter Code TextField
-    Activate Device
+*** Test Cases ***                                                              device
+TEST-SCENARIO 61: ACTIVATE A DEVICE USING AUTHENTICATION CODE DISPLAYED         Device#1
+TEST-SCENARIO 62: ACTIVATE A DEVICE USING INVALID AUTHENTICATION CODE           Device#2
+

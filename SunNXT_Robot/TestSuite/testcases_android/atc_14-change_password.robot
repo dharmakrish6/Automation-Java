@@ -1,12 +1,10 @@
 *** Settings ***
 Documentation    Suite description
-Resource         ../keywords/android_app/high_level_keywords/change_password.robot
-Resource         ../keywords/android_app/high_level_keywords/authentication.robot
-Resource         ../keywords/android_app/low_level_keywords/android_common.robot
-Resource         ../test_data/credentials.robot
-Test Setup       LOGIN VIA APP  ${reg_id-email_exp}   ${reg_pass-email_exp}
-Test Teardown    CLOSE APP
+Library         AppiumLibrary
+Resource         keywords/android_app/high_level_keywords/change_password.robot
+Test Setup       Launch App
+Test Teardown    Close App
 Test Template    Change Password and Login Via New Password
 
-*** Test Cases ***                                current_password  new_password  userid
-TEST-SCENARIO 114: CHANGE PASSWORD                  @meet087        123456        ${reg_id-email_exp}
+*** Test Cases ***                         user_type
+TEST-SCENARIO 114: CHANGE PASSWORD         ID_Change_Pass

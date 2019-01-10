@@ -9,8 +9,10 @@ ${login_loading_text}           id=android:id/message
 #login page
 ${username}           id=com.suntv.sunnxt:id/phnEditTextLoginPage
 ${email_password}     id=com.suntv.sunnxt:id/emailPasswordField
-${mob_password}       xpath=//android.widget.EditText[contains(@resource-id,'phonePasswordField')]
-${regex}              [0-9]{10}
+${mob_password}       id=com.suntv.sunnxt:id/phonePasswordField
+${regex_only_num}     [0-9]+$
+${regex_ten_num}      ^[0-9]{10}$
+${regex_email}        ^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$
 ${sunnxt_banner}      id=com.suntv.sunnxt:id/logo_background
 
 #links

@@ -1,12 +1,14 @@
 *** Settings ***
 Documentation           Flow to cast any content to attached casting device from android smartphone
-Resource                ../keywords/android_app/low_level_keywords/android_cast_vod.robot
-Resource                ../keywords/android_app/low_level_keywords/android_stream_vod.robot
-Resource                ../keywords/android_app/low_level_keywords/android_common.robot
+Resource                keywords/android_app/low_level_keywords/android_cast_vod.robot
+Resource                keywords/android_app/low_level_keywords/android_stream_vod.robot
+Resource                keywords/android_app/low_level_keywords/android_common.robot
+Resource                keywords/android_app/high_level_keywords/authentication.robot
 
 *** Keywords ***
 Cast Video To Casting Device
-    [Arguments]  ${content_language}  ${content_header}  ${carousel_title}  ${content_name}
+    [Arguments]  ${user_type}  ${content_language}  ${content_header}  ${carousel_title}  ${content_name}
+    Authenticate App  ${user_type}
     Select Content Language  ${content_language}
     Select Content Tab  ${content_header}
     Navigate To Content Details Screen  ${carousel_title}  ${content_name}

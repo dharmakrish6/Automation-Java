@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Resource                ../locators/android_app/profile/my_account.robot
+Resource                locators/android_app/profile/my_account.robot
 
 *** Keywords ***
 Click On My Content History Accordion
@@ -11,9 +11,8 @@ Click On My Info Accordion
     click element  ${my_info}
 
 Fetch Name Displayed in My Info Accordion And Verify
-    [Arguments]  ${new_name}
     ${my_info-name}=  get text  ${mi_name}
-    run keyword and ignore error  should be true  "${new_name}"=="${my_info-name}"
+    run keyword and ignore error  should be true  "${my_info-name}"=="${new_name}"
 
 Fetch Email Displayed in My Info Accordion And Verify
     ${my_info-email}=  get text  ${mi_email}
@@ -24,17 +23,14 @@ Fetch Mobile Number Displayed in My Info Accordion And Verify
     run keyword and ignore error  should be true  "${my_info-mobile}"=="${mob}"
 
 Fetch Country Displayed in My Info Accordion And Verify
-    [Arguments]  ${ep_country}
     ${my_info-country}=  get text  ${mi_country}
-    run keyword and ignore error  should be true  "${my_info-country}"=="${ep_country}"
+    run keyword and ignore error  should be true  "${my_info-country}"=="${new_country}"
 
 Fetch State Displayed in My Info Accordion And Verify
-    [Arguments]  ${ep_state}
     ${my_info-state}=  get text  ${mi_state}
-    run keyword and ignore error  should be true  "${my_info-state}"=="${ep_state}"
+    run keyword and ignore error  should be true  "${my_info-state}"=="${new_state}"
 
 Fetch Gender Displayed In My Info Accordion And Verify
-    [Arguments]  ${ep_gender}
     ${my_info-gender}=  get text  ${mi_gender}
     run keyword and ignore error  should be true  "${my_info-gender}"=="${ep_gender"
 

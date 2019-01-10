@@ -4,6 +4,9 @@
 ${splash_screen}                    id=com.suntv.sunnxt:id/splashView
 ${loading_animation}                id=com.suntv.sunnxt:id/progressBar
 
+#popup
+${popup_list}                       xpath=//android.widget.FrameLayout[@index='0']
+
 #crash
 ${crashlog_command}
 
@@ -13,7 +16,7 @@ ${thanks_text}                      Thanks! Got It
 
 #buttons
 ${button_livetv}                    id=com.suntv.sunnxt:id/live_tv
-${button_profile}                   id=com.suntv.sunnxt:id/root1
+${button_profile}                   id=com.suntv.sunnxt:id/root
 ${button_search}                    id=com.suntv.sunnxt:id/action_search
 ${button_actionbar}                 id=com.suntv.sunnxt:id/action_settings
 
@@ -42,7 +45,7 @@ ${change_app_language}              Change app language
 ${geo_location_toggle}              id=com.suntv.sunnxt:id/geo_switch
 ${privacy_policy}                   Privacy Policy
 ${my_account}                       My Account
-${settings}                         Settings
+${settings}                         id=com.suntv.sunnxt:id/settings
 
 #change content language
 ${cl_tamil}                         Tamil

@@ -1,13 +1,19 @@
 *** Settings ***
 Documentation    Suite description
-Resource                ../locators/android_app/my_account.robot
-Resource                ../locators/android_app/common.robot
+Library                 AppiumLibrary
+Resource                locators/android_app/my_account.robot
+Resource                locators/android_app/common.robot
 
 *** Keywords ***
 Tap On My Info
     wait until page does not contain element  ${g_loading_animation}
     wait until page does not contain element  ${loading_animation}
     click text  ${my_info}
+
+Tap On Clear My Watch History/Cache
+    wait until page does not contain element  ${g_loading_animation}
+    wait until page does not contain element  ${loading_animation}
+    click text  ${clear_watch_history_cache}
 
 Get Value For Name and Verify
     ${name}=  get text  ${mi_name}
@@ -32,3 +38,18 @@ Get Value For State and Verify
 Get Value For Age and Verify
     ${age}=  get text  ${mi_age}
     run keyword and continue on failure  should be equal  ${age}  ${v_age}  msg=DIDNOT MATCH  values=True
+
+Tap On Yes Button For Clear My Watch History/Cache
+    wait until page contains  ${btn_yes}
+    click text  ${btn_yes}
+
+Check If Continue Watching Is Present Or Not
+    go back
+    :for  ${swiping}  in range  100
+    \  ${status}=  run keyword and return status  page should contain text  CONTINUE WATCHING
+    \  run keyword if  "${status}"=="False"  swipe by percent  50  40  50  10
+    \  exit for loop if  "${status}"=="True"
+    \  exit for loop if  "${swiping}"=="10"
+    \  continue for loop if  "${status}"=="False"
+
+    page should not contain text  CONTINUE WATCHING

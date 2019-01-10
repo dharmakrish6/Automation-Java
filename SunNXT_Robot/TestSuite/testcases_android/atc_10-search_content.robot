@@ -1,14 +1,14 @@
 *** Settings ***
 Documentation       SEARCH FOR MOVIE, TV SHOW AND MUSIC VIDEO FOR DIFFERENT CONTENT LANGUAGE
-Resource            ../keywords/android_app/high_level_keywords/search.robot
-Resource            ../keywords/android_app/high_level_keywords/authentication.robot
-Resource            ../test_data/credentials.robot
-Test Setup          LOGIN VIA APP  ${reg_id-email_subs}  ${reg_pass-email_subs}
-Test Template       Search For A Content
+Library             AppiumLibrary
+Resource         keywords/android_app/high_level_keywords/search.robot
+Resource         keywords/android_app/low_level_keywords/android_common.robot
+Test Setup          Launch App
 Test Teardown       Close App
+Test Template       Search For A Content
 
-*** Test Cases ***                                  content_language  content_type  content_name
-TEST-SCENARIO 97: SEARCH FOR TAMIL MOVIE            TAMIL             MUSIC         Komban
+*** Test Cases ***                                      user_type           content_language    content_type    content_name
+TEST-SCENARIO 97: SEARCH FOR TAMIL MOVIE                ID_Email_Subs       Tamil               MUSIC           Komban
 #TEST-SCENARIO 98: SEARCH FOR TAMIL TV SHOW
 #TEST-SCENARIO 99: SEARCH FOR TAMIL MUSIC VIDEO
 #TEST-SCENARIO 100: SEARCH FOR TAMIL COMEDY CLIP

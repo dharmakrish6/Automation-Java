@@ -2,8 +2,9 @@
 Documentation           Contains keywords related to video-details screen of content
 Library                 SeleniumLibrary
 Library                 BuiltIn
-Library                 String
-Resource                ../locators/webportal/vod_details_screen.robot
+Library             venv/Lib/site-packages/robot/libraries/String.py
+Resource                locators/webportal/vod_details_screen.robot
+Resource                test_data/web_portal/assertions.robot
 
 *** Keywords ***
 Check If Streamed Content Is Added In Continue Watching Section Or Not
@@ -21,5 +22,8 @@ Record Streamed Content
     set global variable  ${content_streamed}
 
 Click On Play Button Red
-    ${title}=  get title
-    run keyword if  "${title}"!="SUNNXT::LIVE"  click element  css:div#app div.movie_details-btn-div > button[type="button"]
+#    ${title}=  get title
+#    ${status}=  run keyword and return status  should contain  ${title}  Live Streaming
+#    run keyword if  "${status}"=="False"  click element  css:div#app div.movie_details-btn-div > button[type="button"]
+    ${status}=  run keyword and return status  page should contain element  ${play_redbutton}
+    run keyword if  "${status}"=="True"  click element  ${play_redbutton}

@@ -14,7 +14,7 @@ ${mi_login_method}              css: .myinfo .user_info:nth-of-type(8) b
 
 #devices in my info
 ${device#1-dev_num}             css: .table-bordered tr td:nth-of-type(1)
-${device#1-dev_manufacturer+os} css: .table-bordered tr td:nth-of-type(2)
+${device#1-dev_manufacturer+os}  css: .table-bordered tr td:nth-of-type(2)
 ${device#1-dev_model}           css: .table-bordered tr td:nth-of-type(3)
 
 

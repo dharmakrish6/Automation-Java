@@ -1,16 +1,17 @@
 *** Settings ***
 Documentation           Suite description
-Resource                ../keywords/android_app/low_level_keywords/android_common.robot
-Resource                ../keywords/android_app/low_level_keywords/android_edit_profile.robot
-Resource                ../keywords/android_app/low_level_keywords/android_profile.robot
-Resource                ../keywords/android_app/low_level_keywords/android_my_account.robot
-Resource                ../keywords/android_app/high_level_keywords/authentication.robot
-Resource                ../test_data/credentials.robot
-Test Setup              LOGIN VIA APP  ${reg_id-sd_exp}   ${reg_pass-sd_exp}
-Test Teardown           CLOSE APP
+Library                 AppiumLibrary
+Resource         keywords/android_app/low_level_keywords/android_common.robot
+Resource         keywords/android_app/low_level_keywords/android_edit_profile.robot
+Resource         keywords/android_app/low_level_keywords/android_profile.robot
+Resource         keywords/android_app/low_level_keywords/android_my_account.robot
+Resource         keywords/android_app/high_level_keywords/authentication.robot
+Test Setup              Launch App
+Test Teardown           Close App
 
 *** Test Cases ***
 TEST SCENARIO 116: VERIFY MY ACCOUNT
+    Authenticate App  ID_Email_Subs
     Tap On Profile Button
     Dismiss Displayed Coach Mark
     Tap On Edit Profile
@@ -25,6 +26,7 @@ TEST SCENARIO 116: VERIFY MY ACCOUNT
     Tap On Action Overflow Icon
     Tap On My Account
     Tap On My Info
+    Swipe Down
     Get Value For Name and Verify
     Get Value For Email-ID and Verify
     Get Value For Mobile Number and Verify

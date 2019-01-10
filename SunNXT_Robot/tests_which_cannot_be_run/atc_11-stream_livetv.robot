@@ -1,9 +1,9 @@
 *** Settings ***
 Library             AppiumLibrary
 Documentation       SEARCH FOR MOVIE, TV SHOW AND MUSIC VIDEO FOR DIFFERENT CONTENT LANGUAGE
-Resource            ../keywords/android_app/low_level_keywords/android_common.robot
-Resource            ../keywords/android_app/high_level_keywords/authentication.robot
-Resource            ../test_data/credentials.robot
+Resource            keywords/android_app/low_level_keywords/android_common.robot
+Resource            keywords/android_app/high_level_keywords/authentication.robot
+Resource            test_data/credentials.robot
 Test Setup          LOGIN VIA APP  ${reg_id-email_subs}  ${reg_pass-email_subs}
 Test Teardown       Close App
 

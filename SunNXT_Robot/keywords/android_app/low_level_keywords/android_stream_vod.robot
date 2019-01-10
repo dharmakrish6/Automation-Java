@@ -1,11 +1,11 @@
 *** Settings ***
 Documentation           Contains keywords related to streaming of content
 Library                 AppiumLibrary  run_on_failure=Capture Page Screenshot
-Resource                ../locators/android_app/player.robot
-Resource                ../locators/android_app/common.robot
-Resource                ../locators/android_app/content.robot
-Resource                ../locators/android_app/videodetails_screen.robot
-Resource                ../keywords/android_app/low_level_keywords/android_common.robot
+Resource                locators/android_app/player.robot
+Resource                locators/android_app/common.robot
+Resource                locators/android_app/content.robot
+Resource                locators/android_app/videodetails_screen.robot
+Resource                keywords/android_app/low_level_keywords/android_common.robot
 
 *** Keywords ***
 Gear
@@ -20,14 +20,27 @@ Wait Until Ad Streams
 Start Streaming
     ${status}=  run keyword and return status  page should contain element  ${btn_play}
     run keyword if  "${status}"=="True"  click element  ${btn_play}
+    wait until page does not contain element  ${btn_play}  timeout=10
 
 Wait Until Content Is Ready To Stream
-    wait until page contains element  ${seek_bar}  timeout=15s
-    tap  ${player_frame}
-    wait until element is visible  ${btn_play_pause}
+    ${status}=  run keyword and return status  page should contain element  ${btn_play}
+    run keyword if  "${status}"=="True"  click element  ${btn_play}
+    Dismiss Displayed Coach Mark
+    ${status}=  run keyword and return status  page should contain element  ${loading_animation}
+    run keyword and ignore error  wait until page contains element  ${loading_animation}  timeout=60
+    run keyword and ignore error  wait until page does not contain element  ${loading_animation}  timeout=60
+    ${status}=  run keyword and return status  page should contain element  ${seek_bar}
+    run keyword if  "${status}"=="False"  tap  ${player_frame}
+    Dismiss Displayed Coach Mark
+#    ${status}=  run keyword and return status  page should contain element  ${content_title}
+#    run keyword if  "${status}"=="False"  tap  ${player_frame}
+#    ...  ELSE  Show Playback Controls
     ${content_streamed}=  get text  ${content_title}
     set global variable  ${content_streamed}
 
+#Show Playback Controls
+#    ${status}=  run keyword and return status  page should contain element  ${content_title}
+#    run keyword if  "${status}"=="False"  tap  ${player_frame}
 
 Rewind Content To 30 Secs
      :FOR    ${index}    IN RANGE    3
@@ -51,6 +64,7 @@ Change VOD Quality
     \  run keyword  WAIT UNTIL AD STREAMS
     \  tap  ${player_frame}
     \  run keyword  GEAR
+    \  wait until page contains element  ${quality_options}  timeout=10
     \  run keyword if  ${index}==0  click text  ${medium}
     \  run keyword if  ${index}==1  click text  ${hd}
     \  run keyword if  ${index}==2  click text  ${auto}

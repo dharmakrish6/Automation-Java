@@ -1,51 +1,52 @@
 *** Settings ***
 Documentation    Suite description
-Resource            ../locators/webportal/profile.robot
+Resource            locators/webportal/profile.robot
+Library             ExcelReader
 
 *** Keywords ***
 Modify The Provided Name Of User
-    [Arguments]  ${new_name}
+    [Arguments]  ${user_info}
+    ${new_name}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified Name
     clear element text  ${ep_name}
     input text  ${ep_name}  ${new_name}
+    set global variable  ${new_name}
 
 Last Name Should Not Be Present In The Page
     run keyword and ignore error  page should not contain element  ${ep_last_name}
 
 Try To Edit Mobile Number
-    run keyword and ignore error  Clear And Input Mobile Number Field
+    [Arguments]  ${user_info}
+    run keyword and ignore error  Clear And Input Mobile Number Field  ${user_info}
     ${mob}=  get text  ${ep_mobile}
     set global variable  ${mob}
 
 Clear And Input Mobile Number Field
+    [Arguments]  ${user_info}
+    ${new_mobile}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified Mobile
     clear text  ${ep_mobile}
-    input text  ${ep_mobile}  9999999901
+    input text  ${ep_mobile}  ${new_mobile}
 
 Try To Edit E-Mail ID
+    [Arguments]  ${user_info}
+    ${new_email}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified Email
     run keyword and ignore error  Clear And Input in Email ID Field
     ${email}=  get text  ${ep_email_id}
     set global variable  ${email}
+    run keyword and ignore error  input text  ${ep_email_id}  ${new_email}
 
 Clear And Input in Email ID Field
     clear element text  ${ep_email_id}
     input text  ${ep_email_id}  ihaveedited@this.element
 
 Edit Age Of The User
-    [Arguments]  ${new_age}
+    [Arguments]  ${user_info}
+    ${new_age}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified Age
     click element  ${ep_age}
-    ${age}=  set variable if  "${new_age}"=="18-25 Years"  1
-    ...  "${new_age}"=="26-30 Years"  2
-    ...  "${new_age}"=="31-35 Years"  3
-    ...  "${new_age}"=="36-40 Years"  4
-    ...  "${new_age}"=="41-50 Years"  5
-    ...  "${new_age}"=="51-60 Years"  6
-    ...  "${new_age}"=="61-70 Years"  7
-    ...  "${new_age}"=="71-80 Years"  8
-    ...  "${new_age}"=="81-90 Years"  9
-    ${age}=  catenate  SEPARATOR=  css: form [data-original-index="  ${age}  "] .text
-    click element  ${age}
+    click link  ${new_age}
 
 Change Gender Of The User
-    [Arguments]  ${new_gender}
+    [Arguments]  ${user_info}
+    ${new_gender}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified Gender
     run keyword if  "${new_gender}"=="FEMALE"  Change Gender As Female
     ...  ELSE IF  "${new_gender}"=="MALE"  Change Gender As Male
 
@@ -62,14 +63,22 @@ Change Gender As Female
     ...  ELSE  click element  ${ep_gender_f}
 
 Select Country
-    [Arguments]  ${new_country}
-    input text  ${ep_country}  ${new_country}
-    click link  ${new_country}
+    [Arguments]  ${user_info}
+    ${new_country}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified Country
+    set global variable  ${new_country}
+    click element  ${ep_country}
+    input text  css: div#selectcountry_chosen input  ${new_country}
+    ${new_country}=  catenate  SEPARATOR=  //div[@id='selectcountry_chosen']//ul[@class='chosen-results']/li[.='  ${new_country}  ']
+    click element  xpath:${new_country}
 
 Select State
-    [Arguments]  ${new_state}
-    input text  ${ep_state}  ${new_state}
-    click link  ${new_state}
+    [Arguments]  ${user_info}
+    ${new_state}=  get value from corresponding row  edit_profile  New Info  ${user_info}  Modified State
+    set global variable  ${new_state}
+    click element  ${ep_state}
+    input text  css: #stateid_chosen .chosen-search-input  ${new_state}
+    ${new_state}=  catenate  SEPARATOR=  //div[@id='stateid_chosen']//ul[@class='chosen-results']/li[.='  ${new_state}  ']
+    click element  xpath:${new_state}
 
 Save Edited Changes
     click element  ${ep_btn_done}

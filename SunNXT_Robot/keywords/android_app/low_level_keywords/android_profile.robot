@@ -2,12 +2,15 @@
 Documentation           Contains keywords related to operations performed in profile screen
 Library                 AppiumLibrary  run_on_failure=Capture Page Screenshot
 Library                 Dialogs
-Resource                ../locators/android_app/profile/devices.robot
-Resource                ../locators/android_app/profile/downloads.robot
-Resource                ../locators/android_app/profile_screen.robot
-Resource                ../locators/android_app/common.robot
-Resource                ../test_data/sleep_variables.robot
-Resource                ../locators/android_app/profile/watch_list.robot
+Library                 ExcelReader
+Resource                locators/android_app/profile/devices.robot
+Resource                locators/android_app/profile/downloads.robot
+Resource                locators/android_app/profile_screen.robot
+Resource                locators/android_app/common.robot
+Resource                test_data/sleep_variables.robot
+Resource                locators/android_app/profile/watch_list.robot
+Resource                locators/android_app/profile/coupon_code.robot
+
 *** Keywords ***
 #switch profile operation
 Tap On Switch Profile
@@ -28,10 +31,35 @@ Tap On Download
 
 Check Whether Vod Is Downloading Or Not
     sleep  ${wait_download}
+    ${content_streamed}=  convert to uppercase  ${content_streamed}
     ${content_name}=  get text  ${downloading_content}
     run keyword if  "${content_name}"=="${content_streamed}"  log many  CONTENT DOWNLOADED IS AVAILABLE IN DOWNLOADS SECTION
     ${d_status}=  get text  ${download_percent}
     log many  VOD DOWNLOADED AFTER ${wait_download}s IS: ${d_status}
+
+Cancel Or Delete Downloaded Content
+    [Arguments]  ${download_operation}
+    run keyword if  "${download_operation}"=="Cancel"  Cancel VOD Being Downloaded
+    ...  ELSE IF  "${download_operation}"=="Delete"  Delete Downloaded VOD
+    ...  ELSE  log many  NO OPERATION HAS BEEN INSTRUCTED FOR THIS VOD
+
+Cancel VOD Being Downloaded
+    ${status}=  run keyword and return status  page should contain text  ${cancel_downloading}
+    run keyword if  "${status}"=="True"  Tap On Cancel Downloading
+
+Tap On Cancel Downloading
+    click text  ${cancel_downloading}
+    wait until page contains element  id=android:id/buttonPanel  timeout=10
+    click element  ${alert_btn1}
+    wait until page does not contain element  id=android:id/buttonPanel  timeout=10
+
+Delete Downloaded VOD
+     :FOR    ${wait_for_download_to_complete}    IN RANGE    100
+     \  ${status}=  page should contain element  ${delete_downloaded_content}
+     \  run keyword if  "${status}"=="True"  click element  ${delete_downloaded_content}
+     \  exit for loop if  "${status}"=="True"
+     \  sleep  30
+     \  continue for loop
 
 Check If Download Is Completed Or Not
     ${content_name}=  get text  ${downloading_content}
@@ -69,7 +97,7 @@ Authenticate Device
     ...  ELSE  log many  DEVICE AUTHENTICATION FAILED
 
 Input Activation Code
-    ${activation_code}=  get value from user  ENTER ACTIVATION CODE  default
+    ${activation_code}=  get value from corresponding row  auth_code  Device  Device#1  Code
     input text  ${activation_code_input}  ${activation_code}
     click text  ${activate_device}
 
@@ -95,6 +123,17 @@ Tap On Logout Text
 
 #login
 Click Login Text
-    wait until page contains element  id=com.suntv.sunnxt:id/imageView1  timeout=3
+    wait until page contains element  id=com.suntv.sunnxt:id/imageView1  timeout=10
     click text  ${log_in}
     wait until page contains element  id=com.suntv.sunnxt:id/logo_background
+
+#enter coupon code
+Tap On Coupon Code Text
+    click text  ${enter_coupon_code}
+
+Input Coupon Code In Displayed TextBox
+    wait until page contains element  ${coupon_code-textbox}  timeout=10
+    input text  ${coupon_code-textbox}  SUNNXTSPECIALFEST
+
+Submit Coupon Code
+    click text  ${btn_submit_ccode}

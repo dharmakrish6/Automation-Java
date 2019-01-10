@@ -15,3 +15,4 @@ ${mi_login_method}              xpath=/hierarchy/android.widget.FrameLayout/andr
 ${my_subscriptions}             My Subscriptions
 
 ${clear_watch_history_cache}    Clear My Watch History/Cache
+${btn_yes}                      Yes

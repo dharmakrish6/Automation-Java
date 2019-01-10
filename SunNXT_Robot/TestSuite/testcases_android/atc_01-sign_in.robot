@@ -1,19 +1,18 @@
 *** Settings ***
-Documentation       Verify test-scenario's for Sign-In operation in Web-Portal
+Documentation       Verify test-scenario's for Sign-In operation in Android
 Library             AppiumLibrary
-Resource            ../keywords/android_app/low_level_keywords/android_common.robot
-Resource            ../keywords/android_app/high_level_keywords/authentication.robot
-Resource            ../test_data/credentials.robot
-Test Setup          Open Sunnxt App
+Resource         keywords/android_app/high_level_keywords/authentication.robot
+Test Setup          Launch App
 Test Teardown       Close App
 Test Template       Authenticate App
 Force Tags          Functional
 
-*** Test Cases ***                                                userid                   userpass
-TEST-SCENARIO 01: REGISTERED CREDENTIAL WITH SUBSCRIPTION        ${reg_id-email_subs}      ${reg_pass-email_subs}
-#TEST-SCENARIO 02: REGISTERED CREDENTIAL WITH NO SUBSCRIPTION     ${reg_id-email_exp}          ${reg_pass-email_exp}
-#TEST-SCENARIO 03: SUNDIRECT CREDENTIAL WITH SUBSCRIPTION         ${reg_id-sd_subs}            ${reg_pass-sd_subs}
-#TEST-SCENARIO 04: SUNDIRECT CREDENTIAL WITH NO SUBSCRIPTION      ${reg_id-sd_exp}             ${reg_pass-sd_exp}#
-#TEST-SCENARIO 05: REGISTED CREDENTIAL WITH INVALID PASSWORD      ${reg_id-email_subs}         ${iv_pass-xxx}
-#TEST-SCENARIO 06: UNREGISTERED CREDENTIAL                        ${unreg_id-mob}              ${unreg_id-mob}
-#TEST-SCENARIO 07: UNREGISTED CREDENTIAL WITH INVALID PASSWORD    ${unreg_id-mob}              ${iv_pass-xx xx}
+*** Test Cases ***                                                   user_tyoe
+TEST-SCENARIO 01: REGISTERED CREDENTIAL WITH SUBSCRIPTION            ID_Email_Subs
+TEST-SCENARIO 02: REGISTERED CREDENTIAL WITH NO SUBSCRIPTION         ID_Email_Exp
+TEST-SCENARIO 03: SUNDIRECT CREDENTIAL WITH SUBSCRIPTION             ID_SunDirect_Subs
+TEST-SCENARIO 04: SUNDIRECT CREDENTIAL WITH NO SUBSCRIPTION          ID_SunDirect_Exp
+TEST-SCENARIO 05: REGISTED CREDENTIAL MOBILE NUMBER                  ID_Mobile_Subs
+TEST-SCENARIO 06: UNREGISTERED CREDENTIAL                            ID_Unregistered
+TEST-SCENARIO 07: REGISTRED CREDENTIAL WITH INVALID PASSWORD         ID_Invalid_Pass
+TEST-SCENARIO 08: REGISTRED CREDENTIAL WITH INVALID MOBILE NUMBER    ID_Invalid_Mobile

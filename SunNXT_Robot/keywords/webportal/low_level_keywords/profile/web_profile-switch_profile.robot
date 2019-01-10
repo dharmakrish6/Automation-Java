@@ -1,9 +1,9 @@
 *** Settings ***
 Documentation    Suite description
 Library                     Dialogs
-Library                     String
-Resource                    ../locators/webportal/profile.robot
-Resource                    ../locators/webportal/homepage.robot
+Library             venv/Lib/site-packages/robot/libraries/String.py
+Resource                    locators/webportal/profile.robot
+Resource                    locators/webportal/homepage.robot
 
 *** Keywords ***
 Wait Until Switch Profile Pop-Up Is Displayed
@@ -12,11 +12,14 @@ Wait Until Switch Profile Pop-Up Is Displayed
 #switch profile operation
 Switch Profile
     [Arguments]  ${profile}
+    set global variable  ${profile}
     run keyword if  "${profile}"=="Primary"  Switch To Primary Profile
     ...  ELSE IF  "${profile}"=="First Secondary"  Switch To First Secondary Profile
     ...  ELSE IF  "${profile}"=="Second Secondary"  Switch To Second Secondary Profile
     ...  ELSE IF  "${profile}"=="Third Secondary"  Switch To Third Secondary Profile
+    click element  ${confirm_switch_profile}
     wait until element is enabled  ${profile_icon}
+
 
 Switch To Primary Profile
     ${status}=  run keyword and return status  page should contain element  ${user_profile#1}
@@ -67,7 +70,22 @@ Select Third Secondary Profile
     click element  ${user_profile#4}
 
 Input A New Profile To Be Selected
-    [Arguments]  ${profile}
-    log many  PROFILE USED TO SWITCH "${profile}" IS ALREADY SELECTED
-    ${profile}=  get value from user  PROFILE USED TO SWITCH "${profile}" IS ALREADY SELECTED  default
+    ${msg}=  convert to string  PROFILE USED TO SWITCH IS ALREADY SELECTED
+    ${msg}=  remove string  ${msg}  ${profile_entered}
+    log many  PROFILE USED TO SWITCH IS ALREADY SELECTED
+    ${profile}=  get value from user   ${msg}  default
     Switch Profile
+
+String Removal For User
+    [Arguments]  ${profile}
+    run keyword if  '${profile}'=='Third Secondary'  Remove User For Third Secondary Profile
+    ...  ELSE  Remove User For All Profile
+
+Remove User For Third Secondary Profile
+    ${space_catenate}=  catenate  or  '
+    ${profile_entered}=  catenate  SEPARATOR=  ${space_catenate}  ${profile}  '
+    set global variable  ${profile_entered}
+
+Remove User For All Profile
+    ${profile_entered}=  catenate  SEPARATOR=  '  ${profile}  '
+    set global variable  ${profile_entered}

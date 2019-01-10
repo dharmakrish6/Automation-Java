@@ -1,6 +1,6 @@
 *** Settings ***
 Documentation    Suite description
-Library                 AppiumLibrary
+Library                 SeleniumLibrary
 Library                 Dialogs
 Resource                locators/webportal/profile.robot
 

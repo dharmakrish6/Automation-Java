@@ -1,28 +1,26 @@
 *** Settings ***
 Documentation       Check validation for sign-up flow (email-id)
 Library             AppiumLibrary
-Resource            ../keywords/android_app/low_level_keywords/android_common.robot
-Resource            ../keywords/android_app/high_level_keywords/authentication.robot
-Resource            ../test_data/credentials.robot
-Test Setup          Open Sunnxt App
+Resource         keywords/android_app/high_level_keywords/authentication.robot
+Test Setup          Launch App
 Test Teardown       Close App
 Test Template       Sign-up
 
-*** Test Cases ***                                               userid                               userpass
-#TEST-SCENARIO 08: REGISTERED CREDENTIAL                          ${reg_id-email_subs}                 ${reg_pass-email_subs}
-#TEST-SCENARIO 09: UNREGISTERED CREDENTIAL xxx@xxxx.xxx           ${v_id-email_xxx@xxxx.xxx}           ${v_pass-@xx123}
-TEST-SCENARIO 10: VALID EMAIL FORMAT xx.xxx@xxxx.xxx             ${v_id-email_xx.xxx@xxxx.xxx}        ${v_pass-@xx123}
-#TEST-SCENARIO 11: VALID EMAIL FORMAT xx.xxx@xxxx.xx.xxx          ${v_id-email_xx.xxx@xxxx.xx.xxx}     ${v_pass-xxxx}
-#TEST-SCENARIO 12: INVALID EMAIL FORMAT xx.xxxx.xxx               ${iv_id-email_xx.xxxx.xxx}           ${v_pass-@xx123}
-#TEST-SCENARIO 13: INVALID EMAIL FORMAT xxxx@.xxx.xx              ${iv_id-email_xxxx@.xxx.xx}          ${v_pass-@xx123}
-#TEST-SCENARIO 14: INVALID EMAIL FORMAT xxx.xx.xxx                ${iv_id-email_@xxx.xx.xxx}           ${v_pass-@xx123}
-#TEST-SCENARIO 15: INVALID EMAIL FORMAT xxx@xxxx.x                ${iv_id-email_xxx@xxxx.x}            ${v_pass-@xx123}
-#TEST-SCENARIO 16: INVALID EMAIL FORMAT xxxx@.xxx.xxx             ${iv_id-email_xxxx@.xxx.xxx}         ${v_pass-@xx123}
-#TEST-SCENARIO 17: INVALID EMAIL FORMAT .xxxx@xxxx.xxx            ${iv_id-email_.xxxx@xxxx.xxx}        ${v_pass-@xx123}
-#TEST-SCENARIO 18: INVALID EMAIL FORMAT xxxx()*.xxx               ${iv_id-email_xxxx()*.xxx}           ${v_pass-@xx123}
-#TEST-SCENARIO 19: INVALID EMAIL FORMAT xxxx..1234@xxxx.xxx       ${iv_id-email_xxxx..1234@xxxx.xxx}   ${v_pass-@xx123}
-#TEST-SCENARIO 20: INVALID EMAIL FORMAT xxxx 1234@xxxx.xxx        ${iv_id-email_xxxx 1234@xxxx.xxx}    ${v_pass-@xx123}
-#TEST-SCENARIO 21: INVALID PASSWORD FORMAT xxx                    ${v_ide-verify}                      ${iv_pass-xxx}
-#TEST-SCENARIO 22: INVALID PASSWORD FORMAT xx xx                  ${v_ide-verify}                      ${iv_pass-xx xx}
-#TEST-SCENARIO 23: INVALID MOBILE NUMBER FORMAT xxxxxxxxx         ${iv_id-mobile_xxxxxxxxx}            ${v_pass-@xx123}
-#TEST-SCENARIO 24: INVALID MOBILE NUMBER FORMAT xxxxxxxxxxx       ${iv_id-mobile_xxxxxxxxxxx}          ${iv_pass-xx xx}
+*** Test Cases ***                                                  user_type
+TEST-SCENARIO 09: REGISTERED CREDENTIAL                             Already Registered Credential
+TEST-SCENARIO 10: UNREGISTERED CREDENTIAL xxx@xxxx.xxx              Unregistered Credential
+TEST-SCENARIO 11: VALID EMAIL FORMAT xx.xxx@xxxx.xxx                Valid Email ID of Format xx.xxxx@xxxxx.xxx
+TEST-SCENARIO 12: VALID EMAIL FORMAT xx.xxx@xxxx.xx.xxx             Valid Email ID of Format xx.xxxx@xxx.xxx.xxx
+TEST-SCENARIO 13: INVALID EMAIL FORMAT xx.xxxx.xxx                  Invalid Email ID of Format xxx.xxxx.xxx
+TEST-SCENARIO 14: INVALID EMAIL FORMAT xxxx@.xxx.xx                 Invalid Email ID of Format xxxx@.xxx.xxx
+TEST-SCENARIO 15: INVALID EMAIL FORMAT @xxx.xx.xxx                  Invalid Email ID of Format @xxx.xx.xxx
+TEST-SCENARIO 16: INVALID EMAIL FORMAT xxx@xxxx.x                   Invalid Email ID of Format xxx@xxxx.x
+TEST-SCENARIO 17: INVALID EMAIL FORMAT xxxx@.xxx.xxx                Invalid Email ID of Format xxxx@.xxx.xxx
+TEST-SCENARIO 18: INVALID EMAIL FORMAT .xxxx@xxxx.xxx               Invalid Email ID of Format .xxxx@xxxx.xxx
+TEST-SCENARIO 19: INVALID EMAIL FORMAT xxxx()*.xxx                  Invalid Email ID of Format xxxx()*.xxx
+TEST-SCENARIO 20: INVALID EMAIL FORMAT xxxx..1234@xxxx.xxx          Invalid Email ID of Format xxxx..zzzz@xxxx.xxx
+TEST-SCENARIO 21: INVALID EMAIL FORMAT xxxx 1234@xxxx.xxx           Invalid Email ID of Format xxxx 1234@xxxx.xxx
+TEST-SCENARIO 22: INVALID PASSWORD FORMAT xxx                       Invalid Password zzz
+TEST-SCENARIO 23: INVALID PASSWORD FORMAT xx xx                     Invalid Password zz zzz
+TEST-SCENARIO 24: INVALID MOBILE NUMBER FORMAT xxxxxxxxx            Invalid Mobile Number of Format zzzzzzzzz
+TEST-SCENARIO 25: INVALID MOBILE NUMBER FORMAT xxxxxxxxxxx          Invalid Mobile Number of Format zzzzzzzzzzz
